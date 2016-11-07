@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -39,6 +39,7 @@
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
+            this.SOItemDetails = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +54,11 @@
             this.label7 = new System.Windows.Forms.Label();
             this.DifotTab = new System.Windows.Forms.TabPage();
             this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.SOItemDetails = new System.Windows.Forms.DataGridView();
+            this.SODifot = new System.Windows.Forms.DataGridView();
+            this.difotFrom = new System.Windows.Forms.DateTimePicker();
+            this.difotTo = new System.Windows.Forms.DateTimePicker();
+            this.difotPattern = new System.Windows.Forms.TextBox();
+            this.refreshDifot = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -67,6 +72,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.SOMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOSecondary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOItemDetails)).BeginInit();
+            this.DifotTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SODifot)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -184,6 +191,42 @@
             this.SOSecondary.Name = "SOSecondary";
             this.SOSecondary.Size = new System.Drawing.Size(781, 284);
             this.SOSecondary.TabIndex = 1;
+            // 
+            // SOItemDetails
+            // 
+            this.SOItemDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle14;
+            this.SOItemDetails.Location = new System.Drawing.Point(2, 219);
+            this.SOItemDetails.Name = "SOItemDetails";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            this.SOItemDetails.Size = new System.Drawing.Size(624, 483);
+            this.SOItemDetails.TabIndex = 14;
             // 
             // label2
             // 
@@ -308,6 +351,11 @@
             // 
             // DifotTab
             // 
+            this.DifotTab.Controls.Add(this.refreshDifot);
+            this.DifotTab.Controls.Add(this.difotPattern);
+            this.DifotTab.Controls.Add(this.difotTo);
+            this.DifotTab.Controls.Add(this.difotFrom);
+            this.DifotTab.Controls.Add(this.SODifot);
             this.DifotTab.Location = new System.Drawing.Point(4, 22);
             this.DifotTab.Name = "DifotTab";
             this.DifotTab.Padding = new System.Windows.Forms.Padding(3);
@@ -325,41 +373,61 @@
             this.SettingsTab.Text = "Settings";
             this.SettingsTab.UseVisualStyleBackColor = true;
             // 
-            // SOItemDetails
+            // SODifot
             // 
-            this.SOItemDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SODifot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle2;
-            this.SOItemDetails.Location = new System.Drawing.Point(2, 219);
-            this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.SOItemDetails.Size = new System.Drawing.Size(624, 483);
-            this.SOItemDetails.TabIndex = 14;
+            this.SODifot.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SODifot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SODifot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SODifot.Location = new System.Drawing.Point(3, 31);
+            this.SODifot.Name = "SODifot";
+            this.SODifot.Size = new System.Drawing.Size(1411, 677);
+            this.SODifot.TabIndex = 0;
+            // 
+            // difotFrom
+            // 
+            this.difotFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.difotFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.difotFrom.Location = new System.Drawing.Point(1036, 6);
+            this.difotFrom.Name = "difotFrom";
+            this.difotFrom.Size = new System.Drawing.Size(132, 20);
+            this.difotFrom.TabIndex = 1;
+            this.difotFrom.ValueChanged += new System.EventHandler(this.difotFrom_ValueChanged);
+            // 
+            // difotTo
+            // 
+            this.difotTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.difotTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.difotTo.Location = new System.Drawing.Point(1174, 6);
+            this.difotTo.Name = "difotTo";
+            this.difotTo.Size = new System.Drawing.Size(132, 20);
+            this.difotTo.TabIndex = 2;
+            this.difotTo.ValueChanged += new System.EventHandler(this.difotTo_ValueChanged);
+            // 
+            // difotPattern
+            // 
+            this.difotPattern.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.difotPattern.Location = new System.Drawing.Point(3, 6);
+            this.difotPattern.Name = "difotPattern";
+            this.difotPattern.Size = new System.Drawing.Size(1027, 20);
+            this.difotPattern.TabIndex = 3;
+            this.difotPattern.TextChanged += new System.EventHandler(this.difotPattern_TextChanged);
+            // 
+            // refreshDifot
+            // 
+            this.refreshDifot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshDifot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshDifot.ForeColor = System.Drawing.Color.Green;
+            this.refreshDifot.Location = new System.Drawing.Point(1312, 4);
+            this.refreshDifot.Name = "refreshDifot";
+            this.refreshDifot.Size = new System.Drawing.Size(102, 23);
+            this.refreshDifot.TabIndex = 4;
+            this.refreshDifot.Text = "Refresh";
+            this.refreshDifot.UseVisualStyleBackColor = true;
+            this.refreshDifot.Click += new System.EventHandler(this.refreshDifot_Click);
             // 
             // Application
             // 
@@ -384,6 +452,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.SOMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOSecondary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOItemDetails)).EndInit();
+            this.DifotTab.ResumeLayout(false);
+            this.DifotTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SODifot)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -413,6 +484,11 @@
         private System.Windows.Forms.Button clearSearchBtn;
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.DataGridView SOItemDetails;
+        private System.Windows.Forms.DateTimePicker difotTo;
+        private System.Windows.Forms.DateTimePicker difotFrom;
+        private System.Windows.Forms.DataGridView SODifot;
+        private System.Windows.Forms.TextBox difotPattern;
+        private System.Windows.Forms.Button refreshDifot;
     }
 }
 

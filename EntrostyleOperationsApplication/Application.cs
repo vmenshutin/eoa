@@ -22,6 +22,9 @@ namespace EntrostyleOperationsApplication
         OdbcDataAdapter SOItemDetailsAdapter;
         DataSet SOItemDetailsDataSet = new DataSet();
 
+        OdbcDataAdapter SODifotAdapter;
+        DataSet SODifotDataSet = new DataSet();
+
         bool isSODetailsGridStyled = false;
 
         public Application()
@@ -40,6 +43,9 @@ namespace EntrostyleOperationsApplication
             loadSalesOrdersMain();
             loadSalesOrdersSecondary();
 
+            // load DIFOT data
+            loadDifotData();
+
             // add fake dropdown columns for dispatch status and method
             addStatusAndMethodDropdowns(SOMain);
             addStatusAndMethodDropdowns(SOSecondary);
@@ -47,10 +53,14 @@ namespace EntrostyleOperationsApplication
             // set basic grid styling
             setDataGridViewStyleProps(SOMain);
             setDataGridViewStyleProps(SOSecondary);
+            setDataGridViewStyleProps(SODifot);
 
             // customize columns for split 1 and 2
             styleMainDataGridViewColumns(SOMain);
             styleMainDataGridViewColumns(SOSecondary);
+
+            // customize columns for DIFOT
+            styleDifotColumns();
 
             // focus main grid or secondary if main has 0 rows
             focusSO();
@@ -178,6 +188,26 @@ namespace EntrostyleOperationsApplication
             SOItemDetails.CellValueChanged += SODetails_CellValueChanged;
         }
 
+        // load DIFOT data
+        private void loadDifotData()
+        {
+            // turn grid listeners off
+            SODifot.CellValueChanged -= SODifot_CellValueChanged;
+
+            (new OdbcCommand("exec eoa_query_difot_items '" + difotPattern.Text + "', '" + difotFrom.Value.ToString("yyyy-MM-dd") + "', '"
+               + difotTo.Value.ToString("yyyy-MM-dd") + "'," + sessionId.ToString(), connection)).ExecuteNonQuery();
+
+            SODifotAdapter = new OdbcDataAdapter("SELECT * FROM EOA_DIFOT where SESSIONID = " + sessionId.ToString(), connection);
+            SODifotDataSet = new DataSet();
+            OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(SODifotAdapter);
+            SODifotAdapter.Fill(SODifotDataSet);
+
+            SODifot.DataSource = SODifotDataSet.Tables[0];
+
+            // turn grid listeners on again
+            SODifot.CellValueChanged += SODifot_CellValueChanged;
+        }
+
         // clear obsolete sessions data and verify current session id is unique
         private void verifyUserIsUnique()
         {
@@ -293,6 +323,41 @@ namespace EntrostyleOperationsApplication
             columns["PICKDATE"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
+        // style Data Grid View columns for DIFOT
+        private void styleDifotColumns()
+        {
+            var columns = SODifot.Columns;
+
+            foreach (DataGridViewColumn column in columns)
+            {
+                if (column.Name != "X_DIFOT_STATUS"
+                    && column.Name != "X_DIFOT_TIMESTAMP"
+                    && column.Name != "X_DIFOT_NOTE")
+                {
+                    column.ReadOnly = true;
+                }
+                else
+                {
+                    column.DefaultCellStyle.BackColor = Color.LightGray;
+                }
+            }
+
+            columns["SESSIONID"].Visible = false;
+
+            columns["INVNO"].HeaderText = "Invoice #";
+            columns["ACCOUNTNAME"].HeaderText = "Account";
+            columns["X_DESPATCH_METHOD"].HeaderText = "DM";
+            columns["X_LEAD_TIME"].HeaderText = "Time";
+            columns["X_SCHEDULE_TIMESTAMP"].HeaderText = "Last Sc";
+            columns["X_DIFOT_STATUS"].HeaderText = "Difot";
+            columns["X_DIFOT_TIMESTAMP"].HeaderText = "Difot Time";
+            columns["X_DIFOT_NOTE"].HeaderText = "Difot Note";
+
+            columns["X_LEAD_TIME"].DefaultCellStyle.Format = "dd/MM HH:mm";
+            columns["X_SCHEDULE_TIMESTAMP"].DefaultCellStyle.Format = "dd/MM HH:mm";
+            columns["X_DIFOT_TIMESTAMP"].DefaultCellStyle.Format = "dd/MM HH:mm";
+        }
+
         // set major style properties for datagridview
         private void setDataGridViewStyleProps(DataGridView dgv)
         {
@@ -300,7 +365,7 @@ namespace EntrostyleOperationsApplication
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dgv.MultiSelect = true;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.White;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.AliceBlue;
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgv.DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dgv.BorderStyle = BorderStyle.Fixed3D;
@@ -313,6 +378,8 @@ namespace EntrostyleOperationsApplication
             foreach (DataGridViewColumn column in dgv.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
         }
 
@@ -361,11 +428,36 @@ namespace EntrostyleOperationsApplication
                     MessageBox.Show("Concurrency violation! Please, refresh the app.");
                 }
 
-            // run stored procedure and update real database tables
-            (new OdbcCommand("eoa_so_item_details_update "
-               + sessionId.ToString() + ", "
-               + SOItemDetails.Rows[e.RowIndex].Cells["SEQNO"].Value.ToString() + ", "
-               + SOItemDetails.Rows[e.RowIndex].Cells["LINES_ID"].Value.ToString(), connection)).ExecuteNonQueryAsync();
+                // run stored procedure and update real database tables
+                (new OdbcCommand("eoa_so_item_details_update "
+                   + sessionId.ToString() + ", "
+                   + SOItemDetails.Rows[e.RowIndex].Cells["SEQNO"].Value.ToString() + ", "
+                   + SOItemDetails.Rows[e.RowIndex].Cells["LINES_ID"].Value.ToString(), connection)).ExecuteNonQueryAsync();
+                }
+        }
+
+        private void SODifot_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                var dgv = (DataGridView)sender;
+
+                Validate();
+
+                try
+                {
+                    SODifotAdapter.Update(SODifotDataSet);
+                }
+                catch (DBConcurrencyException)
+                {
+                    MessageBox.Show("Concurrency violation! Please, refresh the app.");
+                }
+
+                // run stored procedure and update real database tables
+                (new OdbcCommand("exec eoa_update_difot_"
+                   + dgv.Columns[e.ColumnIndex].Name + " "
+                   + sessionId.ToString() + ", "
+                   + dgv.Rows[e.RowIndex].Cells["INVNO"].Value.ToString(), connection)).ExecuteNonQueryAsync();
             }
         }
 
@@ -406,11 +498,11 @@ namespace EntrostyleOperationsApplication
                     MessageBox.Show("Concurrency violation! Please, refresh the app.");
                 }
 
-            // run stored procedure and update real database tables
-            (new OdbcCommand(procedureNamePrefix
-               + cleanColumnName + " "
-               + sessionId.ToString() + ", "
-               + dgv.Rows[e.RowIndex].Cells["#"].Value.ToString(), connection)).ExecuteNonQueryAsync();
+                // run stored procedure and update real database tables
+                (new OdbcCommand(procedureNamePrefix
+                   + cleanColumnName + " "
+                   + sessionId.ToString() + ", "
+                   + dgv.Rows[e.RowIndex].Cells["#"].Value.ToString(), connection)).ExecuteNonQueryAsync();
             }
         }
 
@@ -433,6 +525,26 @@ namespace EntrostyleOperationsApplication
             searchBox.TextChanged += searchBox_TextChanged;
 
             loadSalesOrdersSecondary();
+        }
+
+        private void difotFrom_ValueChanged(object sender, EventArgs e)
+        {
+            loadDifotData();
+        }
+
+        private void difotTo_ValueChanged(object sender, EventArgs e)
+        {
+            loadDifotData();
+        }
+
+        private void difotPattern_TextChanged(object sender, EventArgs e)
+        {
+            loadDifotData();
+        }
+
+        private void refreshDifot_Click(object sender, EventArgs e)
+        {
+            loadDifotData();
         }
     }
 }
