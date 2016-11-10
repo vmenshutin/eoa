@@ -19,6 +19,11 @@ namespace EntrostyleOperationsApplication
         OdbcDataAdapter SOSecondaryAdapter;
         DataSet SOSecondaryDataSet = new DataSet();
 
+        OdbcDataAdapter SOItemDetailsAdapter;
+        DataSet SOItemDetailsDataSet = new DataSet();
+
+        bool isSODetailsGridStyled = false;
+
         public Application()
         {
             InitializeComponent();
@@ -42,10 +47,11 @@ namespace EntrostyleOperationsApplication
             // set basic grid styling
             setDataGridViewStyleProps(SOMain);
             setDataGridViewStyleProps(SOSecondary);
+            setDataGridViewStyleProps(SOItemDetails);
 
-            // customize columns
-            styleDataGridViewColumns(SOMain);
-            styleDataGridViewColumns(SOSecondary);
+            // customize columns for split 1 and 2
+            styleMainDataGridViewColumns(SOMain);
+            styleMainDataGridViewColumns(SOSecondary);
 
             // set up action listeners
             setDataGridViewListeners();
@@ -108,9 +114,19 @@ namespace EntrostyleOperationsApplication
         // loads data to main sales orders table
         private void loadSalesOrdersMain()
         {
+            string sortString = " ORDER BY CASE WHEN STATUS = 'P' THEN '1' " +
+              "WHEN STATUS = 'TP' THEN '2' " +
+              "WHEN STATUS = 'W' THEN '3' " +
+              "WHEN STATUS = 'TA' THEN '4' " +
+              "WHEN STATUS = 'Sc' THEN '5' " +
+              "ELSE STATUS END ASC, " +
+              "CAST(PICKDATE AS DATE) ASC, " +
+              "CAST(DUETIME AS TIME) ASC";
+
             (new OdbcCommand("exec query_salesorders_main " + sessionId.ToString(), connection)).ExecuteNonQuery();
 
-            SOMainAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SALESORD_MAIN where SESSIONID = " + sessionId.ToString(), connection);
+            SOMainAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SALESORD_MAIN where SESSIONID = " + sessionId.ToString() + sortString, connection);
+            SOMainDataSet = new DataSet();
             OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(SOMainAdapter);
             SOMainAdapter.Fill(SOMainDataSet);
 
@@ -118,15 +134,30 @@ namespace EntrostyleOperationsApplication
         }
 
         // loads data to main sales orders table
-        private void loadSalesOrdersSecondary()
+        private void loadSalesOrdersSecondary(string searchText = "")
         {
-            (new OdbcCommand("exec query_salesorders_secondary " + sessionId.ToString(), connection)).ExecuteNonQuery();
+            (new OdbcCommand("exec " + (searchText.Length > 0 ? "secondary_search_orders " : "query_salesorders_secondary ") + sessionId.ToString() +
+                (searchText.Length > 0 ? (", '" + searchText + "'"): ""), connection)).ExecuteNonQuery();
 
             SOSecondaryAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SALESORD_SECONDARY where SESSIONID = " + sessionId.ToString(), connection);
+            SOSecondaryDataSet = new DataSet();
             OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(SOSecondaryAdapter);
             SOSecondaryAdapter.Fill(SOSecondaryDataSet);
 
             SOSecondary.DataSource = SOSecondaryDataSet.Tables[0];
+        }
+
+        // loads stock items for a selected sales order
+        private void loadSalesOrderItemDetails(int seqno)
+        {
+            (new OdbcCommand("exec eoa_fetch_so_item_details " + sessionId.ToString() + ", " + seqno.ToString(), connection)).ExecuteNonQuery();
+
+            SOItemDetailsAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SO_ITEM_DETAILS where SESSIONID = " + sessionId.ToString(), connection);
+            SOItemDetailsDataSet = new DataSet();
+            OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(SOItemDetailsAdapter);
+            SOItemDetailsAdapter.Fill(SOItemDetailsDataSet);
+
+            SOItemDetails.DataSource = SOItemDetailsDataSet.Tables[0];
         }
 
         // clear obsolete sessions data and verify current session id is unique
@@ -152,12 +183,13 @@ namespace EntrostyleOperationsApplication
             dispatchStatusColumn.Name = "STATUS_FAKE";
 
 
-            var listSource = new string[] { "TP", "W", "P", "TA", "Sc", "Sh" };
+            var listSource = new string[] { "TP", "W", "P", "TA", "Sc" };
             dispatchStatusColumn.DataSource = listSource;
             dispatchStatusColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
             dgv.Columns.Add(dispatchStatusColumn);
             dgv.Columns[dispatchStatusColumn.Name].DataPropertyName = "STATUS";
+            dgv.Columns[dispatchStatusColumn.Name].DisplayIndex = 3;
 
             //----------------------METHOD-----------------------
 
@@ -165,16 +197,46 @@ namespace EntrostyleOperationsApplication
             dispatchMethodColumn.HeaderText = "Method";
             dispatchMethodColumn.Name = "METHOD_FAKE";
 
-            var methodSource = new string[] { "E4", "E4c", "G", "P", "I", "(n)" };
+            var methodSource = new string[] { "E4", "G", "P", "N", "(n)" };
             dispatchMethodColumn.DataSource = methodSource;
             dispatchMethodColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
             dgv.Columns.Add(dispatchMethodColumn);
             dgv.Columns[dispatchMethodColumn.Name].DataPropertyName = "METHOD";
+            dgv.Columns[dispatchMethodColumn.Name].DisplayIndex = 4;
         }
 
-        // style Data Grid View columns
-        private void styleDataGridViewColumns(DataGridView dgv)
+        // style Data Grid View columns for SO Details grid
+        private void styleSODetailsColumns()
+        {
+            var columns = SOItemDetails.Columns;
+
+            foreach (DataGridViewColumn column in columns)
+            {
+                if (column.Name == "PICK_NOW")
+                {
+                    column.DefaultCellStyle.BackColor = Color.LightGray;
+                }
+                else
+                {
+                    column.ReadOnly = true;
+                }
+            }
+
+            columns["SEQNO"].Visible = false;
+            columns["LINES_ID"].Visible = false;
+            columns["SESSIONID"].Visible = false;
+
+            columns["STOCKCODE"].HeaderText = "Stock Code";
+            columns["DESCRIPTION"].HeaderText = "Description";
+            columns["STOCKCHECK"].HeaderText = "Stock Status";
+            columns["PICK_NOW"].HeaderText = "Pick Qty";
+            columns["UNSUP_QUANT"].HeaderText = "Outstanding";
+            columns["TOTALSTOCK"].HeaderText = "Total Qty";
+        }
+
+        // style Data Grid View columns for split 1 and 2
+        private void styleMainDataGridViewColumns(DataGridView dgv)
         {
             var columns = dgv.Columns;
 
@@ -199,6 +261,18 @@ namespace EntrostyleOperationsApplication
             columns["LAST_SCHEDULED"].Visible = false;
             columns["ADDRESS1"].Visible = false;
             columns["ADDRESS2"].Visible = false;
+
+            columns["ACCOUNTNAME"].HeaderText = "Account";
+            columns["STOCK"].HeaderText = "Stock";
+            columns["TIME"].HeaderText = "TT";
+            columns["DUEDATE"].HeaderText = "Due";
+            columns["PICKDATE"].HeaderText = "Date";
+            columns["DUETIME"].HeaderText = "Time";
+
+            columns["TIME"].DefaultCellStyle.Format = "HH:mm";
+            columns["DUETIME"].DefaultCellStyle.Format = "HH:mm";
+            columns["DUEDATE"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            columns["PICKDATE"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
         // set major style properties for datagridview
@@ -244,6 +318,16 @@ namespace EntrostyleOperationsApplication
             if (selectedRows.Count > 0)
             {
                 var cells = selectedRows[0].Cells;
+
+                // load sales order details
+                loadSalesOrderItemDetails((int)cells["#"].Value);
+
+                // customize columns for SO details grid
+                if (!isSODetailsGridStyled)
+                {
+                    styleSODetailsColumns();
+                    isSODetailsGridStyled = true;
+                }
 
                 label6.Text = cells["#"].Value.ToString();
                 label7.Text = cells["ACCOUNTNAME"].Value.ToString();
@@ -293,7 +377,28 @@ namespace EntrostyleOperationsApplication
             (new OdbcCommand(procedureNamePrefix
                + cleanColumnName + " "
                + sessionId.ToString() + ", "
-               + dgv.Rows[e.RowIndex].Cells["#"].Value.ToString(), connection)).ExecuteNonQuery();
+               + dgv.Rows[e.RowIndex].Cells["#"].Value.ToString(), connection)).ExecuteNonQueryAsync();
+        }
+
+        // Refresh Button click
+        private void button1_Click(object sender, EventArgs e)
+        {
+            loadSalesOrdersMain();
+            loadSalesOrdersSecondary();
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            loadSalesOrdersSecondary(((TextBox)sender).Text);
+        }
+
+        private void clearSearchBtn_Click(object sender, EventArgs e)
+        {
+            searchBox.TextChanged -= searchBox_TextChanged;
+            searchBox.Text = "";
+            searchBox.TextChanged += searchBox_TextChanged;
+
+            loadSalesOrdersSecondary();
         }
     }
 }
