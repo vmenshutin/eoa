@@ -47,14 +47,10 @@ namespace EntrostyleOperationsApplication
             // set basic grid styling
             setDataGridViewStyleProps(SOMain);
             setDataGridViewStyleProps(SOSecondary);
-            setDataGridViewStyleProps(SOItemDetails);
 
             // customize columns for split 1 and 2
             styleMainDataGridViewColumns(SOMain);
             styleMainDataGridViewColumns(SOSecondary);
-
-            // set up action listeners
-            setDataGridViewListeners();
 
             // focus main grid or secondary if main has 0 rows
             focusSO();
@@ -114,6 +110,10 @@ namespace EntrostyleOperationsApplication
         // loads data to main sales orders table
         private void loadSalesOrdersMain()
         {
+            // turn off grid listeners
+            SOMain.CellValueChanged -= SO_CellValueChanged;
+            SOMain.RowEnter -= SO_RowEnter;
+
             string sortString = " ORDER BY CASE WHEN STATUS = 'P' THEN '1' " +
               "WHEN STATUS = 'TP' THEN '2' " +
               "WHEN STATUS = 'W' THEN '3' " +
@@ -131,11 +131,19 @@ namespace EntrostyleOperationsApplication
             SOMainAdapter.Fill(SOMainDataSet);
 
             SOMain.DataSource = SOMainDataSet.Tables[0];
+
+            // turn grid listeners back on
+            SOMain.CellValueChanged += SO_CellValueChanged;
+            SOMain.RowEnter += SO_RowEnter;
         }
 
         // loads data to main sales orders table
         private void loadSalesOrdersSecondary(string searchText = "")
         {
+            // turn grid listeners off
+            SOSecondary.CellValueChanged -= SO_CellValueChanged;
+            SOSecondary.RowEnter -= SO_RowEnter;
+
             (new OdbcCommand("exec " + (searchText.Length > 0 ? "secondary_search_orders " : "query_salesorders_secondary ") + sessionId.ToString() +
                 (searchText.Length > 0 ? (", '" + searchText + "'"): ""), connection)).ExecuteNonQuery();
 
@@ -145,11 +153,18 @@ namespace EntrostyleOperationsApplication
             SOSecondaryAdapter.Fill(SOSecondaryDataSet);
 
             SOSecondary.DataSource = SOSecondaryDataSet.Tables[0];
+
+            // turn grid listeners on again
+            SOSecondary.CellValueChanged += SO_CellValueChanged;
+            SOSecondary.RowEnter += SO_RowEnter;
         }
 
         // loads stock items for a selected sales order
         private void loadSalesOrderItemDetails(int seqno)
         {
+            // turn grid listeners off
+            SOItemDetails.CellValueChanged -= SODetails_CellValueChanged;
+
             (new OdbcCommand("exec eoa_fetch_so_item_details " + sessionId.ToString() + ", " + seqno.ToString(), connection)).ExecuteNonQuery();
 
             SOItemDetailsAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SO_ITEM_DETAILS where SESSIONID = " + sessionId.ToString(), connection);
@@ -158,6 +173,9 @@ namespace EntrostyleOperationsApplication
             SOItemDetailsAdapter.Fill(SOItemDetailsDataSet);
 
             SOItemDetails.DataSource = SOItemDetailsDataSet.Tables[0];
+
+            // turn grid listeners on again
+            SOItemDetails.CellValueChanged += SODetails_CellValueChanged;
         }
 
         // clear obsolete sessions data and verify current session id is unique
@@ -298,18 +316,6 @@ namespace EntrostyleOperationsApplication
             }
         }
 
-        // set listeners to datagridviews
-        private void setDataGridViewListeners()
-        {
-            // save values to database with each call value change
-            SOMain.CellValueChanged += SO_CellValueChanged;
-            SOSecondary.CellValueChanged += SO_CellValueChanged;
-
-            // react when selected row changed
-            SOMain.RowEnter += SO_RowEnter;
-            SOSecondary.RowEnter += SO_RowEnter;
-        }
-
         // react when selected row changed
         private void SO_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
@@ -325,6 +331,7 @@ namespace EntrostyleOperationsApplication
                 // customize columns for SO details grid
                 if (!isSODetailsGridStyled)
                 {
+                    setDataGridViewStyleProps(SOItemDetails);
                     styleSODetailsColumns();
                     isSODetailsGridStyled = true;
                 }
@@ -338,46 +345,73 @@ namespace EntrostyleOperationsApplication
             }
         }
 
-        // updates database when 
+        // triggers when pick now qty is changes in sales order details grid
+        private void SODetails_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                Validate();
+
+                try
+                {
+                    SOItemDetailsAdapter.Update(SOItemDetailsDataSet);
+                }
+                catch (DBConcurrencyException)
+                {
+                    MessageBox.Show("Concurrency violation! Please, refresh the app.");
+                }
+
+            // run stored procedure and update real database tables
+            (new OdbcCommand("eoa_so_item_details_update "
+               + sessionId.ToString() + ", "
+               + SOItemDetails.Rows[e.RowIndex].Cells["SEQNO"].Value.ToString() + ", "
+               + SOItemDetails.Rows[e.RowIndex].Cells["LINES_ID"].Value.ToString(), connection)).ExecuteNonQueryAsync();
+            }
+        }
+
+        // updates database when cell value changed (split 1 and split 2)
         private void SO_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            Validate();
-
-            // which grid to update
-            var dgv = (DataGridView)sender;
-
-            // which column value has been changed
-            string columnName = dgv.Columns[e.ColumnIndex].Name;
-
-            // is column fake?
-            int index = columnName.IndexOf("_FAKE");
-
-            // remove _FAKE part of column name if it exists
-            string cleanColumnName = (index < 0)
-                ? columnName
-                : columnName.Remove(index, 5);
-
-            // set corresponding data adapters and data sets
-            var adapter = dgv.Name == "SOMain" ? SOMainAdapter : SOSecondaryAdapter;
-            var dataset = dgv.Name == "SOMain" ? SOMainDataSet : SOSecondaryDataSet;
-
-            // set corresponding stored procedure name prefix
-            string procedureNamePrefix = dgv.Name == "SOMain" ? "exec so_main_update_" : "exec so_secondary_update_";
-
-            try
+            if (e.RowIndex > -1)
             {
-                adapter.Update(dataset);
-            }
-            catch (DBConcurrencyException)
-            {
-                MessageBox.Show("Concurrency violation! Please, refresh the app.");
-            }
+                Validate();
+
+                // which grid to update
+                var dgv = (DataGridView)sender;
+
+                // which column value has been changed
+                string columnName = dgv.Columns[e.ColumnIndex].Name;
+
+                // is column fake?
+                int index = columnName.IndexOf("_FAKE");
+
+                // remove _FAKE part of column name if it exists
+                string cleanColumnName = (index < 0)
+                    ? columnName
+                    : columnName.Remove(index, 5);
+
+                // set corresponding data adapters and data sets
+                var adapter = dgv.Name == "SOMain" ? SOMainAdapter : SOSecondaryAdapter;
+                var dataset = dgv.Name == "SOMain" ? SOMainDataSet : SOSecondaryDataSet;
+
+                // set corresponding stored procedure name prefix
+                string procedureNamePrefix = dgv.Name == "SOMain" ? "exec so_main_update_" : "exec so_secondary_update_";
+
+                try
+                {
+                    adapter.Update(dataset);
+                }
+                catch (DBConcurrencyException)
+                {
+                    MessageBox.Show("Concurrency violation! Please, refresh the app.");
+                }
 
             // run stored procedure and update real database tables
             (new OdbcCommand(procedureNamePrefix
                + cleanColumnName + " "
                + sessionId.ToString() + ", "
                + dgv.Rows[e.RowIndex].Cells["#"].Value.ToString(), connection)).ExecuteNonQueryAsync();
+            }
         }
 
         // Refresh Button click
