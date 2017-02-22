@@ -28,6 +28,8 @@ namespace EntrostyleOperationsApplication
         bool isSODetailsGridStyled = false;
         bool isDifotPickerOpen = false;
 
+        DateTime difotPickerValue;
+
         public Application()
         {
             InitializeComponent();
@@ -260,6 +262,40 @@ namespace EntrostyleOperationsApplication
             dgv.Columns.Add(dispatchMethodColumn);
             dgv.Columns[dispatchMethodColumn.Name].DataPropertyName = "METHOD";
             dgv.Columns[dispatchMethodColumn.Name].DisplayIndex = 4;
+
+            //--------------------DateTimePickers-----------------
+
+            CalendarColumn dateCalenderColumn = new CalendarColumn();
+            CalendarColumn dueCalenderColumn = new CalendarColumn();
+
+            dateCalenderColumn.HeaderText = "Date";
+            dueCalenderColumn.HeaderText = "Due";
+
+            dateCalenderColumn.Name = "PICKDATE_FAKE";
+            dueCalenderColumn.Name = "DUEDATE_FAKE";
+
+            dgv.Columns.Add(dateCalenderColumn);
+            dgv.Columns.Add(dueCalenderColumn);
+
+            dgv.Columns[dueCalenderColumn.Name].DataPropertyName = "DUEDATE";
+            dgv.Columns[dateCalenderColumn.Name].DataPropertyName = "PICKDATE";
+
+            //--------------------DateTimePickers-----------------
+
+            TimeColumn timeColumn = new TimeColumn();
+            TimeColumn dueTimeColumn = new TimeColumn();
+
+            timeColumn.HeaderText = "TT";
+            dueTimeColumn.HeaderText = "Time";
+
+            timeColumn.Name = "TIME_FAKE";
+            dueTimeColumn.Name = "DUETIME_FAKE";
+
+            dgv.Columns.Add(timeColumn);
+            dgv.Columns.Add(dueTimeColumn);
+
+            dgv.Columns[timeColumn.Name].DataPropertyName = "TIME";
+            dgv.Columns[dueTimeColumn.Name].DataPropertyName = "DUETIME";
         }
 
         // style Data Grid View columns for SO Details grid
@@ -317,18 +353,13 @@ namespace EntrostyleOperationsApplication
             columns["LAST_SCHEDULED"].Visible = false;
             columns["ADDRESS1"].Visible = false;
             columns["ADDRESS2"].Visible = false;
+            columns["DUEDATE"].Visible = false;
+            columns["PICKDATE"].Visible = false;
+            columns["TIME"].Visible = false;
+            columns["DUETIME"].Visible = false;
 
             columns["ACCOUNTNAME"].HeaderText = "Account";
             columns["STOCK"].HeaderText = "Stock";
-            columns["TIME"].HeaderText = "TT";
-            columns["DUEDATE"].HeaderText = "Due";
-            columns["PICKDATE"].HeaderText = "Date";
-            columns["DUETIME"].HeaderText = "Time";
-
-            columns["TIME"].DefaultCellStyle.Format = "HH:mm";
-            columns["DUETIME"].DefaultCellStyle.Format = "HH:mm";
-            columns["DUEDATE"].DefaultCellStyle.Format = "dd/MM/yyyy";
-            columns["PICKDATE"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
         // style Data Grid View columns for DIFOT
@@ -538,12 +569,16 @@ namespace EntrostyleOperationsApplication
         private void difotDatePicker_DropDown(object sender, EventArgs e)
         {
             isDifotPickerOpen = true;
+            difotPickerValue = ((DateTimePicker)sender).Value;
         }
 
         private void difotDatePicker_CloseUp(object sender, EventArgs e)
         {
             isDifotPickerOpen = false;
-            loadDifotData();
+            if (((DateTimePicker)sender).Value != difotPickerValue)
+            {
+                loadDifotData();
+            }
         }
 
         private void difotDatePicker_ValueChanged(object sender, EventArgs e)

@@ -53,6 +53,8 @@
     <Compile Include="Application.Designer.cs">
       <DependentUpon>Application.cs</DependentUpon>
     </Compile>
+    <Compile Include="TimeColumn.cs" />
+    <Compile Include="CalendarColumn.cs" />
     <Compile Include="PleaseWaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
