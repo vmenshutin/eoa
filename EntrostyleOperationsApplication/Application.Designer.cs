@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -53,12 +53,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.DifotTab = new System.Windows.Forms.TabPage();
-            this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.SODifot = new System.Windows.Forms.DataGridView();
-            this.difotFrom = new System.Windows.Forms.DateTimePicker();
-            this.difotTo = new System.Windows.Forms.DateTimePicker();
-            this.difotPattern = new System.Windows.Forms.TextBox();
             this.refreshDifot = new System.Windows.Forms.Button();
+            this.difotPattern = new System.Windows.Forms.TextBox();
+            this.difotTo = new System.Windows.Forms.DateTimePicker();
+            this.difotFrom = new System.Windows.Forms.DateTimePicker();
+            this.SODifot = new System.Windows.Forms.DataGridView();
+            this.SettingsTab = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -198,33 +198,33 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle5;
             this.SOItemDetails.Location = new System.Drawing.Point(2, 219);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.SOItemDetails.Size = new System.Drawing.Size(624, 483);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -240,7 +240,6 @@
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Location = new System.Drawing.Point(12, 169);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(147, 35);
@@ -364,14 +363,51 @@
             this.DifotTab.Text = "DIFOT";
             this.DifotTab.UseVisualStyleBackColor = true;
             // 
-            // SettingsTab
+            // refreshDifot
             // 
-            this.SettingsTab.Location = new System.Drawing.Point(4, 22);
-            this.SettingsTab.Name = "SettingsTab";
-            this.SettingsTab.Size = new System.Drawing.Size(1417, 708);
-            this.SettingsTab.TabIndex = 2;
-            this.SettingsTab.Text = "Settings";
-            this.SettingsTab.UseVisualStyleBackColor = true;
+            this.refreshDifot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshDifot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshDifot.ForeColor = System.Drawing.Color.Green;
+            this.refreshDifot.Location = new System.Drawing.Point(1264, 4);
+            this.refreshDifot.Name = "refreshDifot";
+            this.refreshDifot.Size = new System.Drawing.Size(150, 23);
+            this.refreshDifot.TabIndex = 4;
+            this.refreshDifot.Text = "Apply / Refresh";
+            this.refreshDifot.UseVisualStyleBackColor = true;
+            this.refreshDifot.Click += new System.EventHandler(this.refreshDifot_Click);
+            // 
+            // difotPattern
+            // 
+            this.difotPattern.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.difotPattern.Location = new System.Drawing.Point(3, 6);
+            this.difotPattern.Name = "difotPattern";
+            this.difotPattern.Size = new System.Drawing.Size(979, 20);
+            this.difotPattern.TabIndex = 3;
+            // 
+            // difotTo
+            // 
+            this.difotTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.difotTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.difotTo.Location = new System.Drawing.Point(1126, 6);
+            this.difotTo.Name = "difotTo";
+            this.difotTo.Size = new System.Drawing.Size(132, 20);
+            this.difotTo.TabIndex = 2;
+            this.difotTo.CloseUp += new System.EventHandler(this.difotDatePicker_CloseUp);
+            this.difotTo.ValueChanged += new System.EventHandler(this.difotDatePicker_ValueChanged);
+            this.difotTo.DropDown += new System.EventHandler(this.difotDatePicker_DropDown);
+            // 
+            // difotFrom
+            // 
+            this.difotFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.difotFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.difotFrom.Location = new System.Drawing.Point(988, 6);
+            this.difotFrom.Name = "difotFrom";
+            this.difotFrom.Size = new System.Drawing.Size(132, 20);
+            this.difotFrom.TabIndex = 1;
+            this.difotFrom.CloseUp += new System.EventHandler(this.difotDatePicker_CloseUp);
+            this.difotFrom.ValueChanged += new System.EventHandler(this.difotDatePicker_ValueChanged);
+            this.difotFrom.DropDown += new System.EventHandler(this.difotDatePicker_DropDown);
             // 
             // SODifot
             // 
@@ -386,48 +422,14 @@
             this.SODifot.Size = new System.Drawing.Size(1411, 677);
             this.SODifot.TabIndex = 0;
             // 
-            // difotFrom
+            // SettingsTab
             // 
-            this.difotFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.difotFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.difotFrom.Location = new System.Drawing.Point(1036, 6);
-            this.difotFrom.Name = "difotFrom";
-            this.difotFrom.Size = new System.Drawing.Size(132, 20);
-            this.difotFrom.TabIndex = 1;
-            this.difotFrom.ValueChanged += new System.EventHandler(this.difotFrom_ValueChanged);
-            // 
-            // difotTo
-            // 
-            this.difotTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.difotTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.difotTo.Location = new System.Drawing.Point(1174, 6);
-            this.difotTo.Name = "difotTo";
-            this.difotTo.Size = new System.Drawing.Size(132, 20);
-            this.difotTo.TabIndex = 2;
-            this.difotTo.ValueChanged += new System.EventHandler(this.difotTo_ValueChanged);
-            // 
-            // difotPattern
-            // 
-            this.difotPattern.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.difotPattern.Location = new System.Drawing.Point(3, 6);
-            this.difotPattern.Name = "difotPattern";
-            this.difotPattern.Size = new System.Drawing.Size(1027, 20);
-            this.difotPattern.TabIndex = 3;
-            this.difotPattern.TextChanged += new System.EventHandler(this.difotPattern_TextChanged);
-            // 
-            // refreshDifot
-            // 
-            this.refreshDifot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshDifot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshDifot.ForeColor = System.Drawing.Color.Green;
-            this.refreshDifot.Location = new System.Drawing.Point(1312, 4);
-            this.refreshDifot.Name = "refreshDifot";
-            this.refreshDifot.Size = new System.Drawing.Size(102, 23);
-            this.refreshDifot.TabIndex = 4;
-            this.refreshDifot.Text = "Refresh";
-            this.refreshDifot.UseVisualStyleBackColor = true;
-            this.refreshDifot.Click += new System.EventHandler(this.refreshDifot_Click);
+            this.SettingsTab.Location = new System.Drawing.Point(4, 22);
+            this.SettingsTab.Name = "SettingsTab";
+            this.SettingsTab.Size = new System.Drawing.Size(1417, 708);
+            this.SettingsTab.TabIndex = 2;
+            this.SettingsTab.Text = "Settings";
+            this.SettingsTab.UseVisualStyleBackColor = true;
             // 
             // Application
             // 

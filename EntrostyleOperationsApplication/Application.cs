@@ -26,6 +26,7 @@ namespace EntrostyleOperationsApplication
         DataSet SODifotDataSet = new DataSet();
 
         bool isSODetailsGridStyled = false;
+        bool isDifotPickerOpen = false;
 
         public Application()
         {
@@ -191,6 +192,11 @@ namespace EntrostyleOperationsApplication
         // load DIFOT data
         private void loadDifotData()
         {
+            PleaseWaitForm wait = new PleaseWaitForm();
+            wait.Show();
+
+            System.Windows.Forms.Application.DoEvents();
+
             // turn grid listeners off
             SODifot.CellValueChanged -= SODifot_CellValueChanged;
 
@@ -203,6 +209,8 @@ namespace EntrostyleOperationsApplication
             SODifotAdapter.Fill(SODifotDataSet);
 
             SODifot.DataSource = SODifotDataSet.Tables[0];
+
+            wait.Close();
 
             // turn grid listeners on again
             SODifot.CellValueChanged += SODifot_CellValueChanged;
@@ -527,19 +535,23 @@ namespace EntrostyleOperationsApplication
             loadSalesOrdersSecondary();
         }
 
-        private void difotFrom_ValueChanged(object sender, EventArgs e)
+        private void difotDatePicker_DropDown(object sender, EventArgs e)
         {
+            isDifotPickerOpen = true;
+        }
+
+        private void difotDatePicker_CloseUp(object sender, EventArgs e)
+        {
+            isDifotPickerOpen = false;
             loadDifotData();
         }
 
-        private void difotTo_ValueChanged(object sender, EventArgs e)
+        private void difotDatePicker_ValueChanged(object sender, EventArgs e)
         {
-            loadDifotData();
-        }
-
-        private void difotPattern_TextChanged(object sender, EventArgs e)
-        {
-            loadDifotData();
+            if (!isDifotPickerOpen)
+            {
+                loadDifotData();
+            }
         }
 
         private void refreshDifot_Click(object sender, EventArgs e)
