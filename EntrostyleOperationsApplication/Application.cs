@@ -49,7 +49,7 @@ namespace EntrostyleOperationsApplication
             // load DIFOT data
             loadDifotData();
 
-            // add fake dropdown columns for dispatch status and method
+            // add fake dropdown columns for dispatch status and method + time columns + calendar columns
             addStatusAndMethodDropdowns(SOMain);
             addStatusAndMethodDropdowns(SOSecondary);
 
@@ -62,11 +62,98 @@ namespace EntrostyleOperationsApplication
             styleMainDataGridViewColumns(SOMain);
             styleMainDataGridViewColumns(SOSecondary);
 
+            // split 1 and 2 condiional styling
+            SOMain.CellFormatting += SOMain_CellFormatting;
+            SOSecondary.CellFormatting += SOMain_CellFormatting;
+
             // customize columns for DIFOT
             styleDifotColumns();
 
             // focus main grid or secondary if main has 0 rows
             focusSO();
+        }
+
+        private void SOMain_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dgv = (DataGridView)sender;
+
+            // Stock coloring
+            if (e.ColumnIndex == dgv.Columns["STOCK"].Index)
+            {
+                var cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                if (cell.Value.ToString() == "IS")
+                {
+                    cell.Style.ForeColor = Color.Green;
+                }
+                else if (cell.Value.ToString() == "NIS")
+                {
+                    cell.Style.ForeColor = Color.Red;
+                }
+                else if (cell.Value.ToString() == "NowIS")
+                {
+                    cell.Style.ForeColor = Color.Blue;
+                }
+            }
+            // STATUS
+            else if (e.ColumnIndex == dgv.Columns["STATUS_FAKE"].Index)
+            {
+                var row = dgv.Rows[e.RowIndex];
+                var cell = row.Cells[e.ColumnIndex];
+
+                if (cell.Value.ToString() == "P")
+                {
+                    cell.Style.ForeColor = Color.Green;
+                    row.DefaultCellStyle.BackColor = Color.Honeydew;
+                }
+                else if (cell.Value.ToString() == "TP")
+                {
+                    cell.Style.ForeColor = Color.Green;
+                }
+                else if (cell.Value.ToString() == "W" || cell.Value.ToString() == "Sc")
+                {
+                    cell.Style.ForeColor = Color.Blue;
+                }
+            }
+            // Date, Time, Due color
+            else if (e.ColumnIndex == dgv.Columns["PICKDATE_FAKE"].Index)
+            {
+                var row = dgv.Rows[e.RowIndex];
+                var dateCell = row.Cells[e.ColumnIndex];
+
+                if (dateCell.Value != null && dateCell.Value.ToString() != String.Empty)
+                {
+                    var timeCell = row.Cells["DUETIME_FAKE"];
+
+                    if (timeCell.Value != null && timeCell.Value.ToString() != String.Empty)
+                    {
+                        var dueCell = row.Cells["DUEDATE_FAKE"];
+                        var ttCell = row.Cells["TIME_FAKE"];
+
+                        dateCell.Style.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
+                        timeCell.Style.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
+                        dueCell.Style.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
+
+                        if (ttCell.Value != null && ttCell.Value.ToString() != String.Empty)
+                        {
+                            if (((DateTime)dateCell.Value).Date < DateTime.Now.Date
+                                || (((DateTime)dateCell.Value).Date == DateTime.Now.Date
+                                && ((DateTime)timeCell.Value).TimeOfDay < DateTime.Now.TimeOfDay))
+                            {
+                                dateCell.Style.ForeColor = Color.Red;
+                                timeCell.Style.ForeColor = Color.Red;
+                                dueCell.Style.ForeColor = Color.Red;
+                            }
+                            else
+                            {
+                                dateCell.Style.ForeColor = Color.Black;
+                                timeCell.Style.ForeColor = Color.Black;
+                                dueCell.Style.ForeColor = Color.Black;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         // reads config txt
@@ -280,6 +367,9 @@ namespace EntrostyleOperationsApplication
             dgv.Columns[dueCalenderColumn.Name].DataPropertyName = "DUEDATE";
             dgv.Columns[dateCalenderColumn.Name].DataPropertyName = "PICKDATE";
 
+            dgv.Columns[dueCalenderColumn.Name].DisplayIndex = 9;
+            dgv.Columns[dateCalenderColumn.Name].DisplayIndex = 7;
+
             //--------------------DateTimePickers-----------------
 
             TimeColumn timeColumn = new TimeColumn();
@@ -296,6 +386,9 @@ namespace EntrostyleOperationsApplication
 
             dgv.Columns[timeColumn.Name].DataPropertyName = "TIME";
             dgv.Columns[dueTimeColumn.Name].DataPropertyName = "DUETIME";
+
+            dgv.Columns[timeColumn.Name].DisplayIndex = 6;
+            dgv.Columns[dueTimeColumn.Name].DisplayIndex = 8;
         }
 
         // style Data Grid View columns for SO Details grid

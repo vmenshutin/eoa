@@ -173,6 +173,13 @@ class CalendarEditingControl : DateTimePicker, IDataGridViewEditingControl
             case Keys.PageDown:
             case Keys.PageUp:
                 return true;
+            case Keys.Delete:
+            case Keys.Back:
+                {
+                    this.dataGridView.CurrentCell.Value = DBNull.Value;
+                    this.dataGridView.EndEdit();
+                    return true;
+                }
             default:
                 return !dataGridViewWantsInputKey;
         }
