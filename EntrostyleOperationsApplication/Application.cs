@@ -26,9 +26,6 @@ namespace EntrostyleOperationsApplication
         DataSet SODifotDataSet = new DataSet();
 
         bool isSODetailsGridStyled = false;
-        bool isDifotPickerOpen = false;
-
-        DateTime difotPickerValue;
 
         public Application()
         {
@@ -66,11 +63,42 @@ namespace EntrostyleOperationsApplication
             SOMain.CellFormatting += SOMain_CellFormatting;
             SOSecondary.CellFormatting += SOMain_CellFormatting;
 
+            // so item details conditional styling
+            SOItemDetails.CellFormatting += SOItemDetails_CellFormatting;
+
             // customize columns for DIFOT
             styleDifotColumns();
 
             // focus main grid or secondary if main has 0 rows
             focusSO();
+        }
+
+        private void SOItemDetails_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dgv = (DataGridView)sender;
+
+            // Stock Status coloring
+            if (e.ColumnIndex == dgv.Columns["STOCKCHECK"].Index)
+            {
+                var cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                if (cell.Value.ToString() == "IS")
+                {
+                    cell.Style.ForeColor = Color.Green;
+                }
+                else if (cell.Value.ToString() == "NIS" || cell.Value.ToString() == "OOS")
+                {
+                    cell.Style.ForeColor = Color.Red;
+                }
+                else if (cell.Value.ToString() == "Sh")
+                {
+                    cell.Style.ForeColor = Color.Gray;
+                }
+                else if (cell.Value.ToString() == "TR")
+                {
+                    cell.Style.ForeColor = Color.Blue;
+                }
+            }
         }
 
         private void SOMain_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
