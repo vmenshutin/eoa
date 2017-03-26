@@ -9,7 +9,6 @@ namespace EntrostyleOperationsApplication
 {
     public partial class Application : Form
     {
-
         int sessionId;
         OdbcConnection connection = new OdbcConnection();
 
@@ -440,6 +439,9 @@ namespace EntrostyleOperationsApplication
             columns["PICK_NOW"].HeaderText = "Pick Qty";
             columns["UNSUP_QUANT"].HeaderText = "Outstanding";
             columns["TOTALSTOCK"].HeaderText = "Total Qty";
+
+            columns["STOCKCODE"].DefaultCellStyle.ForeColor = Color.Blue;
+            columns["STOCKCODE"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
         }
 
         // style Data Grid View columns for split 1 and 2
@@ -478,6 +480,9 @@ namespace EntrostyleOperationsApplication
 
             columns["ACCOUNTNAME"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             columns["ACCOUNTNAME"].MinimumWidth = 200;
+
+            columns["#"].DefaultCellStyle.ForeColor = Color.DarkRed;
+            columns["#"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
         }
 
         // style Data Grid View columns for DIFOT
@@ -519,6 +524,9 @@ namespace EntrostyleOperationsApplication
             columns["X_LEAD_TIME"].DefaultCellStyle.Format = "dd/MM HH:mm";
             columns["X_SCHEDULE_TIMESTAMP"].DefaultCellStyle.Format = "dd/MM HH:mm";
             columns["X_DIFOT_TIMESTAMP"].DefaultCellStyle.Format = "dd/MM HH:mm";
+
+            columns["#"].DefaultCellStyle.ForeColor = Color.DarkRed;
+            columns["#"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
         }
 
         // set major style properties for datagridview
