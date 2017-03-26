@@ -144,12 +144,6 @@ namespace EntrostyleOperationsApplication
                                 timeCell.Style.ForeColor = Color.Red;
                                 dueCell.Style.ForeColor = Color.Red;
                             }
-                            else
-                            {
-                                dateCell.Style.ForeColor = Color.Black;
-                                timeCell.Style.ForeColor = Color.Black;
-                                dueCell.Style.ForeColor = Color.Black;
-                            }
                         }
                     }
                 }
@@ -453,6 +447,9 @@ namespace EntrostyleOperationsApplication
 
             columns["ACCOUNTNAME"].HeaderText = "Account";
             columns["STOCK"].HeaderText = "Stock";
+
+            columns["ACCOUNTNAME"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            columns["ACCOUNTNAME"].MinimumWidth = 200;
         }
 
         // style Data Grid View columns for DIFOT
@@ -484,6 +481,12 @@ namespace EntrostyleOperationsApplication
             columns["X_DIFOT_STATUS"].HeaderText = "Difot";
             columns["X_DIFOT_TIMESTAMP"].HeaderText = "Difot Time";
             columns["X_DIFOT_NOTE"].HeaderText = "Difot Note";
+
+            columns["ACCOUNTNAME"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            columns["ACCOUNTNAME"].MinimumWidth = 300;
+
+            columns["X_DIFOT_NOTE"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            columns["X_DIFOT_NOTE"].MinimumWidth = 500;
 
             columns["X_LEAD_TIME"].DefaultCellStyle.Format = "dd/MM HH:mm";
             columns["X_SCHEDULE_TIMESTAMP"].DefaultCellStyle.Format = "dd/MM HH:mm";
@@ -657,29 +660,6 @@ namespace EntrostyleOperationsApplication
             searchBox.TextChanged += searchBox_TextChanged;
 
             loadSalesOrdersSecondary();
-        }
-
-        private void difotDatePicker_DropDown(object sender, EventArgs e)
-        {
-            isDifotPickerOpen = true;
-            difotPickerValue = ((DateTimePicker)sender).Value;
-        }
-
-        private void difotDatePicker_CloseUp(object sender, EventArgs e)
-        {
-            isDifotPickerOpen = false;
-            if (((DateTimePicker)sender).Value != difotPickerValue)
-            {
-                loadDifotData();
-            }
-        }
-
-        private void difotDatePicker_ValueChanged(object sender, EventArgs e)
-        {
-            if (!isDifotPickerOpen)
-            {
-                loadDifotData();
-            }
         }
 
         private void refreshDifot_Click(object sender, EventArgs e)
