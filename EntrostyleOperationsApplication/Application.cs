@@ -4,6 +4,7 @@ using System.IO;
 using System.Data.Odbc;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 
 namespace EntrostyleOperationsApplication
 {
@@ -25,6 +26,8 @@ namespace EntrostyleOperationsApplication
         DataSet SODifotDataSet = new DataSet();
 
         bool isSODetailsGridStyled = false;
+
+        string activeGrid = null;
 
         public Application()
         {
@@ -62,6 +65,10 @@ namespace EntrostyleOperationsApplication
             SOMain.CellFormatting += SOMain_CellFormatting;
             SOSecondary.CellFormatting += SOMain_CellFormatting;
 
+            // bind to focus events to determine active grid
+            SOMain.Enter += SOMain_Enter;
+            SOSecondary.Enter += SOMain_Enter;
+
             // so item details conditional styling
             SOItemDetails.CellFormatting += SOItemDetails_CellFormatting;
 
@@ -70,6 +77,11 @@ namespace EntrostyleOperationsApplication
 
             // focus main grid or secondary if main has 0 rows
             focusSO();
+        }
+
+        private void SOMain_Enter(object sender, EventArgs e)
+        {
+            activeGrid = ((DataGridView)sender).Name;
         }
 
         private void SOItemDetails_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -604,7 +616,7 @@ namespace EntrostyleOperationsApplication
                    + sessionId.ToString() + ", "
                    + SOItemDetails.Rows[e.RowIndex].Cells["SEQNO"].Value.ToString() + ", "
                    + SOItemDetails.Rows[e.RowIndex].Cells["LINES_ID"].Value.ToString(), connection)).ExecuteNonQueryAsync();
-                }
+            }
         }
 
         private void SODifot_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -680,8 +692,92 @@ namespace EntrostyleOperationsApplication
         // Refresh Button click
         private void button1_Click(object sender, EventArgs e)
         {
+            PleaseWaitForm wait = new PleaseWaitForm();
+            wait.Show();
+
+            System.Windows.Forms.Application.DoEvents();
+
             loadSalesOrdersMain();
             loadSalesOrdersSecondary();
+
+            // re-select SO to refresh item details grid
+            if (SOMain.Rows.Count > 0)
+            {
+                SO_RowEnter(SOMain, new DataGridViewCellEventArgs(0, 0));
+            }
+            else if (SOSecondary.Rows.Count > 0)
+            {
+                SO_RowEnter(SOSecondary, new DataGridViewCellEventArgs(0, 0));
+            }
+
+            wait.Close();
+        }
+
+        // Refresh F10 click
+        private void refreshF10_Click(object sender, EventArgs e)
+        {
+            PleaseWaitForm wait = new PleaseWaitForm();
+            wait.Show();
+
+            System.Windows.Forms.Application.DoEvents();
+
+            string order = null;
+
+            // if any of the splits was selected - save current SO
+            if (activeGrid != null)
+            {
+                if (activeGrid == SOMain.Name)
+                {
+                    order = SOMain.CurrentRow.Cells["#"].Value.ToString();
+                }
+                else
+                {
+                    order = SOSecondary.CurrentRow.Cells["#"].Value.ToString();
+                }
+            }
+
+            // run the refresh
+            loadSalesOrdersMain();
+            loadSalesOrdersSecondary();
+
+            if (order != null)
+            {
+                searchForRecordAndSelect(order);
+            }
+
+            wait.Close();
+        }
+
+        private void searchForRecordAndSelect(string id)
+        {
+            // try find selected record in split 1
+            try
+            {
+                DataGridViewRow row = SOMain.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(r => r.Cells["#"].Value.ToString().Equals(id))
+                    .First();
+
+                SOMain.ClearSelection();
+                SOMain.Rows[row.Index].Selected = true;
+                SO_RowEnter(SOMain, new DataGridViewCellEventArgs(0, row.Index));
+            }
+            catch (InvalidOperationException)
+            {
+                // try to find selected record in split 2
+                try
+                {
+                    DataGridViewRow row = SOSecondary.Rows
+                        .Cast<DataGridViewRow>()
+                        .Where(r => r.Cells["#"].Value.ToString().Equals(id))
+                        .First();
+
+                    SOSecondary.ClearSelection();
+                    SOSecondary.Rows[row.Index].Selected = true;
+                    SO_RowEnter(SOSecondary, new DataGridViewCellEventArgs(0, row.Index));
+                }
+                catch (InvalidOperationException) { }
+            }
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
@@ -701,6 +797,21 @@ namespace EntrostyleOperationsApplication
         private void refreshDifot_Click(object sender, EventArgs e)
         {
             loadDifotData();
+        }
+
+        // Hot keys initialization here
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.F5))
+            {
+                button1_Click(refreshF5, new EventArgs());
+            }
+            else if (keyData == (Keys.F10))
+            {
+                refreshF10_Click(refreshF10, new EventArgs());
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

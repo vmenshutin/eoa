@@ -39,10 +39,11 @@
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
+            this.refreshF10 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.SOItemDetails = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.refreshF5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -112,10 +113,11 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.refreshF10);
             this.splitContainer1.Panel2.Controls.Add(this.label12);
             this.splitContainer1.Panel2.Controls.Add(this.SOItemDetails);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Panel2.Controls.Add(this.refreshF5);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.label11);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
@@ -165,6 +167,8 @@
             // clearSearchBtn
             // 
             this.clearSearchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearSearchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearSearchBtn.ForeColor = System.Drawing.Color.Firebrick;
             this.clearSearchBtn.Location = new System.Drawing.Point(690, 3);
             this.clearSearchBtn.Name = "clearSearchBtn";
             this.clearSearchBtn.Size = new System.Drawing.Size(91, 22);
@@ -195,6 +199,18 @@
             this.SOSecondary.Name = "SOSecondary";
             this.SOSecondary.Size = new System.Drawing.Size(781, 284);
             this.SOSecondary.TabIndex = 1;
+            // 
+            // refreshF10
+            // 
+            this.refreshF10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshF10.ForeColor = System.Drawing.Color.OliveDrab;
+            this.refreshF10.Location = new System.Drawing.Point(177, 178);
+            this.refreshF10.Name = "refreshF10";
+            this.refreshF10.Size = new System.Drawing.Size(168, 35);
+            this.refreshF10.TabIndex = 16;
+            this.refreshF10.Text = "Refresh + Keep Selected (F10)";
+            this.refreshF10.UseVisualStyleBackColor = true;
+            this.refreshF10.Click += new System.EventHandler(this.refreshF10_Click);
             // 
             // label12
             // 
@@ -253,15 +269,17 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Account:";
             // 
-            // button1
+            // refreshF5
             // 
-            this.button1.Location = new System.Drawing.Point(3, 178);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 35);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Refresh";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.refreshF5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshF5.ForeColor = System.Drawing.Color.Green;
+            this.refreshF5.Location = new System.Drawing.Point(3, 178);
+            this.refreshF5.Name = "refreshF5";
+            this.refreshF5.Size = new System.Drawing.Size(168, 35);
+            this.refreshF5.TabIndex = 13;
+            this.refreshF5.Text = "Refresh (F5)";
+            this.refreshF5.UseVisualStyleBackColor = true;
+            this.refreshF5.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -496,7 +514,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button refreshF5;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button clearSearchBtn;
@@ -508,6 +526,7 @@
         private System.Windows.Forms.TextBox difotPattern;
         private System.Windows.Forms.Button refreshDifot;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button refreshF10;
     }
 }
 
