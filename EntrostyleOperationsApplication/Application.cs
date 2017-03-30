@@ -948,6 +948,10 @@ namespace EntrostyleOperationsApplication
             {
                 refreshF10_Click(refreshF10, new EventArgs());
             }
+            else if (keyData == (Keys.Control | Keys.P))
+            {
+                processPickBtn_Click(processPickBtn, new EventArgs());
+            }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
