@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
 
 namespace EntrostyleOperationsApplication
 {
@@ -26,6 +27,9 @@ namespace EntrostyleOperationsApplication
 
         OdbcDataAdapter SODifotAdapter;
         DataSet SODifotDataSet = new DataSet();
+
+        OdbcDataAdapter SOSettingsAdapter;
+        DataSet SOSettingsDataSet = new DataSet();
 
         bool isSODetailsGridStyled = false;
 
@@ -49,6 +53,9 @@ namespace EntrostyleOperationsApplication
 
             // load DIFOT data
             loadDifotData();
+
+            // load SETTINGS
+            loadSettings();
 
             // add fake dropdown columns for dispatch status and method + time columns + calendar columns
             addStatusAndMethodDropdowns(SOMain);
@@ -128,6 +135,41 @@ namespace EntrostyleOperationsApplication
                         : @"START exo://stockitem/?stockcode=" + dgv.Rows[e.RowIndex].Cells["STOCKCODE"].Value.ToString();
                     inputWriter.WriteLine(line);
                 }
+
+                wait.Close();
+            }
+        }
+
+        private void printPickingBtn_Click(object sender, EventArgs e)
+        {
+            var orderRow = getCurrentSORow();
+
+            if (orderRow != null)
+            {
+                var wait = new PleaseWaitForm();
+                wait.Show();
+
+                System.Windows.Forms.Application.DoEvents();
+
+                ProcessStartInfo psi = new ProcessStartInfo(@"C:\WINDOWS\system32\cmd.exe");
+                psi.UseShellExecute = false;
+                psi.ErrorDialog = false;
+                psi.CreateNoWindow = true;
+                psi.WindowStyle = ProcessWindowStyle.Hidden;
+                psi.RedirectStandardError = true;
+                psi.RedirectStandardInput = true;
+                psi.RedirectStandardOutput = true;
+                Process plinkProcess = new Process();
+                plinkProcess.StartInfo = psi;
+                plinkProcess.Start();
+                StreamWriter inputWriter = plinkProcess.StandardInput;
+                StreamReader outputReader = plinkProcess.StandardOutput;
+                StreamReader errorReader = plinkProcess.StandardError;
+                string line = '"' + @settings_installationAddress.Text + '"' + " " + settings_dbName.Text + " " + settings_login.Text.ToString() + " " + settings_password.Text.ToString() + " " + settings_ClarityFileName.Text + " " + @"/s=Seqno=" + orderRow.Cells["#"].Value.ToString() + " " + @"/a=n /d=printer /p=" + '"' + settings_printerName.Text + '"';
+                inputWriter.WriteLine(line);
+                orderRow.DataGridView.Focus();
+                orderRow.Cells["STATUS"].Value = "P";
+                Thread.Sleep(2000);
 
                 wait.Close();
             }
@@ -363,6 +405,24 @@ namespace EntrostyleOperationsApplication
 
             // turn grid listeners on again
             SOItemDetails.CellValueChanged += SODetails_CellValueChanged;
+        }
+
+        // load SETTINGS
+        private void loadSettings()
+        {
+            SOSettingsAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SETTINGS", connection);
+            SOSettingsDataSet = new DataSet();
+            OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(SOSettingsAdapter);
+            SOSettingsAdapter.Fill(SOSettingsDataSet);
+
+            var settingsRow = SOSettingsDataSet.Tables[0].Rows[0];
+
+            settings_ClarityFileName.Text = settingsRow["CLARITY_FILE_NAME"].ToString();
+            settings_installationAddress.Text = settingsRow["INSTALLATION_ADDRESS"].ToString();
+            settings_dbName.Text = settingsRow["DB_NAME"].ToString();
+            settings_login.Text = settingsRow["LOGIN"].ToString();
+            settings_password.Text = settingsRow["PASSWORD"].ToString();
+            settings_printerName.Text = settingsRow["PRINTER_NAME"].ToString();
         }
 
         // load DIFOT data
@@ -767,6 +827,42 @@ namespace EntrostyleOperationsApplication
             wait.Close();
         }
 
+        // returns # of the current/active SO
+        private string getCurrentSO()
+        {
+            if (activeGrid != null)
+            {
+                if (activeGrid == SOMain.Name)
+                {
+                    return SOMain.CurrentRow.Cells["#"].Value.ToString();
+                }
+                else
+                {
+                    return SOSecondary.CurrentRow.Cells["#"].Value.ToString();
+                }
+            }
+
+            return null;
+        }
+
+        // retruns DataGridViewRow object for current/active SO
+        private DataGridViewRow getCurrentSORow()
+        {
+            if (activeGrid != null)
+            {
+                if (activeGrid == SOMain.Name)
+                {
+                    return SOMain.CurrentRow;
+                }
+                else
+                {
+                    return SOSecondary.CurrentRow;
+                }
+            }
+
+            return null;
+        }
+
         // Refresh F10 click
         private void refreshF10_Click(object sender, EventArgs e)
         {
@@ -775,20 +871,8 @@ namespace EntrostyleOperationsApplication
 
             System.Windows.Forms.Application.DoEvents();
 
-            string order = null;
-
             // if any of the splits was selected - save current SO
-            if (activeGrid != null)
-            {
-                if (activeGrid == SOMain.Name)
-                {
-                    order = SOMain.CurrentRow.Cells["#"].Value.ToString();
-                }
-                else
-                {
-                    order = SOSecondary.CurrentRow.Cells["#"].Value.ToString();
-                }
-            }
+            var order = getCurrentSO();
 
             // run the refresh
             loadSalesOrdersMain();
@@ -866,6 +950,17 @@ namespace EntrostyleOperationsApplication
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void settings_Save_Click(object sender, EventArgs e)
+        {
+            OdbcCommand command = new OdbcCommand("update EOA_SETTINGS set CLARITY_FILE_NAME = '" + settings_ClarityFileName.Text
+                + "', " + "INSTALLATION_ADDRESS = '" + settings_installationAddress.Text
+                + "', " + "DB_NAME = '" + settings_dbName.Text
+                + "', " + "LOGIN = '" + settings_login.Text
+                + "', " + "PASSWORD = '" + settings_password.Text
+                + "', " + "PRINTER_NAME = '" + settings_printerName.Text + "'", connection);
+            command.ExecuteNonQuery();
         }
     }
 }
