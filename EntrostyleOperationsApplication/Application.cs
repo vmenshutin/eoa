@@ -389,12 +389,12 @@ namespace EntrostyleOperationsApplication
         }
 
         // loads stock items for a selected sales order
-        private void loadSalesOrderItemDetails(int seqno)
+        private void loadSalesOrderItemDetails(string seqno)
         {
             // turn grid listeners off
             SOItemDetails.CellValueChanged -= SODetails_CellValueChanged;
 
-            (new OdbcCommand("exec eoa_fetch_so_item_details " + sessionId.ToString() + ", " + seqno.ToString(), connection)).ExecuteNonQuery();
+            (new OdbcCommand("exec eoa_fetch_so_item_details " + sessionId.ToString() + ", " + seqno, connection)).ExecuteNonQuery();
 
             SOItemDetailsAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SO_ITEM_DETAILS where SESSIONID = " + sessionId.ToString(), connection);
             SOItemDetailsDataSet = new DataSet();
@@ -690,7 +690,7 @@ namespace EntrostyleOperationsApplication
                 var cells = selectedRows[0].Cells;
 
                 // load sales order details
-                loadSalesOrderItemDetails((int)cells["#"].Value);
+                loadSalesOrderItemDetails(cells["#"].Value.ToString());
 
                 // customize columns for SO details grid
                 if (!isSODetailsGridStyled)
@@ -1002,6 +1002,27 @@ namespace EntrostyleOperationsApplication
                 inputWriter.WriteLine(@"START exo://saleorder(" + order + ")");
 
                 Thread.Sleep(500);
+                wait.Close();
+            }
+        }
+
+        private void pickAllBtn_Click(object sender, EventArgs e)
+        {
+            var order = getCurrentSO();
+            var orderRow = getCurrentSORow();
+
+            if (order != null)
+            {
+                var wait = new PleaseWaitForm();
+                wait.Show();
+
+                System.Windows.Forms.Application.DoEvents();
+
+                (new OdbcCommand("exec eoa_pick_all " + order, connection)).ExecuteNonQuery();
+                loadSalesOrderItemDetails(order);
+
+                orderRow.DataGridView.Focus();
+
                 wait.Close();
             }
         }
