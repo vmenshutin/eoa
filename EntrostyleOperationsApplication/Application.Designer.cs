@@ -75,6 +75,7 @@
             this.label88 = new System.Windows.Forms.Label();
             this.settings_ClarityFileName = new System.Windows.Forms.TextBox();
             this.settings_Save = new System.Windows.Forms.Button();
+            this.processPickBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -128,6 +129,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.processPickBtn);
             this.splitContainer1.Panel2.Controls.Add(this.printPickingBtn);
             this.splitContainer1.Panel2.Controls.Add(this.refreshF10);
             this.splitContainer1.Panel2.Controls.Add(this.label12);
@@ -502,10 +504,10 @@
             // 
             this.printPickingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printPickingBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printPickingBtn.ForeColor = System.Drawing.Color.Olive;
+            this.printPickingBtn.ForeColor = System.Drawing.Color.DarkOrange;
             this.printPickingBtn.Location = new System.Drawing.Point(3, 183);
             this.printPickingBtn.Name = "printPickingBtn";
-            this.printPickingBtn.Size = new System.Drawing.Size(122, 28);
+            this.printPickingBtn.Size = new System.Drawing.Size(131, 28);
             this.printPickingBtn.TabIndex = 17;
             this.printPickingBtn.Text = "Print + Picking";
             this.printPickingBtn.UseVisualStyleBackColor = true;
@@ -647,6 +649,19 @@
             this.settings_Save.UseVisualStyleBackColor = false;
             this.settings_Save.Click += new System.EventHandler(this.settings_Save_Click);
             // 
+            // processPickBtn
+            // 
+            this.processPickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.processPickBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.processPickBtn.ForeColor = System.Drawing.Color.DarkTurquoise;
+            this.processPickBtn.Location = new System.Drawing.Point(141, 183);
+            this.processPickBtn.Name = "processPickBtn";
+            this.processPickBtn.Size = new System.Drawing.Size(130, 28);
+            this.processPickBtn.TabIndex = 18;
+            this.processPickBtn.Text = "Process Pick";
+            this.processPickBtn.UseVisualStyleBackColor = true;
+            this.processPickBtn.Click += new System.EventHandler(this.processPickBtn_Click);
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -725,6 +740,7 @@
         private System.Windows.Forms.TextBox settings_installationAddress;
         private System.Windows.Forms.Label label88;
         private System.Windows.Forms.TextBox settings_ClarityFileName;
+        private System.Windows.Forms.Button processPickBtn;
     }
 }
 

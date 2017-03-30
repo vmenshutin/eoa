@@ -962,5 +962,48 @@ namespace EntrostyleOperationsApplication
                 + "', " + "PRINTER_NAME = '" + settings_printerName.Text + "'", connection);
             command.ExecuteNonQuery();
         }
+
+        private void processPickBtn_Click(object sender, EventArgs e)
+        {
+            var order = getCurrentSO();
+
+            if (order != null)
+            {
+                var wait = new PleaseWaitForm();
+                wait.Show();
+
+                System.Windows.Forms.Application.DoEvents();
+
+                StringBuilder sb = new StringBuilder();
+
+                (new OdbcCommand("exec eoa_process_pick " + order, connection)).ExecuteNonQuery();
+
+                //Starting Information for process like its path, use system shell i.e. control process by system etc.
+                ProcessStartInfo psi = new ProcessStartInfo(@"C:\WINDOWS\system32\cmd.exe");
+                // its states that system shell will not be used to control the process instead program will handle the process
+                psi.UseShellExecute = false;
+                psi.ErrorDialog = false;
+                // Do not show command prompt window separately
+                psi.CreateNoWindow = true;
+                psi.WindowStyle = ProcessWindowStyle.Hidden;
+                //redirect all standard inout to program
+                psi.RedirectStandardError = true;
+                psi.RedirectStandardInput = true;
+                psi.RedirectStandardOutput = true;
+                //create the process with above infor and start it
+                Process plinkProcess = new Process();
+                plinkProcess.StartInfo = psi;
+                plinkProcess.Start();
+                //link the streams to standard inout of process
+                StreamWriter inputWriter = plinkProcess.StandardInput;
+                StreamReader outputReader = plinkProcess.StandardOutput;
+                StreamReader errorReader = plinkProcess.StandardError;
+                //send command to cmd prompt and wait for command to execute with thread sleep
+                inputWriter.WriteLine(@"START exo://saleorder(" + order + ")");
+
+                Thread.Sleep(500);
+                wait.Close();
+            }
+        }
     }
 }
