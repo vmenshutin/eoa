@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -39,6 +39,9 @@
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
+            this.pickAllBtn = new System.Windows.Forms.Button();
+            this.processPickBtn = new System.Windows.Forms.Button();
+            this.printPickingBtn = new System.Windows.Forms.Button();
             this.refreshF10 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.SOItemDetails = new System.Windows.Forms.DataGridView();
@@ -61,7 +64,9 @@
             this.difotFrom = new System.Windows.Forms.DateTimePicker();
             this.SODifot = new System.Windows.Forms.DataGridView();
             this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.printPickingBtn = new System.Windows.Forms.Button();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
             this.label104 = new System.Windows.Forms.Label();
@@ -74,11 +79,6 @@
             this.settings_installationAddress = new System.Windows.Forms.TextBox();
             this.label88 = new System.Windows.Forms.Label();
             this.settings_ClarityFileName = new System.Windows.Forms.TextBox();
-            this.settings_Save = new System.Windows.Forms.Button();
-            this.processPickBtn = new System.Windows.Forms.Button();
-            this.pickAllBtn = new System.Windows.Forms.Button();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -222,6 +222,45 @@
             this.SOSecondary.Size = new System.Drawing.Size(781, 284);
             this.SOSecondary.TabIndex = 1;
             // 
+            // pickAllBtn
+            // 
+            this.pickAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pickAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickAllBtn.ForeColor = System.Drawing.Color.MediumPurple;
+            this.pickAllBtn.Location = new System.Drawing.Point(277, 183);
+            this.pickAllBtn.Name = "pickAllBtn";
+            this.pickAllBtn.Size = new System.Drawing.Size(134, 28);
+            this.pickAllBtn.TabIndex = 19;
+            this.pickAllBtn.Text = "Pick All";
+            this.pickAllBtn.UseVisualStyleBackColor = true;
+            this.pickAllBtn.Click += new System.EventHandler(this.pickAllBtn_Click);
+            // 
+            // processPickBtn
+            // 
+            this.processPickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.processPickBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.processPickBtn.ForeColor = System.Drawing.Color.DarkTurquoise;
+            this.processPickBtn.Location = new System.Drawing.Point(141, 183);
+            this.processPickBtn.Name = "processPickBtn";
+            this.processPickBtn.Size = new System.Drawing.Size(130, 28);
+            this.processPickBtn.TabIndex = 18;
+            this.processPickBtn.Text = "Process Pick";
+            this.processPickBtn.UseVisualStyleBackColor = true;
+            this.processPickBtn.Click += new System.EventHandler(this.processPickBtn_Click);
+            // 
+            // printPickingBtn
+            // 
+            this.printPickingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.printPickingBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printPickingBtn.ForeColor = System.Drawing.Color.DarkOrange;
+            this.printPickingBtn.Location = new System.Drawing.Point(3, 183);
+            this.printPickingBtn.Name = "printPickingBtn";
+            this.printPickingBtn.Size = new System.Drawing.Size(131, 28);
+            this.printPickingBtn.TabIndex = 17;
+            this.printPickingBtn.Text = "Print + Picking";
+            this.printPickingBtn.UseVisualStyleBackColor = true;
+            this.printPickingBtn.Click += new System.EventHandler(this.printPickingBtn_Click);
+            // 
             // refreshF10
             // 
             this.refreshF10.BackColor = System.Drawing.Color.Gainsboro;
@@ -253,33 +292,33 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle5;
             this.SOItemDetails.Location = new System.Drawing.Point(3, 254);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.SOItemDetails.Size = new System.Drawing.Size(623, 448);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -484,7 +523,7 @@
             // 
             // SettingsTab
             // 
-            this.SettingsTab.BackColor = System.Drawing.Color.Black;
+            this.SettingsTab.BackColor = System.Drawing.Color.Gainsboro;
             this.SettingsTab.Controls.Add(this.label67);
             this.SettingsTab.Controls.Add(this.label68);
             this.SettingsTab.Controls.Add(this.settings_Save);
@@ -500,31 +539,59 @@
             this.SettingsTab.Controls.Add(this.settings_installationAddress);
             this.SettingsTab.Controls.Add(this.label88);
             this.SettingsTab.Controls.Add(this.settings_ClarityFileName);
+            this.SettingsTab.ForeColor = System.Drawing.Color.RoyalBlue;
             this.SettingsTab.Location = new System.Drawing.Point(4, 22);
             this.SettingsTab.Name = "SettingsTab";
             this.SettingsTab.Size = new System.Drawing.Size(1417, 708);
             this.SettingsTab.TabIndex = 2;
             this.SettingsTab.Text = "Settings";
             // 
-            // printPickingBtn
+            // label67
             // 
-            this.printPickingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.printPickingBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printPickingBtn.ForeColor = System.Drawing.Color.DarkOrange;
-            this.printPickingBtn.Location = new System.Drawing.Point(3, 183);
-            this.printPickingBtn.Name = "printPickingBtn";
-            this.printPickingBtn.Size = new System.Drawing.Size(131, 28);
-            this.printPickingBtn.TabIndex = 17;
-            this.printPickingBtn.Text = "Print + Picking";
-            this.printPickingBtn.UseVisualStyleBackColor = true;
-            this.printPickingBtn.Click += new System.EventHandler(this.printPickingBtn_Click);
+            this.label67.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label67.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label67.Location = new System.Drawing.Point(447, 178);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(89, 15);
+            this.label67.TabIndex = 52;
+            this.label67.Text = "Process Pick";
+            // 
+            // label68
+            // 
+            this.label68.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label68.ForeColor = System.Drawing.Color.Black;
+            this.label68.Location = new System.Drawing.Point(585, 178);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(54, 15);
+            this.label68.TabIndex = 51;
+            this.label68.Text = "Ctrl + P";
+            // 
+            // settings_Save
+            // 
+            this.settings_Save.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.settings_Save.BackColor = System.Drawing.Color.Gainsboro;
+            this.settings_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.settings_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.settings_Save.ForeColor = System.Drawing.Color.Green;
+            this.settings_Save.Location = new System.Drawing.Point(450, 387);
+            this.settings_Save.Name = "settings_Save";
+            this.settings_Save.Size = new System.Drawing.Size(201, 35);
+            this.settings_Save.TabIndex = 50;
+            this.settings_Save.Text = "Save Settings";
+            this.settings_Save.UseVisualStyleBackColor = false;
+            this.settings_Save.Click += new System.EventHandler(this.settings_Save_Click);
             // 
             // label105
             // 
+            this.label105.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label105.AutoSize = true;
             this.label105.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label105.ForeColor = System.Drawing.Color.LightGray;
-            this.label105.Location = new System.Drawing.Point(226, 309);
+            this.label105.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label105.Location = new System.Drawing.Point(447, 334);
             this.label105.Name = "label105";
             this.label105.Size = new System.Drawing.Size(94, 15);
             this.label105.TabIndex = 49;
@@ -532,8 +599,9 @@
             // 
             // settings_printerName
             // 
+            this.settings_printerName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.settings_printerName.BackColor = System.Drawing.Color.LightGray;
-            this.settings_printerName.Location = new System.Drawing.Point(367, 307);
+            this.settings_printerName.Location = new System.Drawing.Point(588, 332);
             this.settings_printerName.Name = "settings_printerName";
             this.settings_printerName.Size = new System.Drawing.Size(426, 20);
             this.settings_printerName.TabIndex = 48;
@@ -541,10 +609,11 @@
             // 
             // label104
             // 
+            this.label104.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label104.AutoSize = true;
             this.label104.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label104.ForeColor = System.Drawing.Color.LightGray;
-            this.label104.Location = new System.Drawing.Point(226, 283);
+            this.label104.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label104.Location = new System.Drawing.Point(447, 308);
             this.label104.Name = "label104";
             this.label104.Size = new System.Drawing.Size(73, 15);
             this.label104.TabIndex = 47;
@@ -552,9 +621,10 @@
             // 
             // settings_password
             // 
+            this.settings_password.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.settings_password.BackColor = System.Drawing.Color.LightGray;
             this.settings_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.settings_password.Location = new System.Drawing.Point(367, 281);
+            this.settings_password.Location = new System.Drawing.Point(588, 306);
             this.settings_password.Name = "settings_password";
             this.settings_password.PasswordChar = '●';
             this.settings_password.Size = new System.Drawing.Size(148, 20);
@@ -563,10 +633,11 @@
             // 
             // label103
             // 
+            this.label103.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label103.AutoSize = true;
             this.label103.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label103.ForeColor = System.Drawing.Color.LightGray;
-            this.label103.Location = new System.Drawing.Point(226, 257);
+            this.label103.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label103.Location = new System.Drawing.Point(447, 282);
             this.label103.Name = "label103";
             this.label103.Size = new System.Drawing.Size(47, 15);
             this.label103.TabIndex = 45;
@@ -574,8 +645,9 @@
             // 
             // settings_login
             // 
+            this.settings_login.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.settings_login.BackColor = System.Drawing.Color.LightGray;
-            this.settings_login.Location = new System.Drawing.Point(367, 255);
+            this.settings_login.Location = new System.Drawing.Point(588, 280);
             this.settings_login.Name = "settings_login";
             this.settings_login.Size = new System.Drawing.Size(148, 20);
             this.settings_login.TabIndex = 44;
@@ -583,10 +655,11 @@
             // 
             // label102
             // 
+            this.label102.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label102.AutoSize = true;
             this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label102.ForeColor = System.Drawing.Color.LightGray;
-            this.label102.Location = new System.Drawing.Point(226, 231);
+            this.label102.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label102.Location = new System.Drawing.Point(447, 256);
             this.label102.Name = "label102";
             this.label102.Size = new System.Drawing.Size(70, 15);
             this.label102.TabIndex = 43;
@@ -594,8 +667,9 @@
             // 
             // settings_dbName
             // 
+            this.settings_dbName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.settings_dbName.BackColor = System.Drawing.Color.LightGray;
-            this.settings_dbName.Location = new System.Drawing.Point(367, 229);
+            this.settings_dbName.Location = new System.Drawing.Point(588, 254);
             this.settings_dbName.Name = "settings_dbName";
             this.settings_dbName.Size = new System.Drawing.Size(148, 20);
             this.settings_dbName.TabIndex = 42;
@@ -603,10 +677,11 @@
             // 
             // label101
             // 
+            this.label101.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label101.AutoSize = true;
             this.label101.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label101.ForeColor = System.Drawing.Color.LightGray;
-            this.label101.Location = new System.Drawing.Point(226, 205);
+            this.label101.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label101.Location = new System.Drawing.Point(447, 230);
             this.label101.Name = "label101";
             this.label101.Size = new System.Drawing.Size(137, 15);
             this.label101.TabIndex = 41;
@@ -614,8 +689,9 @@
             // 
             // settings_installationAddress
             // 
+            this.settings_installationAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.settings_installationAddress.BackColor = System.Drawing.Color.LightGray;
-            this.settings_installationAddress.Location = new System.Drawing.Point(367, 203);
+            this.settings_installationAddress.Location = new System.Drawing.Point(588, 228);
             this.settings_installationAddress.Name = "settings_installationAddress";
             this.settings_installationAddress.Size = new System.Drawing.Size(426, 20);
             this.settings_installationAddress.TabIndex = 40;
@@ -623,10 +699,11 @@
             // 
             // label88
             // 
+            this.label88.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label88.AutoSize = true;
             this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label88.ForeColor = System.Drawing.Color.LightGray;
-            this.label88.Location = new System.Drawing.Point(226, 179);
+            this.label88.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label88.Location = new System.Drawing.Point(447, 204);
             this.label88.Name = "label88";
             this.label88.Size = new System.Drawing.Size(115, 15);
             this.label88.TabIndex = 39;
@@ -634,74 +711,13 @@
             // 
             // settings_ClarityFileName
             // 
+            this.settings_ClarityFileName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.settings_ClarityFileName.BackColor = System.Drawing.Color.LightGray;
-            this.settings_ClarityFileName.Location = new System.Drawing.Point(367, 177);
+            this.settings_ClarityFileName.Location = new System.Drawing.Point(588, 202);
             this.settings_ClarityFileName.Name = "settings_ClarityFileName";
             this.settings_ClarityFileName.Size = new System.Drawing.Size(148, 20);
             this.settings_ClarityFileName.TabIndex = 38;
             this.settings_ClarityFileName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // settings_Save
-            // 
-            this.settings_Save.BackColor = System.Drawing.Color.Gainsboro;
-            this.settings_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.settings_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settings_Save.ForeColor = System.Drawing.Color.Green;
-            this.settings_Save.Location = new System.Drawing.Point(229, 361);
-            this.settings_Save.Name = "settings_Save";
-            this.settings_Save.Size = new System.Drawing.Size(201, 35);
-            this.settings_Save.TabIndex = 50;
-            this.settings_Save.Text = "Save Settings";
-            this.settings_Save.UseVisualStyleBackColor = false;
-            this.settings_Save.Click += new System.EventHandler(this.settings_Save_Click);
-            // 
-            // processPickBtn
-            // 
-            this.processPickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.processPickBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.processPickBtn.ForeColor = System.Drawing.Color.DarkTurquoise;
-            this.processPickBtn.Location = new System.Drawing.Point(141, 183);
-            this.processPickBtn.Name = "processPickBtn";
-            this.processPickBtn.Size = new System.Drawing.Size(130, 28);
-            this.processPickBtn.TabIndex = 18;
-            this.processPickBtn.Text = "Process Pick";
-            this.processPickBtn.UseVisualStyleBackColor = true;
-            this.processPickBtn.Click += new System.EventHandler(this.processPickBtn_Click);
-            // 
-            // pickAllBtn
-            // 
-            this.pickAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pickAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickAllBtn.ForeColor = System.Drawing.Color.MediumPurple;
-            this.pickAllBtn.Location = new System.Drawing.Point(277, 183);
-            this.pickAllBtn.Name = "pickAllBtn";
-            this.pickAllBtn.Size = new System.Drawing.Size(134, 28);
-            this.pickAllBtn.TabIndex = 19;
-            this.pickAllBtn.Text = "Pick All";
-            this.pickAllBtn.UseVisualStyleBackColor = true;
-            this.pickAllBtn.Click += new System.EventHandler(this.pickAllBtn_Click);
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label67.ForeColor = System.Drawing.Color.LightGray;
-            this.label67.Location = new System.Drawing.Point(685, 347);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(133, 15);
-            this.label67.TabIndex = 52;
-            this.label67.Text = "Print selected order";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label68.ForeColor = System.Drawing.Color.White;
-            this.label68.Location = new System.Drawing.Point(599, 347);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(54, 15);
-            this.label68.TabIndex = 51;
-            this.label68.Text = "Ctrl + P";
             // 
             // Application
             // 

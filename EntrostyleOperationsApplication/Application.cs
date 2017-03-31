@@ -367,8 +367,10 @@ namespace EntrostyleOperationsApplication
         }
 
         // loads data to main sales orders table
-        private void loadSalesOrdersSecondary(string searchText = "")
+        private void loadSalesOrdersSecondary()
         {
+            string searchText = searchBox.Text;
+
             // turn grid listeners off
             SOSecondary.CellValueChanged -= SO_CellValueChanged;
             SOSecondary.RowEnter -= SO_RowEnter;
@@ -920,7 +922,7 @@ namespace EntrostyleOperationsApplication
 
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            loadSalesOrdersSecondary(((TextBox)sender).Text);
+            loadSalesOrdersSecondary();
         }
 
         private void clearSearchBtn_Click(object sender, EventArgs e)
