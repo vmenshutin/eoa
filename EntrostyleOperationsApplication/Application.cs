@@ -8,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
+using System.IO.Pipes;
+using System.Security.Principal;
+using System.Security.AccessControl;
 
 namespace EntrostyleOperationsApplication
 {
@@ -92,6 +96,9 @@ namespace EntrostyleOperationsApplication
 
             // focus main grid or secondary if main has 0 rows
             focusSO();
+
+            // listen to app protocol handler
+            listenToAppProtocolHandler();
         }
 
         private void SOMain_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -101,7 +108,8 @@ namespace EntrostyleOperationsApplication
 
             if (columnName == "#" || columnName == "STOCKCODE")
             {
-                var wait = new PleaseWaitForm();
+                PleaseWaitForm wait = new PleaseWaitForm();
+                wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
                 wait.Show();
 
                 System.Windows.Forms.Application.DoEvents();
@@ -146,7 +154,8 @@ namespace EntrostyleOperationsApplication
 
             if (orderRow != null)
             {
-                var wait = new PleaseWaitForm();
+                PleaseWaitForm wait = new PleaseWaitForm();
+                wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
                 wait.Show();
 
                 System.Windows.Forms.Application.DoEvents();
@@ -425,6 +434,7 @@ namespace EntrostyleOperationsApplication
         private void loadDifotData()
         {
             PleaseWaitForm wait = new PleaseWaitForm();
+            wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
             wait.Show();
 
             System.Windows.Forms.Application.DoEvents();
@@ -798,6 +808,7 @@ namespace EntrostyleOperationsApplication
         private void button1_Click(object sender, EventArgs e)
         {
             PleaseWaitForm wait = new PleaseWaitForm();
+            wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
             wait.Show();
 
             System.Windows.Forms.Application.DoEvents();
@@ -858,6 +869,7 @@ namespace EntrostyleOperationsApplication
         private void refreshF10_Click(object sender, EventArgs e)
         {
             PleaseWaitForm wait = new PleaseWaitForm();
+            wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
             wait.Show();
 
             System.Windows.Forms.Application.DoEvents();
@@ -964,7 +976,8 @@ namespace EntrostyleOperationsApplication
 
             if (order != null)
             {
-                var wait = new PleaseWaitForm();
+                PleaseWaitForm wait = new PleaseWaitForm();
+                wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
                 wait.Show();
 
                 System.Windows.Forms.Application.DoEvents();
@@ -1008,7 +1021,8 @@ namespace EntrostyleOperationsApplication
 
             if (order != null)
             {
-                var wait = new PleaseWaitForm();
+                PleaseWaitForm wait = new PleaseWaitForm();
+                wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
                 wait.Show();
 
                 System.Windows.Forms.Application.DoEvents();
@@ -1049,6 +1063,81 @@ namespace EntrostyleOperationsApplication
             //send command to cmd prompt and wait for command to execute with thread sleep
             var line = @"START exo://saleorder(" + label6.Text + ")";
             inputWriter.WriteLine(line);
+        }
+
+        private void listenToAppProtocolHandler()
+        {
+            var self = this;
+
+            //Paralel thread that continiously reads information from named pipe called PipesOfPiece - receives information from AppProtocolhandler
+            Task.Factory.StartNew(() =>
+            {
+                PipeSecurity ps = new PipeSecurity();
+                ps.AddAccessRule(new PipeAccessRule(WindowsIdentity.GetCurrent().Name, PipeAccessRights.FullControl, AccessControlType.Allow));
+                ps.AddAccessRule(new PipeAccessRule(new SecurityIdentifier(WellKnownSidType.AuthenticatedUserSid, null),   //"Authenticated Users"
+                    PipeAccessRights.ReadWrite, AccessControlType.Allow));
+                ps.AddAccessRule(new PipeAccessRule(new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null),   //"Administrators"
+                    PipeAccessRights.FullControl, AccessControlType.Allow));
+                ps.AddAccessRule(new PipeAccessRule(new SecurityIdentifier(WellKnownSidType.TerminalServerSid, null),   //"Terminal Server Accounts"
+                    PipeAccessRights.FullControl, AccessControlType.Allow));
+                ps.AddAccessRule(new PipeAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),   //"Everyone"
+                    PipeAccessRights.FullControl, AccessControlType.Allow));
+
+                using (NamedPipeServerStream server = new NamedPipeServerStream("PipesOfPiece" + "_" + WindowsIdentity.GetCurrent().Name, PipeDirection.InOut, 10,
+                                    PipeTransmissionMode.Message, PipeOptions.Asynchronous, 1024, 1024, ps))
+                {
+                    server.WaitForConnection();
+                    StreamReader reader = new StreamReader(server);
+                    Boolean connectedOrWaiting = true;
+                    while (true)
+                    {
+                        //establish connection if not established
+                        if (!connectedOrWaiting)
+                        {
+                            server.BeginWaitForConnection((a) => { server.EndWaitForConnection(a); }, null);
+                            connectedOrWaiting = true;
+                        }
+
+                        //if there is a client connected to our named pipe, begin
+                        if (server.IsConnected)
+                        {
+
+                            var line = reader.ReadLine();
+                            if (line != null)
+                            {
+                                //read the SeqNo, enter the main thread, update the db (in case there are new orders in exo), open tab 1 and bring window to front
+                                if (InvokeRequired)
+                                {
+                                    Invoke((MethodInvoker)delegate
+                                    {
+                                        if (WindowState == FormWindowState.Minimized)
+                                        {
+                                            WindowState = FormWindowState.Normal;
+                                        }
+
+                                        Activate();
+                                        button1_Click(refreshF5, new EventArgs());
+                                        searchForRecordAndSelect(line);
+                                    });
+                                }
+                                else
+                                {
+                                    if (WindowState == FormWindowState.Minimized)
+                                    {
+                                        WindowState = FormWindowState.Normal;
+                                    }
+
+                                    Activate();
+                                    button1_Click(refreshF5, new EventArgs());
+                                    searchForRecordAndSelect(line);
+                                }
+                            }
+                            server.Disconnect();
+                            connectedOrWaiting = false;
+                        }
+                    }
+                }
+            });
         }
     }
 }
