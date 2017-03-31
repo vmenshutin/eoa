@@ -556,6 +556,7 @@ namespace EntrostyleOperationsApplication
 
             columns["STOCKCODE"].DefaultCellStyle.ForeColor = Color.Blue;
             columns["STOCKCODE"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
+            columns["STOCKCHECK"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
         }
 
         // style Data Grid View columns for split 1 and 2
@@ -587,6 +588,7 @@ namespace EntrostyleOperationsApplication
             columns["DUEDATE"].Visible = false;
             columns["PICKDATE"].Visible = false;
             columns["DUETIME"].Visible = false;
+            columns["REFERENCE"].Visible = false;
 
             columns["ACCOUNTNAME"].HeaderText = "Account";
             columns["STOCK"].HeaderText = "Stock";
@@ -607,8 +609,7 @@ namespace EntrostyleOperationsApplication
 
             foreach (DataGridViewColumn column in columns)
             {
-                if (column.Name != "X_DIFOT_STATUS"
-                    && column.Name != "X_DIFOT_TIMESTAMP"
+                if (column.Name != "X_DIFOT_TIMESTAMP"
                     && column.Name != "X_DIFOT_NOTE")
                 {
                     column.ReadOnly = true;
@@ -695,6 +696,7 @@ namespace EntrostyleOperationsApplication
                 label9.Text = cells["ADDRESS2"].Value.ToString();
                 label10.Text = cells["LAST_SCHEDULED"].Value.ToString();
                 label11.Text = cells["DIFOT_TIMESTAMP"].Value.ToString();
+                label14.Text = cells["REFERENCE"].Value.ToString();
             }
         }
 
@@ -1018,6 +1020,35 @@ namespace EntrostyleOperationsApplication
 
                 wait.Close();
             }
+        }
+
+        // SO # label click
+        private void label6_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            //Starting Information for process like its path, use system shell i.e. control process by system etc.
+            ProcessStartInfo psi = new ProcessStartInfo(@"C:\WINDOWS\system32\cmd.exe");
+            // its states that system shell will not be used to control the process instead program will handle the process
+            psi.UseShellExecute = false;
+            psi.ErrorDialog = false;
+            // Do not show command prompt window separately
+            psi.CreateNoWindow = true;
+            psi.WindowStyle = ProcessWindowStyle.Hidden;
+            //redirect all standard inout to program
+            psi.RedirectStandardError = true;
+            psi.RedirectStandardInput = true;
+            psi.RedirectStandardOutput = true;
+            //create the process with above infor and start it
+            Process plinkProcess = new Process();
+            plinkProcess.StartInfo = psi;
+            plinkProcess.Start();
+            //link the streams to standard inout of process
+            StreamWriter inputWriter = plinkProcess.StandardInput;
+            StreamReader outputReader = plinkProcess.StandardOutput;
+            StreamReader errorReader = plinkProcess.StandardError;
+            //send command to cmd prompt and wait for command to execute with thread sleep
+            var line = @"START exo://saleorder(" + label6.Text + ")";
+            inputWriter.WriteLine(line);
         }
     }
 }
