@@ -263,22 +263,16 @@ namespace EntrostyleOperationsApplication
                     if (timeCell.Value != null && timeCell.Value.ToString() != String.Empty)
                     {
                         var dueCell = row.Cells["DUEDATE_FAKE"];
-                        var ttCell = row.Cells["TIME_FAKE"];
 
-                        dateCell.Style.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
-                        timeCell.Style.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
-                        dueCell.Style.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
+                        row.DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
 
-                        if (ttCell.Value != null && ttCell.Value.ToString() != String.Empty)
+                        if (((DateTime)dateCell.Value).Date < DateTime.Now.Date
+                            || (((DateTime)dateCell.Value).Date == DateTime.Now.Date
+                            && ((DateTime)timeCell.Value).TimeOfDay < DateTime.Now.TimeOfDay))
                         {
-                            if (((DateTime)dateCell.Value).Date < DateTime.Now.Date
-                                || (((DateTime)dateCell.Value).Date == DateTime.Now.Date
-                                && ((DateTime)timeCell.Value).TimeOfDay < DateTime.Now.TimeOfDay))
-                            {
-                                dateCell.Style.ForeColor = Color.Red;
-                                timeCell.Style.ForeColor = Color.Red;
-                                dueCell.Style.ForeColor = Color.Red;
-                            }
+                            dateCell.Style.ForeColor = Color.Red;
+                            timeCell.Style.ForeColor = Color.Red;
+                            dueCell.Style.ForeColor = Color.Red;
                         }
                     }
                 }
@@ -521,22 +515,14 @@ namespace EntrostyleOperationsApplication
 
             //--------------------DateTimePickers-----------------
 
-            TimeColumn timeColumn = new TimeColumn();
             TimeColumn dueTimeColumn = new TimeColumn();
 
-            timeColumn.HeaderText = "TT";
             dueTimeColumn.HeaderText = "Time";
 
-            timeColumn.Name = "TIME_FAKE";
             dueTimeColumn.Name = "DUETIME_FAKE";
 
-            dgv.Columns.Add(timeColumn);
             dgv.Columns.Add(dueTimeColumn);
-
-            dgv.Columns[timeColumn.Name].DataPropertyName = "TIME";
             dgv.Columns[dueTimeColumn.Name].DataPropertyName = "DUETIME";
-
-            dgv.Columns[timeColumn.Name].DisplayIndex = 6;
             dgv.Columns[dueTimeColumn.Name].DisplayIndex = 8;
         }
 
@@ -600,7 +586,6 @@ namespace EntrostyleOperationsApplication
             columns["ADDRESS2"].Visible = false;
             columns["DUEDATE"].Visible = false;
             columns["PICKDATE"].Visible = false;
-            columns["TIME"].Visible = false;
             columns["DUETIME"].Visible = false;
 
             columns["ACCOUNTNAME"].HeaderText = "Account";
@@ -611,6 +596,8 @@ namespace EntrostyleOperationsApplication
 
             columns["#"].DefaultCellStyle.ForeColor = Color.DarkRed;
             columns["#"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
+
+            columns["STOCK"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
         }
 
         // style Data Grid View columns for DIFOT
