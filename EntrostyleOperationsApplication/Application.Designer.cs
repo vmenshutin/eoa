@@ -39,6 +39,8 @@
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.pickAllBtn = new System.Windows.Forms.Button();
             this.processPickBtn = new System.Windows.Forms.Button();
             this.printPickingBtn = new System.Windows.Forms.Button();
@@ -59,7 +61,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.DifotTab = new System.Windows.Forms.TabPage();
             this.refreshDifot = new System.Windows.Forms.Button();
-            this.difotPattern = new System.Windows.Forms.TextBox();
             this.difotTo = new System.Windows.Forms.DateTimePicker();
             this.difotFrom = new System.Windows.Forms.DateTimePicker();
             this.SODifot = new System.Windows.Forms.DataGridView();
@@ -79,8 +80,6 @@
             this.settings_installationAddress = new System.Windows.Forms.TextBox();
             this.label88 = new System.Windows.Forms.Label();
             this.settings_ClarityFileName = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -225,6 +224,27 @@
             this.SOSecondary.Name = "SOSecondary";
             this.SOSecondary.Size = new System.Drawing.Size(781, 284);
             this.SOSecondary.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(0, 53);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(70, 13);
+            this.label13.TabIndex = 20;
+            this.label13.Text = "Reference:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label14.Location = new System.Drawing.Point(110, 53);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(66, 13);
+            this.label14.TabIndex = 21;
+            this.label14.Text = "Reference";
             // 
             // pickAllBtn
             // 
@@ -461,7 +481,6 @@
             // DifotTab
             // 
             this.DifotTab.Controls.Add(this.refreshDifot);
-            this.DifotTab.Controls.Add(this.difotPattern);
             this.DifotTab.Controls.Add(this.difotTo);
             this.DifotTab.Controls.Add(this.difotFrom);
             this.DifotTab.Controls.Add(this.SODifot);
@@ -486,29 +505,18 @@
             this.refreshDifot.UseVisualStyleBackColor = true;
             this.refreshDifot.Click += new System.EventHandler(this.refreshDifot_Click);
             // 
-            // difotPattern
-            // 
-            this.difotPattern.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.difotPattern.Location = new System.Drawing.Point(3, 6);
-            this.difotPattern.Name = "difotPattern";
-            this.difotPattern.Size = new System.Drawing.Size(979, 20);
-            this.difotPattern.TabIndex = 3;
-            // 
             // difotTo
             // 
-            this.difotTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.difotTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.difotTo.Location = new System.Drawing.Point(1126, 6);
+            this.difotTo.Location = new System.Drawing.Point(141, 6);
             this.difotTo.Name = "difotTo";
             this.difotTo.Size = new System.Drawing.Size(132, 20);
             this.difotTo.TabIndex = 2;
             // 
             // difotFrom
             // 
-            this.difotFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.difotFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.difotFrom.Location = new System.Drawing.Point(988, 6);
+            this.difotFrom.Location = new System.Drawing.Point(3, 6);
             this.difotFrom.Name = "difotFrom";
             this.difotFrom.Size = new System.Drawing.Size(132, 20);
             this.difotFrom.TabIndex = 1;
@@ -725,27 +733,6 @@
             this.settings_ClarityFileName.TabIndex = 38;
             this.settings_ClarityFileName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(0, 53);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 13);
-            this.label13.TabIndex = 20;
-            this.label13.Text = "Reference:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label14.Location = new System.Drawing.Point(110, 53);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(66, 13);
-            this.label14.TabIndex = 21;
-            this.label14.Text = "Reference";
-            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -770,7 +757,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.SOSecondary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOItemDetails)).EndInit();
             this.DifotTab.ResumeLayout(false);
-            this.DifotTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.SettingsTab.PerformLayout();
@@ -806,7 +792,6 @@
         private System.Windows.Forms.DateTimePicker difotTo;
         private System.Windows.Forms.DateTimePicker difotFrom;
         private System.Windows.Forms.DataGridView SODifot;
-        private System.Windows.Forms.TextBox difotPattern;
         private System.Windows.Forms.Button refreshDifot;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button refreshF10;

@@ -64,6 +64,7 @@ namespace EntrostyleOperationsApplication
             // add fake dropdown columns for dispatch status and method + time columns + calendar columns
             addStatusAndMethodDropdowns(SOMain);
             addStatusAndMethodDropdowns(SOSecondary);
+            addDifotDropDown(SODifot);
 
             // set basic grid styling
             setDataGridViewStyleProps(SOMain);
@@ -201,18 +202,22 @@ namespace EntrostyleOperationsApplication
                 if (cell.Value.ToString() == "IS")
                 {
                     cell.Style.ForeColor = Color.Green;
+                    cell.Style.SelectionForeColor = Color.Green;
                 }
                 else if (cell.Value.ToString() == "NIS" || cell.Value.ToString() == "OOS")
                 {
                     cell.Style.ForeColor = Color.Red;
+                    cell.Style.SelectionForeColor = Color.Red;
                 }
                 else if (cell.Value.ToString() == "Sh")
                 {
                     cell.Style.ForeColor = Color.Gray;
+                    cell.Style.SelectionForeColor = Color.Gray;
                 }
                 else if (cell.Value.ToString() == "TR")
                 {
                     cell.Style.ForeColor = Color.Blue;
+                    cell.Style.SelectionForeColor = Color.Blue;
                 }
             }
         }
@@ -229,14 +234,17 @@ namespace EntrostyleOperationsApplication
                 if (cell.Value.ToString() == "IS")
                 {
                     cell.Style.ForeColor = Color.Green;
+                    cell.Style.SelectionForeColor = Color.Green;
                 }
                 else if (cell.Value.ToString() == "NIS")
                 {
                     cell.Style.ForeColor = Color.Red;
+                    cell.Style.SelectionForeColor = Color.Red;
                 }
                 else if (cell.Value.ToString() == "NowIS")
                 {
                     cell.Style.ForeColor = Color.Blue;
+                    cell.Style.SelectionForeColor = Color.Blue;
                 }
             }
             // STATUS
@@ -248,15 +256,19 @@ namespace EntrostyleOperationsApplication
                 if (cell.Value.ToString() == "P")
                 {
                     cell.Style.ForeColor = Color.Green;
-                    row.DefaultCellStyle.BackColor = Color.Honeydew;
+                    cell.Style.SelectionForeColor = Color.Green;
+                    row.DefaultCellStyle.BackColor = Color.LightGray;
+                    row.DefaultCellStyle.ForeColor = Color.Gray;
                 }
                 else if (cell.Value.ToString() == "TP")
                 {
                     cell.Style.ForeColor = Color.Green;
+                    cell.Style.SelectionForeColor = Color.Green;
                 }
                 else if (cell.Value.ToString() == "W" || cell.Value.ToString() == "Sc")
                 {
                     cell.Style.ForeColor = Color.Blue;
+                    cell.Style.SelectionForeColor = Color.Blue;
                 }
             }
             // Date, Time, Due color
@@ -274,6 +286,7 @@ namespace EntrostyleOperationsApplication
                         var dueCell = row.Cells["DUEDATE_FAKE"];
 
                         row.DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
+                        row.Cells["#"].Style.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
 
                         if (((DateTime)dateCell.Value).Date < DateTime.Now.Date
                             || (((DateTime)dateCell.Value).Date == DateTime.Now.Date
@@ -282,6 +295,10 @@ namespace EntrostyleOperationsApplication
                             dateCell.Style.ForeColor = Color.Red;
                             timeCell.Style.ForeColor = Color.Red;
                             dueCell.Style.ForeColor = Color.Red;
+
+                            dateCell.Style.SelectionForeColor = Color.Red;
+                            timeCell.Style.SelectionForeColor = Color.Red;
+                            dueCell.Style.SelectionForeColor = Color.Red;
                         }
                     }
                 }
@@ -442,7 +459,7 @@ namespace EntrostyleOperationsApplication
             // turn grid listeners off
             SODifot.CellValueChanged -= SODifot_CellValueChanged;
 
-            (new OdbcCommand("exec eoa_query_difot_items '" + difotPattern.Text + "', '" + difotFrom.Value.ToString("yyyy-MM-dd") + "', '"
+            (new OdbcCommand("exec eoa_query_difot_items '"  + difotFrom.Value.ToString("yyyy-MM-dd") + "', '"
                + difotTo.Value.ToString("yyyy-MM-dd") + "'," + sessionId.ToString(), connection)).ExecuteNonQuery();
 
             SODifotAdapter = new OdbcDataAdapter("SELECT * FROM EOA_DIFOT where SESSIONID = " + sessionId.ToString(), connection);
@@ -471,6 +488,22 @@ namespace EntrostyleOperationsApplication
             {
                 MessageBox.Show("Authentification failed. Please, restart the application");
             }
+        }
+
+        // add difot/shipped late dropdown
+        private void addDifotDropDown(DataGridView dgv)
+        {
+            var difotColumn = new DataGridViewComboBoxColumn();
+            difotColumn.HeaderText = "Difot";
+            difotColumn.Name = "DIFOT_FAKE";
+
+            var listSource = new string[] { "difot", "not shipped" };
+            difotColumn.DataSource = listSource;
+            difotColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+
+            dgv.Columns.Add(difotColumn);
+            dgv.Columns[difotColumn.Name].DataPropertyName = "X_DIFOT_STATUS";
+            dgv.Columns[difotColumn.Name].DisplayIndex = 3;
         }
 
         // add dispatch status and method dropdowns
@@ -545,7 +578,7 @@ namespace EntrostyleOperationsApplication
             {
                 if (column.Name == "PICK_NOW")
                 {
-                    column.DefaultCellStyle.BackColor = Color.LightGray;
+                    column.DefaultCellStyle.BackColor = Color.Silver;
                 }
                 else
                 {
@@ -565,6 +598,7 @@ namespace EntrostyleOperationsApplication
             columns["TOTALSTOCK"].HeaderText = "Total Qty";
 
             columns["STOCKCODE"].DefaultCellStyle.ForeColor = Color.Blue;
+            columns["STOCKCODE"].DefaultCellStyle.SelectionForeColor = Color.Blue;
             columns["STOCKCODE"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
             columns["STOCKCHECK"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
         }
@@ -580,7 +614,7 @@ namespace EntrostyleOperationsApplication
                     && column.Name != "ACCOUNTNAME"
                     && column.Name != "STOCK")
                 {
-                    column.DefaultCellStyle.BackColor = Color.LightGray;
+                    column.DefaultCellStyle.BackColor = Color.Silver;
                 }
                 else
                 {
@@ -607,6 +641,7 @@ namespace EntrostyleOperationsApplication
             columns["ACCOUNTNAME"].MinimumWidth = 200;
 
             columns["#"].DefaultCellStyle.ForeColor = Color.DarkRed;
+            columns["#"].DefaultCellStyle.SelectionForeColor = Color.DarkRed;
             columns["#"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
 
             columns["STOCK"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
@@ -619,25 +654,26 @@ namespace EntrostyleOperationsApplication
 
             foreach (DataGridViewColumn column in columns)
             {
-                if (column.Name != "X_DIFOT_TIMESTAMP"
+                if (column.Name != "DIFOT_FAKE"
+                    && column.Name != "X_DIFOT_TIMESTAMP"
                     && column.Name != "X_DIFOT_NOTE")
                 {
                     column.ReadOnly = true;
                 }
                 else
                 {
-                    column.DefaultCellStyle.BackColor = Color.LightGray;
+                    column.DefaultCellStyle.BackColor = Color.Silver;
                 }
             }
 
             columns["SESSIONID"].Visible = false;
+            columns["X_DIFOT_STATUS"].Visible = false;
 
             columns["INVNO"].HeaderText = "Invoice #";
             columns["ACCOUNTNAME"].HeaderText = "Account";
             columns["X_DESPATCH_METHOD"].HeaderText = "DM";
             columns["X_LEAD_TIME"].HeaderText = "Time";
             columns["X_SCHEDULE_TIMESTAMP"].HeaderText = "Last Sc";
-            columns["X_DIFOT_STATUS"].HeaderText = "Difot";
             columns["X_DIFOT_TIMESTAMP"].HeaderText = "Difot Time";
             columns["X_DIFOT_NOTE"].HeaderText = "Difot Note";
 
@@ -652,6 +688,7 @@ namespace EntrostyleOperationsApplication
             columns["X_DIFOT_TIMESTAMP"].DefaultCellStyle.Format = "dd/MM HH:mm";
 
             columns["#"].DefaultCellStyle.ForeColor = Color.DarkRed;
+            columns["#"].DefaultCellStyle.SelectionForeColor = Color.DarkRed;
             columns["#"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
         }
 
@@ -662,8 +699,8 @@ namespace EntrostyleOperationsApplication
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dgv.MultiSelect = true;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.AliceBlue;
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.Wheat;
+            dgv.DefaultCellStyle.SelectionForeColor = dgv.DefaultCellStyle.ForeColor;
             dgv.DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dgv.BorderStyle = BorderStyle.Fixed3D;
             dgv.RowHeadersVisible = false;
@@ -768,6 +805,29 @@ namespace EntrostyleOperationsApplication
 
                 // which grid to update
                 var dgv = (DataGridView)sender;
+
+                //Multiple pasting support
+                if ((e.ColumnIndex == dgv.Columns["METHOD_FAKE"].Index
+                    || e.ColumnIndex == dgv.Columns["STATUS_FAKE"].Index
+                    || e.ColumnIndex == dgv.Columns["DUEDATE_FAKE"].Index)
+                    && dgv.SelectedRows.Count > 1)
+                {
+                    PleaseWaitForm wait = new PleaseWaitForm();
+                    wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
+                    wait.Show();
+
+                    System.Windows.Forms.Application.DoEvents();
+
+                    foreach (DataGridViewRow row in dgv.SelectedRows)
+                    {
+                        if (row.Index != e.RowIndex)
+                        {
+                            row.Cells[e.ColumnIndex].Value = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                        }
+                    }
+
+                    wait.Close();
+                }
 
                 // which column value has been changed
                 string columnName = dgv.Columns[e.ColumnIndex].Name;
