@@ -35,6 +35,9 @@ namespace EntrostyleOperationsApplication
         OdbcDataAdapter SOSettingsAdapter;
         DataSet SOSettingsDataSet = new DataSet();
 
+        OdbcDataAdapter SONarrativeAdapter;
+        DataSet SONarrativeDataSet = new DataSet();
+
         bool isSODetailsGridStyled = false;
 
         string activeGrid = null;
@@ -744,6 +747,15 @@ namespace EntrostyleOperationsApplication
                 label10.Text = cells["LAST_SCHEDULED"].Value.ToString();
                 label11.Text = cells["DIFOT_TIMESTAMP"].Value.ToString();
                 label14.Text = cells["REFERENCE"].Value.ToString();
+
+                (new OdbcCommand("exec EOA_get_narrative " + cells["#"].Value.ToString() + ", " + sessionId.ToString(), connection)).ExecuteNonQuery();
+
+                SONarrativeAdapter = new OdbcDataAdapter("SELECT * FROM EOA_NARRATIVE where SESSION_ID = " + sessionId.ToString(), connection);
+                SONarrativeDataSet = new DataSet();
+                OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(SONarrativeAdapter);
+                SONarrativeAdapter.Fill(SONarrativeDataSet);
+
+                narrativeTextBox.Text = SONarrativeDataSet.Tables[0].Rows[0]["NARRATIVE"].ToString();
             }
         }
 
@@ -1005,11 +1017,21 @@ namespace EntrostyleOperationsApplication
         {
             if (keyData == (Keys.F5))
             {
+                SOItemDetails.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+                SOItemDetails.EndEdit();
+
                 button1_Click(refreshF5, new EventArgs());
+
+                SOItemDetails.EditMode = DataGridViewEditMode.EditOnEnter;
             }
             else if (keyData == (Keys.F10))
             {
+                SOItemDetails.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+                SOItemDetails.EndEdit();
+
                 refreshF10_Click(refreshF10, new EventArgs());
+
+                SOItemDetails.EditMode = DataGridViewEditMode.EditOnEnter;
             }
             else if (keyData == (Keys.Control | Keys.P))
             {
@@ -1198,6 +1220,11 @@ namespace EntrostyleOperationsApplication
                     }
                 }
             });
+        }
+
+        private void narrativeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            (new OdbcCommand("exec eoa_update_narrative '" + narrativeTextBox.Text + "', " + sessionId.ToString(), connection)).ExecuteNonQueryAsync();
         }
     }
 }
