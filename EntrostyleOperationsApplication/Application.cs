@@ -394,6 +394,8 @@ namespace EntrostyleOperationsApplication
         {
             string searchText = searchBox.Text;
 
+            string sortString = " ORDER BY CAST(DUEDATE AS DATE) DESC";
+
             // turn grid listeners off
             SOSecondary.CellValueChanged -= SO_CellValueChanged;
             SOSecondary.RowEnter -= SO_RowEnter;
@@ -401,7 +403,7 @@ namespace EntrostyleOperationsApplication
             (new OdbcCommand("exec " + (searchText.Length > 0 ? "secondary_search_orders " : "query_salesorders_secondary ") + sessionId.ToString() +
                 (searchText.Length > 0 ? (", '" + searchText + "'"): ""), connection)).ExecuteNonQuery();
 
-            SOSecondaryAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SALESORD_SECONDARY where SESSIONID = " + sessionId.ToString(), connection);
+            SOSecondaryAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SALESORD_SECONDARY where SESSIONID = " + sessionId.ToString() + sortString, connection);
             SOSecondaryDataSet = new DataSet();
             OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(SOSecondaryAdapter);
             SOSecondaryAdapter.Fill(SOSecondaryDataSet);
@@ -500,7 +502,7 @@ namespace EntrostyleOperationsApplication
             difotColumn.HeaderText = "Difot";
             difotColumn.Name = "DIFOT_FAKE";
 
-            var listSource = new string[] { "difot", "not shipped" };
+            var listSource = new string[] { "difot", "shipped late" };
             difotColumn.DataSource = listSource;
             difotColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
@@ -1033,11 +1035,19 @@ namespace EntrostyleOperationsApplication
 
                 SOItemDetails.EditMode = DataGridViewEditMode.EditOnEnter;
             }
-            else if (keyData == (Keys.Control | Keys.P))
+            else if (keyData == (Keys.Alt | Keys.P))
             {
                 processPickBtn_Click(processPickBtn, new EventArgs());
             }
-
+            else if (keyData == (Keys.Control | Keys.P))
+            {
+                printPickingBtn_Click(printPickingBtn, new EventArgs());
+            }
+            else if (keyData == (Keys.Alt | Keys.A))
+            {
+                pickAllBtn_Click(pickAllBtn, new EventArgs());
+            }
+            
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
