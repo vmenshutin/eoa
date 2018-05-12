@@ -12,6 +12,12 @@ using System.Threading.Tasks;
 using System.IO.Pipes;
 using System.Security.Principal;
 using System.Security.AccessControl;
+using System.Drawing.Printing;
+using Microsoft.Reporting.WinForms;
+using ZXing;
+using ZXing.Common;
+using System.Drawing.Imaging;
+using System.Collections.Generic;
 
 namespace EntrostyleOperationsApplication
 {
@@ -42,6 +48,10 @@ namespace EntrostyleOperationsApplication
 
         string activeGrid = null;
 
+        private LocalReport stockReport;
+        private int m_currentPageIndex;
+        private IList<Stream> m_streams;
+
         public Application()
         {
             InitializeComponent();
@@ -60,6 +70,9 @@ namespace EntrostyleOperationsApplication
 
             // load DIFOT data
             loadDifotData();
+
+            // load Stock Label data
+            populateStockLabelCombobox();
 
             // load SETTINGS
             loadSettings();
@@ -90,10 +103,13 @@ namespace EntrostyleOperationsApplication
             SOMain.CellMouseClick += SOMain_CellMouseClick;
             SOSecondary.CellMouseClick += SOMain_CellMouseClick;
             SOItemDetails.CellMouseClick += SOMain_CellMouseClick;
+            SOItemDetails.CellValidating += SOItemDetails_CellValidating;
+            SOItemDetails.DataError += SOItemDetails_DataError;
             SODifot.CellMouseClick += SOMain_CellMouseClick;
 
             // so item details conditional styling
             SOItemDetails.CellFormatting += SOItemDetails_CellFormatting;
+            SOItemDetails.Leave += SOItemDetails_Leave;
 
             // customize columns for DIFOT
             styleDifotColumns();
@@ -105,6 +121,65 @@ namespace EntrostyleOperationsApplication
             listenToAppProtocolHandler();
         }
 
+        private void SOItemDetails_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            // Prevents system error messages since cell level validation occurs in cell validating event
+        }
+
+        private void SOItemDetails_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == SOItemDetails.Columns["X_ACTION"].Index)
+            {
+                int i;
+
+                // if cell is not empty
+                if (e.FormattedValue.ToString() != "")
+                {
+                    var row = SOItemDetails.Rows[e.RowIndex];
+                    int min = Math.Min(Int32.Parse(row.Cells["UNSUP_QUANT"].Value.ToString()), Int32.Parse(row.Cells["TOTALSTOCK"].Value.ToString()));
+
+                    // if not numeric
+                    if (!int.TryParse(Convert.ToString(e.FormattedValue), out i))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("       Only numeric characters are accepted.       ");
+                    }
+                    // if numeric - check if exceeds max
+                    else if (Int32.Parse(e.FormattedValue.ToString()) > min)
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("       Action should not exceed Outstanding and/or Location Qty.       ");
+                    }
+                }
+            }
+
+            if (e.ColumnIndex == SOItemDetails.Columns["PICK_NOW"].Index)
+            {
+                int i;
+
+                // if cell is not empty
+                if (e.FormattedValue.ToString() != "")
+                {
+                    // if not numeric
+                    if (!int.TryParse(Convert.ToString(e.FormattedValue), out i))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("       Only numeric characters are accepted.       ");
+                    }
+                }
+                else
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("       A numeric value must be specified.       ");
+                }
+            }
+        }
+
+        private void SOItemDetails_Leave(object sender, EventArgs e)
+        {
+            SOItemDetails.EndEdit();
+        }
+
         private void SOMain_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             var dgv = (DataGridView)sender;
@@ -112,11 +187,7 @@ namespace EntrostyleOperationsApplication
 
             if (columnName == "#" || columnName == "STOCKCODE")
             {
-                PleaseWaitForm wait = new PleaseWaitForm();
-                wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
-                wait.Show();
-
-                System.Windows.Forms.Application.DoEvents();
+                var wait = showWaitForm();
 
                 StringBuilder sb = new StringBuilder();
                 //Starting Information for process like its path, use system shell i.e. control process by system etc.
@@ -152,37 +223,51 @@ namespace EntrostyleOperationsApplication
             }
         }
 
-        private void printPickingBtn_Click(object sender, EventArgs e)
+        private void process(string carrier)
+        {
+            updateCarrier(carrier);
+            processPick();
+        }
+
+        private void printAndPickExoLogic()
         {
             var orderRow = getCurrentSORow();
 
-            if (orderRow != null)
+            var wait = showWaitForm();
+
+            ProcessStartInfo psi = new ProcessStartInfo(@"C:\WINDOWS\system32\cmd.exe");
+            psi.UseShellExecute = false;
+            psi.ErrorDialog = false;
+            psi.CreateNoWindow = true;
+            psi.WindowStyle = ProcessWindowStyle.Hidden;
+            psi.RedirectStandardError = true;
+            psi.RedirectStandardInput = true;
+            psi.RedirectStandardOutput = true;
+            Process plinkProcess = new Process();
+            plinkProcess.StartInfo = psi;
+            plinkProcess.Start();
+            StreamWriter inputWriter = plinkProcess.StandardInput;
+            StreamReader outputReader = plinkProcess.StandardOutput;
+            StreamReader errorReader = plinkProcess.StandardError;
+            string line = '"' + @settings_installationAddress.Text + '"' + " " + settings_dbName.Text + " " + settings_login.Text.ToString() + " " + settings_password.Text.ToString() + " " + settings_ClarityFileName.Text + " " + @"/s=Seqno=" + orderRow.Cells["#"].Value.ToString() + " " + @"/a=n /d=printer /p=" + '"' + settings_printerName.Text + '"';
+            inputWriter.WriteLine(line);
+            orderRow.DataGridView.Focus();
+            orderRow.Cells["STATUS"].Value = "P";
+            Thread.Sleep(2000);
+
+            wait.Close();
+        }
+
+        private void printPickingBtn_Click(object sender, EventArgs e)
+        {
+            var row = getCurrentSORow();
+
+            if (row != null)
             {
-                PleaseWaitForm wait = new PleaseWaitForm();
-                wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
-                wait.Show();
+                var wait = showWaitForm();
 
-                System.Windows.Forms.Application.DoEvents();
-
-                ProcessStartInfo psi = new ProcessStartInfo(@"C:\WINDOWS\system32\cmd.exe");
-                psi.UseShellExecute = false;
-                psi.ErrorDialog = false;
-                psi.CreateNoWindow = true;
-                psi.WindowStyle = ProcessWindowStyle.Hidden;
-                psi.RedirectStandardError = true;
-                psi.RedirectStandardInput = true;
-                psi.RedirectStandardOutput = true;
-                Process plinkProcess = new Process();
-                plinkProcess.StartInfo = psi;
-                plinkProcess.Start();
-                StreamWriter inputWriter = plinkProcess.StandardInput;
-                StreamReader outputReader = plinkProcess.StandardOutput;
-                StreamReader errorReader = plinkProcess.StandardError;
-                string line = '"' + @settings_installationAddress.Text + '"' + " " + settings_dbName.Text + " " + settings_login.Text.ToString() + " " + settings_password.Text.ToString() + " " + settings_ClarityFileName.Text + " " + @"/s=Seqno=" + orderRow.Cells["#"].Value.ToString() + " " + @"/a=n /d=printer /p=" + '"' + settings_printerName.Text + '"';
-                inputWriter.WriteLine(line);
-                orderRow.DataGridView.Focus();
-                orderRow.Cells["STATUS"].Value = "P";
-                Thread.Sleep(2000);
+                var preview = new PrintPickingDialog(row, settings_labelPrinter.Text, printAndPickExoLogic); // new
+                preview.Show();
 
                 wait.Close();
             }
@@ -244,7 +329,7 @@ namespace EntrostyleOperationsApplication
                     cell.Style.ForeColor = Color.Red;
                     cell.Style.SelectionForeColor = Color.Red;
                 }
-                else if (cell.Value.ToString() == "NowIS")
+                else if (cell.Value.ToString() == "NowIS" || cell.Value.ToString() == "TR")
                 {
                     cell.Style.ForeColor = Color.Blue;
                     cell.Style.SelectionForeColor = Color.Blue;
@@ -256,6 +341,8 @@ namespace EntrostyleOperationsApplication
                 var row = dgv.Rows[e.RowIndex];
                 var cell = row.Cells[e.ColumnIndex];
 
+                string[] tp = { "TP-PICK", "TP-POWDER", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP" };
+
                 if (cell.Value.ToString() == "P")
                 {
                     cell.Style.ForeColor = Color.Green;
@@ -263,7 +350,7 @@ namespace EntrostyleOperationsApplication
                     row.DefaultCellStyle.BackColor = Color.LightGray;
                     row.DefaultCellStyle.ForeColor = Color.Gray;
                 }
-                else if (cell.Value.ToString() == "TP")
+                else if (Array.IndexOf(tp, cell.Value.ToString()) > -1)
                 {
                     cell.Style.ForeColor = Color.Green;
                     cell.Style.SelectionForeColor = Color.Green;
@@ -367,7 +454,12 @@ namespace EntrostyleOperationsApplication
             SOMain.RowEnter -= SO_RowEnter;
 
             string sortString = " ORDER BY CASE WHEN STATUS = 'P' THEN '1' " +
-              "WHEN STATUS = 'TP' THEN '2' " +
+              "WHEN STATUS = 'TP-PICK' THEN '2' " +
+              "WHEN STATUS = 'TP-POWDER' THEN '2' " +
+              "WHEN STATUS = 'TP-PROJECT' THEN '2' " +
+              "WHEN STATUS = 'TP-KEY' THEN '2' " +
+              "WHEN STATUS = 'TP-CUT' THEN '2' " +
+              "WHEN STATUS = 'TP-SHIP' THEN '2' " +
               "WHEN STATUS = 'W' THEN '3' " +
               "WHEN STATUS = 'TA' THEN '4' " +
               "WHEN STATUS = 'Sc' THEN '5' " +
@@ -394,7 +486,7 @@ namespace EntrostyleOperationsApplication
         {
             string searchText = searchBox.Text;
 
-            string sortString = " ORDER BY CAST(DUEDATE AS DATE) DESC";
+            string sortString = " ORDER BY CAST(DUEDATE AS DATE) ASC";
 
             // turn grid listeners off
             SOSecondary.CellValueChanged -= SO_CellValueChanged;
@@ -450,22 +542,28 @@ namespace EntrostyleOperationsApplication
             settings_login.Text = settingsRow["LOGIN"].ToString();
             settings_password.Text = settingsRow["PASSWORD"].ToString();
             settings_printerName.Text = settingsRow["PRINTER_NAME"].ToString();
+            settings_labelPrinter.Text = settingsRow["LABEL_PRINTER"].ToString();
         }
 
         // load DIFOT data
         private void loadDifotData()
         {
-            PleaseWaitForm wait = new PleaseWaitForm();
-            wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
-            wait.Show();
-
-            System.Windows.Forms.Application.DoEvents();
+            var wait = showWaitForm();
+            string searchText = difotSearchBox.Text;
 
             // turn grid listeners off
             SODifot.CellValueChanged -= SODifot_CellValueChanged;
 
-            (new OdbcCommand("exec eoa_query_difot_items '"  + difotFrom.Value.ToString("yyyy-MM-dd") + "', '"
-               + difotTo.Value.ToString("yyyy-MM-dd") + "'," + sessionId.ToString(), connection)).ExecuteNonQuery();
+            if (searchText != "")
+            {
+                (new OdbcCommand("exec eoa_query_difot_items_secondary '" + difotFrom.Value.ToString("yyyy-MM-dd") + "', '"
+                + difotTo.Value.ToString("yyyy-MM-dd") + "', '" + searchText + "'," + sessionId.ToString(), connection)).ExecuteNonQuery();
+            }
+            else
+            {
+                (new OdbcCommand("exec eoa_query_difot_items '" + difotFrom.Value.ToString("yyyy-MM-dd") + "', '"
+                + difotTo.Value.ToString("yyyy-MM-dd") + "'," + sessionId.ToString(), connection)).ExecuteNonQuery();
+            }
 
             SODifotAdapter = new OdbcDataAdapter("SELECT * FROM EOA_DIFOT where SESSIONID = " + sessionId.ToString(), connection);
             SODifotDataSet = new DataSet();
@@ -478,6 +576,89 @@ namespace EntrostyleOperationsApplication
 
             // turn grid listeners on again
             SODifot.CellValueChanged += SODifot_CellValueChanged;
+        }
+
+        // populate stock label data
+        private void populateStockLabelCombobox()
+        {
+            var wait = showWaitForm();
+
+            var adapter = new OdbcDataAdapter("SELECT STOCKCODE, DESCRIPTION FROM STOCK_ITEMS order by STOCKCODE", connection);
+            var ds = new DataSet();
+            OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(adapter);
+            adapter.Fill(ds);
+
+            SODifot.DataSource = SODifotDataSet.Tables[0];
+            stockLabelCombobox.DataSource = ds.Tables[0];
+            stockLabelCombobox.DisplayMember = "STOCKCODE";
+
+            initStockLabelReportViewer();
+            stockLabelCombobox.SelectedValueChanged += StockLabelCombobox_SelectedValueChanged;
+
+            wait.Close();
+        }
+
+        private void StockLabelCombobox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            stockReport.DataSources.RemoveAt(0);
+            stockLabelreportViewer.LocalReport.DataSources.RemoveAt(0);
+
+            initStockLabelReportViewer();
+        }
+
+        private void initStockLabelReportViewer()
+        {
+            var selectedValue = (stockLabelCombobox.SelectedValue as DataRowView);
+
+            if (selectedValue != null)
+            {
+                stockLabelreportViewer.ProcessingMode = ProcessingMode.Local;
+                stockLabelreportViewer.LocalReport.ReportPath = @".\stock_label.rdlc";
+
+                stockReport = new LocalReport();
+                stockReport.ReportPath = @".\stock_label.rdlc";
+
+                DataTable dt = new DataTable();
+
+                dt.Columns.Add("STOCKCODE", typeof(String));
+                dt.Columns.Add("DESCRIPTION", typeof(String));
+                dt.Columns.Add("BARCODE", typeof(byte[]));
+
+                DataRow dr = dt.NewRow();
+
+                dr["STOCKCODE"] = selectedValue.Row[0];
+                dr["DESCRIPTION"] = selectedValue.Row[1];
+
+                Bitmap bitmap = GenerateBarcode(selectedValue.Row[0].ToString(), 100, 100, 0);
+                dr["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(bitmap, typeof(byte[])));
+
+                dt.Rows.Add(dr);
+
+                stockReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+                stockLabelreportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+
+                stockLabelreportViewer.RefreshReport();
+            }
+            else
+            {
+                MessageBox.Show("       Not a valid value       ");
+            }
+        }
+
+        private Bitmap GenerateBarcode(string barcodeText, int height, int width, int margin)
+        {
+            var barcodeWriter = new BarcodeWriter
+            {
+                Format = BarcodeFormat.QR_CODE,
+                Options = new EncodingOptions
+                {
+                    Height = height,
+                    Width = width,
+                    Margin = margin
+                }
+            };
+
+            return barcodeWriter.Write(barcodeText);
         }
 
         // clear obsolete sessions data and verify current session id is unique
@@ -519,7 +700,7 @@ namespace EntrostyleOperationsApplication
             dispatchStatusColumn.Name = "STATUS_FAKE";
 
 
-            var listSource = new string[] { "TP", "W", "P", "TA", "Sc" };
+            var listSource = new string[] { "TP-PICK", "TP-POWDER", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP", "W", "P", "TA", "Sc" };
             dispatchStatusColumn.DataSource = listSource;
             dispatchStatusColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
@@ -533,7 +714,7 @@ namespace EntrostyleOperationsApplication
             dispatchMethodColumn.HeaderText = "Method";
             dispatchMethodColumn.Name = "METHOD_FAKE";
 
-            var methodSource = new string[] { "E4", "G", "P", "N", "(n)" };
+            var methodSource = new string[] { "E1", "E4", "P", "N", "(n)" };
             dispatchMethodColumn.DataSource = methodSource;
             dispatchMethodColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
@@ -574,6 +755,32 @@ namespace EntrostyleOperationsApplication
             dgv.Columns[dueTimeColumn.Name].DisplayIndex = 8;
         }
 
+        private void addLocationDropdown()
+        {
+            var locationAdapter = new OdbcDataAdapter("SELECT CONCAT(LOCNO, ' ', LCODE) FROM STOCK_LOCATIONS", connection);
+            var locationDS = new DataSet();
+            OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(locationAdapter);
+            locationAdapter.Fill(locationDS);
+
+            DataRow[] rows = locationDS.Tables[0].Select();
+            string[] optionsArray = rows.Select(row => row[0].ToString()).ToArray();
+
+            var locationColumn = new DataGridViewComboBoxColumn();
+            locationColumn.HeaderText = "Location";
+            locationColumn.Name = "LOCATION_FAKE";
+            locationColumn.DisplayIndex = 9;
+
+            var locationSource = optionsArray;
+            locationColumn.DataSource = locationSource;
+            locationColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+
+            SOItemDetails.Columns.Add(locationColumn);
+            SOItemDetails.Columns[locationColumn.Name].DataPropertyName = "LOCATION";
+
+            // location dropdown on dashboard
+            locationComboBox.DataSource = optionsArray.Clone();
+        }
+
         // style Data Grid View columns for SO Details grid
         private void styleSODetailsColumns()
         {
@@ -581,7 +788,9 @@ namespace EntrostyleOperationsApplication
 
             foreach (DataGridViewColumn column in columns)
             {
-                if (column.Name == "PICK_NOW")
+                if (column.Name == "PICK_NOW"
+                    || column.Name == "LOCATION_FAKE"
+                    || column.Name == "X_ACTION")
                 {
                     column.DefaultCellStyle.BackColor = Color.Silver;
                 }
@@ -594,13 +803,20 @@ namespace EntrostyleOperationsApplication
             columns["SEQNO"].Visible = false;
             columns["LINES_ID"].Visible = false;
             columns["SESSIONID"].Visible = false;
+            columns["LOCATION"].Visible = false;
 
+            columns["STOCKCODE"].HeaderText = "Stock Code";
+            columns["STOCKCODE"].HeaderText = "Stock Code";
+            columns["STOCKCODE"].HeaderText = "Stock Code";
             columns["STOCKCODE"].HeaderText = "Stock Code";
             columns["DESCRIPTION"].HeaderText = "Description";
             columns["STOCKCHECK"].HeaderText = "Stock Status";
             columns["PICK_NOW"].HeaderText = "Pick Qty";
             columns["UNSUP_QUANT"].HeaderText = "Outstanding";
-            columns["TOTALSTOCK"].HeaderText = "Total Qty";
+            columns["TOTALSTOCK"].HeaderText = "Location Qty";
+            columns["X_ACTION"].HeaderText = "Action";
+
+            columns["X_ACTION"].DisplayIndex = 10;
 
             columns["STOCKCODE"].DefaultCellStyle.ForeColor = Color.Blue;
             columns["STOCKCODE"].DefaultCellStyle.SelectionForeColor = Color.Blue;
@@ -638,6 +854,9 @@ namespace EntrostyleOperationsApplication
             columns["PICKDATE"].Visible = false;
             columns["DUETIME"].Visible = false;
             columns["REFERENCE"].Visible = false;
+            columns["X_PROJECTNAME"].Visible = false;
+            columns["CUSTORDERNO"].Visible = false;
+            columns["X_CARRIER"].Visible = false;
 
             columns["ACCOUNTNAME"].HeaderText = "Account";
             columns["STOCK"].HeaderText = "Stock";
@@ -655,6 +874,7 @@ namespace EntrostyleOperationsApplication
         // style Data Grid View columns for DIFOT
         private void styleDifotColumns()
         {
+            SODifot.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             var columns = SODifot.Columns;
 
             foreach (DataGridViewColumn column in columns)
@@ -737,6 +957,7 @@ namespace EntrostyleOperationsApplication
                 // customize columns for SO details grid
                 if (!isSODetailsGridStyled)
                 {
+                    addLocationDropdown();
                     setDataGridViewStyleProps(SOItemDetails);
                     styleSODetailsColumns();
                     isSODetailsGridStyled = true;
@@ -768,6 +989,23 @@ namespace EntrostyleOperationsApplication
             {
                 Validate();
 
+                //Multiple pasting support
+                if ((e.ColumnIndex == SOItemDetails.Columns["LOCATION_FAKE"].Index)
+                    && SOItemDetails.SelectedRows.Count > 1)
+                {
+                    var wait = showWaitForm();
+
+                    foreach (DataGridViewRow row in SOItemDetails.SelectedRows)
+                    {
+                        if (row.Index != e.RowIndex)
+                        {
+                            row.Cells[e.ColumnIndex].Value = SOItemDetails.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                        }
+                    }
+
+                    wait.Close();
+                }
+
                 try
                 {
                     SOItemDetailsAdapter.Update(SOItemDetailsDataSet);
@@ -778,7 +1016,7 @@ namespace EntrostyleOperationsApplication
                 }
 
                 // run stored procedure and update real database tables
-                (new OdbcCommand("eoa_so_item_details_update "
+                (new OdbcCommand("eoa_so_item_details_update_" + SOItemDetails.Columns[e.ColumnIndex].Name + ' '
                    + sessionId.ToString() + ", "
                    + SOItemDetails.Rows[e.RowIndex].Cells["SEQNO"].Value.ToString() + ", "
                    + SOItemDetails.Rows[e.RowIndex].Cells["LINES_ID"].Value.ToString(), connection)).ExecuteNonQueryAsync();
@@ -792,6 +1030,22 @@ namespace EntrostyleOperationsApplication
                 var dgv = (DataGridView)sender;
 
                 Validate();
+
+                //Multiple pasting support
+                if (e.ColumnIndex == dgv.Columns["DIFOT_FAKE"].Index && dgv.SelectedRows.Count > 1)
+                {
+                    var wait = showWaitForm();
+
+                    foreach (DataGridViewRow row in dgv.SelectedRows)
+                    {
+                        if (row.Index != e.RowIndex)
+                        {
+                            row.Cells[e.ColumnIndex].Value = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                        }
+                    }
+
+                    wait.Close();
+                }
 
                 try
                 {
@@ -826,11 +1080,7 @@ namespace EntrostyleOperationsApplication
                     || e.ColumnIndex == dgv.Columns["DUEDATE_FAKE"].Index)
                     && dgv.SelectedRows.Count > 1)
                 {
-                    PleaseWaitForm wait = new PleaseWaitForm();
-                    wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
-                    wait.Show();
-
-                    System.Windows.Forms.Application.DoEvents();
+                    var wait = showWaitForm();
 
                     foreach (DataGridViewRow row in dgv.SelectedRows)
                     {
@@ -881,23 +1131,22 @@ namespace EntrostyleOperationsApplication
         // Refresh Button click
         private void button1_Click(object sender, EventArgs e)
         {
-            PleaseWaitForm wait = new PleaseWaitForm();
-            wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
-            wait.Show();
-
-            System.Windows.Forms.Application.DoEvents();
+            var wait = showWaitForm();
 
             loadSalesOrdersMain();
             loadSalesOrdersSecondary();
+            // loadDifotData();
 
             // re-select SO to refresh item details grid
             if (SOMain.Rows.Count > 0)
             {
-                SO_RowEnter(SOMain, new DataGridViewCellEventArgs(0, 0));
+                // SO_RowEnter(SOMain, new DataGridViewCellEventArgs(0, 0));
+                SOMain.Focus();
             }
             else if (SOSecondary.Rows.Count > 0)
             {
-                SO_RowEnter(SOSecondary, new DataGridViewCellEventArgs(0, 0));
+                // SO_RowEnter(SOSecondary, new DataGridViewCellEventArgs(0, 0));
+                SOSecondary.Focus();
             }
 
             wait.Close();
@@ -906,16 +1155,9 @@ namespace EntrostyleOperationsApplication
         // returns # of the current/active SO
         private string getCurrentSO()
         {
-            if (activeGrid != null)
+            if (label6.Text != "")
             {
-                if (activeGrid == SOMain.Name)
-                {
-                    return SOMain.CurrentRow.Cells["#"].Value.ToString();
-                }
-                else
-                {
-                    return SOSecondary.CurrentRow.Cells["#"].Value.ToString();
-                }
+                return label6.Text;
             }
 
             return null;
@@ -928,11 +1170,11 @@ namespace EntrostyleOperationsApplication
             {
                 if (activeGrid == SOMain.Name)
                 {
-                    return SOMain.CurrentRow;
+                    return SOMain.SelectedRows[0];
                 }
                 else
                 {
-                    return SOSecondary.CurrentRow;
+                    return SOSecondary.SelectedRows[0];
                 }
             }
 
@@ -942,11 +1184,10 @@ namespace EntrostyleOperationsApplication
         // Refresh F10 click
         private void refreshF10_Click(object sender, EventArgs e)
         {
-            PleaseWaitForm wait = new PleaseWaitForm();
-            wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
-            wait.Show();
+            SOItemDetails.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+            SOItemDetails.EndEdit();
 
-            System.Windows.Forms.Application.DoEvents();
+            var wait = showWaitForm();
 
             // if any of the splits was selected - save current SO
             var order = getCurrentSO();
@@ -959,6 +1200,8 @@ namespace EntrostyleOperationsApplication
             {
                 searchForRecordAndSelect(order);
             }
+
+            SOItemDetails.EditMode = DataGridViewEditMode.EditOnEnter;
 
             wait.Close();
         }
@@ -1019,21 +1262,29 @@ namespace EntrostyleOperationsApplication
         {
             if (keyData == (Keys.F5))
             {
-                SOItemDetails.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
-                SOItemDetails.EndEdit();
+                if (tabControl1.SelectedTab.Name == "ScheduleTab")
+                {
+                    SOItemDetails.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+                    SOItemDetails.EndEdit();
 
-                button1_Click(refreshF5, new EventArgs());
+                    button1_Click(refreshF5, new EventArgs());
 
-                SOItemDetails.EditMode = DataGridViewEditMode.EditOnEnter;
+                    SOItemDetails.EditMode = DataGridViewEditMode.EditOnEnter;
+                }
+                else if (tabControl1.SelectedTab.Name == "DifotTab")
+                {
+                    SODifot.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+                    SODifot.EndEdit();
+
+                    refreshDifot_Click(refreshDifot, new EventArgs());
+
+                    SODifot.EditMode = DataGridViewEditMode.EditOnEnter;
+                }
+                
             }
-            else if (keyData == (Keys.F10))
+            else if (keyData == (Keys.Control | Keys.F5))
             {
-                SOItemDetails.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
-                SOItemDetails.EndEdit();
-
                 refreshF10_Click(refreshF10, new EventArgs());
-
-                SOItemDetails.EditMode = DataGridViewEditMode.EditOnEnter;
             }
             else if (keyData == (Keys.Alt | Keys.P))
             {
@@ -1058,50 +1309,59 @@ namespace EntrostyleOperationsApplication
                 + "', " + "DB_NAME = '" + settings_dbName.Text
                 + "', " + "LOGIN = '" + settings_login.Text
                 + "', " + "PASSWORD = '" + settings_password.Text
-                + "', " + "PRINTER_NAME = '" + settings_printerName.Text + "'", connection);
+                + "', " + "PRINTER_NAME = '" + settings_printerName.Text
+                + "', " + "LABEL_PRINTER = '" + settings_labelPrinter.Text + "'", connection);
             command.ExecuteNonQuery();
+        }
+
+        private void processPick()
+        {
+            var order = getCurrentSO();
+
+            var wait = showWaitForm();
+
+            StringBuilder sb = new StringBuilder();
+
+            (new OdbcCommand("exec eoa_process_pick " + order, connection)).ExecuteNonQuery();
+
+            //Starting Information for process like its path, use system shell i.e. control process by system etc.
+            ProcessStartInfo psi = new ProcessStartInfo(@"C:\WINDOWS\system32\cmd.exe");
+            // its states that system shell will not be used to control the process instead program will handle the process
+            psi.UseShellExecute = false;
+            psi.ErrorDialog = false;
+            // Do not show command prompt window separately
+            psi.CreateNoWindow = true;
+            psi.WindowStyle = ProcessWindowStyle.Hidden;
+            //redirect all standard inout to program
+            psi.RedirectStandardError = true;
+            psi.RedirectStandardInput = true;
+            psi.RedirectStandardOutput = true;
+            //create the process with above infor and start it
+            Process plinkProcess = new Process();
+            plinkProcess.StartInfo = psi;
+            plinkProcess.Start();
+            //link the streams to standard inout of process
+            StreamWriter inputWriter = plinkProcess.StandardInput;
+            StreamReader outputReader = plinkProcess.StandardOutput;
+            StreamReader errorReader = plinkProcess.StandardError;
+            //send command to cmd prompt and wait for command to execute with thread sleep
+            inputWriter.WriteLine(@"START exo://saleorder(" + order + ")");
+
+            Thread.Sleep(500);
+            wait.Close();
         }
 
         private void processPickBtn_Click(object sender, EventArgs e)
         {
-            var order = getCurrentSO();
+            var row = getCurrentSORow();
 
-            if (order != null)
+            if (row != null)
             {
-                PleaseWaitForm wait = new PleaseWaitForm();
-                wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
-                wait.Show();
+                var wait = showWaitForm();
 
-                System.Windows.Forms.Application.DoEvents();
+                var preview = new ProcessPickDialog(getCurrentSORow(), settings_labelPrinter.Text, process);
+                preview.Show();
 
-                StringBuilder sb = new StringBuilder();
-
-                (new OdbcCommand("exec eoa_process_pick " + order, connection)).ExecuteNonQuery();
-
-                //Starting Information for process like its path, use system shell i.e. control process by system etc.
-                ProcessStartInfo psi = new ProcessStartInfo(@"C:\WINDOWS\system32\cmd.exe");
-                // its states that system shell will not be used to control the process instead program will handle the process
-                psi.UseShellExecute = false;
-                psi.ErrorDialog = false;
-                // Do not show command prompt window separately
-                psi.CreateNoWindow = true;
-                psi.WindowStyle = ProcessWindowStyle.Hidden;
-                //redirect all standard inout to program
-                psi.RedirectStandardError = true;
-                psi.RedirectStandardInput = true;
-                psi.RedirectStandardOutput = true;
-                //create the process with above infor and start it
-                Process plinkProcess = new Process();
-                plinkProcess.StartInfo = psi;
-                plinkProcess.Start();
-                //link the streams to standard inout of process
-                StreamWriter inputWriter = plinkProcess.StandardInput;
-                StreamReader outputReader = plinkProcess.StandardOutput;
-                StreamReader errorReader = plinkProcess.StandardError;
-                //send command to cmd prompt and wait for command to execute with thread sleep
-                inputWriter.WriteLine(@"START exo://saleorder(" + order + ")");
-
-                Thread.Sleep(500);
                 wait.Close();
             }
         }
@@ -1113,11 +1373,7 @@ namespace EntrostyleOperationsApplication
 
             if (order != null)
             {
-                PleaseWaitForm wait = new PleaseWaitForm();
-                wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
-                wait.Show();
-
-                System.Windows.Forms.Application.DoEvents();
+                var wait = showWaitForm();
 
                 (new OdbcCommand("exec eoa_pick_all " + order, connection)).ExecuteNonQuery();
                 loadSalesOrderItemDetails(order);
@@ -1235,6 +1491,218 @@ namespace EntrostyleOperationsApplication
         private void narrativeTextBox_TextChanged(object sender, EventArgs e)
         {
             (new OdbcCommand("exec eoa_update_narrative '" + narrativeTextBox.Text + "', " + sessionId.ToString(), connection)).ExecuteNonQueryAsync();
+        }
+
+        public void updateCarrier(string carrier)
+        {
+            // run stored procedure and update real database tables
+            (new OdbcCommand("exec so_update_CARRIER "
+               + getCurrentSORow().Cells["#"].Value.ToString() + ", '"
+               + carrier + "'", connection)).ExecuteNonQueryAsync();
+        }
+
+        private void transferBtn_Click(object sender, EventArgs e)
+        {
+            var wait = showWaitForm();
+
+            SOItemDetails.Focus();
+
+            var reference = referenceTextBox.Text;
+            var toLocation = locationComboBox.SelectedValue.ToString();
+
+            bool insertIntoHdr = true;
+
+            foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
+            {
+                if (itemRow.Cells["X_ACTION"].Value.ToString() != "")
+                {
+                    string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
+                    string quantity = itemRow.Cells["X_ACTION"].Value.ToString();
+                    string location = itemRow.Cells["LOCATION"].Value.ToString();
+
+                    itemRow.Cells["X_ACTION"].Value = DBNull.Value;
+
+                    (new OdbcCommand("eoa_transfer '" + stockCode + "', '" + reference + "', " + quantity + ", '" + location + "', '" + toLocation + "', " + (insertIntoHdr ? "1" : "0"),
+                        connection)).ExecuteNonQuery();
+
+                    insertIntoHdr = false;
+                }
+            }
+
+            referenceTextBox.Text = "";
+            wait.Close();
+
+            refreshF10_Click(refreshF10, new EventArgs());
+        }
+
+        private void duplicateBtn_Click(object sender, EventArgs e)
+        {
+            var wait = showWaitForm();
+
+            SOItemDetails.Focus();
+
+            var location = locationComboBox.SelectedValue.ToString();
+            var reference = referenceTextBox.Text;
+
+            bool addReference = true;
+
+            foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
+            {
+                if (itemRow.Cells["X_ACTION"].Value.ToString() != "")
+                {
+                    string seqno = itemRow.Cells["LINES_ID"].Value.ToString();
+                    string quantity = itemRow.Cells["X_ACTION"].Value.ToString();
+
+                    itemRow.Cells["X_ACTION"].Value = DBNull.Value;
+
+                    (new OdbcCommand("eoa_duplicate " + seqno + ", " + quantity + ", '" + location + "', '" + reference + "', " + (addReference ? "1" : "0"), connection)).ExecuteNonQuery();
+
+                    addReference = false;
+                }
+            }
+
+            wait.Close();
+
+            refreshF10_Click(refreshF10, new EventArgs());
+        }
+
+        private void tdBtn_Click(object sender, EventArgs e)
+        {
+            var wait = showWaitForm();
+
+            SOItemDetails.Focus();
+
+            var reference = referenceTextBox.Text;
+            var toLocation = locationComboBox.SelectedValue.ToString();
+
+            bool insertIntoHdr = true;
+
+            foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
+            {
+                if (itemRow.Cells["X_ACTION"].Value.ToString() != "")
+                {
+                    string seqno = itemRow.Cells["LINES_ID"].Value.ToString();
+                    string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
+                    string quantity = itemRow.Cells["X_ACTION"].Value.ToString();
+                    string location = itemRow.Cells["LOCATION"].Value.ToString();
+
+                    itemRow.Cells["X_ACTION"].Value = DBNull.Value;
+
+                    (new OdbcCommand("eoa_transfer '" + stockCode + "', '" + reference + "', " + quantity + ", '" + location + "', '" + toLocation + "', " + (insertIntoHdr ? "1" : "0"),
+                        connection)).ExecuteNonQuery();
+
+                    (new OdbcCommand("eoa_duplicate " + seqno + ", " + quantity + ", '" + toLocation + "', '" + reference + "', " + (insertIntoHdr ? "1" : "0"), connection)).ExecuteNonQuery();
+
+                    insertIntoHdr = false;
+                }
+            }
+
+            referenceTextBox.Text = "";
+            wait.Close();
+
+            refreshF10_Click(refreshF10, new EventArgs());
+        }
+
+        private void clearAllBtn_Click(object sender, EventArgs e)
+        {
+            var wait = showWaitForm();
+
+            SOItemDetails.Focus();
+
+            foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
+            {
+                if (Int32.Parse(itemRow.Cells["PICK_NOW"].Value.ToString()) != 0)
+                {
+                    itemRow.Cells["PICK_NOW"].Value = 0;
+                }
+            }
+
+            wait.Close();
+        }
+
+        private PleaseWaitForm showWaitForm()
+        {
+            PleaseWaitForm wait = new PleaseWaitForm();
+            wait.Location = new Point(Location.X + (Width - wait.Width) / 2, Location.Y + (Height - wait.Height) / 2);
+            wait.Show();
+
+            System.Windows.Forms.Application.DoEvents();
+
+            return wait;
+        }
+
+        private void generateButton_Click(object sender, EventArgs e)
+        {
+            exportStockLabelReport(stockReport);
+
+            PrintDocument printDoc = new PrintDocument();
+
+            PaperSize paperSize = new PaperSize("Stock Label", 197, 99);
+
+            printDoc.PrinterSettings.PrinterName = settings_labelPrinter.Text;
+            printDoc.PrinterSettings.Copies = 1;
+
+            printDoc.DefaultPageSettings.PaperSize = paperSize;
+            printDoc.PrinterSettings.DefaultPageSettings.PaperSize = paperSize;
+
+            printDoc.PrintPage += new PrintPageEventHandler(PrintPage);
+            m_currentPageIndex = 0;
+            printDoc.Print();
+        }
+
+        // Export the given report as an EMF (Enhanced Metafile) file.
+        private void exportStockLabelReport(LocalReport report)
+        {
+            string deviceInfo =
+              @"<DeviceInfo>
+                <OutputFormat>EMF</OutputFormat>
+                <PageWidth>1.97in</PageWidth>
+                <PageHeight>0.99in</PageHeight>
+                <MarginTop>0in</MarginTop>
+                <MarginLeft>0in</MarginLeft>
+                <MarginRight>0in</MarginRight>
+                <MarginBottom>0in</MarginBottom>
+            </DeviceInfo>";
+            Warning[] warnings;
+            m_streams = new List<Stream>();
+            report.Render("Image", deviceInfo, CreateStream, out warnings);
+            foreach (Stream stream in m_streams)
+                stream.Position = 0;
+        }
+
+        // Handler for PrintPageEvents
+        private void PrintPage(object sender, PrintPageEventArgs ev)
+        {
+            Metafile pageImage = new
+               Metafile(m_streams[m_currentPageIndex]);
+
+            // Adjust rectangular area with printer margins.
+            Rectangle adjustedRect = new Rectangle(
+                ev.PageBounds.Left,
+                ev.PageBounds.Top,
+                ev.PageBounds.Width,
+                ev.PageBounds.Height);
+
+            // Draw a white background for the report
+            ev.Graphics.FillRectangle(Brushes.White, adjustedRect);
+
+            // Draw the report content
+            ev.Graphics.DrawImage(pageImage, adjustedRect);
+
+            // Prepare for the next page. Make sure we haven't hit the end.
+            m_currentPageIndex++;
+            ev.HasMorePages = (m_currentPageIndex < m_streams.Count);
+        }
+
+        // Routine to provide to the report renderer, in order to
+        // save an image for each page of the report.
+        private Stream CreateStream(string name,
+          string fileNameExtension, Encoding encoding,
+          string mimeType, bool willSeek)
+        {
+            Stream stream = new MemoryStream();
+            m_streams.Add(stream);
+            return stream;
         }
     }
 }
