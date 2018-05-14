@@ -96,6 +96,14 @@
     <Compile Include="PrintPickingDialog.Designer.cs">
       <DependentUpon>PrintPickingDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesOrderReportDataSet.cs">
+      <DependentUpon>SalesOrderReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SalesOrderReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SalesOrderReportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="StockLabelDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -116,6 +124,9 @@
       <DependentUpon>Application.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="carrier_label.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sales_order.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="stock_label.rdlc">
@@ -164,6 +175,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SalesOrderReportDataSet.xsc">
+      <DependentUpon>SalesOrderReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SalesOrderReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SalesOrderReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SalesOrderReportDataSet.xss">
+      <DependentUpon>SalesOrderReportDataSet.xsd</DependentUpon>
+    </None>
     <None Include="StockLabelDataSet.xsc">
       <DependentUpon>StockLabelDataSet.xsd</DependentUpon>
     </None>

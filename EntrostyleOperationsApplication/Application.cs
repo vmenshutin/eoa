@@ -645,6 +645,72 @@ namespace EntrostyleOperationsApplication
             }
         }
 
+        private void initSalesOrderReport()
+        {
+            var so = getCurrentSO();
+
+            if (so != null)
+            {
+                var wait = showWaitForm();
+
+                var salesOrderReport = new LocalReport();
+                salesOrderReport.ReportPath = @".\sales_order.rdlc";
+
+                // so_hdr + accs
+                var adapter = new OdbcDataAdapter("exec get_sales_order_report " + so, connection);
+                var ds1 = new DataSet();
+                OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(adapter);
+                adapter.Fill(ds1);
+
+                ds1.Tables[0].Columns.Add("BARCODE", typeof(byte[]));
+                ds1.Tables[0].Rows[0]["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(so, 300, 300, 0), typeof(byte[])));
+
+                salesOrderReport.DataSources.Add(new ReportDataSource("DataSet1", ds1.Tables[0]));
+                // end of so_hdr + accs
+
+                // salesord_lines
+                // filter by location and pick qty
+                var dataTable2 = SOItemDetailsDataSet.Tables[0];
+
+                dataTable2 = dataTable2.AsEnumerable()
+                    .Where(r => (float.Parse(r["PICK_NOW"].ToString()) > 0)
+                        && r["LOCATION"].ToString()[0].Equals('1'))
+                    .CopyToDataTable();
+
+                // remove all unnecessary columns
+                for (int i = dataTable2.Columns.Count - 1; i >= 0; i--)
+                {
+                    string[] columnsToKeep = { "STOCKCODE", "DESCRIPTION", "PICK_NOW" };
+
+                    if (!columnsToKeep.Contains<string>(dataTable2.Columns[i].ColumnName))
+                    {
+                        dataTable2.Columns.RemoveAt(i);
+                    }
+                }
+                    
+                // add barcode column
+                dataTable2.Columns.Add("BARCODE", typeof(byte[]));
+
+                // set barcode for each row
+                foreach (DataRow row in dataTable2.Rows)
+                {
+                    row["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(row["STOCKCODE"].ToString(), 100, 100, 0), typeof(byte[])));
+                }
+
+                salesOrderReport.DataSources.Add(new ReportDataSource("DataSet2", dataTable2));
+                // end of salesord_lines
+
+                exportReport(salesOrderReport, 8, 10.7, 0.59, 0.59);
+                prepareDocAndPrint(new PaperSize("Sales Order", 800, 1070), settings_printerName.Text);
+
+                wait.Close();
+            }
+            else
+            {
+                MessageBox.Show("       Please select a Sales Order       ");   
+            }
+        }
+
         private Bitmap GenerateBarcode(string barcodeText, int height, int width, int margin)
         {
             var barcodeWriter = new BarcodeWriter
@@ -1633,13 +1699,15 @@ namespace EntrostyleOperationsApplication
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            exportStockLabelReport(stockReport);
+            exportReport(stockReport, 1.97, 0.99);
+            prepareDocAndPrint(new PaperSize("Stock Label", 197, 99), settings_labelPrinter.Text);
+        }
 
+        private void prepareDocAndPrint(PaperSize paperSize, string printerName)
+        {
             PrintDocument printDoc = new PrintDocument();
 
-            PaperSize paperSize = new PaperSize("Stock Label", 197, 99);
-
-            printDoc.PrinterSettings.PrinterName = settings_labelPrinter.Text;
+            printDoc.PrinterSettings.PrinterName = printerName;
             printDoc.PrinterSettings.Copies = 1;
 
             printDoc.DefaultPageSettings.PaperSize = paperSize;
@@ -1651,17 +1719,17 @@ namespace EntrostyleOperationsApplication
         }
 
         // Export the given report as an EMF (Enhanced Metafile) file.
-        private void exportStockLabelReport(LocalReport report)
+        private void exportReport(LocalReport report, double pageWidth, double pageHeight, double marginTop = 0, double marginBottom = 0)
         {
             string deviceInfo =
               @"<DeviceInfo>
                 <OutputFormat>EMF</OutputFormat>
-                <PageWidth>1.97in</PageWidth>
-                <PageHeight>0.99in</PageHeight>
-                <MarginTop>0in</MarginTop>
+                <PageWidth>" + pageWidth.ToString() + @"in</PageWidth>
+                <PageHeight>" + pageHeight.ToString() + @"in</PageHeight>
+                <MarginTop>" + marginTop.ToString() + @"in</MarginTop>
                 <MarginLeft>0in</MarginLeft>
                 <MarginRight>0in</MarginRight>
-                <MarginBottom>0in</MarginBottom>
+                <MarginBottom>" + marginBottom.ToString() + @"in</MarginBottom>
             </DeviceInfo>";
             Warning[] warnings;
             m_streams = new List<Stream>();
@@ -1703,6 +1771,11 @@ namespace EntrostyleOperationsApplication
             Stream stream = new MemoryStream();
             m_streams.Add(stream);
             return stream;
+        }
+
+        private void soReportBtn_Click(object sender, EventArgs e)
+        {
+            initSalesOrderReport();
         }
     }
 }
