@@ -18,6 +18,7 @@ using ZXing;
 using ZXing.Common;
 using System.Drawing.Imaging;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace EntrostyleOperationsApplication
 {
@@ -229,35 +230,6 @@ namespace EntrostyleOperationsApplication
             processPick();
         }
 
-        private void printAndPickExoLogic()
-        {
-            var orderRow = getCurrentSORow();
-
-            var wait = showWaitForm();
-
-            ProcessStartInfo psi = new ProcessStartInfo(@"C:\WINDOWS\system32\cmd.exe");
-            psi.UseShellExecute = false;
-            psi.ErrorDialog = false;
-            psi.CreateNoWindow = true;
-            psi.WindowStyle = ProcessWindowStyle.Hidden;
-            psi.RedirectStandardError = true;
-            psi.RedirectStandardInput = true;
-            psi.RedirectStandardOutput = true;
-            Process plinkProcess = new Process();
-            plinkProcess.StartInfo = psi;
-            plinkProcess.Start();
-            StreamWriter inputWriter = plinkProcess.StandardInput;
-            StreamReader outputReader = plinkProcess.StandardOutput;
-            StreamReader errorReader = plinkProcess.StandardError;
-            string line = '"' + @settings_installationAddress.Text + '"' + " " + settings_dbName.Text + " " + settings_login.Text.ToString() + " " + settings_password.Text.ToString() + " " + settings_ClarityFileName.Text + " " + @"/s=Seqno=" + orderRow.Cells["#"].Value.ToString() + " " + @"/a=n /d=printer /p=" + '"' + settings_printerName.Text + '"';
-            inputWriter.WriteLine(line);
-            orderRow.DataGridView.Focus();
-            orderRow.Cells["STATUS"].Value = "P";
-            Thread.Sleep(2000);
-
-            wait.Close();
-        }
-
         private void printPickingBtn_Click(object sender, EventArgs e)
         {
             var row = getCurrentSORow();
@@ -266,7 +238,7 @@ namespace EntrostyleOperationsApplication
             {
                 var wait = showWaitForm();
 
-                var preview = new PrintPickingDialog(row, settings_labelPrinter.Text, printAndPickExoLogic); // new
+                var preview = new PrintPickingDialog(row, settings_labelPrinter.Text, initSalesOrderReport); // new
                 preview.Show();
 
                 wait.Close();
@@ -536,11 +508,6 @@ namespace EntrostyleOperationsApplication
 
             var settingsRow = SOSettingsDataSet.Tables[0].Rows[0];
 
-            settings_ClarityFileName.Text = settingsRow["CLARITY_FILE_NAME"].ToString();
-            settings_installationAddress.Text = settingsRow["INSTALLATION_ADDRESS"].ToString();
-            settings_dbName.Text = settingsRow["DB_NAME"].ToString();
-            settings_login.Text = settingsRow["LOGIN"].ToString();
-            settings_password.Text = settingsRow["PASSWORD"].ToString();
             settings_printerName.Text = settingsRow["PRINTER_NAME"].ToString();
             settings_labelPrinter.Text = settingsRow["LABEL_PRINTER"].ToString();
         }
@@ -662,8 +629,17 @@ namespace EntrostyleOperationsApplication
                 OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(adapter);
                 adapter.Fill(ds1);
 
+                var firstRow = ds1.Tables[0].Rows[0];
+
+                // so_hdr seqno barcode
                 ds1.Tables[0].Columns.Add("BARCODE", typeof(byte[]));
-                ds1.Tables[0].Rows[0]["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(so, 300, 300, 0), typeof(byte[])));
+                firstRow["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(so, 200, 200, 0), typeof(byte[])));
+
+                // so_hdr all address barcode
+                var allAddress = string.Join(" ", new[] { firstRow["ADDRESS1"], firstRow["ADDRESS2"], firstRow["ADDRESS3"], firstRow["ADDRESS4"], firstRow["ADDRESS5"], firstRow["ADDRESS6"] });
+                allAddress = Regex.Replace(allAddress, @"\s+", " ");
+                ds1.Tables[0].Columns.Add("ADDRESS_BARCODE", typeof(byte[]));
+                firstRow["ADDRESS_BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(allAddress, 300, 300, 0), typeof(byte[])));
 
                 salesOrderReport.DataSources.Add(new ReportDataSource("DataSet1", ds1.Tables[0]));
                 // end of so_hdr + accs
@@ -672,10 +648,11 @@ namespace EntrostyleOperationsApplication
                 // filter by location and pick qty
                 var dataTable2 = SOItemDetailsDataSet.Tables[0];
 
-                dataTable2 = dataTable2.AsEnumerable()
+                var rows = dataTable2.AsEnumerable()
                     .Where(r => (float.Parse(r["PICK_NOW"].ToString()) > 0)
-                        && r["LOCATION"].ToString()[0].Equals('1'))
-                    .CopyToDataTable();
+                        && r["LOCATION"].ToString()[0].Equals('1'));
+
+                dataTable2 = rows.Any() ? rows.CopyToDataTable() : dataTable2.Clone();
 
                 // remove all unnecessary columns
                 for (int i = dataTable2.Columns.Count - 1; i >= 0; i--)
@@ -1370,12 +1347,7 @@ namespace EntrostyleOperationsApplication
 
         private void settings_Save_Click(object sender, EventArgs e)
         {
-            OdbcCommand command = new OdbcCommand("update EOA_SETTINGS set CLARITY_FILE_NAME = '" + settings_ClarityFileName.Text
-                + "', " + "INSTALLATION_ADDRESS = '" + settings_installationAddress.Text
-                + "', " + "DB_NAME = '" + settings_dbName.Text
-                + "', " + "LOGIN = '" + settings_login.Text
-                + "', " + "PASSWORD = '" + settings_password.Text
-                + "', " + "PRINTER_NAME = '" + settings_printerName.Text
+            OdbcCommand command = new OdbcCommand("update EOA_SETTINGS set PRINTER_NAME = '" + settings_printerName.Text
                 + "', " + "LABEL_PRINTER = '" + settings_labelPrinter.Text + "'", connection);
             command.ExecuteNonQuery();
         }
@@ -1771,11 +1743,6 @@ namespace EntrostyleOperationsApplication
             Stream stream = new MemoryStream();
             m_streams.Add(stream);
             return stream;
-        }
-
-        private void soReportBtn_Click(object sender, EventArgs e)
-        {
-            initSalesOrderReport();
         }
     }
 }

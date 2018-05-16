@@ -352,6 +352,10 @@ namespace EntrostyleOperationsApplication {
             
             private global::System.Data.DataColumn columnBARCODE;
             
+            private global::System.Data.DataColumn columnADDRESS_BARCODE;
+            
+            private global::System.Data.DataColumn columnNARRATIVE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DataTable1DataTable() {
@@ -539,6 +543,22 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ADDRESS_BARCODEColumn {
+                get {
+                    return this.columnADDRESS_BARCODE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NARRATIVEColumn {
+                get {
+                    return this.columnNARRATIVE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -593,7 +613,9 @@ namespace EntrostyleOperationsApplication {
                         string ACCS_ADDRESS4, 
                         string ACCS_ADDRESS5, 
                         string ACCS_NAME, 
-                        byte[] BARCODE) {
+                        byte[] BARCODE, 
+                        byte[] ADDRESS_BARCODE, 
+                        string NARRATIVE) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SEQNO,
@@ -614,7 +636,9 @@ namespace EntrostyleOperationsApplication {
                         ACCS_ADDRESS4,
                         ACCS_ADDRESS5,
                         ACCS_NAME,
-                        BARCODE};
+                        BARCODE,
+                        ADDRESS_BARCODE,
+                        NARRATIVE};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -656,6 +680,8 @@ namespace EntrostyleOperationsApplication {
                 this.columnACCS_ADDRESS5 = base.Columns["ACCS_ADDRESS5"];
                 this.columnACCS_NAME = base.Columns["ACCS_NAME"];
                 this.columnBARCODE = base.Columns["BARCODE"];
+                this.columnADDRESS_BARCODE = base.Columns["ADDRESS_BARCODE"];
+                this.columnNARRATIVE = base.Columns["NARRATIVE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -699,6 +725,10 @@ namespace EntrostyleOperationsApplication {
                 base.Columns.Add(this.columnACCS_NAME);
                 this.columnBARCODE = new global::System.Data.DataColumn("BARCODE", typeof(byte[]), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBARCODE);
+                this.columnADDRESS_BARCODE = new global::System.Data.DataColumn("ADDRESS_BARCODE", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnADDRESS_BARCODE);
+                this.columnNARRATIVE = new global::System.Data.DataColumn("NARRATIVE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNARRATIVE);
                 this.columnSEQNO.AllowDBNull = false;
             }
             
@@ -1430,6 +1460,38 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public byte[] ADDRESS_BARCODE {
+                get {
+                    try {
+                        return ((byte[])(this[this.tableDataTable1.ADDRESS_BARCODEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ADDRESS_BARCODE\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.ADDRESS_BARCODEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NARRATIVE {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NARRATIVEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NARRATIVE\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NARRATIVEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsDUEDATENull() {
                 return this.IsNull(this.tableDataTable1.DUEDATEColumn);
             }
@@ -1642,6 +1704,30 @@ namespace EntrostyleOperationsApplication {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetBARCODENull() {
                 this[this.tableDataTable1.BARCODEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsADDRESS_BARCODENull() {
+                return this.IsNull(this.tableDataTable1.ADDRESS_BARCODEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetADDRESS_BARCODENull() {
+                this[this.tableDataTable1.ADDRESS_BARCODEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNARRATIVENull() {
+                return this.IsNull(this.tableDataTable1.NARRATIVEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNARRATIVENull() {
+                this[this.tableDataTable1.NARRATIVEColumn] = global::System.Convert.DBNull;
             }
         }
         
