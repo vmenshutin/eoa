@@ -649,7 +649,7 @@ namespace EntrostyleOperationsApplication
                 var dataTable2 = SOItemDetailsDataSet.Tables[0];
 
                 var rows = dataTable2.AsEnumerable()
-                    .Where(r => (float.Parse(r["PICK_NOW"].ToString()) > 0)
+                    .Where(r => ((float.Parse(r["PICK_NOW"].ToString()) > 0) || (r["STOCKCODE"].ToString()).Length == 0)
                         && r["LOCATION"].ToString()[0].Equals('1'));
 
                 dataTable2 = rows.Any() ? rows.CopyToDataTable() : dataTable2.Clone();
@@ -671,7 +671,10 @@ namespace EntrostyleOperationsApplication
                 // set barcode for each row
                 foreach (DataRow row in dataTable2.Rows)
                 {
-                    row["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(row["STOCKCODE"].ToString(), 100, 100, 0), typeof(byte[])));
+                    if (row["STOCKCODE"].ToString().Length > 0)
+                    {
+                        row["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(row["STOCKCODE"].ToString(), 100, 100, 0), typeof(byte[])));
+                    }
                 }
 
                 salesOrderReport.DataSources.Add(new ReportDataSource("DataSet2", dataTable2));
