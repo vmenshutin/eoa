@@ -619,6 +619,7 @@ namespace EntrostyleOperationsApplication
             if (so != null)
             {
                 var wait = showWaitForm();
+                var soRow = getCurrentSORow();
 
                 var salesOrderReport = new LocalReport();
                 salesOrderReport.ReportPath = @".\sales_order.rdlc";
@@ -682,6 +683,9 @@ namespace EntrostyleOperationsApplication
 
                 exportReport(salesOrderReport, 8, 10.7, 0.59, 0.59);
                 prepareDocAndPrint(new PaperSize("Sales Order", 800, 1070), settings_printerName.Text);
+
+                soRow.DataGridView.Focus();
+                soRow.Cells["STATUS"].Value = "P";
 
                 wait.Close();
             }
