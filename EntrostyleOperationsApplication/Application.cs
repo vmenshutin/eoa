@@ -313,7 +313,7 @@ namespace EntrostyleOperationsApplication
                 var row = dgv.Rows[e.RowIndex];
                 var cell = row.Cells[e.ColumnIndex];
 
-                string[] tp = { "TP-PICK", "TP-POWDER", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP" };
+                string[] tp = { "TP-PICK", "TP-POWDER", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP", "TP-BULK" };
 
                 if (cell.Value.ToString() == "P")
                 {
@@ -432,6 +432,7 @@ namespace EntrostyleOperationsApplication
               "WHEN STATUS = 'TP-KEY' THEN '2' " +
               "WHEN STATUS = 'TP-CUT' THEN '2' " +
               "WHEN STATUS = 'TP-SHIP' THEN '2' " +
+              "WHEN STATUS = 'TP-BULK' THEN '2' " +
               "WHEN STATUS = 'W' THEN '3' " +
               "WHEN STATUS = 'TA' THEN '4' " +
               "WHEN STATUS = 'Sc' THEN '5' " +
@@ -750,7 +751,7 @@ namespace EntrostyleOperationsApplication
             dispatchStatusColumn.Name = "STATUS_FAKE";
 
 
-            var listSource = new string[] { "TP-PICK", "TP-POWDER", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP", "W", "P", "TA", "Sc" };
+            var listSource = new string[] { "TP-PICK", "TP-POWDER", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP", "TP-BULK", "W", "P", "TA", "Sc" };
             dispatchStatusColumn.DataSource = listSource;
             dispatchStatusColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
@@ -1348,7 +1349,11 @@ namespace EntrostyleOperationsApplication
             {
                 pickAllBtn_Click(pickAllBtn, new EventArgs());
             }
-            
+            else if (keyData == (Keys.F3))
+            {
+                selectNextNot("P", () => printPickingBtn_Click(printPickingBtn, new EventArgs()));
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -1750,6 +1755,25 @@ namespace EntrostyleOperationsApplication
             Stream stream = new MemoryStream();
             m_streams.Add(stream);
             return stream;
+        }
+
+        private void selectNextNot(string status, Action callback = null)
+        {
+            var so = SOMain.SelectedRows;
+
+            if (so.Count > 0)
+            {
+                for (int i = so[0].Index + 1; i < SOMain.Rows.Count; i++)
+                {
+                    if (SOMain.Rows[i].Cells["STATUS"].Value.ToString() != status)
+                    {
+                        SOMain.Focus();
+                        SOMain.CurrentCell = SOMain.Rows[i].Cells["#"];
+                        callback?.Invoke();
+                        return;
+                    }
+                }
+            }
         }
     }
 }
