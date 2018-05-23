@@ -49,7 +49,9 @@ namespace EntrostyleOperationsApplication
 
         string activeGrid = null;
 
+        private LocalReport shelfReport;
         private LocalReport stockReport;
+
         private int m_currentPageIndex;
         private IList<Stream> m_streams;
 
@@ -72,8 +74,12 @@ namespace EntrostyleOperationsApplication
             // load DIFOT data
             loadDifotData();
 
-            // load Stock Label data
-            populateStockLabelCombobox();
+            // load SHELF data
+            populateShelfCombobox();
+
+            // load STOCK data
+            populateStockData();
+            setDataGridViewStyleProps(stockLblDataGridView);
 
             // load SETTINGS
             loadSettings();
@@ -546,8 +552,98 @@ namespace EntrostyleOperationsApplication
             SODifot.CellValueChanged += SODifot_CellValueChanged;
         }
 
-        // populate stock label data
-        private void populateStockLabelCombobox()
+        // populate STOCK data
+        private void populateStockData()
+        {
+            stockLblDataGridView.ColumnCount = 4;
+
+            // Item Code column
+            stockLblDataGridView.Columns[0].Name = "ItemCode";
+            stockLblDataGridView.Columns[0].HeaderText = "Item Code";
+            stockLblDataGridView.Columns[0].ReadOnly = true;
+            stockLblDataGridView.Columns[0].DefaultCellStyle.BackColor = Color.Silver;
+            stockLblDataGridView.Columns[0].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
+            stockLblDataGridView.Columns[0].Width = 100;
+
+            // Description column
+            stockLblDataGridView.Columns[1].Name = "Description";
+            stockLblDataGridView.Columns[1].MinimumWidth = 300;
+
+            // Item Qty column
+            stockLblDataGridView.Columns[2].Name = "ItemQty";
+            stockLblDataGridView.Columns[2].HeaderText = "Item Qty";
+            stockLblDataGridView.Columns[2].Width = 60;
+
+            // Label Qty column
+            stockLblDataGridView.Columns[3].Name = "LabelQty";
+            stockLblDataGridView.Columns[3].HeaderText = "Label Qty";
+            stockLblDataGridView.Columns[3].Width = 60;
+
+            // STOCK combobox
+            stockCombobox.DataSource = shelfCombobox.DataSource;
+            stockCombobox.DisplayMember = "STOCKCODE";
+
+            stockLblDataGridView.CellValidating += StockLblDataGridView_CellValidating;
+        }
+
+        private void initStockReportViewer(int rowIndex, bool initPreview)
+        {
+            var wait = showWaitForm();
+            var selectedValue = stockLblDataGridView.Rows[rowIndex];
+
+            stockReport = new LocalReport();
+            stockReport.ReportPath = @".\STOCK.rdlc";
+
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("STOCKCODE", typeof(String));
+            dt.Columns.Add("DESCRIPTION", typeof(String));
+            dt.Columns.Add("BARCODE", typeof(byte[]));
+
+            DataRow dr = dt.NewRow();
+
+            dr["STOCKCODE"] = selectedValue.Cells[0].Value.ToString();
+            dr["DESCRIPTION"] = selectedValue.Cells[1].Value.ToString();
+
+            Bitmap bitmap = GenerateBarcode(selectedValue.Cells[0].ToString(), 100, 100, 0);
+            dr["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(bitmap, typeof(byte[])));
+
+            dt.Rows.Add(dr);
+
+            stockReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+            stockReport.SetParameters(new ReportParameter("ItemQty", selectedValue.Cells[2].Value.ToString()));
+
+            if (initPreview)
+            {
+                stockReportViewer.ProcessingMode = ProcessingMode.Local;
+                stockReportViewer.LocalReport.ReportPath = @".\STOCK.rdlc";
+                stockReportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+                stockReportViewer.LocalReport.SetParameters(new ReportParameter("ItemQty", selectedValue.Cells[2].Value.ToString()));
+                stockReportViewer.RefreshReport();
+            }
+
+            wait.Close();
+        }
+
+        private void StockLblDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
+            {
+                if (!int.TryParse(Convert.ToString(e.FormattedValue), out int i))
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("      Numeric values only!      ");
+                }
+                else if ((int.Parse(Convert.ToString(e.FormattedValue)) < 1) && e.ColumnIndex == 3)
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("      Positive numbers only!      ");
+                }
+            }
+        }
+
+        // populate SHELF data
+        private void populateShelfCombobox()
         {
             var wait = showWaitForm();
 
@@ -557,34 +653,34 @@ namespace EntrostyleOperationsApplication
             adapter.Fill(ds);
 
             SODifot.DataSource = SODifotDataSet.Tables[0];
-            stockLabelCombobox.DataSource = ds.Tables[0];
-            stockLabelCombobox.DisplayMember = "STOCKCODE";
+            shelfCombobox.DataSource = ds.Tables[0];
+            shelfCombobox.DisplayMember = "STOCKCODE";
 
-            initStockLabelReportViewer();
-            stockLabelCombobox.SelectedValueChanged += StockLabelCombobox_SelectedValueChanged;
+            initShelfReportViewer();
+            shelfCombobox.SelectedValueChanged += shelfCombobox_SelectedValueChanged;
 
             wait.Close();
         }
 
-        private void StockLabelCombobox_SelectedValueChanged(object sender, EventArgs e)
+        private void shelfCombobox_SelectedValueChanged(object sender, EventArgs e)
         {
-            stockReport.DataSources.RemoveAt(0);
-            stockLabelreportViewer.LocalReport.DataSources.RemoveAt(0);
+            shelfReport.DataSources.RemoveAt(0);
+            shelfLabelReportViewer.LocalReport.DataSources.RemoveAt(0);
 
-            initStockLabelReportViewer();
+            initShelfReportViewer();
         }
 
-        private void initStockLabelReportViewer()
+        private void initShelfReportViewer()
         {
-            var selectedValue = (stockLabelCombobox.SelectedValue as DataRowView);
+            var selectedValue = (shelfCombobox.SelectedValue as DataRowView);
 
             if (selectedValue != null)
             {
-                stockLabelreportViewer.ProcessingMode = ProcessingMode.Local;
-                stockLabelreportViewer.LocalReport.ReportPath = @".\stock_label.rdlc";
+                shelfLabelReportViewer.ProcessingMode = ProcessingMode.Local;
+                shelfLabelReportViewer.LocalReport.ReportPath = @".\SHELF.rdlc";
 
-                stockReport = new LocalReport();
-                stockReport.ReportPath = @".\stock_label.rdlc";
+                shelfReport = new LocalReport();
+                shelfReport.ReportPath = @".\SHELF.rdlc";
 
                 DataTable dt = new DataTable();
 
@@ -602,10 +698,10 @@ namespace EntrostyleOperationsApplication
 
                 dt.Rows.Add(dr);
 
-                stockReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
-                stockLabelreportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+                shelfReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+                shelfLabelReportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
 
-                stockLabelreportViewer.RefreshReport();
+                shelfLabelReportViewer.RefreshReport();
             }
             else
             {
@@ -683,7 +779,7 @@ namespace EntrostyleOperationsApplication
                 // end of salesord_lines
 
                 exportReport(salesOrderReport, 8, 10.7, 0.59, 0.59);
-                prepareDocAndPrint(new PaperSize("Sales Order", 800, 1070), settings_printerName.Text);
+                prepareDocAndPrint(new PaperSize("Sales Order", 800, 1070), settings_printerName.Text, 1);
 
                 soRow.DataGridView.Focus();
                 soRow.Cells["STATUS"].Value = "P";
@@ -1683,16 +1779,16 @@ namespace EntrostyleOperationsApplication
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            exportReport(stockReport, 1.97, 0.99);
-            prepareDocAndPrint(new PaperSize("Stock Label", 197, 99), settings_labelPrinter.Text);
+            exportReport(shelfReport, 1.97, 0.99);
+            prepareDocAndPrint(new PaperSize("Stock Label", 197, 99), settings_labelPrinter.Text, 1);
         }
 
-        private void prepareDocAndPrint(PaperSize paperSize, string printerName)
+        private void prepareDocAndPrint(PaperSize paperSize, string printerName, short copies)
         {
             PrintDocument printDoc = new PrintDocument();
 
             printDoc.PrinterSettings.PrinterName = printerName;
-            printDoc.PrinterSettings.Copies = 1;
+            printDoc.PrinterSettings.Copies = copies;
 
             printDoc.DefaultPageSettings.PaperSize = paperSize;
             printDoc.PrinterSettings.DefaultPageSettings.PaperSize = paperSize;
@@ -1774,6 +1870,60 @@ namespace EntrostyleOperationsApplication
                     }
                 }
             }
+        }
+
+        private void addStockBtn_Click(object sender, EventArgs e)
+        {
+            var selectedValue = stockCombobox.SelectedValue as DataRowView;
+
+            stockLblDataGridView.Rows.Add(new string[] { selectedValue.Row[0].ToString(),
+                selectedValue.Row[1].ToString(), "0", "1" });
+        }
+
+        private void previewStockLabel_Click(object sender, EventArgs e)
+        {
+            var row = stockLblDataGridView.CurrentRow;
+
+            if (row != null)
+            {
+                if (stockReport != null)
+                {
+                    stockReport.DataSources.RemoveAt(0);
+                    stockReportViewer.LocalReport.DataSources.RemoveAt(0);
+                }
+                
+                initStockReportViewer(row.Index, true);
+            }
+            else
+            {
+                MessageBox.Show("       No data selected       ");
+            }
+        }
+
+        private void printAllBtn_Click(object sender, EventArgs e)
+        {
+            var wait = showWaitForm();
+            addStockBtn.Enabled = false;
+            previewStockLabel.Enabled = false;
+            printAllBtn.Enabled = false;
+
+            foreach (DataGridViewRow row in stockLblDataGridView.Rows)
+            {
+                initStockReportViewer(row.Index, false);
+                exportReport(stockReport, 1.97, 0.99);
+                prepareDocAndPrint(new PaperSize("Stock Label", 197, 99), settings_labelPrinter.Text, short.Parse(row.Cells[3].Value.ToString()));
+            }
+
+            addStockBtn.Enabled = true;
+            previewStockLabel.Enabled = true;
+            printAllBtn.Enabled = true;
+            wait.Close();
+        }
+
+        private void clearAllStockRowsBtn_Click(object sender, EventArgs e)
+        {
+            stockLblDataGridView.Rows.Clear();
+            stockLblDataGridView.Refresh();
         }
     }
 }

@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -74,10 +75,13 @@
             this.difotTo = new System.Windows.Forms.DateTimePicker();
             this.difotFrom = new System.Windows.Forms.DateTimePicker();
             this.SODifot = new System.Windows.Forms.DataGridView();
-            this.stockLabelTab = new System.Windows.Forms.TabPage();
+            this.shelfTab = new System.Windows.Forms.TabPage();
             this.generateButton = new System.Windows.Forms.Button();
-            this.stockLabelreportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.stockLabelCombobox = new System.Windows.Forms.ComboBox();
+            this.shelfLabelReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.shelfCombobox = new System.Windows.Forms.ComboBox();
+            this.stockTab = new System.Windows.Forms.TabPage();
+            this.stockCombobox = new System.Windows.Forms.ComboBox();
+            this.stockLblDataGridView = new System.Windows.Forms.DataGridView();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.label21 = new System.Windows.Forms.Label();
             this.settings_labelPrinter = new System.Windows.Forms.TextBox();
@@ -91,6 +95,13 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
+            this.addStockBtn = new System.Windows.Forms.Button();
+            this.stockReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.previewStockLabel = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.printAllBtn = new System.Windows.Forms.Button();
+            this.clearAllStockRowsBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -110,15 +121,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.SOItemDetails)).BeginInit();
             this.DifotTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).BeginInit();
-            this.stockLabelTab.SuspendLayout();
+            this.shelfTab.SuspendLayout();
+            this.stockTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.SettingsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.ScheduleTab);
             this.tabControl1.Controls.Add(this.DifotTab);
-            this.tabControl1.Controls.Add(this.stockLabelTab);
+            this.tabControl1.Controls.Add(this.shelfTab);
+            this.tabControl1.Controls.Add(this.stockTab);
             this.tabControl1.Controls.Add(this.SettingsTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -364,34 +380,34 @@
             // 
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle5;
             this.SOItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOItemDetails.Location = new System.Drawing.Point(0, 0);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.SOItemDetails.Size = new System.Drawing.Size(623, 348);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -688,17 +704,17 @@
             this.SODifot.Size = new System.Drawing.Size(1411, 677);
             this.SODifot.TabIndex = 0;
             // 
-            // stockLabelTab
+            // shelfTab
             // 
-            this.stockLabelTab.BackColor = System.Drawing.Color.Azure;
-            this.stockLabelTab.Controls.Add(this.generateButton);
-            this.stockLabelTab.Controls.Add(this.stockLabelreportViewer);
-            this.stockLabelTab.Controls.Add(this.stockLabelCombobox);
-            this.stockLabelTab.Location = new System.Drawing.Point(4, 22);
-            this.stockLabelTab.Name = "stockLabelTab";
-            this.stockLabelTab.Size = new System.Drawing.Size(1417, 708);
-            this.stockLabelTab.TabIndex = 3;
-            this.stockLabelTab.Text = "Stock Label";
+            this.shelfTab.BackColor = System.Drawing.Color.Azure;
+            this.shelfTab.Controls.Add(this.generateButton);
+            this.shelfTab.Controls.Add(this.shelfLabelReportViewer);
+            this.shelfTab.Controls.Add(this.shelfCombobox);
+            this.shelfTab.Location = new System.Drawing.Point(4, 22);
+            this.shelfTab.Name = "shelfTab";
+            this.shelfTab.Size = new System.Drawing.Size(1417, 708);
+            this.shelfTab.TabIndex = 3;
+            this.shelfTab.Text = "SHELF";
             // 
             // generateButton
             // 
@@ -715,44 +731,83 @@
             this.generateButton.UseVisualStyleBackColor = true;
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
-            // stockLabelreportViewer
+            // shelfLabelReportViewer
             // 
-            this.stockLabelreportViewer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stockLabelreportViewer.DocumentMapWidth = 1;
-            this.stockLabelreportViewer.LocalReport.ReportPath = "./pick_label.rdlc";
-            this.stockLabelreportViewer.Location = new System.Drawing.Point(595, 116);
-            this.stockLabelreportViewer.Margin = new System.Windows.Forms.Padding(0);
-            this.stockLabelreportViewer.Name = "stockLabelreportViewer";
-            this.stockLabelreportViewer.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
-            this.stockLabelreportViewer.ServerReport.BearerToken = null;
-            this.stockLabelreportViewer.ServerReport.ReportPath = "./pick_label.rdlc";
-            this.stockLabelreportViewer.ShowBackButton = false;
-            this.stockLabelreportViewer.ShowContextMenu = false;
-            this.stockLabelreportViewer.ShowCredentialPrompts = false;
-            this.stockLabelreportViewer.ShowDocumentMapButton = false;
-            this.stockLabelreportViewer.ShowExportButton = false;
-            this.stockLabelreportViewer.ShowFindControls = false;
-            this.stockLabelreportViewer.ShowPageNavigationControls = false;
-            this.stockLabelreportViewer.ShowParameterPrompts = false;
-            this.stockLabelreportViewer.ShowPrintButton = false;
-            this.stockLabelreportViewer.ShowProgress = false;
-            this.stockLabelreportViewer.ShowPromptAreaButton = false;
-            this.stockLabelreportViewer.ShowRefreshButton = false;
-            this.stockLabelreportViewer.ShowStopButton = false;
-            this.stockLabelreportViewer.ShowToolBar = false;
-            this.stockLabelreportViewer.ShowZoomControl = false;
-            this.stockLabelreportViewer.Size = new System.Drawing.Size(463, 238);
-            this.stockLabelreportViewer.TabIndex = 1;
-            this.stockLabelreportViewer.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
+            this.shelfLabelReportViewer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.shelfLabelReportViewer.DocumentMapWidth = 1;
+            this.shelfLabelReportViewer.LocalReport.ReportPath = "./pick_label.rdlc";
+            this.shelfLabelReportViewer.Location = new System.Drawing.Point(595, 116);
+            this.shelfLabelReportViewer.Margin = new System.Windows.Forms.Padding(0);
+            this.shelfLabelReportViewer.Name = "shelfLabelReportViewer";
+            this.shelfLabelReportViewer.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
+            this.shelfLabelReportViewer.ServerReport.BearerToken = null;
+            this.shelfLabelReportViewer.ServerReport.ReportPath = "./pick_label.rdlc";
+            this.shelfLabelReportViewer.ShowBackButton = false;
+            this.shelfLabelReportViewer.ShowContextMenu = false;
+            this.shelfLabelReportViewer.ShowCredentialPrompts = false;
+            this.shelfLabelReportViewer.ShowDocumentMapButton = false;
+            this.shelfLabelReportViewer.ShowExportButton = false;
+            this.shelfLabelReportViewer.ShowFindControls = false;
+            this.shelfLabelReportViewer.ShowPageNavigationControls = false;
+            this.shelfLabelReportViewer.ShowParameterPrompts = false;
+            this.shelfLabelReportViewer.ShowPrintButton = false;
+            this.shelfLabelReportViewer.ShowProgress = false;
+            this.shelfLabelReportViewer.ShowPromptAreaButton = false;
+            this.shelfLabelReportViewer.ShowRefreshButton = false;
+            this.shelfLabelReportViewer.ShowStopButton = false;
+            this.shelfLabelReportViewer.ShowToolBar = false;
+            this.shelfLabelReportViewer.ShowZoomControl = false;
+            this.shelfLabelReportViewer.Size = new System.Drawing.Size(463, 238);
+            this.shelfLabelReportViewer.TabIndex = 1;
+            this.shelfLabelReportViewer.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
             // 
-            // stockLabelCombobox
+            // shelfCombobox
             // 
-            this.stockLabelCombobox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stockLabelCombobox.FormattingEnabled = true;
-            this.stockLabelCombobox.Location = new System.Drawing.Point(342, 116);
-            this.stockLabelCombobox.Name = "stockLabelCombobox";
-            this.stockLabelCombobox.Size = new System.Drawing.Size(227, 21);
-            this.stockLabelCombobox.TabIndex = 0;
+            this.shelfCombobox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.shelfCombobox.FormattingEnabled = true;
+            this.shelfCombobox.Location = new System.Drawing.Point(342, 116);
+            this.shelfCombobox.Name = "shelfCombobox";
+            this.shelfCombobox.Size = new System.Drawing.Size(227, 21);
+            this.shelfCombobox.TabIndex = 0;
+            // 
+            // stockTab
+            // 
+            this.stockTab.BackColor = System.Drawing.Color.LavenderBlush;
+            this.stockTab.Controls.Add(this.clearAllStockRowsBtn);
+            this.stockTab.Controls.Add(this.printAllBtn);
+            this.stockTab.Controls.Add(this.pictureBox1);
+            this.stockTab.Controls.Add(this.pictureBox2);
+            this.stockTab.Controls.Add(this.previewStockLabel);
+            this.stockTab.Controls.Add(this.stockReportViewer);
+            this.stockTab.Controls.Add(this.addStockBtn);
+            this.stockTab.Controls.Add(this.stockCombobox);
+            this.stockTab.Controls.Add(this.stockLblDataGridView);
+            this.stockTab.Location = new System.Drawing.Point(4, 22);
+            this.stockTab.Name = "stockTab";
+            this.stockTab.Size = new System.Drawing.Size(1417, 708);
+            this.stockTab.TabIndex = 4;
+            this.stockTab.Text = "STOCK";
+            // 
+            // stockCombobox
+            // 
+            this.stockCombobox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockCombobox.FormattingEnabled = true;
+            this.stockCombobox.Location = new System.Drawing.Point(751, 73);
+            this.stockCombobox.Name = "stockCombobox";
+            this.stockCombobox.Size = new System.Drawing.Size(164, 21);
+            this.stockCombobox.TabIndex = 1;
+            // 
+            // stockLblDataGridView
+            // 
+            this.stockLblDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockLblDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
+            this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.stockLblDataGridView.Location = new System.Drawing.Point(20, 73);
+            this.stockLblDataGridView.Name = "stockLblDataGridView";
+            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 459);
+            this.stockLblDataGridView.TabIndex = 0;
             // 
             // SettingsTab
             // 
@@ -807,7 +862,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 1.6.3 16/05/2018";
+            this.label20.Text = "EOA 1.6.4 18/05/2018";
             // 
             // label18
             // 
@@ -918,6 +973,118 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // addStockBtn
+            // 
+            this.addStockBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addStockBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addStockBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addStockBtn.ForeColor = System.Drawing.Color.Green;
+            this.addStockBtn.Location = new System.Drawing.Point(785, 110);
+            this.addStockBtn.Name = "addStockBtn";
+            this.addStockBtn.Size = new System.Drawing.Size(96, 28);
+            this.addStockBtn.TabIndex = 34;
+            this.addStockBtn.TabStop = false;
+            this.addStockBtn.Text = "Add";
+            this.addStockBtn.UseVisualStyleBackColor = true;
+            this.addStockBtn.Click += new System.EventHandler(this.addStockBtn_Click);
+            // 
+            // stockReportViewer
+            // 
+            this.stockReportViewer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockReportViewer.DocumentMapWidth = 1;
+            this.stockReportViewer.LocalReport.ReportPath = "./pick_label.rdlc";
+            this.stockReportViewer.Location = new System.Drawing.Point(933, 73);
+            this.stockReportViewer.Margin = new System.Windows.Forms.Padding(0);
+            this.stockReportViewer.Name = "stockReportViewer";
+            this.stockReportViewer.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
+            this.stockReportViewer.ServerReport.BearerToken = null;
+            this.stockReportViewer.ServerReport.ReportPath = "./pick_label.rdlc";
+            this.stockReportViewer.ShowBackButton = false;
+            this.stockReportViewer.ShowContextMenu = false;
+            this.stockReportViewer.ShowCredentialPrompts = false;
+            this.stockReportViewer.ShowDocumentMapButton = false;
+            this.stockReportViewer.ShowExportButton = false;
+            this.stockReportViewer.ShowFindControls = false;
+            this.stockReportViewer.ShowPageNavigationControls = false;
+            this.stockReportViewer.ShowParameterPrompts = false;
+            this.stockReportViewer.ShowPrintButton = false;
+            this.stockReportViewer.ShowProgress = false;
+            this.stockReportViewer.ShowPromptAreaButton = false;
+            this.stockReportViewer.ShowRefreshButton = false;
+            this.stockReportViewer.ShowStopButton = false;
+            this.stockReportViewer.ShowToolBar = false;
+            this.stockReportViewer.ShowZoomControl = false;
+            this.stockReportViewer.Size = new System.Drawing.Size(463, 238);
+            this.stockReportViewer.TabIndex = 35;
+            this.stockReportViewer.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
+            // 
+            // previewStockLabel
+            // 
+            this.previewStockLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.previewStockLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.previewStockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previewStockLabel.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.previewStockLabel.Location = new System.Drawing.Point(784, 283);
+            this.previewStockLabel.Name = "previewStockLabel";
+            this.previewStockLabel.Size = new System.Drawing.Size(96, 28);
+            this.previewStockLabel.TabIndex = 36;
+            this.previewStockLabel.TabStop = false;
+            this.previewStockLabel.Text = "Preview";
+            this.previewStockLabel.UseVisualStyleBackColor = true;
+            this.previewStockLabel.Click += new System.EventHandler(this.previewStockLabel_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(751, 98);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(32, 52);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(883, 271);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 52);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 39;
+            this.pictureBox1.TabStop = false;
+            // 
+            // printAllBtn
+            // 
+            this.printAllBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.printAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.printAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printAllBtn.ForeColor = System.Drawing.Color.MediumBlue;
+            this.printAllBtn.Location = new System.Drawing.Point(751, 484);
+            this.printAllBtn.Name = "printAllBtn";
+            this.printAllBtn.Size = new System.Drawing.Size(164, 48);
+            this.printAllBtn.TabIndex = 40;
+            this.printAllBtn.TabStop = false;
+            this.printAllBtn.Text = "PRINT ALL";
+            this.printAllBtn.UseVisualStyleBackColor = true;
+            this.printAllBtn.Click += new System.EventHandler(this.printAllBtn_Click);
+            // 
+            // clearAllStockRowsBtn
+            // 
+            this.clearAllStockRowsBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.clearAllStockRowsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearAllStockRowsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearAllStockRowsBtn.ForeColor = System.Drawing.Color.Red;
+            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(20, 550);
+            this.clearAllStockRowsBtn.Name = "clearAllStockRowsBtn";
+            this.clearAllStockRowsBtn.Size = new System.Drawing.Size(211, 28);
+            this.clearAllStockRowsBtn.TabIndex = 41;
+            this.clearAllStockRowsBtn.TabStop = false;
+            this.clearAllStockRowsBtn.Text = "CLEAR ALL";
+            this.clearAllStockRowsBtn.UseVisualStyleBackColor = true;
+            this.clearAllStockRowsBtn.Click += new System.EventHandler(this.clearAllStockRowsBtn_Click);
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -949,9 +1116,13 @@
             this.DifotTab.ResumeLayout(false);
             this.DifotTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).EndInit();
-            this.stockLabelTab.ResumeLayout(false);
+            this.shelfTab.ResumeLayout(false);
+            this.stockTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.SettingsTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1014,10 +1185,20 @@
         private System.Windows.Forms.Button tdBtn;
         private System.Windows.Forms.Button clearAllBtn;
         private System.Windows.Forms.TextBox difotSearchBox;
-        private System.Windows.Forms.TabPage stockLabelTab;
-        private System.Windows.Forms.ComboBox stockLabelCombobox;
-        private Microsoft.Reporting.WinForms.ReportViewer stockLabelreportViewer;
+        private System.Windows.Forms.TabPage shelfTab;
+        private System.Windows.Forms.ComboBox shelfCombobox;
+        private Microsoft.Reporting.WinForms.ReportViewer shelfLabelReportViewer;
         private System.Windows.Forms.Button generateButton;
+        private System.Windows.Forms.TabPage stockTab;
+        private System.Windows.Forms.DataGridView stockLblDataGridView;
+        private System.Windows.Forms.ComboBox stockCombobox;
+        private System.Windows.Forms.Button addStockBtn;
+        private Microsoft.Reporting.WinForms.ReportViewer stockReportViewer;
+        private System.Windows.Forms.Button previewStockLabel;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button printAllBtn;
+        private System.Windows.Forms.Button clearAllStockRowsBtn;
     }
 }
 
