@@ -10,7 +10,6 @@ using Microsoft.Reporting.WinForms;
 using System.Drawing;
 using ZXing;
 using ZXing.Common;
-using System.Text.RegularExpressions;
 
 namespace EntrostyleOperationsApplication
 {
@@ -36,10 +35,9 @@ namespace EntrostyleOperationsApplication
         private void PrintDialog_Load(object sender, EventArgs e)
         {
             string carrier = row.Cells["X_CARRIER"].Value.ToString();
-            var regex = new Regex(@"^http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?$");
 
-            // do not pre-populate if carrier is a URL
-            if (!regex.IsMatch(carrier))
+            // do not pre-populate if carrier starts with http
+            if (!carrier.StartsWith("http"))
             {
                 carrierTextBox.Text = carrier;
             }
@@ -85,6 +83,7 @@ namespace EntrostyleOperationsApplication
         {
             CustomRadioButton.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
             TntRadioButton.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
+            startTrackRadioButton.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
         }
 
         private void radioButtons_CheckedChanged(object sender, EventArgs e)
@@ -98,7 +97,7 @@ namespace EntrostyleOperationsApplication
                 reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
                 carrierTextBox.TextChanged += carrierTextBox_TextChanged;
             }
-            else if (TntRadioButton.Checked)
+            else if (TntRadioButton.Checked || startTrackRadioButton.Checked)
             {
                 printLabelBtn.Enabled = false;
                 printOnlyBtn.Enabled = false;
@@ -213,6 +212,10 @@ namespace EntrostyleOperationsApplication
             if (TntRadioButton.Checked && carrier.Length >= 21)
             {
                 carrier = @"http://www.tntexpress.com.au/interaction/ASPs/Trackcon_tntau.asp?id=TRACK.ASPX&con=ECN" + carrier.Substring(12, 9);
+            }
+            else if (startTrackRadioButton.Checked)
+            {
+                carrier = @"https://msto.startrack.com.au/track-trace/?id=" + carrier;
             }
 
             callback(carrier);
