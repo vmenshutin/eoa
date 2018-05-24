@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
@@ -80,6 +80,13 @@
             this.shelfLabelReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.shelfCombobox = new System.Windows.Forms.ComboBox();
             this.stockTab = new System.Windows.Forms.TabPage();
+            this.clearAllStockRowsBtn = new System.Windows.Forms.Button();
+            this.printAllBtn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.previewStockLabel = new System.Windows.Forms.Button();
+            this.stockReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.addStockBtn = new System.Windows.Forms.Button();
             this.stockCombobox = new System.Windows.Forms.ComboBox();
             this.stockLblDataGridView = new System.Windows.Forms.DataGridView();
             this.SettingsTab = new System.Windows.Forms.TabPage();
@@ -95,13 +102,6 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
-            this.addStockBtn = new System.Windows.Forms.Button();
-            this.stockReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.previewStockLabel = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.printAllBtn = new System.Windows.Forms.Button();
-            this.clearAllStockRowsBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -123,10 +123,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).BeginInit();
             this.shelfTab.SuspendLayout();
             this.stockTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.SettingsTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -380,34 +380,34 @@
             // 
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle2;
             this.SOItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOItemDetails.Location = new System.Drawing.Point(0, 0);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.SOItemDetails.Size = new System.Drawing.Size(623, 348);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -788,6 +788,118 @@
             this.stockTab.TabIndex = 4;
             this.stockTab.Text = "STOCK";
             // 
+            // clearAllStockRowsBtn
+            // 
+            this.clearAllStockRowsBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.clearAllStockRowsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearAllStockRowsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearAllStockRowsBtn.ForeColor = System.Drawing.Color.Red;
+            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(20, 550);
+            this.clearAllStockRowsBtn.Name = "clearAllStockRowsBtn";
+            this.clearAllStockRowsBtn.Size = new System.Drawing.Size(211, 28);
+            this.clearAllStockRowsBtn.TabIndex = 41;
+            this.clearAllStockRowsBtn.TabStop = false;
+            this.clearAllStockRowsBtn.Text = "CLEAR ALL";
+            this.clearAllStockRowsBtn.UseVisualStyleBackColor = true;
+            this.clearAllStockRowsBtn.Click += new System.EventHandler(this.clearAllStockRowsBtn_Click);
+            // 
+            // printAllBtn
+            // 
+            this.printAllBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.printAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.printAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printAllBtn.ForeColor = System.Drawing.Color.MediumBlue;
+            this.printAllBtn.Location = new System.Drawing.Point(751, 484);
+            this.printAllBtn.Name = "printAllBtn";
+            this.printAllBtn.Size = new System.Drawing.Size(164, 48);
+            this.printAllBtn.TabIndex = 40;
+            this.printAllBtn.TabStop = false;
+            this.printAllBtn.Text = "PRINT ALL";
+            this.printAllBtn.UseVisualStyleBackColor = true;
+            this.printAllBtn.Click += new System.EventHandler(this.printAllBtn_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(883, 271);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 52);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 39;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(751, 98);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(32, 52);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            // 
+            // previewStockLabel
+            // 
+            this.previewStockLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.previewStockLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.previewStockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previewStockLabel.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.previewStockLabel.Location = new System.Drawing.Point(784, 283);
+            this.previewStockLabel.Name = "previewStockLabel";
+            this.previewStockLabel.Size = new System.Drawing.Size(96, 28);
+            this.previewStockLabel.TabIndex = 36;
+            this.previewStockLabel.TabStop = false;
+            this.previewStockLabel.Text = "Preview";
+            this.previewStockLabel.UseVisualStyleBackColor = true;
+            this.previewStockLabel.Click += new System.EventHandler(this.previewStockLabel_Click);
+            // 
+            // stockReportViewer
+            // 
+            this.stockReportViewer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockReportViewer.DocumentMapWidth = 1;
+            this.stockReportViewer.LocalReport.ReportPath = "./pick_label.rdlc";
+            this.stockReportViewer.Location = new System.Drawing.Point(933, 73);
+            this.stockReportViewer.Margin = new System.Windows.Forms.Padding(0);
+            this.stockReportViewer.Name = "stockReportViewer";
+            this.stockReportViewer.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
+            this.stockReportViewer.ServerReport.BearerToken = null;
+            this.stockReportViewer.ServerReport.ReportPath = "./pick_label.rdlc";
+            this.stockReportViewer.ShowBackButton = false;
+            this.stockReportViewer.ShowContextMenu = false;
+            this.stockReportViewer.ShowCredentialPrompts = false;
+            this.stockReportViewer.ShowDocumentMapButton = false;
+            this.stockReportViewer.ShowExportButton = false;
+            this.stockReportViewer.ShowFindControls = false;
+            this.stockReportViewer.ShowPageNavigationControls = false;
+            this.stockReportViewer.ShowParameterPrompts = false;
+            this.stockReportViewer.ShowPrintButton = false;
+            this.stockReportViewer.ShowProgress = false;
+            this.stockReportViewer.ShowPromptAreaButton = false;
+            this.stockReportViewer.ShowRefreshButton = false;
+            this.stockReportViewer.ShowStopButton = false;
+            this.stockReportViewer.ShowToolBar = false;
+            this.stockReportViewer.ShowZoomControl = false;
+            this.stockReportViewer.Size = new System.Drawing.Size(463, 238);
+            this.stockReportViewer.TabIndex = 35;
+            this.stockReportViewer.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
+            // 
+            // addStockBtn
+            // 
+            this.addStockBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addStockBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addStockBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addStockBtn.ForeColor = System.Drawing.Color.Green;
+            this.addStockBtn.Location = new System.Drawing.Point(785, 110);
+            this.addStockBtn.Name = "addStockBtn";
+            this.addStockBtn.Size = new System.Drawing.Size(96, 28);
+            this.addStockBtn.TabIndex = 34;
+            this.addStockBtn.TabStop = false;
+            this.addStockBtn.Text = "Add";
+            this.addStockBtn.UseVisualStyleBackColor = true;
+            this.addStockBtn.Click += new System.EventHandler(this.addStockBtn_Click);
+            // 
             // stockCombobox
             // 
             this.stockCombobox.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -862,7 +974,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 1.7.9 23/05/2018";
+            this.label20.Text = "EOA 1.8.0 23/05/2018";
             // 
             // label18
             // 
@@ -973,118 +1085,6 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // addStockBtn
-            // 
-            this.addStockBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.addStockBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addStockBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addStockBtn.ForeColor = System.Drawing.Color.Green;
-            this.addStockBtn.Location = new System.Drawing.Point(785, 110);
-            this.addStockBtn.Name = "addStockBtn";
-            this.addStockBtn.Size = new System.Drawing.Size(96, 28);
-            this.addStockBtn.TabIndex = 34;
-            this.addStockBtn.TabStop = false;
-            this.addStockBtn.Text = "Add";
-            this.addStockBtn.UseVisualStyleBackColor = true;
-            this.addStockBtn.Click += new System.EventHandler(this.addStockBtn_Click);
-            // 
-            // stockReportViewer
-            // 
-            this.stockReportViewer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stockReportViewer.DocumentMapWidth = 1;
-            this.stockReportViewer.LocalReport.ReportPath = "./pick_label.rdlc";
-            this.stockReportViewer.Location = new System.Drawing.Point(933, 73);
-            this.stockReportViewer.Margin = new System.Windows.Forms.Padding(0);
-            this.stockReportViewer.Name = "stockReportViewer";
-            this.stockReportViewer.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
-            this.stockReportViewer.ServerReport.BearerToken = null;
-            this.stockReportViewer.ServerReport.ReportPath = "./pick_label.rdlc";
-            this.stockReportViewer.ShowBackButton = false;
-            this.stockReportViewer.ShowContextMenu = false;
-            this.stockReportViewer.ShowCredentialPrompts = false;
-            this.stockReportViewer.ShowDocumentMapButton = false;
-            this.stockReportViewer.ShowExportButton = false;
-            this.stockReportViewer.ShowFindControls = false;
-            this.stockReportViewer.ShowPageNavigationControls = false;
-            this.stockReportViewer.ShowParameterPrompts = false;
-            this.stockReportViewer.ShowPrintButton = false;
-            this.stockReportViewer.ShowProgress = false;
-            this.stockReportViewer.ShowPromptAreaButton = false;
-            this.stockReportViewer.ShowRefreshButton = false;
-            this.stockReportViewer.ShowStopButton = false;
-            this.stockReportViewer.ShowToolBar = false;
-            this.stockReportViewer.ShowZoomControl = false;
-            this.stockReportViewer.Size = new System.Drawing.Size(463, 238);
-            this.stockReportViewer.TabIndex = 35;
-            this.stockReportViewer.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
-            // 
-            // previewStockLabel
-            // 
-            this.previewStockLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.previewStockLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.previewStockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.previewStockLabel.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.previewStockLabel.Location = new System.Drawing.Point(784, 283);
-            this.previewStockLabel.Name = "previewStockLabel";
-            this.previewStockLabel.Size = new System.Drawing.Size(96, 28);
-            this.previewStockLabel.TabIndex = 36;
-            this.previewStockLabel.TabStop = false;
-            this.previewStockLabel.Text = "Preview";
-            this.previewStockLabel.UseVisualStyleBackColor = true;
-            this.previewStockLabel.Click += new System.EventHandler(this.previewStockLabel_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(751, 98);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 52);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(883, 271);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 52);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 39;
-            this.pictureBox1.TabStop = false;
-            // 
-            // printAllBtn
-            // 
-            this.printAllBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.printAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.printAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printAllBtn.ForeColor = System.Drawing.Color.MediumBlue;
-            this.printAllBtn.Location = new System.Drawing.Point(751, 484);
-            this.printAllBtn.Name = "printAllBtn";
-            this.printAllBtn.Size = new System.Drawing.Size(164, 48);
-            this.printAllBtn.TabIndex = 40;
-            this.printAllBtn.TabStop = false;
-            this.printAllBtn.Text = "PRINT ALL";
-            this.printAllBtn.UseVisualStyleBackColor = true;
-            this.printAllBtn.Click += new System.EventHandler(this.printAllBtn_Click);
-            // 
-            // clearAllStockRowsBtn
-            // 
-            this.clearAllStockRowsBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.clearAllStockRowsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clearAllStockRowsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearAllStockRowsBtn.ForeColor = System.Drawing.Color.Red;
-            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(20, 550);
-            this.clearAllStockRowsBtn.Name = "clearAllStockRowsBtn";
-            this.clearAllStockRowsBtn.Size = new System.Drawing.Size(211, 28);
-            this.clearAllStockRowsBtn.TabIndex = 41;
-            this.clearAllStockRowsBtn.TabStop = false;
-            this.clearAllStockRowsBtn.Text = "CLEAR ALL";
-            this.clearAllStockRowsBtn.UseVisualStyleBackColor = true;
-            this.clearAllStockRowsBtn.Click += new System.EventHandler(this.clearAllStockRowsBtn_Click);
-            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1118,11 +1118,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).EndInit();
             this.shelfTab.ResumeLayout(false);
             this.stockTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.SettingsTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
