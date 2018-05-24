@@ -605,7 +605,7 @@ namespace EntrostyleOperationsApplication
             dr["STOCKCODE"] = selectedValue.Cells[0].Value.ToString();
             dr["DESCRIPTION"] = selectedValue.Cells[1].Value.ToString();
 
-            Bitmap bitmap = GenerateBarcode(selectedValue.Cells[0].ToString(), 100, 100, 0);
+            Bitmap bitmap = GenerateBarcode(selectedValue.Cells[0].Value.ToString(), 100, 100, 0);
             dr["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(bitmap, typeof(byte[])));
 
             dt.Rows.Add(dr);

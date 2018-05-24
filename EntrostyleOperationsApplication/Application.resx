@@ -118,17 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAFASURBVHhe7dvBScRQGIXR4FrBrWIhNmQfdmFNdmAbTgN6gwRm8chkVjLvngM/hGy/u30LAAAA
-        AAAAAAAAAAAAAAAA/I/H3NvfJ23W+J+5n9z7+oMe5/G3M4ISo/hGUGIv/nZGMKkj8bczgslcE387I5jE
-        fe7a+NsZwQTuch+5UeAjZwQTMAKMACMgjAAjwAgII8AIMALCCDACjIAwAowAIyCMACPACAgjwAgwAsII
-        MAKW5Tl3yo0CX7rv3EuOG/WU+8qN4l66Nf5rjhslfjHxi4lfTPxi4hcTv5j4xcQvJn4x8YuJX0z8YuIX
-        E7+Y+MXELyZ+MfGLiV9M/GLiFxO/2ENO/HLrC5xR4L0TfzLXjED8SR0ZgfiT2xuB+CVGIxC/zPkIxC+1
-        jkD8ct7nAwAAAAAAAAAAAAAAAAAAAJNYll9md1Gub6W6cgAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -138,6 +127,17 @@
         MfGLiV9M/GLiF5vf52+N/5l7zLFz8wuc3wKvubfcTY6dMwKMACMgjAAjwAgII8AIMALCCDACjIAwAowA
         IyCMACPACAgjwAgwAsIIMAK2j+A9d5tjANeOYI5/n2Mga0cg/sAujUD8AudGIH6R0xGIX2gZgfjFXnLi
         AwAAAAAAAAAAAAAAAAAAAPCfpukbAnFQ/J86eE0AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAFASURBVHhe7dvBScRQGIXR4FrBrWIhNmQfdmFNdmAbTgN6gwRm8chkVjLvngM/hGy/u30LAAAA
+        AAAAAAAAAAAAAAAA/I/H3NvfJ23W+J+5n9z7+oMe5/G3M4ISo/hGUGIv/nZGMKkj8bczgslcE387I5jE
+        fe7a+NsZwQTuch+5UeAjZwQTMAKMACMgjAAjwAgII8AIMALCCDACjIAwAowAIyCMACPACAgjwAgwAsII
+        MAKW5Tl3yo0CX7rv3EuOG/WU+8qN4l66Nf5rjhslfjHxi4lfTPxi4hcTv5j4xcQvJn4x8YuJX0z8YuIX
+        E7+Y+MXELyZ+MfGLiV9M/GLiFxO/2ENO/HLrC5xR4L0TfzLXjED8SR0ZgfiT2xuB+CVGIxC/zPkIxC+1
+        jkD8ct7nAwAAAAAAAAAAAAAAAAAAAJNYll9md1Gub6W6cgAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>
