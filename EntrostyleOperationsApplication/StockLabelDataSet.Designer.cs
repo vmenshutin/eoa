@@ -285,6 +285,8 @@ namespace EntrostyleOperationsApplication {
             
             private global::System.Data.DataColumn columnBARCODE;
             
+            private global::System.Data.DataColumn columnITEMQTY;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DataTable1DataTable() {
@@ -344,6 +346,14 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ITEMQTYColumn {
+                get {
+                    return this.columnITEMQTY;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -379,12 +389,13 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string STOCKCODE, string DESCRIPTION, byte[] BARCODE) {
+            public DataTable1Row AddDataTable1Row(string STOCKCODE, string DESCRIPTION, byte[] BARCODE, int ITEMQTY) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         STOCKCODE,
                         DESCRIPTION,
-                        BARCODE};
+                        BARCODE,
+                        ITEMQTY};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -410,6 +421,7 @@ namespace EntrostyleOperationsApplication {
                 this.columnSTOCKCODE = base.Columns["STOCKCODE"];
                 this.columnDESCRIPTION = base.Columns["DESCRIPTION"];
                 this.columnBARCODE = base.Columns["BARCODE"];
+                this.columnITEMQTY = base.Columns["ITEMQTY"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -421,6 +433,8 @@ namespace EntrostyleOperationsApplication {
                 base.Columns.Add(this.columnDESCRIPTION);
                 this.columnBARCODE = new global::System.Data.DataColumn("BARCODE", typeof(byte[]), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBARCODE);
+                this.columnITEMQTY = new global::System.Data.DataColumn("ITEMQTY", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnITEMQTY);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -611,6 +625,22 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int ITEMQTY {
+                get {
+                    try {
+                        return ((int)(this[this.tableDataTable1.ITEMQTYColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ITEMQTY\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.ITEMQTYColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsSTOCKCODENull() {
                 return this.IsNull(this.tableDataTable1.STOCKCODEColumn);
             }
@@ -643,6 +673,18 @@ namespace EntrostyleOperationsApplication {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetBARCODENull() {
                 this[this.tableDataTable1.BARCODEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsITEMQTYNull() {
+                return this.IsNull(this.tableDataTable1.ITEMQTYColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetITEMQTYNull() {
+                this[this.tableDataTable1.ITEMQTYColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -49,8 +49,10 @@ namespace EntrostyleOperationsApplication
 
         string activeGrid = null;
 
-        private LocalReport shelfReport;
-        private LocalReport stockReport;
+        private LocalReport shelfReport = new LocalReport();
+        private LocalReport stockReport = new LocalReport();
+        private LocalReport layout30SHELFReport = new LocalReport();
+        private LocalReport layout30STOCKReport = new LocalReport();
 
         private int m_currentPageIndex;
         private IList<Stream> m_streams;
@@ -74,11 +76,8 @@ namespace EntrostyleOperationsApplication
             // load DIFOT data
             loadDifotData();
 
-            // load SHELF data
-            populateShelfCombobox();
-
-            // load STOCK data
-            populateStockData();
+            // load LABEL data
+            populateLABELData();
             setDataGridViewStyleProps(stockLblDataGridView);
 
             // load SETTINGS
@@ -553,8 +552,19 @@ namespace EntrostyleOperationsApplication
         }
 
         // populate STOCK data
-        private void populateStockData()
+        private void populateLABELData()
         {
+            var wait = showWaitForm();
+
+            var adapter = new OdbcDataAdapter("SELECT STOCKCODE, DESCRIPTION FROM STOCK_ITEMS order by STOCKCODE", connection);
+            var ds = new DataSet();
+            OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(adapter);
+            adapter.Fill(ds);
+
+            // STOCK combobox
+            stockCodeLABELCombobox.DataSource = ds.Tables[0];
+            stockCodeLABELCombobox.DisplayMember = "STOCKCODE";
+
             stockLblDataGridView.ColumnCount = 4;
 
             // Item Code column
@@ -579,49 +589,89 @@ namespace EntrostyleOperationsApplication
             stockLblDataGridView.Columns[3].HeaderText = "Label Qty";
             stockLblDataGridView.Columns[3].Width = 60;
 
-            // STOCK combobox
-            stockCombobox.DataSource = shelfCombobox.DataSource;
-            stockCombobox.DisplayMember = "STOCKCODE";
+            // report paths
+            stockReport.ReportPath = @".\STOCK.rdlc";
+            shelfReport.ReportPath = @".\SHELF.rdlc";
+            layout30SHELFReport.ReportPath = @".\layout_30_SHELF.rdlc";
+            layout30STOCKReport.ReportPath = @".\layout_30_STOCK.rdlc";
 
+            // event listeners
             stockLblDataGridView.CellValidating += StockLblDataGridView_CellValidating;
+            itemQtyNumberInput.Enter += ItemQtyNumberInput_Enter;
+            labelQtyNumberInput.Enter += ItemQtyNumberInput_Enter;
+            labelQtyNumberInput.Leave += LabelQtyNumberInput_Leave;
+
+            wait.Close();
         }
 
-        private void initStockReportViewer(int rowIndex, bool initPreview)
+        private void LabelQtyNumberInput_Leave(object sender, EventArgs e)
         {
-            var wait = showWaitForm();
+            addStockBtn_Click(addStockBtn, new EventArgs());
+            addStockBtn.Enabled = true;
+        }
+
+        private void ItemQtyNumberInput_Enter(object sender, EventArgs e)
+        {
+            var control = sender as NumericUpDown;
+            control.Select(0, control.Text.Length);
+
+            if (control.Name == labelQtyNumberInput.Name)
+            {
+                addStockBtn.Enabled = false;
+            }
+        }
+
+        private void setLabelDataRow(int rowIndex, DataTable dt)
+        {
             var selectedValue = stockLblDataGridView.Rows[rowIndex];
 
-            stockReport = new LocalReport();
-            stockReport.ReportPath = @".\STOCK.rdlc";
+            DataRow dr = dt.NewRow();
+
+            dr["STOCKCODE"] = selectedValue.Cells[0].Value.ToString();
+            dr["DESCRIPTION"] = selectedValue.Cells[1].Value.ToString();
+            dr["ITEMQTY"] = int.Parse(selectedValue.Cells[2].Value.ToString());
+
+            Bitmap bitmap = GenerateBarcode(selectedValue.Cells[0].Value.ToString(), 100, 100, 0);
+            dr["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(bitmap, typeof(byte[])));
+
+            dt.Rows.Add(dr);
+        }
+
+        private void initLABELReport(LocalReport report, int? rowIndex = null)
+        {
+            var wait = showWaitForm();
+            
 
             DataTable dt = new DataTable();
 
             dt.Columns.Add("STOCKCODE", typeof(String));
             dt.Columns.Add("DESCRIPTION", typeof(String));
             dt.Columns.Add("BARCODE", typeof(byte[]));
+            dt.Columns.Add("ITEMQTY", typeof(int));
 
-            DataRow dr = dt.NewRow();
-
-            dr["STOCKCODE"] = selectedValue.Cells[0].Value.ToString();
-            dr["DESCRIPTION"] = selectedValue.Cells[1].Value.ToString();
-
-            Bitmap bitmap = GenerateBarcode(selectedValue.Cells[0].Value.ToString(), 100, 100, 0);
-            dr["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(bitmap, typeof(byte[])));
-
-            dt.Rows.Add(dr);
-
-            stockReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
-            stockReport.SetParameters(new ReportParameter("ItemQty", selectedValue.Cells[2].Value.ToString()));
-
-            if (initPreview)
+            if (rowIndex == null)
             {
-                stockReportViewer.ProcessingMode = ProcessingMode.Local;
-                stockReportViewer.LocalReport.ReportPath = @".\STOCK.rdlc";
-                stockReportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
-                stockReportViewer.LocalReport.SetParameters(new ReportParameter("ItemQty", selectedValue.Cells[2].Value.ToString()));
-                stockReportViewer.RefreshReport();
+                for (int i = 0; i < stockLblDataGridView.Rows.Count; i ++)
+                {
+                    var labelQty = int.Parse(stockLblDataGridView.Rows[i].Cells[3].Value.ToString());
+
+                    for (int j = 0; j < labelQty; j++)
+                    {
+                        setLabelDataRow(i, dt);
+                    }
+                }
+            }
+            else
+            {
+                setLabelDataRow((int)rowIndex, dt);
             }
 
+            if (report.DataSources.Count > 0)
+            {
+                report.DataSources.RemoveAt(0);
+            }
+            
+            report.DataSources.Add(new ReportDataSource("DataSet1", dt));
             wait.Close();
         }
 
@@ -639,73 +689,6 @@ namespace EntrostyleOperationsApplication
                     e.Cancel = true;
                     MessageBox.Show("      Positive numbers only!      ");
                 }
-            }
-        }
-
-        // populate SHELF data
-        private void populateShelfCombobox()
-        {
-            var wait = showWaitForm();
-
-            var adapter = new OdbcDataAdapter("SELECT STOCKCODE, DESCRIPTION FROM STOCK_ITEMS order by STOCKCODE", connection);
-            var ds = new DataSet();
-            OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(adapter);
-            adapter.Fill(ds);
-
-            SODifot.DataSource = SODifotDataSet.Tables[0];
-            shelfCombobox.DataSource = ds.Tables[0];
-            shelfCombobox.DisplayMember = "STOCKCODE";
-
-            initShelfReportViewer();
-            shelfCombobox.SelectedValueChanged += shelfCombobox_SelectedValueChanged;
-
-            wait.Close();
-        }
-
-        private void shelfCombobox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            shelfReport.DataSources.RemoveAt(0);
-            shelfLabelReportViewer.LocalReport.DataSources.RemoveAt(0);
-
-            initShelfReportViewer();
-        }
-
-        private void initShelfReportViewer()
-        {
-            var selectedValue = (shelfCombobox.SelectedValue as DataRowView);
-
-            if (selectedValue != null)
-            {
-                shelfLabelReportViewer.ProcessingMode = ProcessingMode.Local;
-                shelfLabelReportViewer.LocalReport.ReportPath = @".\SHELF.rdlc";
-
-                shelfReport = new LocalReport();
-                shelfReport.ReportPath = @".\SHELF.rdlc";
-
-                DataTable dt = new DataTable();
-
-                dt.Columns.Add("STOCKCODE", typeof(String));
-                dt.Columns.Add("DESCRIPTION", typeof(String));
-                dt.Columns.Add("BARCODE", typeof(byte[]));
-
-                DataRow dr = dt.NewRow();
-
-                dr["STOCKCODE"] = selectedValue.Row[0];
-                dr["DESCRIPTION"] = selectedValue.Row[1];
-
-                Bitmap bitmap = GenerateBarcode(selectedValue.Row[0].ToString(), 100, 100, 0);
-                dr["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(bitmap, typeof(byte[])));
-
-                dt.Rows.Add(dr);
-
-                shelfReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
-                shelfLabelReportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
-
-                shelfLabelReportViewer.RefreshReport();
-            }
-            else
-            {
-                MessageBox.Show("       Not a valid value       ");
             }
         }
 
@@ -1777,12 +1760,6 @@ namespace EntrostyleOperationsApplication
             return wait;
         }
 
-        private void generateButton_Click(object sender, EventArgs e)
-        {
-            exportReport(shelfReport, 1.97, 0.99);
-            prepareDocAndPrint(new PaperSize("Stock Label", 197, 99), settings_labelPrinter.Text, 1);
-        }
-
         private void prepareDocAndPrint(PaperSize paperSize, string printerName, short copies)
         {
             PrintDocument printDoc = new PrintDocument();
@@ -1874,25 +1851,19 @@ namespace EntrostyleOperationsApplication
 
         private void addStockBtn_Click(object sender, EventArgs e)
         {
-            var selectedValue = stockCombobox.SelectedValue as DataRowView;
+            var selectedValue = stockCodeLABELCombobox.SelectedValue as DataRowView;
 
             stockLblDataGridView.Rows.Add(new string[] { selectedValue.Row[0].ToString(),
-                selectedValue.Row[1].ToString(), "0", "1" });
+                selectedValue.Row[1].ToString(), itemQtyNumberInput.Value.ToString(), labelQtyNumberInput.Value.ToString() });
         }
 
         private void previewStockLabel_Click(object sender, EventArgs e)
         {
             var row = stockLblDataGridView.CurrentRow;
 
-            if (row != null)
+            if (row != null && stockReport != null)
             {
-                if (stockReport != null)
-                {
-                    stockReport.DataSources.RemoveAt(0);
-                    stockReportViewer.LocalReport.DataSources.RemoveAt(0);
-                }
-                
-                initStockReportViewer(row.Index, true);
+                stockReport.DataSources.RemoveAt(0);
             }
             else
             {
@@ -1900,30 +1871,81 @@ namespace EntrostyleOperationsApplication
             }
         }
 
-        private void printAllBtn_Click(object sender, EventArgs e)
-        {
-            var wait = showWaitForm();
-            addStockBtn.Enabled = false;
-            previewStockLabel.Enabled = false;
-            printAllBtn.Enabled = false;
-
-            foreach (DataGridViewRow row in stockLblDataGridView.Rows)
-            {
-                initStockReportViewer(row.Index, false);
-                exportReport(stockReport, 1.97, 0.99);
-                prepareDocAndPrint(new PaperSize("Stock Label", 197, 99), settings_labelPrinter.Text, short.Parse(row.Cells[3].Value.ToString()));
-            }
-
-            addStockBtn.Enabled = true;
-            previewStockLabel.Enabled = true;
-            printAllBtn.Enabled = true;
-            wait.Close();
-        }
-
         private void clearAllStockRowsBtn_Click(object sender, EventArgs e)
         {
             stockLblDataGridView.Rows.Clear();
             stockLblDataGridView.Refresh();
+        }
+
+        private void printSingleLABELLayout(LocalReport report)
+        {
+            var wait = showWaitForm();
+            labelPrintButtonsEnabled(false);
+
+            foreach (DataGridViewRow row in stockLblDataGridView.Rows)
+            {
+                initLABELReport(report, row.Index);
+                exportReport(report, 1.97, 0.99);
+                prepareDocAndPrint(new PaperSize("Stock Label", 197, 99),
+                    customLabelPrinterCheckbox.Checked ? customLabelPrinterTextBox.Text : settings_labelPrinter.Text,
+                    short.Parse(row.Cells[3].Value.ToString()));
+            }
+
+            labelPrintButtonsEnabled(true);
+            wait.Close();
+        }
+
+        private void print30LABELLayout(LocalReport report)
+        {
+            var wait = showWaitForm();
+            labelPrintButtonsEnabled(false);
+
+            initLABELReport(report);
+            exportReport(report, 8.27, 11.69); // 0.59, 0.59
+            prepareDocAndPrint(new PaperSize("Layout 30", 827, 1169),
+                customLabelPrinterCheckbox.Checked ? customLabelPrinterTextBox.Text : settings_labelPrinter.Text, 1);
+
+            labelPrintButtonsEnabled(true);
+            wait.Close();
+        }
+
+        private void labelPrintButtonsEnabled(bool enabled)
+        {
+            printStockButton.Enabled = enabled;
+            print30StockButton.Enabled = enabled;
+            printShelfButton.Enabled = enabled;
+            print30ShelfButton.Enabled = enabled;
+        }
+
+        private void printStockButton_Click(object sender, EventArgs e)
+        {
+            printSingleLABELLayout(stockReport);
+        }
+
+        private void print30StockButton_Click(object sender, EventArgs e)
+        {
+            print30LABELLayout(layout30STOCKReport);
+        }
+
+        private void printShelfButton_Click(object sender, EventArgs e)
+        {
+            printSingleLABELLayout(shelfReport);
+        }
+
+        private void print30ShelfButton_Click(object sender, EventArgs e)
+        {
+            print30LABELLayout(layout30SHELFReport);
+        }
+
+        private void customLabelPrinterCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            var control = sender as CheckBox;
+
+            if (control.Checked)
+                customLabelPrinterTextBox.Enabled = true;
+            else
+                customLabelPrinterTextBox.Enabled = false;
+            
         }
     }
 }

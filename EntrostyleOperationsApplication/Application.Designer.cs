@@ -75,19 +75,26 @@
             this.difotTo = new System.Windows.Forms.DateTimePicker();
             this.difotFrom = new System.Windows.Forms.DateTimePicker();
             this.SODifot = new System.Windows.Forms.DataGridView();
-            this.shelfTab = new System.Windows.Forms.TabPage();
-            this.generateButton = new System.Windows.Forms.Button();
-            this.shelfLabelReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.shelfCombobox = new System.Windows.Forms.ComboBox();
-            this.stockTab = new System.Windows.Forms.TabPage();
-            this.clearAllStockRowsBtn = new System.Windows.Forms.Button();
-            this.printAllBtn = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelTab = new System.Windows.Forms.TabPage();
+            this.customLabelPrinterTextBox = new System.Windows.Forms.TextBox();
+            this.customLabelPrinterCheckbox = new System.Windows.Forms.CheckBox();
+            this.LABELControlsGroupBox = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.previewStockLabel = new System.Windows.Forms.Button();
-            this.stockReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.stockCodeLABELCombobox = new System.Windows.Forms.ComboBox();
+            this.itemQtyNumberInput = new System.Windows.Forms.NumericUpDown();
+            this.label24 = new System.Windows.Forms.Label();
+            this.labelQtyNumberInput = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.stockGroupBox = new System.Windows.Forms.GroupBox();
+            this.printStockButton = new System.Windows.Forms.Button();
+            this.print30StockButton = new System.Windows.Forms.Button();
+            this.shelfGroupBox = new System.Windows.Forms.GroupBox();
+            this.printShelfButton = new System.Windows.Forms.Button();
+            this.print30ShelfButton = new System.Windows.Forms.Button();
+            this.clearAllStockRowsBtn = new System.Windows.Forms.Button();
             this.addStockBtn = new System.Windows.Forms.Button();
-            this.stockCombobox = new System.Windows.Forms.ComboBox();
             this.stockLblDataGridView = new System.Windows.Forms.DataGridView();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.label21 = new System.Windows.Forms.Label();
@@ -121,10 +128,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.SOItemDetails)).BeginInit();
             this.DifotTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).BeginInit();
-            this.shelfTab.SuspendLayout();
-            this.stockTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.labelTab.SuspendLayout();
+            this.LABELControlsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemQtyNumberInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.labelQtyNumberInput)).BeginInit();
+            this.stockGroupBox.SuspendLayout();
+            this.shelfGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.SettingsTab.SuspendLayout();
             this.SuspendLayout();
@@ -133,8 +144,7 @@
             // 
             this.tabControl1.Controls.Add(this.ScheduleTab);
             this.tabControl1.Controls.Add(this.DifotTab);
-            this.tabControl1.Controls.Add(this.shelfTab);
-            this.tabControl1.Controls.Add(this.stockTab);
+            this.tabControl1.Controls.Add(this.labelTab);
             this.tabControl1.Controls.Add(this.SettingsTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -142,6 +152,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1425, 734);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabStop = false;
             // 
             // ScheduleTab
             // 
@@ -704,89 +715,237 @@
             this.SODifot.Size = new System.Drawing.Size(1411, 677);
             this.SODifot.TabIndex = 0;
             // 
-            // shelfTab
+            // labelTab
             // 
-            this.shelfTab.BackColor = System.Drawing.Color.Azure;
-            this.shelfTab.Controls.Add(this.generateButton);
-            this.shelfTab.Controls.Add(this.shelfLabelReportViewer);
-            this.shelfTab.Controls.Add(this.shelfCombobox);
-            this.shelfTab.Location = new System.Drawing.Point(4, 22);
-            this.shelfTab.Name = "shelfTab";
-            this.shelfTab.Size = new System.Drawing.Size(1417, 708);
-            this.shelfTab.TabIndex = 3;
-            this.shelfTab.Text = "SHELF";
+            this.labelTab.BackColor = System.Drawing.Color.LavenderBlush;
+            this.labelTab.Controls.Add(this.customLabelPrinterTextBox);
+            this.labelTab.Controls.Add(this.customLabelPrinterCheckbox);
+            this.labelTab.Controls.Add(this.LABELControlsGroupBox);
+            this.labelTab.Controls.Add(this.stockGroupBox);
+            this.labelTab.Controls.Add(this.shelfGroupBox);
+            this.labelTab.Controls.Add(this.clearAllStockRowsBtn);
+            this.labelTab.Controls.Add(this.addStockBtn);
+            this.labelTab.Controls.Add(this.stockLblDataGridView);
+            this.labelTab.Location = new System.Drawing.Point(4, 22);
+            this.labelTab.Name = "labelTab";
+            this.labelTab.Size = new System.Drawing.Size(1417, 708);
+            this.labelTab.TabIndex = 4;
+            this.labelTab.Text = "LABEL";
             // 
-            // generateButton
+            // customLabelPrinterTextBox
             // 
-            this.generateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.generateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.generateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generateButton.ForeColor = System.Drawing.Color.Green;
-            this.generateButton.Location = new System.Drawing.Point(342, 326);
-            this.generateButton.Name = "generateButton";
-            this.generateButton.Size = new System.Drawing.Size(227, 28);
-            this.generateButton.TabIndex = 33;
-            this.generateButton.TabStop = false;
-            this.generateButton.Text = "Print";
-            this.generateButton.UseVisualStyleBackColor = true;
-            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
+            this.customLabelPrinterTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customLabelPrinterTextBox.Enabled = false;
+            this.customLabelPrinterTextBox.Location = new System.Drawing.Point(890, 341);
+            this.customLabelPrinterTextBox.Name = "customLabelPrinterTextBox";
+            this.customLabelPrinterTextBox.Size = new System.Drawing.Size(382, 20);
+            this.customLabelPrinterTextBox.TabIndex = 55;
+            this.customLabelPrinterTextBox.TabStop = false;
             // 
-            // shelfLabelReportViewer
+            // customLabelPrinterCheckbox
             // 
-            this.shelfLabelReportViewer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.shelfLabelReportViewer.DocumentMapWidth = 1;
-            this.shelfLabelReportViewer.LocalReport.ReportPath = "./pick_label.rdlc";
-            this.shelfLabelReportViewer.Location = new System.Drawing.Point(595, 116);
-            this.shelfLabelReportViewer.Margin = new System.Windows.Forms.Padding(0);
-            this.shelfLabelReportViewer.Name = "shelfLabelReportViewer";
-            this.shelfLabelReportViewer.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
-            this.shelfLabelReportViewer.ServerReport.BearerToken = null;
-            this.shelfLabelReportViewer.ServerReport.ReportPath = "./pick_label.rdlc";
-            this.shelfLabelReportViewer.ShowBackButton = false;
-            this.shelfLabelReportViewer.ShowContextMenu = false;
-            this.shelfLabelReportViewer.ShowCredentialPrompts = false;
-            this.shelfLabelReportViewer.ShowDocumentMapButton = false;
-            this.shelfLabelReportViewer.ShowExportButton = false;
-            this.shelfLabelReportViewer.ShowFindControls = false;
-            this.shelfLabelReportViewer.ShowPageNavigationControls = false;
-            this.shelfLabelReportViewer.ShowParameterPrompts = false;
-            this.shelfLabelReportViewer.ShowPrintButton = false;
-            this.shelfLabelReportViewer.ShowProgress = false;
-            this.shelfLabelReportViewer.ShowPromptAreaButton = false;
-            this.shelfLabelReportViewer.ShowRefreshButton = false;
-            this.shelfLabelReportViewer.ShowStopButton = false;
-            this.shelfLabelReportViewer.ShowToolBar = false;
-            this.shelfLabelReportViewer.ShowZoomControl = false;
-            this.shelfLabelReportViewer.Size = new System.Drawing.Size(463, 238);
-            this.shelfLabelReportViewer.TabIndex = 1;
-            this.shelfLabelReportViewer.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
+            this.customLabelPrinterCheckbox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customLabelPrinterCheckbox.AutoSize = true;
+            this.customLabelPrinterCheckbox.Location = new System.Drawing.Point(890, 317);
+            this.customLabelPrinterCheckbox.Name = "customLabelPrinterCheckbox";
+            this.customLabelPrinterCheckbox.Size = new System.Drawing.Size(116, 17);
+            this.customLabelPrinterCheckbox.TabIndex = 54;
+            this.customLabelPrinterCheckbox.TabStop = false;
+            this.customLabelPrinterCheckbox.Text = "Use Custom Printer";
+            this.customLabelPrinterCheckbox.UseVisualStyleBackColor = true;
+            this.customLabelPrinterCheckbox.CheckedChanged += new System.EventHandler(this.customLabelPrinterCheckbox_CheckedChanged);
             // 
-            // shelfCombobox
+            // LABELControlsGroupBox
             // 
-            this.shelfCombobox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.shelfCombobox.FormattingEnabled = true;
-            this.shelfCombobox.Location = new System.Drawing.Point(342, 116);
-            this.shelfCombobox.Name = "shelfCombobox";
-            this.shelfCombobox.Size = new System.Drawing.Size(227, 21);
-            this.shelfCombobox.TabIndex = 0;
+            this.LABELControlsGroupBox.Controls.Add(this.pictureBox2);
+            this.LABELControlsGroupBox.Controls.Add(this.pictureBox1);
+            this.LABELControlsGroupBox.Controls.Add(this.label22);
+            this.LABELControlsGroupBox.Controls.Add(this.stockCodeLABELCombobox);
+            this.LABELControlsGroupBox.Controls.Add(this.itemQtyNumberInput);
+            this.LABELControlsGroupBox.Controls.Add(this.label24);
+            this.LABELControlsGroupBox.Controls.Add(this.labelQtyNumberInput);
+            this.LABELControlsGroupBox.Controls.Add(this.label23);
+            this.LABELControlsGroupBox.Location = new System.Drawing.Point(871, 54);
+            this.LABELControlsGroupBox.Name = "LABELControlsGroupBox";
+            this.LABELControlsGroupBox.Size = new System.Drawing.Size(428, 74);
+            this.LABELControlsGroupBox.TabIndex = 53;
+            this.LABELControlsGroupBox.TabStop = false;
             // 
-            // stockTab
+            // pictureBox2
             // 
-            this.stockTab.BackColor = System.Drawing.Color.LavenderBlush;
-            this.stockTab.Controls.Add(this.clearAllStockRowsBtn);
-            this.stockTab.Controls.Add(this.printAllBtn);
-            this.stockTab.Controls.Add(this.pictureBox1);
-            this.stockTab.Controls.Add(this.pictureBox2);
-            this.stockTab.Controls.Add(this.previewStockLabel);
-            this.stockTab.Controls.Add(this.stockReportViewer);
-            this.stockTab.Controls.Add(this.addStockBtn);
-            this.stockTab.Controls.Add(this.stockCombobox);
-            this.stockTab.Controls.Add(this.stockLblDataGridView);
-            this.stockTab.Location = new System.Drawing.Point(4, 22);
-            this.stockTab.Name = "stockTab";
-            this.stockTab.Size = new System.Drawing.Size(1417, 708);
-            this.stockTab.TabIndex = 4;
-            this.stockTab.Text = "STOCK";
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(259, 24);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(24, 41);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 55;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(164, 24);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 41);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 54;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label22
+            // 
+            this.label22.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(16, 19);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(55, 13);
+            this.label22.TabIndex = 44;
+            this.label22.Text = "Item Code";
+            // 
+            // stockCodeLABELCombobox
+            // 
+            this.stockCodeLABELCombobox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockCodeLABELCombobox.FormattingEnabled = true;
+            this.stockCodeLABELCombobox.Location = new System.Drawing.Point(19, 35);
+            this.stockCodeLABELCombobox.Name = "stockCodeLABELCombobox";
+            this.stockCodeLABELCombobox.Size = new System.Drawing.Size(143, 21);
+            this.stockCodeLABELCombobox.TabIndex = 0;
+            // 
+            // itemQtyNumberInput
+            // 
+            this.itemQtyNumberInput.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.itemQtyNumberInput.Location = new System.Drawing.Point(190, 35);
+            this.itemQtyNumberInput.Name = "itemQtyNumberInput";
+            this.itemQtyNumberInput.Size = new System.Drawing.Size(68, 20);
+            this.itemQtyNumberInput.TabIndex = 1;
+            this.itemQtyNumberInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.itemQtyNumberInput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label24
+            // 
+            this.label24.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(281, 19);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(52, 13);
+            this.label24.TabIndex = 46;
+            this.label24.Text = "Label Qty";
+            // 
+            // labelQtyNumberInput
+            // 
+            this.labelQtyNumberInput.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelQtyNumberInput.Location = new System.Drawing.Point(284, 35);
+            this.labelQtyNumberInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.labelQtyNumberInput.Name = "labelQtyNumberInput";
+            this.labelQtyNumberInput.Size = new System.Drawing.Size(68, 20);
+            this.labelQtyNumberInput.TabIndex = 2;
+            this.labelQtyNumberInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.labelQtyNumberInput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label23
+            // 
+            this.label23.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(187, 18);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(46, 13);
+            this.label23.TabIndex = 45;
+            this.label23.Text = "Item Qty";
+            // 
+            // stockGroupBox
+            // 
+            this.stockGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockGroupBox.Controls.Add(this.printStockButton);
+            this.stockGroupBox.Controls.Add(this.print30StockButton);
+            this.stockGroupBox.Location = new System.Drawing.Point(1090, 390);
+            this.stockGroupBox.Name = "stockGroupBox";
+            this.stockGroupBox.Size = new System.Drawing.Size(209, 129);
+            this.stockGroupBox.TabIndex = 52;
+            this.stockGroupBox.TabStop = false;
+            this.stockGroupBox.Text = "STOCK";
+            // 
+            // printStockButton
+            // 
+            this.printStockButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.printStockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.printStockButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printStockButton.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.printStockButton.Location = new System.Drawing.Point(18, 19);
+            this.printStockButton.Name = "printStockButton";
+            this.printStockButton.Size = new System.Drawing.Size(164, 48);
+            this.printStockButton.TabIndex = 47;
+            this.printStockButton.TabStop = false;
+            this.printStockButton.Text = "PRINT STOCK";
+            this.printStockButton.UseVisualStyleBackColor = true;
+            this.printStockButton.Click += new System.EventHandler(this.printStockButton_Click);
+            // 
+            // print30StockButton
+            // 
+            this.print30StockButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.print30StockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.print30StockButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.print30StockButton.ForeColor = System.Drawing.Color.MediumBlue;
+            this.print30StockButton.Location = new System.Drawing.Point(18, 73);
+            this.print30StockButton.Name = "print30StockButton";
+            this.print30StockButton.Size = new System.Drawing.Size(164, 48);
+            this.print30StockButton.TabIndex = 49;
+            this.print30StockButton.TabStop = false;
+            this.print30StockButton.Text = "PRINT 30 STOCK";
+            this.print30StockButton.UseVisualStyleBackColor = true;
+            this.print30StockButton.Click += new System.EventHandler(this.print30StockButton_Click);
+            // 
+            // shelfGroupBox
+            // 
+            this.shelfGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.shelfGroupBox.Controls.Add(this.printShelfButton);
+            this.shelfGroupBox.Controls.Add(this.print30ShelfButton);
+            this.shelfGroupBox.Location = new System.Drawing.Point(871, 390);
+            this.shelfGroupBox.Name = "shelfGroupBox";
+            this.shelfGroupBox.Size = new System.Drawing.Size(200, 129);
+            this.shelfGroupBox.TabIndex = 51;
+            this.shelfGroupBox.TabStop = false;
+            this.shelfGroupBox.Text = "SHELF";
+            // 
+            // printShelfButton
+            // 
+            this.printShelfButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.printShelfButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.printShelfButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printShelfButton.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.printShelfButton.Location = new System.Drawing.Point(19, 19);
+            this.printShelfButton.Name = "printShelfButton";
+            this.printShelfButton.Size = new System.Drawing.Size(164, 48);
+            this.printShelfButton.TabIndex = 48;
+            this.printShelfButton.TabStop = false;
+            this.printShelfButton.Text = "PRINT SHELF";
+            this.printShelfButton.UseVisualStyleBackColor = true;
+            this.printShelfButton.Click += new System.EventHandler(this.printShelfButton_Click);
+            // 
+            // print30ShelfButton
+            // 
+            this.print30ShelfButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.print30ShelfButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.print30ShelfButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.print30ShelfButton.ForeColor = System.Drawing.Color.MediumBlue;
+            this.print30ShelfButton.Location = new System.Drawing.Point(19, 73);
+            this.print30ShelfButton.Name = "print30ShelfButton";
+            this.print30ShelfButton.Size = new System.Drawing.Size(164, 48);
+            this.print30ShelfButton.TabIndex = 50;
+            this.print30ShelfButton.TabStop = false;
+            this.print30ShelfButton.Text = "PRINT 30 SHELF";
+            this.print30ShelfButton.UseVisualStyleBackColor = true;
+            this.print30ShelfButton.Click += new System.EventHandler(this.print30ShelfButton_Click);
             // 
             // clearAllStockRowsBtn
             // 
@@ -794,7 +953,7 @@
             this.clearAllStockRowsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearAllStockRowsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearAllStockRowsBtn.ForeColor = System.Drawing.Color.Red;
-            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(20, 550);
+            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(140, 537);
             this.clearAllStockRowsBtn.Name = "clearAllStockRowsBtn";
             this.clearAllStockRowsBtn.Size = new System.Drawing.Size(211, 28);
             this.clearAllStockRowsBtn.TabIndex = 41;
@@ -803,111 +962,20 @@
             this.clearAllStockRowsBtn.UseVisualStyleBackColor = true;
             this.clearAllStockRowsBtn.Click += new System.EventHandler(this.clearAllStockRowsBtn_Click);
             // 
-            // printAllBtn
-            // 
-            this.printAllBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.printAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.printAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printAllBtn.ForeColor = System.Drawing.Color.MediumBlue;
-            this.printAllBtn.Location = new System.Drawing.Point(751, 484);
-            this.printAllBtn.Name = "printAllBtn";
-            this.printAllBtn.Size = new System.Drawing.Size(164, 48);
-            this.printAllBtn.TabIndex = 40;
-            this.printAllBtn.TabStop = false;
-            this.printAllBtn.Text = "PRINT ALL";
-            this.printAllBtn.UseVisualStyleBackColor = true;
-            this.printAllBtn.Click += new System.EventHandler(this.printAllBtn_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(883, 271);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 52);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 39;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(751, 98);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 52);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            // 
-            // previewStockLabel
-            // 
-            this.previewStockLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.previewStockLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.previewStockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.previewStockLabel.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.previewStockLabel.Location = new System.Drawing.Point(784, 283);
-            this.previewStockLabel.Name = "previewStockLabel";
-            this.previewStockLabel.Size = new System.Drawing.Size(96, 28);
-            this.previewStockLabel.TabIndex = 36;
-            this.previewStockLabel.TabStop = false;
-            this.previewStockLabel.Text = "Preview";
-            this.previewStockLabel.UseVisualStyleBackColor = true;
-            this.previewStockLabel.Click += new System.EventHandler(this.previewStockLabel_Click);
-            // 
-            // stockReportViewer
-            // 
-            this.stockReportViewer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stockReportViewer.DocumentMapWidth = 1;
-            this.stockReportViewer.LocalReport.ReportPath = "./pick_label.rdlc";
-            this.stockReportViewer.Location = new System.Drawing.Point(933, 73);
-            this.stockReportViewer.Margin = new System.Windows.Forms.Padding(0);
-            this.stockReportViewer.Name = "stockReportViewer";
-            this.stockReportViewer.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
-            this.stockReportViewer.ServerReport.BearerToken = null;
-            this.stockReportViewer.ServerReport.ReportPath = "./pick_label.rdlc";
-            this.stockReportViewer.ShowBackButton = false;
-            this.stockReportViewer.ShowContextMenu = false;
-            this.stockReportViewer.ShowCredentialPrompts = false;
-            this.stockReportViewer.ShowDocumentMapButton = false;
-            this.stockReportViewer.ShowExportButton = false;
-            this.stockReportViewer.ShowFindControls = false;
-            this.stockReportViewer.ShowPageNavigationControls = false;
-            this.stockReportViewer.ShowParameterPrompts = false;
-            this.stockReportViewer.ShowPrintButton = false;
-            this.stockReportViewer.ShowProgress = false;
-            this.stockReportViewer.ShowPromptAreaButton = false;
-            this.stockReportViewer.ShowRefreshButton = false;
-            this.stockReportViewer.ShowStopButton = false;
-            this.stockReportViewer.ShowToolBar = false;
-            this.stockReportViewer.ShowZoomControl = false;
-            this.stockReportViewer.Size = new System.Drawing.Size(463, 238);
-            this.stockReportViewer.TabIndex = 35;
-            this.stockReportViewer.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
-            // 
             // addStockBtn
             // 
             this.addStockBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.addStockBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addStockBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addStockBtn.ForeColor = System.Drawing.Color.Green;
-            this.addStockBtn.Location = new System.Drawing.Point(785, 110);
+            this.addStockBtn.Location = new System.Drawing.Point(890, 146);
             this.addStockBtn.Name = "addStockBtn";
-            this.addStockBtn.Size = new System.Drawing.Size(96, 28);
+            this.addStockBtn.Size = new System.Drawing.Size(143, 28);
             this.addStockBtn.TabIndex = 34;
             this.addStockBtn.TabStop = false;
             this.addStockBtn.Text = "Add";
             this.addStockBtn.UseVisualStyleBackColor = true;
             this.addStockBtn.Click += new System.EventHandler(this.addStockBtn_Click);
-            // 
-            // stockCombobox
-            // 
-            this.stockCombobox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stockCombobox.FormattingEnabled = true;
-            this.stockCombobox.Location = new System.Drawing.Point(751, 73);
-            this.stockCombobox.Name = "stockCombobox";
-            this.stockCombobox.Size = new System.Drawing.Size(164, 21);
-            this.stockCombobox.TabIndex = 1;
             // 
             // stockLblDataGridView
             // 
@@ -916,10 +984,11 @@
             this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
             this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.stockLblDataGridView.Location = new System.Drawing.Point(20, 73);
+            this.stockLblDataGridView.Location = new System.Drawing.Point(140, 60);
             this.stockLblDataGridView.Name = "stockLblDataGridView";
             this.stockLblDataGridView.Size = new System.Drawing.Size(716, 459);
             this.stockLblDataGridView.TabIndex = 0;
+            this.stockLblDataGridView.TabStop = false;
             // 
             // SettingsTab
             // 
@@ -1116,10 +1185,16 @@
             this.DifotTab.ResumeLayout(false);
             this.DifotTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).EndInit();
-            this.shelfTab.ResumeLayout(false);
-            this.stockTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.labelTab.ResumeLayout(false);
+            this.labelTab.PerformLayout();
+            this.LABELControlsGroupBox.ResumeLayout(false);
+            this.LABELControlsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemQtyNumberInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.labelQtyNumberInput)).EndInit();
+            this.stockGroupBox.ResumeLayout(false);
+            this.shelfGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.SettingsTab.PerformLayout();
@@ -1185,20 +1260,27 @@
         private System.Windows.Forms.Button tdBtn;
         private System.Windows.Forms.Button clearAllBtn;
         private System.Windows.Forms.TextBox difotSearchBox;
-        private System.Windows.Forms.TabPage shelfTab;
-        private System.Windows.Forms.ComboBox shelfCombobox;
-        private Microsoft.Reporting.WinForms.ReportViewer shelfLabelReportViewer;
-        private System.Windows.Forms.Button generateButton;
-        private System.Windows.Forms.TabPage stockTab;
+        private System.Windows.Forms.TabPage labelTab;
         private System.Windows.Forms.DataGridView stockLblDataGridView;
-        private System.Windows.Forms.ComboBox stockCombobox;
+        private System.Windows.Forms.ComboBox stockCodeLABELCombobox;
         private System.Windows.Forms.Button addStockBtn;
-        private Microsoft.Reporting.WinForms.ReportViewer stockReportViewer;
-        private System.Windows.Forms.Button previewStockLabel;
+        private System.Windows.Forms.Button clearAllStockRowsBtn;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.NumericUpDown labelQtyNumberInput;
+        private System.Windows.Forms.NumericUpDown itemQtyNumberInput;
+        private System.Windows.Forms.GroupBox stockGroupBox;
+        private System.Windows.Forms.Button printStockButton;
+        private System.Windows.Forms.Button print30StockButton;
+        private System.Windows.Forms.GroupBox shelfGroupBox;
+        private System.Windows.Forms.Button printShelfButton;
+        private System.Windows.Forms.Button print30ShelfButton;
+        private System.Windows.Forms.GroupBox LABELControlsGroupBox;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button printAllBtn;
-        private System.Windows.Forms.Button clearAllStockRowsBtn;
+        private System.Windows.Forms.CheckBox customLabelPrinterCheckbox;
+        private System.Windows.Forms.TextBox customLabelPrinterTextBox;
     }
 }
 

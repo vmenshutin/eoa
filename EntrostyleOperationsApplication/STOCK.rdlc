@@ -29,6 +29,10 @@
           <DataField>BARCODE</DataField>
           <rd:TypeName>System.Byte[]</rd:TypeName>
         </Field>
+        <Field Name="ITEMQTY">
+          <DataField>ITEMQTY</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>StockLabelDataSet</rd:DataSetName>
@@ -129,7 +133,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!ItemQty.Value</Value>
+                    <Value>=Sum(Fields!ITEMQTY.Value, "DataSet1")</Value>
                     <Style>
                       <FontSize>14pt</FontSize>
                     </Style>
