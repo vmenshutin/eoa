@@ -211,7 +211,7 @@ namespace EntrostyleOperationsApplication
 
             if (TntRadioButton.Checked && carrier.Length >= 21)
             {
-                carrier = @"http://www.tntexpress.com.au/interaction/ASPs/Trackcon_tntau.asp?id=TRACK.ASPX&con=ECN" + carrier.Substring(12, 9);
+                carrier = @"http://www.tntexpress.com.au/interaction/ASPs/Trackcon_tntau.asp?id=TRACK.ASPX&con=ETZ" + carrier.Substring(12, 9);
             }
             else if (startTrackRadioButton.Checked)
             {

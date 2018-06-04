@@ -757,6 +757,7 @@
             // 
             // LABELControlsGroupBox
             // 
+            this.LABELControlsGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LABELControlsGroupBox.Controls.Add(this.pictureBox2);
             this.LABELControlsGroupBox.Controls.Add(this.pictureBox1);
             this.LABELControlsGroupBox.Controls.Add(this.label22);
@@ -1043,7 +1044,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 1.8.0 23/05/2018";
+            this.label20.Text = "EOA 1.8.1 25/05/2018";
             // 
             // label18
             // 
