@@ -752,10 +752,10 @@ namespace EntrostyleOperationsApplication
                 // set barcode for each row
                 foreach (DataRow row in dataTable2.Rows)
                 {
-                    if (row["STOCKCODE"].ToString().Length > 0)
-                    {
-                        row["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(row["STOCKCODE"].ToString(), 100, 100, 0), typeof(byte[])));
-                    }
+                    row["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(
+                        (row["STOCKCODE"].ToString().Length > 0 ? row["STOCKCODE"].ToString() : @"N/A") + "," +
+                        (row["DESCRIPTION"].ToString().Length > 0 ? row["DESCRIPTION"].ToString() : @"N/A") + "," +
+                        (row["PICK_NOW"].ToString().Length > 0 ? row["PICK_NOW"].ToString() : @"N/A"), 300, 300, 0), typeof(byte[])));
                 }
 
                 salesOrderReport.DataSources.Add(new ReportDataSource("DataSet2", dataTable2));
