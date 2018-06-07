@@ -727,38 +727,37 @@ namespace EntrostyleOperationsApplication
 
                 // salesord_lines
                 // filter by location and pick qty
-                var dataTable2 = SOItemDetailsDataSet.Tables[0];
+                var filteredSOItems = SOItemDetailsDataSet.Tables[0];
+                var dataSource2 = new DataTable();
+                dataSource2.Columns.Add("BARCODE", typeof(byte[]));
 
-                var rows = dataTable2.AsEnumerable()
+                var rows = filteredSOItems.AsEnumerable()
                     .Where(r => ((float.Parse(r["PICK_NOW"].ToString()) > 0) || (r["STOCKCODE"].ToString()).Length == 0)
                         && r["LOCATION"].ToString()[0].Equals('1'));
 
-                dataTable2 = rows.Any() ? rows.CopyToDataTable() : dataTable2.Clone();
+                filteredSOItems = rows.Any() ? rows.CopyToDataTable() : filteredSOItems.Clone();
 
-                // remove all unnecessary columns
-                for (int i = dataTable2.Columns.Count - 1; i >= 0; i--)
-                {
-                    string[] columnsToKeep = { "STOCKCODE", "DESCRIPTION", "PICK_NOW" };
-
-                    if (!columnsToKeep.Contains<string>(dataTable2.Columns[i].ColumnName))
-                    {
-                        dataTable2.Columns.RemoveAt(i);
-                    }
-                }
-                    
-                // add barcode column
-                dataTable2.Columns.Add("BARCODE", typeof(byte[]));
+                string tempBarCode = "";
 
                 // set barcode for each row
-                foreach (DataRow row in dataTable2.Rows)
+                for (int i = 0; i < filteredSOItems.Rows.Count; i++)
                 {
-                    row["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(
-                        (row["STOCKCODE"].ToString().Length > 0 ? row["STOCKCODE"].ToString() : @"N/A") + "," +
+                    var row = filteredSOItems.Rows[i];
+                    tempBarCode += (row["STOCKCODE"].ToString().Length > 0 ? row["STOCKCODE"].ToString() : @"N/A") + "," +
                         (row["DESCRIPTION"].ToString().Length > 0 ? row["DESCRIPTION"].ToString() : @"N/A") + "," +
-                        (row["PICK_NOW"].ToString().Length > 0 ? row["PICK_NOW"].ToString() : @"N/A"), 300, 300, 0), typeof(byte[])));
+                        (row["PICK_NOW"].ToString().Length > 0 ? row["PICK_NOW"].ToString() : @"N/A") + ";";
+
+                    if ((i + 1) % 10 == 0 || i == (filteredSOItems.Rows.Count - 1))
+                    {
+                        DataRow newRow = dataSource2.NewRow();
+                        newRow["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(tempBarCode, 800, 800, 0), typeof(byte[])));
+                        dataSource2.Rows.Add(newRow);
+
+                        tempBarCode = "";
+                    }
                 }
 
-                salesOrderReport.DataSources.Add(new ReportDataSource("DataSet2", dataTable2));
+                salesOrderReport.DataSources.Add(new ReportDataSource("DataSet2", dataSource2));
                 // end of salesord_lines
 
                 exportReport(salesOrderReport, 8, 10.7, 0.59, 0.59);
