@@ -9,13 +9,14 @@ GO
 
 CREATE TABLE [dbo].[EOA_SETTINGS](
     [PRINTER_NAME] varchar(255) NOT NULL,
-	[LABEL_PRINTER] varchar(255) NULL
+	[LABEL_PRINTER] varchar(255) NULL,
+	[30_LABEL_PRINTER] varchar(255) NULL
 )
 
 GO
 
 INSERT INTO EOA_SETTINGS
-VALUES ('', 'Microsoft Print to PDF');
+VALUES ('', 'Microsoft Print to PDF', 'Microsoft Print to PDF');
 
 GO
 

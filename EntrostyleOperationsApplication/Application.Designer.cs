@@ -97,6 +97,8 @@
             this.addStockBtn = new System.Windows.Forms.Button();
             this.stockLblDataGridView = new System.Windows.Forms.DataGridView();
             this.SettingsTab = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.settings_30LabelPrinter = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.settings_labelPrinter = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -994,6 +996,8 @@
             // SettingsTab
             // 
             this.SettingsTab.BackColor = System.Drawing.Color.Gainsboro;
+            this.SettingsTab.Controls.Add(this.label25);
+            this.SettingsTab.Controls.Add(this.settings_30LabelPrinter);
             this.SettingsTab.Controls.Add(this.label21);
             this.SettingsTab.Controls.Add(this.settings_labelPrinter);
             this.SettingsTab.Controls.Add(this.label20);
@@ -1013,6 +1017,28 @@
             this.SettingsTab.TabIndex = 2;
             this.SettingsTab.Text = "Settings";
             // 
+            // label25
+            // 
+            this.label25.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label25.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label25.Location = new System.Drawing.Point(447, 321);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(109, 15);
+            this.label25.TabIndex = 61;
+            this.label25.Text = "30 Label printer";
+            // 
+            // settings_30LabelPrinter
+            // 
+            this.settings_30LabelPrinter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.settings_30LabelPrinter.BackColor = System.Drawing.Color.LightGray;
+            this.settings_30LabelPrinter.Location = new System.Drawing.Point(588, 320);
+            this.settings_30LabelPrinter.Name = "settings_30LabelPrinter";
+            this.settings_30LabelPrinter.Size = new System.Drawing.Size(426, 20);
+            this.settings_30LabelPrinter.TabIndex = 60;
+            this.settings_30LabelPrinter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label21
             // 
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1021,9 +1047,9 @@
             this.label21.ForeColor = System.Drawing.Color.RoyalBlue;
             this.label21.Location = new System.Drawing.Point(447, 295);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(89, 15);
+            this.label21.Size = new System.Drawing.Size(101, 15);
             this.label21.TabIndex = 59;
-            this.label21.Text = "Label printer";
+            this.label21.Text = "1 Label printer";
             // 
             // settings_labelPrinter
             // 
@@ -1044,7 +1070,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 1.8.3 07/06/2018";
+            this.label20.Text = "EOA 1.8.4 08/06/2018";
             // 
             // label18
             // 
@@ -1125,7 +1151,7 @@
             this.settings_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settings_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settings_Save.ForeColor = System.Drawing.Color.Green;
-            this.settings_Save.Location = new System.Drawing.Point(450, 331);
+            this.settings_Save.Location = new System.Drawing.Point(450, 360);
             this.settings_Save.Name = "settings_Save";
             this.settings_Save.Size = new System.Drawing.Size(201, 35);
             this.settings_Save.TabIndex = 50;
@@ -1282,6 +1308,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox customLabelPrinterCheckbox;
         private System.Windows.Forms.TextBox customLabelPrinterTextBox;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox settings_30LabelPrinter;
     }
 }
 

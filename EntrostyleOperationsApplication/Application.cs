@@ -516,6 +516,7 @@ namespace EntrostyleOperationsApplication
 
             settings_printerName.Text = settingsRow["PRINTER_NAME"].ToString();
             settings_labelPrinter.Text = settingsRow["LABEL_PRINTER"].ToString();
+            settings_30LabelPrinter.Text = settingsRow["30_LABEL_PRINTER"].ToString();
         }
 
         // load DIFOT data
@@ -728,6 +729,7 @@ namespace EntrostyleOperationsApplication
                 // salesord_lines
                 // filter by location and pick qty
                 var filteredSOItems = SOItemDetailsDataSet.Tables[0];
+
                 var dataSource2 = new DataTable();
                 dataSource2.Columns.Add("BARCODE", typeof(byte[]));
 
@@ -737,15 +739,33 @@ namespace EntrostyleOperationsApplication
 
                 filteredSOItems = rows.Any() ? rows.CopyToDataTable() : filteredSOItems.Clone();
 
+                // remove all unnecessary columns from filteredSOItems
+                for (int i = filteredSOItems.Columns.Count - 1; i >= 0; i--)
+                {
+                    string[] columnsToKeep = { "STOCKCODE", "DESCRIPTION", "PICK_NOW" };
+
+                    if (!columnsToKeep.Contains<string>(filteredSOItems.Columns[i].ColumnName))
+                    {
+                        filteredSOItems.Columns.RemoveAt(i);
+                    }
+                }
+
+                // add barcode column
+                filteredSOItems.Columns.Add("BARCODE", typeof(byte[]));
+
                 string tempBarCode = "";
 
-                // set barcode for each row
+                // set barcode for each row + generate QR per each 10 records
                 for (int i = 0; i < filteredSOItems.Rows.Count; i++)
                 {
                     var row = filteredSOItems.Rows[i];
+
                     tempBarCode += (row["STOCKCODE"].ToString().Length > 0 ? row["STOCKCODE"].ToString() : @"N/A") + "," +
                         (row["DESCRIPTION"].ToString().Length > 0 ? row["DESCRIPTION"].ToString() : @"N/A") + "," +
                         (row["PICK_NOW"].ToString().Length > 0 ? row["PICK_NOW"].ToString() : @"N/A") + ";";
+
+                    if (row["STOCKCODE"].ToString().Length > 0)
+                        row["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(GenerateBarcode(row["STOCKCODE"].ToString(), 100, 100, 0), typeof(byte[])));
 
                     if ((i + 1) % 10 == 0 || i == (filteredSOItems.Rows.Count - 1))
                     {
@@ -758,6 +778,7 @@ namespace EntrostyleOperationsApplication
                 }
 
                 salesOrderReport.DataSources.Add(new ReportDataSource("DataSet2", dataSource2));
+                salesOrderReport.DataSources.Add(new ReportDataSource("DataSet3", filteredSOItems));
                 // end of salesord_lines
 
                 exportReport(salesOrderReport, 8, 10.7, 0.59, 0.59);
@@ -1438,7 +1459,8 @@ namespace EntrostyleOperationsApplication
         private void settings_Save_Click(object sender, EventArgs e)
         {
             OdbcCommand command = new OdbcCommand("update EOA_SETTINGS set PRINTER_NAME = '" + settings_printerName.Text
-                + "', " + "LABEL_PRINTER = '" + settings_labelPrinter.Text + "'", connection);
+                + "', " + "LABEL_PRINTER = '" + settings_labelPrinter.Text + "', "
+                + "[30_LABEL_PRINTER] = '" + settings_30LabelPrinter.Text + "'", connection);
             command.ExecuteNonQuery();
         }
 
@@ -1902,7 +1924,7 @@ namespace EntrostyleOperationsApplication
             initLABELReport(report);
             exportReport(report, 8.27, 11.69); // 0.59, 0.59
             prepareDocAndPrint(new PaperSize("Layout 30", 827, 1169),
-                customLabelPrinterCheckbox.Checked ? customLabelPrinterTextBox.Text : settings_labelPrinter.Text, 1);
+                customLabelPrinterCheckbox.Checked ? customLabelPrinterTextBox.Text : settings_30LabelPrinter.Text, 1);
 
             labelPrintButtonsEnabled(true);
             wait.Close();
