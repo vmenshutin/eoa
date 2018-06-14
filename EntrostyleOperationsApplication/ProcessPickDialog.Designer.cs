@@ -56,7 +56,7 @@
             this.printLabelBtn.TabStop = false;
             this.printLabelBtn.Text = "Print # labels";
             this.printLabelBtn.UseVisualStyleBackColor = true;
-            this.printLabelBtn.Click += new System.EventHandler(this.printLabelBtn_Click);
+            this.printLabelBtn.Click += new System.EventHandler(this.PrintLabelBtn_Click);
             // 
             // reportViewer1
             // 
@@ -101,7 +101,7 @@
             this.continueBtn.TabStop = false;
             this.continueBtn.Text = "Continue";
             this.continueBtn.UseVisualStyleBackColor = true;
-            this.continueBtn.Click += new System.EventHandler(this.continueBtn_Click);
+            this.continueBtn.Click += new System.EventHandler(this.ContinueBtn_Click);
             // 
             // label22
             // 
@@ -131,7 +131,7 @@
             0,
             0,
             0});
-            this.numericUpDown1.Enter += new System.EventHandler(this.numericUpDown1_Enter);
+            this.numericUpDown1.Enter += new System.EventHandler(this.NumericUpDown1_Enter);
             // 
             // printOnlyBtn
             // 
@@ -145,7 +145,7 @@
             this.printOnlyBtn.TabStop = false;
             this.printOnlyBtn.Text = "Print Only";
             this.printOnlyBtn.UseVisualStyleBackColor = true;
-            this.printOnlyBtn.Click += new System.EventHandler(this.printOnlyBtn_Click);
+            this.printOnlyBtn.Click += new System.EventHandler(this.PrintOnlyBtn_Click);
             // 
             // label1
             // 
@@ -164,7 +164,7 @@
             this.carrierTextBox.Name = "carrierTextBox";
             this.carrierTextBox.Size = new System.Drawing.Size(219, 20);
             this.carrierTextBox.TabIndex = 0;
-            this.carrierTextBox.TextChanged += new System.EventHandler(this.carrierTextBox_TextChanged);
+            this.carrierTextBox.TextChanged += new System.EventHandler(this.CarrierTextBox_TextChanged);
             // 
             // groupBox1
             // 

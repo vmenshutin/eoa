@@ -41,14 +41,16 @@ namespace EntrostyleOperationsApplication
             {
                 carrierTextBox.Text = carrier;
             }
-            carrierTextBox.TextChanged += carrierTextBox_TextChanged;
+            carrierTextBox.TextChanged += CarrierTextBox_TextChanged;
 
             reportViewer1.ProcessingMode = ProcessingMode.Local;
             reportViewer1.LocalReport.ReportPath = @".\carrier_label.rdlc";
             reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
-                
-            report = new LocalReport();
-            report.ReportPath = @".\carrier_label.rdlc";
+
+            report = new LocalReport
+            {
+                ReportPath = @".\carrier_label.rdlc"
+            };
             report.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
 
             DataTable dt = new DataTable();
@@ -76,17 +78,17 @@ namespace EntrostyleOperationsApplication
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
 
             reportViewer1.RefreshReport();
-            initRadioButtons();
+            InitRadioButtons();
         }
 
-        private void initRadioButtons()
+        private void InitRadioButtons()
         {
-            CustomRadioButton.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
-            TntRadioButton.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
-            startTrackRadioButton.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
+            CustomRadioButton.CheckedChanged += new EventHandler(RadioButtons_CheckedChanged);
+            TntRadioButton.CheckedChanged += new EventHandler(RadioButtons_CheckedChanged);
+            startTrackRadioButton.CheckedChanged += new EventHandler(RadioButtons_CheckedChanged);
         }
 
-        private void radioButtons_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtons_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
 
@@ -95,14 +97,14 @@ namespace EntrostyleOperationsApplication
                 printLabelBtn.Enabled = true;
                 printOnlyBtn.Enabled = true;
                 reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
-                carrierTextBox.TextChanged += carrierTextBox_TextChanged;
+                carrierTextBox.TextChanged += CarrierTextBox_TextChanged;
             }
             else if (TntRadioButton.Checked || startTrackRadioButton.Checked)
             {
                 printLabelBtn.Enabled = false;
                 printOnlyBtn.Enabled = false;
                 reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", ""));
-                carrierTextBox.TextChanged -= carrierTextBox_TextChanged;
+                carrierTextBox.TextChanged -= CarrierTextBox_TextChanged;
             }
 
             reportViewer1.RefreshReport();
@@ -131,9 +133,8 @@ namespace EntrostyleOperationsApplication
                 <MarginRight>0in</MarginRight>
                 <MarginBottom>0in</MarginBottom>
             </DeviceInfo>";
-            Warning[] warnings;
             m_streams = new List<Stream>();
-            report.Render("Image", deviceInfo, CreateStream, out warnings);
+            report.Render("Image", deviceInfo, CreateStream, out Warning[] warnings);
             foreach (Stream stream in m_streams)
                 stream.Position = 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
         }
@@ -182,7 +183,7 @@ namespace EntrostyleOperationsApplication
             printDoc.Print();
         }
 
-        private void printLabelBtn_Click(object sender, EventArgs e)
+        private void PrintLabelBtn_Click(object sender, EventArgs e)
         {
             Print();
             callback(carrierTextBox.Text);
@@ -205,7 +206,7 @@ namespace EntrostyleOperationsApplication
             return barcodeWriter.Write(barcodeText);
         }
 
-        private void continueBtn_Click(object sender, EventArgs e)
+        private void ContinueBtn_Click(object sender, EventArgs e)
         {
             string carrier = carrierTextBox.Text;
 
@@ -229,29 +230,29 @@ namespace EntrostyleOperationsApplication
             {
                 if (ActiveControl.Name == carrierTextBox.Name)
                 {
-                    continueBtn_Click(continueBtn, new EventArgs());
+                    ContinueBtn_Click(continueBtn, new EventArgs());
                 }
                 else
                 {
-                    printLabelBtn_Click(printLabelBtn, new EventArgs());
+                    PrintLabelBtn_Click(printLabelBtn, new EventArgs());
                 }
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void printOnlyBtn_Click(object sender, EventArgs e)
+        private void PrintOnlyBtn_Click(object sender, EventArgs e)
         {
             Print();
             Close();
         }
 
-        private void numericUpDown1_Enter(object sender, EventArgs e)
+        private void NumericUpDown1_Enter(object sender, EventArgs e)
         {
             numericUpDown1.Select(0, numericUpDown1.Text.Length);
         }
 
-        private void carrierTextBox_TextChanged(object sender, EventArgs e)
+        private void CarrierTextBox_TextChanged(object sender, EventArgs e)
         {
             reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
             reportViewer1.RefreshReport();
