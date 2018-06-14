@@ -6,6 +6,7 @@ GO
 
 SET ANSI_PADDING ON
 GO
+
 CREATE TABLE EOA_SESSIONS(
     SESSIONID [int] NOT NULL,
     TIME_STAMP [datetime] NULL
@@ -19,10 +20,6 @@ PRIMARY KEY CLUSTERED
 GO
 
 SET ANSI_PADDING OFF
-GO
-
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'clear_obsolete_sessions')
-	DROP PROCEDURE clear_obsolete_sessions
 GO
 
 create procedure clear_obsolete_sessions
@@ -47,10 +44,6 @@ delete
 
 end
 
-GO
-
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_authentificate')
-	DROP PROCEDURE eoa_authentificate
 GO
 
 create procedure eoa_authentificate @sessionId int

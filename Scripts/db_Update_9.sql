@@ -30,8 +30,6 @@ as begin
 UPDATE lines
 set lines.BKORD_QUANT = lines.UNSUP_QUANT - lines.PICK_NOW
 	,lines.SUPPLY_NOW = lines.PICK_NOW
-	--,lines.INV_QUANT = lines.PICK_NOW
-	--,lines.INVOICE_NOW = lines.PICK_NOW
 from [SALESORD_LINES] lines
 	left join STOCK_ITEMS items
 		on lines.STOCKCODE = items.STOCKCODE 

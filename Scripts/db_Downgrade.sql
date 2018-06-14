@@ -20,17 +20,6 @@ END
 
 go
 
--- removed from EOA. never created again
-IF EXISTS( SELECT * 
-FROM INFORMATION_SCHEMA.COLUMNS 
-WHERE TABLE_NAME = 'SALESORD_HDR' AND  COLUMN_NAME = 'X_TOTALTIME') 
-BEGIN 
-	ALTER TABLE SALESORD_HDR 
-	DROP COLUMN X_TOTALTIME
-END
-
-go
-
 IF EXISTS( SELECT * 
 FROM INFORMATION_SCHEMA.COLUMNS 
 WHERE TABLE_NAME = 'SALESORD_HDR' AND  COLUMN_NAME = 'X_DUETIME') 
@@ -204,7 +193,6 @@ if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'EOA_NARRA
     
 go
 
-
 -- drop stored procedures ------------------------------------------------------------------ 
     
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'query_salesorders_main')
@@ -235,11 +223,6 @@ IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'so_secondary_u
 	DROP PROCEDURE so_secondary_update_METHOD
 GO
 
--- removed from EOA. never created again
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'so_secondary_update_TIME')
-	DROP PROCEDURE so_secondary_update_TIME
-GO
-
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'so_secondary_update_DUEDATE')
 	DROP PROCEDURE so_secondary_update_DUEDATE
 GO
@@ -258,11 +241,6 @@ GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'so_main_update_METHOD')
 	DROP PROCEDURE so_main_update_METHOD
-GO
-
--- removed from EOA is never created again
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'so_main_update_TIME')
-	DROP PROCEDURE so_main_update_TIME
 GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'so_main_update_DUEDATE')
@@ -289,10 +267,6 @@ IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_fetch_so_i
 	DROP PROCEDURE eoa_fetch_so_item_details
 GO
 
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_so_item_details_update')
-	DROP PROCEDURE eoa_so_item_details_update
-GO
-
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_so_item_details_update_PICK_NOW')
 	DROP PROCEDURE eoa_so_item_details_update_PICK_NOW
 GO
@@ -307,11 +281,6 @@ GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_update_difot_X_DIFOT_TIMESTAMP')
 	DROP PROCEDURE eoa_update_difot_X_DIFOT_TIMESTAMP
-GO
-
--- obsolete. is never recreated again
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_update_difot_X_DIFOT_STATUS')
-	DROP PROCEDURE eoa_update_difot_X_DIFOT_STATUS
 GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_update_difot_DIFOT_FAKE')
@@ -375,12 +344,6 @@ GO
 IF EXISTS (SELECT name FROM sysobjects WHERE name = 'EOA_CLEAR_SCHEDULING_DATA' AND type = 'TR')
 BEGIN
     DROP TRIGGER EOA_CLEAR_SCHEDULING_DATA
-END
-GO
-
-IF EXISTS (SELECT name FROM sysobjects WHERE name = 'EOA_CLEAR_SCHEDULING_DATA_ON_WAITING' AND type = 'TR')
-BEGIN
-    DROP TRIGGER EOA_CLEAR_SCHEDULING_DATA_ON_WAITING
 END
 GO
 

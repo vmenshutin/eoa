@@ -6,6 +6,7 @@ GO
 
 SET ANSI_PADDING ON
 GO
+
 CREATE TABLE [dbo].[EOA_NARRATIVE](
     [SEQNO] [int] NOT NULL,
     [NARRATIVE] [varchar](4096) NULL,

@@ -20,14 +20,6 @@ select @inserted_status = i.STATUS from inserted i;
 	 set sales.X_DISPATCHSTATUS = 'Sc'
 		,sales.X_PICKDATE = 
 		(CASE
-			--when X_DISPATCHMETHOD = 'G' and @inserted_status <> 2 and CAST(CURRENT_TIMESTAMP AS time) < CAST('15:00:00' as time) and datename(weekday,CURRENT_TIMESTAMP) = 'Friday' then DateAdd(dd,3,CURRENT_TIMESTAMP)
-			--when X_DISPATCHMETHOD = 'G' and @inserted_status <> 2 and CAST(CURRENT_TIMESTAMP AS time) < CAST('15:00:00' as time) and datename(weekday,CURRENT_TIMESTAMP) = 'Saturday' then DateAdd(dd,2,CURRENT_TIMESTAMP)
-			--when X_DISPATCHMETHOD = 'G' and @inserted_status <> 2 and CAST(CURRENT_TIMESTAMP AS time) < CAST('15:00:00' as time) and datename(weekday,CURRENT_TIMESTAMP) <> 'Friday' and datename(weekday,CURRENT_TIMESTAMP) <> 'Saturday' then DateAdd(dd,1,CURRENT_TIMESTAMP)
-			
-			--when X_DISPATCHMETHOD = 'G' and @inserted_status <> 2 and CAST(CURRENT_TIMESTAMP AS time) >= CAST('15:00:00' as time) and datename(weekday,CURRENT_TIMESTAMP) = 'Friday' then DateAdd(dd,4,CURRENT_TIMESTAMP)
-			--when X_DISPATCHMETHOD = 'G' and @inserted_status <> 2 and CAST(CURRENT_TIMESTAMP AS time) >= CAST('15:00:00' as time) and datename(weekday,CURRENT_TIMESTAMP) = 'Saturday' then DateAdd(dd,3,CURRENT_TIMESTAMP)
-			--when X_DISPATCHMETHOD = 'G' and @inserted_status <> 2 and CAST(CURRENT_TIMESTAMP AS time) >= CAST('15:00:00' as time) and datename(weekday,CURRENT_TIMESTAMP) <> 'Friday' and datename(weekday,CURRENT_TIMESTAMP) <> 'Saturday' then DateAdd(dd,2,CURRENT_TIMESTAMP)
-			
 			when X_DISPATCHMETHOD = 'E1' and @inserted_status <> 2 and CAST(CURRENT_TIMESTAMP AS time) >= CAST('16:00:00' as time) and datename(weekday,CURRENT_TIMESTAMP) = 'Friday' then DateAdd(dd,3,CURRENT_TIMESTAMP)
 			when X_DISPATCHMETHOD = 'E1' and @inserted_status <> 2 and CAST(CURRENT_TIMESTAMP AS time) >= CAST('16:00:00' as time) and datename(weekday,CURRENT_TIMESTAMP) = 'Saturday' then DateAdd(dd,2,CURRENT_TIMESTAMP)
 			when X_DISPATCHMETHOD = 'E1' and @inserted_status <> 2 and CAST(CURRENT_TIMESTAMP AS time) >= CAST('16:00:00' as time) and datename(weekday,CURRENT_TIMESTAMP) <> 'Friday' and datename(weekday,CURRENT_TIMESTAMP) <> 'Saturday' then DateAdd(dd,1,CURRENT_TIMESTAMP)
@@ -79,7 +71,6 @@ select @inserted_status = i.STATUS from inserted i;
 			when X_DISPATCHMETHOD = 'I' and @inserted_status <> 2 then DATEADD(HH, 16, DATEDIFF(dd, 0, X_PICKDATE))
 			
 			when X_DISPATCHMETHOD = 'P' and @inserted_status <> 2 then CAST('17:00:00' as time)
-			--when X_DISPATCHMETHOD = 'G' and @inserted_status <> 2 then CAST('09:00:00' as time)	
 			when X_DISPATCHMETHOD = 'N' and @inserted_status <> 2 then CAST('16:00:00' as time)					
 			
 			else X_DUETIME

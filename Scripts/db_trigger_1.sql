@@ -1,9 +1,3 @@
-IF EXISTS (SELECT name FROM sysobjects WHERE name = 'status_is_scheduled' AND type = 'TR')
-BEGIN
-    DROP TRIGGER status_is_scheduled
-END
-GO
-
 create TRIGGER status_is_scheduled ON SALESORD_HDR
 AFTER UPDATE
 as begin

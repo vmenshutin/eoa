@@ -52,7 +52,6 @@ begin
 				when LOWER(trans.X_DIFOT_STATUS) <> 'shipped late' and LOWER(trans.X_DIFOT_STATUS) <> 'difot'  then null
 				else LOWER(trans.X_DIFOT_STATUS)
 			end
-			--,trans.X_DIFOT_STATUS
 			,trans.X_DIFOT_TIMESTAMP
 			,trans.X_DIFOT_NOTE
 			,@sessionId
@@ -92,7 +91,6 @@ begin
 				when LOWER(trans.X_DIFOT_STATUS) <> 'shipped late' and LOWER(trans.X_DIFOT_STATUS) <> 'difot'  then null
 				else LOWER(trans.X_DIFOT_STATUS)
 			end
-			--,trans.X_DIFOT_STATUS
 			,trans.X_DIFOT_TIMESTAMP
 			,trans.X_DIFOT_NOTE
 			,@sessionId
