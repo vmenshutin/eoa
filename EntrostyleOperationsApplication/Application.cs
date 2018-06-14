@@ -243,7 +243,7 @@ namespace EntrostyleOperationsApplication
             {
                 var wait = showWaitForm();
 
-                var preview = new PrintPickingDialog(row, settings_labelPrinter.Text, initSalesOrderReport); // new
+                var preview = new PrintPickingDialog(row, settings_PickLabelPrinter.Text, initSalesOrderReport); // new
                 preview.Show();
 
                 wait.Close();
@@ -517,6 +517,7 @@ namespace EntrostyleOperationsApplication
             settings_printerName.Text = settingsRow["PRINTER_NAME"].ToString();
             settings_labelPrinter.Text = settingsRow["LABEL_PRINTER"].ToString();
             settings_30LabelPrinter.Text = settingsRow["30_LABEL_PRINTER"].ToString();
+            settings_PickLabelPrinter.Text = settingsRow["PICK_LABEL_PRINTER"].ToString();
         }
 
         // load DIFOT data
@@ -1460,6 +1461,7 @@ namespace EntrostyleOperationsApplication
         {
             OdbcCommand command = new OdbcCommand("update EOA_SETTINGS set PRINTER_NAME = '" + settings_printerName.Text
                 + "', " + "LABEL_PRINTER = '" + settings_labelPrinter.Text + "', "
+                + "PICK_LABEL_PRINTER = '" + settings_PickLabelPrinter.Text + "', "
                 + "[30_LABEL_PRINTER] = '" + settings_30LabelPrinter.Text + "'", connection);
             command.ExecuteNonQuery();
         }
@@ -1509,7 +1511,7 @@ namespace EntrostyleOperationsApplication
             {
                 var wait = showWaitForm();
 
-                var preview = new ProcessPickDialog(getCurrentSORow(), settings_labelPrinter.Text, process);
+                var preview = new ProcessPickDialog(getCurrentSORow(), settings_PickLabelPrinter.Text, process);
                 preview.Show();
 
                 wait.Close();
