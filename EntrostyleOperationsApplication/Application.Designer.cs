@@ -255,7 +255,7 @@
             this.clearSearchBtn.TabIndex = 3;
             this.clearSearchBtn.Text = "Clear";
             this.clearSearchBtn.UseVisualStyleBackColor = true;
-            this.clearSearchBtn.Click += new System.EventHandler(this.clearSearchBtn_Click);
+            this.clearSearchBtn.Click += new System.EventHandler(this.ClearSearchBtn_Click);
             // 
             // searchBox
             // 
@@ -265,7 +265,7 @@
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(686, 20);
             this.searchBox.TabIndex = 2;
-            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            this.searchBox.TextChanged += new System.EventHandler(this.SearchBox_TextChanged);
             // 
             // SOSecondary
             // 
@@ -292,7 +292,7 @@
             this.clearAllBtn.TabStop = false;
             this.clearAllBtn.Text = "Clear All";
             this.clearAllBtn.UseVisualStyleBackColor = true;
-            this.clearAllBtn.Click += new System.EventHandler(this.clearAllBtn_Click);
+            this.clearAllBtn.Click += new System.EventHandler(this.ClearAllBtn_Click);
             // 
             // tdBtn
             // 
@@ -306,7 +306,7 @@
             this.tdBtn.TabStop = false;
             this.tdBtn.Text = "T + D";
             this.tdBtn.UseVisualStyleBackColor = true;
-            this.tdBtn.Click += new System.EventHandler(this.tdBtn_Click);
+            this.tdBtn.Click += new System.EventHandler(this.TdBtn_Click);
             // 
             // duplicateBtn
             // 
@@ -320,7 +320,7 @@
             this.duplicateBtn.TabStop = false;
             this.duplicateBtn.Text = "Duplicate";
             this.duplicateBtn.UseVisualStyleBackColor = true;
-            this.duplicateBtn.Click += new System.EventHandler(this.duplicateBtn_Click);
+            this.duplicateBtn.Click += new System.EventHandler(this.DuplicateBtn_Click);
             // 
             // referenceTextBox
             // 
@@ -355,7 +355,7 @@
             this.transferBtn.TabStop = false;
             this.transferBtn.Text = "Transfer";
             this.transferBtn.UseVisualStyleBackColor = true;
-            this.transferBtn.Click += new System.EventHandler(this.transferBtn_Click);
+            this.transferBtn.Click += new System.EventHandler(this.TransferBtn_Click);
             // 
             // splitContainer3
             // 
@@ -389,7 +389,7 @@
             this.narrativeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.narrativeTextBox.Size = new System.Drawing.Size(623, 79);
             this.narrativeTextBox.TabIndex = 22;
-            this.narrativeTextBox.TextChanged += new System.EventHandler(this.narrativeTextBox_TextChanged);
+            this.narrativeTextBox.TextChanged += new System.EventHandler(this.NarrativeTextBox_TextChanged);
             // 
             // SOItemDetails
             // 
@@ -469,7 +469,7 @@
             this.pickAllBtn.TabIndex = 19;
             this.pickAllBtn.Text = "Pick All";
             this.pickAllBtn.UseVisualStyleBackColor = true;
-            this.pickAllBtn.Click += new System.EventHandler(this.pickAllBtn_Click);
+            this.pickAllBtn.Click += new System.EventHandler(this.PickAllBtn_Click);
             // 
             // processPickBtn
             // 
@@ -482,7 +482,7 @@
             this.processPickBtn.TabIndex = 18;
             this.processPickBtn.Text = "Process";
             this.processPickBtn.UseVisualStyleBackColor = true;
-            this.processPickBtn.Click += new System.EventHandler(this.processPickBtn_Click);
+            this.processPickBtn.Click += new System.EventHandler(this.ProcessPickBtn_Click);
             // 
             // printPickingBtn
             // 
@@ -495,7 +495,7 @@
             this.printPickingBtn.TabIndex = 17;
             this.printPickingBtn.Text = "Pick";
             this.printPickingBtn.UseVisualStyleBackColor = true;
-            this.printPickingBtn.Click += new System.EventHandler(this.printPickingBtn_Click);
+            this.printPickingBtn.Click += new System.EventHandler(this.PrintPickingBtn_Click);
             // 
             // refreshF10
             // 
@@ -510,7 +510,7 @@
             this.refreshF10.Text = "Refresh (F10)";
             this.refreshF10.UseVisualStyleBackColor = false;
             this.refreshF10.Visible = false;
-            this.refreshF10.Click += new System.EventHandler(this.refreshF10_Click);
+            this.refreshF10.Click += new System.EventHandler(this.RefreshF10_Click);
             // 
             // label12
             // 
@@ -544,7 +544,7 @@
             this.refreshF5.TabIndex = 13;
             this.refreshF5.Text = "Refresh (F5)";
             this.refreshF5.UseVisualStyleBackColor = false;
-            this.refreshF5.Click += new System.EventHandler(this.button1_Click);
+            this.refreshF5.Click += new System.EventHandler(this.Button1_Click);
             // 
             // label1
             // 
@@ -641,7 +641,7 @@
             this.label6.Size = new System.Drawing.Size(15, 13);
             this.label6.TabIndex = 7;
             this.label6.Text = "#";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.label6.Click += new System.EventHandler(this.Label6_Click);
             // 
             // label7
             // 
@@ -687,7 +687,7 @@
             this.refreshDifot.TabIndex = 4;
             this.refreshDifot.Text = "Apply / Refresh";
             this.refreshDifot.UseVisualStyleBackColor = true;
-            this.refreshDifot.Click += new System.EventHandler(this.refreshDifot_Click);
+            this.refreshDifot.Click += new System.EventHandler(this.RefreshDifot_Click);
             // 
             // difotTo
             // 
@@ -757,7 +757,7 @@
             this.customLabelPrinterCheckbox.TabStop = false;
             this.customLabelPrinterCheckbox.Text = "Use Custom Printer";
             this.customLabelPrinterCheckbox.UseVisualStyleBackColor = true;
-            this.customLabelPrinterCheckbox.CheckedChanged += new System.EventHandler(this.customLabelPrinterCheckbox_CheckedChanged);
+            this.customLabelPrinterCheckbox.CheckedChanged += new System.EventHandler(this.CustomLabelPrinterCheckbox_CheckedChanged);
             // 
             // LABELControlsGroupBox
             // 
@@ -893,7 +893,7 @@
             this.printStockButton.TabStop = false;
             this.printStockButton.Text = "PRINT STOCK";
             this.printStockButton.UseVisualStyleBackColor = true;
-            this.printStockButton.Click += new System.EventHandler(this.printStockButton_Click);
+            this.printStockButton.Click += new System.EventHandler(this.PrintStockButton_Click);
             // 
             // print30StockButton
             // 
@@ -908,7 +908,7 @@
             this.print30StockButton.TabStop = false;
             this.print30StockButton.Text = "PRINT 30 STOCK";
             this.print30StockButton.UseVisualStyleBackColor = true;
-            this.print30StockButton.Click += new System.EventHandler(this.print30StockButton_Click);
+            this.print30StockButton.Click += new System.EventHandler(this.Print30StockButton_Click);
             // 
             // shelfGroupBox
             // 
@@ -935,7 +935,7 @@
             this.printShelfButton.TabStop = false;
             this.printShelfButton.Text = "PRINT SHELF";
             this.printShelfButton.UseVisualStyleBackColor = true;
-            this.printShelfButton.Click += new System.EventHandler(this.printShelfButton_Click);
+            this.printShelfButton.Click += new System.EventHandler(this.PrintShelfButton_Click);
             // 
             // print30ShelfButton
             // 
@@ -950,7 +950,7 @@
             this.print30ShelfButton.TabStop = false;
             this.print30ShelfButton.Text = "PRINT 30 SHELF";
             this.print30ShelfButton.UseVisualStyleBackColor = true;
-            this.print30ShelfButton.Click += new System.EventHandler(this.print30ShelfButton_Click);
+            this.print30ShelfButton.Click += new System.EventHandler(this.Print30ShelfButton_Click);
             // 
             // clearAllStockRowsBtn
             // 
@@ -965,7 +965,7 @@
             this.clearAllStockRowsBtn.TabStop = false;
             this.clearAllStockRowsBtn.Text = "CLEAR ALL";
             this.clearAllStockRowsBtn.UseVisualStyleBackColor = true;
-            this.clearAllStockRowsBtn.Click += new System.EventHandler(this.clearAllStockRowsBtn_Click);
+            this.clearAllStockRowsBtn.Click += new System.EventHandler(this.ClearAllStockRowsBtn_Click);
             // 
             // addStockBtn
             // 
@@ -980,7 +980,7 @@
             this.addStockBtn.TabStop = false;
             this.addStockBtn.Text = "Add";
             this.addStockBtn.UseVisualStyleBackColor = true;
-            this.addStockBtn.Click += new System.EventHandler(this.addStockBtn_Click);
+            this.addStockBtn.Click += new System.EventHandler(this.AddStockBtn_Click);
             // 
             // stockLblDataGridView
             // 
@@ -1161,7 +1161,7 @@
             this.settings_Save.TabIndex = 50;
             this.settings_Save.Text = "Save Settings";
             this.settings_Save.UseVisualStyleBackColor = false;
-            this.settings_Save.Click += new System.EventHandler(this.settings_Save_Click);
+            this.settings_Save.Click += new System.EventHandler(this.Settings_Save_Click);
             // 
             // label105
             // 

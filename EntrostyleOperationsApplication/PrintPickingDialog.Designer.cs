@@ -48,7 +48,7 @@
             this.printLabelBtn.TabIndex = 27;
             this.printLabelBtn.Text = "Print # labels";
             this.printLabelBtn.UseVisualStyleBackColor = true;
-            this.printLabelBtn.Click += new System.EventHandler(this.printLabelBtn_Click);
+            this.printLabelBtn.Click += new System.EventHandler(this.PrintLabelBtn_Click);
             // 
             // reportViewer1
             // 
@@ -91,7 +91,7 @@
             this.continueBtn.TabIndex = 32;
             this.continueBtn.Text = "Continue";
             this.continueBtn.UseVisualStyleBackColor = true;
-            this.continueBtn.Click += new System.EventHandler(this.continueBtn_Click);
+            this.continueBtn.Click += new System.EventHandler(this.ContinueBtn_Click);
             // 
             // label22
             // 
@@ -121,7 +121,7 @@
             0,
             0,
             0});
-            this.numericUpDown1.Enter += new System.EventHandler(this.numericUpDown1_Enter);
+            this.numericUpDown1.Enter += new System.EventHandler(this.NumericUpDown1_Enter);
             // 
             // printOnlyBtn
             // 
@@ -134,7 +134,7 @@
             this.printOnlyBtn.TabIndex = 33;
             this.printOnlyBtn.Text = "Print Only";
             this.printOnlyBtn.UseVisualStyleBackColor = true;
-            this.printOnlyBtn.Click += new System.EventHandler(this.printOnlyBtn_Click);
+            this.printOnlyBtn.Click += new System.EventHandler(this.PrintOnlyBtn_Click);
             // 
             // PrintPickingDialog
             // 

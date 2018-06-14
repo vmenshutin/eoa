@@ -36,9 +36,11 @@ namespace EntrostyleOperationsApplication
         {
             reportViewer1.ProcessingMode = ProcessingMode.Local;
             reportViewer1.LocalReport.ReportPath = @".\pick_label.rdlc";
-                
-            report = new LocalReport();
-            report.ReportPath = @".\pick_label.rdlc";
+
+            report = new LocalReport
+            {
+                ReportPath = @".\pick_label.rdlc"
+            };
 
             DataTable dt = new DataTable();
 
@@ -90,9 +92,8 @@ namespace EntrostyleOperationsApplication
                 <MarginRight>0in</MarginRight>
                 <MarginBottom>0in</MarginBottom>
             </DeviceInfo>";
-            Warning[] warnings;
             m_streams = new List<Stream>();
-            report.Render("Image", deviceInfo, CreateStream, out warnings);
+            report.Render("Image", deviceInfo, CreateStream, out Warning[] warnings);
             foreach (Stream stream in m_streams)
                 stream.Position = 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
         }
@@ -139,7 +140,7 @@ namespace EntrostyleOperationsApplication
             printDoc.Print();
         }
 
-        private void printLabelBtn_Click(object sender, EventArgs e)
+        private void PrintLabelBtn_Click(object sender, EventArgs e)
         {
             Print();
             callback();
@@ -162,7 +163,7 @@ namespace EntrostyleOperationsApplication
             return barcodeWriter.Write(barcodeText);
         }
 
-        private void continueBtn_Click(object sender, EventArgs e)
+        private void ContinueBtn_Click(object sender, EventArgs e)
         {
             callback();
             Close();
@@ -173,19 +174,19 @@ namespace EntrostyleOperationsApplication
         {
             if (keyData == (Keys.Return))
             {
-                printLabelBtn_Click(printLabelBtn, new EventArgs());
+                PrintLabelBtn_Click(printLabelBtn, new EventArgs());
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void printOnlyBtn_Click(object sender, EventArgs e)
+        private void PrintOnlyBtn_Click(object sender, EventArgs e)
         {
             Print();
             Close();
         }
 
-        private void numericUpDown1_Enter(object sender, EventArgs e)
+        private void NumericUpDown1_Enter(object sender, EventArgs e)
         {
             numericUpDown1.Select(0, numericUpDown1.Text.Length);
         }
