@@ -1338,8 +1338,7 @@ namespace EntrostyleOperationsApplication
             return null;
         }
 
-        // Refresh F10 click
-        private void RefreshF10_Click(object sender, EventArgs e)
+        private void RefreshF10()
         {
             SOItemDetails.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
             SOItemDetails.EndEdit();
@@ -1441,7 +1440,7 @@ namespace EntrostyleOperationsApplication
             }
             else if (keyData == (Keys.Control | Keys.F5))
             {
-                RefreshF10_Click(refreshF10, new EventArgs());
+                RefreshF10();
             }
             else if (keyData == (Keys.Alt | Keys.P))
             {
@@ -1698,7 +1697,7 @@ namespace EntrostyleOperationsApplication
             referenceTextBox.Text = "";
             wait.Close();
 
-            RefreshF10_Click(refreshF10, new EventArgs());
+            RefreshF10();
         }
 
         private void DuplicateBtn_Click(object sender, EventArgs e)
@@ -1729,7 +1728,7 @@ namespace EntrostyleOperationsApplication
 
             wait.Close();
 
-            RefreshF10_Click(refreshF10, new EventArgs());
+            RefreshF10();
         }
 
         private void TdBtn_Click(object sender, EventArgs e)
@@ -1766,7 +1765,7 @@ namespace EntrostyleOperationsApplication
             referenceTextBox.Text = "";
             wait.Close();
 
-            RefreshF10_Click(refreshF10, new EventArgs());
+            RefreshF10();
         }
 
         private void ClearAllBtn_Click(object sender, EventArgs e)
