@@ -81,9 +81,8 @@
                               </Paragraphs>
                               <rd:DefaultName>ADDRESS1</rd:DefaultName>
                               <Top>0.10583cm</Top>
-                              <Left>0cm</Left>
                               <Height>0.38676in</Height>
-                              <Width>2.06695in</Width>
+                              <Width>5cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -111,9 +110,8 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>1.19402cm</Top>
-                              <Left>0cm</Left>
                               <Height>1.47598cm</Height>
-                              <Width>5.25005cm</Width>
+                              <Width>5cm</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -130,10 +128,10 @@
                               <Value>=Fields!BARCODE.Value</Value>
                               <MIMEType>image/png</MIMEType>
                               <Sizing>FitProportional</Sizing>
-                              <Top>0cm</Top>
-                              <Left>5.32062cm</Left>
-                              <Height>1.15875cm</Height>
-                              <Width>1.07938cm</Width>
+                              <Top>0.1cm</Top>
+                              <Left>5.2cm</Left>
+                              <Height>1cm</Height>
+                              <Width>1cm</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
@@ -151,6 +149,7 @@
                                       <Value>=Fields!ITEMQTY.Value</Value>
                                       <Style>
                                         <FontSize>12pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -160,10 +159,10 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox1</rd:DefaultName>
-                              <Top>1.40569cm</Top>
-                              <Left>5.25005cm</Left>
-                              <Height>1.26432cm</Height>
-                              <Width>1.11467cm</Width>
+                              <Top>1.25cm</Top>
+                              <Left>5.2cm</Left>
+                              <Height>1cm</Height>
+                              <Width>1cm</Width>
                               <ZIndex>3</ZIndex>
                               <Style>
                                 <Border>
@@ -205,8 +204,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>0cm</Top>
-            <Left>0.06174cm</Left>
+            <Left>0.2cm</Left>
             <Height>2.67cm</Height>
             <Width>6.4cm</Width>
             <Style>
@@ -248,9 +246,8 @@
                               </Paragraphs>
                               <rd:DefaultName>ADDRESS1</rd:DefaultName>
                               <Top>0.10583cm</Top>
-                              <Left>0cm</Left>
                               <Height>0.38676in</Height>
-                              <Width>2.06695in</Width>
+                              <Width>5cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -278,9 +275,8 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>1.19402cm</Top>
-                              <Left>0cm</Left>
                               <Height>1.47598cm</Height>
-                              <Width>5.25005cm</Width>
+                              <Width>5cm</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -297,10 +293,10 @@
                               <Value>=Fields!BARCODE.Value</Value>
                               <MIMEType>image/png</MIMEType>
                               <Sizing>FitProportional</Sizing>
-                              <Top>0cm</Top>
-                              <Left>5.32062cm</Left>
-                              <Height>1.15875cm</Height>
-                              <Width>1.07938cm</Width>
+                              <Top>0.1cm</Top>
+                              <Left>5.2cm</Left>
+                              <Height>1cm</Height>
+                              <Width>1cm</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
@@ -318,6 +314,7 @@
                                       <Value>=Fields!ITEMQTY.Value</Value>
                                       <Style>
                                         <FontSize>12pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -327,10 +324,10 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox1</rd:DefaultName>
-                              <Top>1.40568cm</Top>
-                              <Left>5.28533cm</Left>
-                              <Height>1.26432cm</Height>
-                              <Width>1.11467cm</Width>
+                              <Top>1.25cm</Top>
+                              <Left>5.2cm</Left>
+                              <Height>1cm</Height>
+                              <Width>1cm</Width>
                               <ZIndex>3</ZIndex>
                               <Style>
                                 <Border>
@@ -372,8 +369,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>0.00001cm</Top>
-            <Left>6.66174cm</Left>
+            <Left>6.9cm</Left>
             <Height>2.67cm</Height>
             <Width>6.4cm</Width>
             <ZIndex>1</ZIndex>
@@ -416,9 +412,8 @@
                               </Paragraphs>
                               <rd:DefaultName>ADDRESS1</rd:DefaultName>
                               <Top>0.10583cm</Top>
-                              <Left>0cm</Left>
                               <Height>0.38676in</Height>
-                              <Width>2.06695in</Width>
+                              <Width>5cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -446,9 +441,8 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>1.19402cm</Top>
-                              <Left>0cm</Left>
                               <Height>1.47598cm</Height>
-                              <Width>5.25005cm</Width>
+                              <Width>5cm</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -465,10 +459,10 @@
                               <Value>=Fields!BARCODE.Value</Value>
                               <MIMEType>image/png</MIMEType>
                               <Sizing>FitProportional</Sizing>
-                              <Top>0cm</Top>
-                              <Left>5.32062cm</Left>
-                              <Height>1.15875cm</Height>
-                              <Width>1.07938cm</Width>
+                              <Top>0.1cm</Top>
+                              <Left>5.2cm</Left>
+                              <Height>1cm</Height>
+                              <Width>1cm</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
@@ -486,6 +480,7 @@
                                       <Value>=Fields!ITEMQTY.Value</Value>
                                       <Style>
                                         <FontSize>12pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -495,10 +490,10 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox1</rd:DefaultName>
-                              <Top>1.40568cm</Top>
-                              <Left>5.25005cm</Left>
-                              <Height>1.26432cm</Height>
-                              <Width>1.11467cm</Width>
+                              <Top>1.25cm</Top>
+                              <Left>5.17639cm</Left>
+                              <Height>1cm</Height>
+                              <Width>1cm</Width>
                               <ZIndex>3</ZIndex>
                               <Style>
                                 <Border>
@@ -540,8 +535,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>0.00001cm</Top>
-            <Left>13.26174cm</Left>
+            <Left>13.6cm</Left>
             <Height>2.67cm</Height>
             <Width>6.4cm</Width>
             <ZIndex>2</ZIndex>
@@ -552,15 +546,25 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.74056cm</Height>
+        <Height>4cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>19.66174cm</Width>
+      <Width>21cm</Width>
       <Page>
+        <PageHeader>
+          <Height>1.5cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
         <PageHeight>15cm</PageHeight>
         <PageWidth>11cm</PageWidth>
         <LeftMargin>0cm</LeftMargin>

@@ -81,9 +81,8 @@
                               </Paragraphs>
                               <rd:DefaultName>ADDRESS1</rd:DefaultName>
                               <Top>0.10583cm</Top>
-                              <Left>0cm</Left>
                               <Height>0.38676in</Height>
-                              <Width>2.06695in</Width>
+                              <Width>5cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -110,10 +109,9 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
-                              <Top>1.19402cm</Top>
-                              <Left>0cm</Left>
-                              <Height>1.47598cm</Height>
-                              <Width>6.4cm</Width>
+                              <Top>1.2cm</Top>
+                              <Height>1.37898cm</Height>
+                              <Width>6.2cm</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -130,10 +128,10 @@
                               <Value>=Fields!BARCODE.Value</Value>
                               <MIMEType>image/png</MIMEType>
                               <Sizing>FitProportional</Sizing>
-                              <Top>0cm</Top>
-                              <Left>5.32062cm</Left>
-                              <Height>1.15875cm</Height>
-                              <Width>1.07938cm</Width>
+                              <Top>0.10583cm</Top>
+                              <Left>5.2cm</Left>
+                              <Height>1cm</Height>
+                              <Width>1cm</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
@@ -170,8 +168,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>0cm</Top>
-            <Left>0.08861cm</Left>
+            <Left>0.2cm</Left>
             <Height>2.67cm</Height>
             <Width>6.4cm</Width>
             <Style>
@@ -184,7 +181,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>6.4cm</Width>
+                  <Width>6.42361cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -213,9 +210,8 @@
                               </Paragraphs>
                               <rd:DefaultName>ADDRESS1</rd:DefaultName>
                               <Top>0.10583cm</Top>
-                              <Left>0cm</Left>
                               <Height>0.38676in</Height>
-                              <Width>2.06695in</Width>
+                              <Width>5cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -242,10 +238,9 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
-                              <Top>1.19402cm</Top>
-                              <Left>0cm</Left>
-                              <Height>1.47598cm</Height>
-                              <Width>6.4cm</Width>
+                              <Top>1.2cm</Top>
+                              <Height>1.37cm</Height>
+                              <Width>6.2cm</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -262,10 +257,10 @@
                               <Value>=Fields!BARCODE.Value</Value>
                               <MIMEType>image/png</MIMEType>
                               <Sizing>FitProportional</Sizing>
-                              <Top>0cm</Top>
-                              <Left>5.32062cm</Left>
-                              <Height>1.15875cm</Height>
-                              <Width>1.07938cm</Width>
+                              <Top>0.10583cm</Top>
+                              <Left>5.2cm</Left>
+                              <Height>1cm</Height>
+                              <Width>1cm</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
@@ -302,10 +297,9 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>0cm</Top>
-            <Left>6.665cm</Left>
+            <Left>6.9cm</Left>
             <Height>2.67cm</Height>
-            <Width>6.4cm</Width>
+            <Width>6.42361cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -317,7 +311,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>6.4cm</Width>
+                  <Width>6.42938cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -328,6 +322,21 @@
                       <CellContents>
                         <Rectangle Name="Rectangle9">
                           <ReportItems>
+                            <Image Name="BarCodeImg3">
+                              <Source>Database</Source>
+                              <Value>=Fields!BARCODE.Value</Value>
+                              <MIMEType>image/png</MIMEType>
+                              <Sizing>FitProportional</Sizing>
+                              <Top>0.14111cm</Top>
+                              <Left>5.2cm</Left>
+                              <Height>1cm</Height>
+                              <Width>1cm</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Image>
                             <Textbox Name="ADDRESS3">
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -346,9 +355,9 @@
                               </Paragraphs>
                               <rd:DefaultName>ADDRESS1</rd:DefaultName>
                               <Top>0.10583cm</Top>
-                              <Left>0cm</Left>
                               <Height>0.38676in</Height>
-                              <Width>2.06695in</Width>
+                              <Width>5cm</Width>
+                              <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -375,11 +384,10 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
-                              <Top>1.19402cm</Top>
-                              <Left>0cm</Left>
-                              <Height>1.47598cm</Height>
-                              <Width>6.4cm</Width>
-                              <ZIndex>1</ZIndex>
+                              <Top>1.2cm</Top>
+                              <Height>1.37cm</Height>
+                              <Width>6.2cm</Width>
+                              <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -390,22 +398,6 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
-                            <Image Name="BarCodeImg3">
-                              <Source>Database</Source>
-                              <Value>=Fields!BARCODE.Value</Value>
-                              <MIMEType>image/png</MIMEType>
-                              <Sizing>FitProportional</Sizing>
-                              <Top>0cm</Top>
-                              <Left>5.32062cm</Left>
-                              <Height>1.15875cm</Height>
-                              <Width>1.07938cm</Width>
-                              <ZIndex>2</ZIndex>
-                              <Style>
-                                <Border>
-                                  <Style>None</Style>
-                                </Border>
-                              </Style>
-                            </Image>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
                           <Style>
@@ -435,10 +427,9 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>0cm</Top>
-            <Left>13.265cm</Left>
+            <Left>13.6cm</Left>
             <Height>2.67cm</Height>
-            <Width>6.4cm</Width>
+            <Width>6.42938cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -447,17 +438,27 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.74054cm</Height>
+        <Height>4cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>19.665cm</Width>
+      <Width>21cm</Width>
       <Page>
-        <PageHeight>15cm</PageHeight>
-        <PageWidth>11cm</PageWidth>
+        <PageHeader>
+          <Height>1.5cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
         <LeftMargin>0cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
         <TopMargin>0cm</TopMargin>
@@ -473,6 +474,7 @@
       <NumberOfRows>2</NumberOfRows>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>4e21d665-c167-4300-aa6d-0432cc6efc1d</rd:ReportID>
 </Report>

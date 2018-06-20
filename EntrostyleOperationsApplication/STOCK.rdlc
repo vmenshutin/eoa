@@ -65,10 +65,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ADDRESS1</rd:DefaultName>
-            <Top>0.20458cm</Top>
-            <Left>0.14552cm</Left>
-            <Height>0.38676in</Height>
-            <Width>1.44459in</Width>
+            <Top>0.15cm</Top>
+            <Left>0.1cm</Left>
+            <Height>0.9cm</Height>
+            <Width>3.9cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -84,10 +84,10 @@
             <Value>=First(Fields!BARCODE.Value, "DataSet1")</Value>
             <MIMEType>image/png</MIMEType>
             <Sizing>FitProportional</Sizing>
-            <Top>0.09875cm</Top>
-            <Left>3.85006cm</Left>
-            <Height>1.15875cm</Height>
-            <Width>1.07938cm</Width>
+            <Top>0.15cm</Top>
+            <Left>4cm</Left>
+            <Height>1cm</Height>
+            <Width>1cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -111,10 +111,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>1.29277cm</Top>
-            <Left>0.14552cm</Left>
-            <Height>1.20723cm</Height>
-            <Width>3.66926cm</Width>
+            <Top>1.1cm</Top>
+            <Left>0.1cm</Left>
+            <Height>1.25cm</Height>
+            <Width>3.9cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -136,6 +136,7 @@
                     <Value>=Sum(Fields!ITEMQTY.Value, "DataSet1")</Value>
                     <Style>
                       <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -145,10 +146,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.68833cm</Top>
-            <Left>3.85006cm</Left>
-            <Height>0.81167cm</Height>
-            <Width>1.07938cm</Width>
+            <Top>1.3cm</Top>
+            <Left>4cm</Left>
+            <Height>1cm</Height>
+            <Width>1cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -162,14 +163,14 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.5cm</Height>
+        <Height>2.35cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>5.02866cm</Width>
+      <Width>5cm</Width>
       <Page>
         <PageHeight>15cm</PageHeight>
         <PageWidth>11cm</PageWidth>
@@ -202,6 +203,7 @@
       </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>4e21d665-c167-4300-aa6d-0432cc6efc1d</rd:ReportID>
 </Report>
