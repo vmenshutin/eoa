@@ -114,6 +114,7 @@ namespace EntrostyleOperationsApplication
             SOItemDetails.CellValidating += SOItemDetails_CellValidating;
             SOItemDetails.DataError += SOItemDetails_DataError;
             SODifot.CellMouseClick += SOMain_CellMouseClick;
+            stockLblDataGridView.CellMouseClick += SOMain_CellMouseClick;
 
             // so item details conditional styling
             SOItemDetails.CellFormatting += SOItemDetails_CellFormatting;
@@ -189,7 +190,7 @@ namespace EntrostyleOperationsApplication
             var dgv = (DataGridView)sender;
             var columnName = dgv.Columns[e.ColumnIndex].Name;
 
-            if (columnName == "#" || columnName == "STOCKCODE")
+            if (columnName == "#" || columnName == "STOCKCODE" || columnName == "ItemCode")
             {
                 var wait = ShowWaitForm();
 
@@ -222,8 +223,8 @@ namespace EntrostyleOperationsApplication
                 if (e.RowIndex != -1)
                 {
                     var line = columnName == "#"
-                        ? @"START exo://saleorder(" + dgv.Rows[e.RowIndex].Cells["#"].Value.ToString() + ")"
-                        : @"START exo://stockitem/?stockcode=" + dgv.Rows[e.RowIndex].Cells["STOCKCODE"].Value.ToString();
+                        ? @"START exo://saleorder(" + dgv.Rows[e.RowIndex].Cells[columnName].Value.ToString() + ")"
+                        : @"START exo://stockitem/?stockcode=" + dgv.Rows[e.RowIndex].Cells[columnName].Value.ToString();
                     inputWriter.WriteLine(line);
                 }
 
@@ -576,8 +577,10 @@ namespace EntrostyleOperationsApplication
             stockLblDataGridView.Columns[0].HeaderText = "Item Code";
             stockLblDataGridView.Columns[0].ReadOnly = true;
             stockLblDataGridView.Columns[0].DefaultCellStyle.BackColor = Color.Silver;
-            stockLblDataGridView.Columns[0].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
             stockLblDataGridView.Columns[0].Width = 100;
+            stockLblDataGridView.Columns[0].DefaultCellStyle.ForeColor = Color.Blue;
+            stockLblDataGridView.Columns[0].DefaultCellStyle.SelectionForeColor = Color.Blue;
+            stockLblDataGridView.Columns[0].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
 
             // Description column
             stockLblDataGridView.Columns[1].Name = "Description";
@@ -1468,6 +1471,13 @@ namespace EntrostyleOperationsApplication
             {
                 SelectNextNot("P", () => PrintPickingBtn_Click(printPickingBtn, new EventArgs()));
             }
+            else if (keyData == (Keys.Alt | Keys.Delete))
+            {
+                if (stockLblDataGridView.ContainsFocus)
+                {
+                    DeleteCurrentStockLblRow();
+                }
+            }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -1896,13 +1906,20 @@ namespace EntrostyleOperationsApplication
 
         private void AddStockBtn_Click(object sender, EventArgs e)
         {
-            var selectedValue = stockCodeLABELCombobox.SelectedValue as DataRowView;
-
-            stockLblDataGridView.Rows.Add(new string[] { selectedValue.Row[0].ToString(),
-                selectedValue.Row[1].ToString(), itemQtyNumberInput.Value.ToString(),
-                labelQtyNumberInput.Value.ToString(),
-                selectedValue.Row[2].ToString()
-            });
+            if (stockCodeLABELCombobox.SelectedValue is DataRowView selectedValue)
+            {
+                stockLblDataGridView.Rows.Add(
+                    new string[] { selectedValue.Row[0].ToString(),
+                    selectedValue.Row[1].ToString(), itemQtyNumberInput.Value.ToString(),
+                    labelQtyNumberInput.Value.ToString(),
+                    selectedValue.Row[2].ToString()
+                });
+            }
+            else
+            {
+                MessageBox.Show("       Please select a valid Stock Code       ");
+                stockCodeLABELCombobox.Focus();
+            }
         }
 
         private void PreviewStockLabel_Click(object sender, EventArgs e)
@@ -2006,6 +2023,14 @@ namespace EntrostyleOperationsApplication
         private void Print30SupplierBtn_Click(object sender, EventArgs e)
         {
             Print30LABELLayout(layout30SUPPLIERReport);
+        }
+
+        private void DeleteCurrentStockLblRow()
+        {
+            if (stockLblDataGridView.CurrentCell != null)
+            {
+                stockLblDataGridView.Rows.RemoveAt(stockLblDataGridView.CurrentCell.RowIndex);
+            }
         }
     }
 }
