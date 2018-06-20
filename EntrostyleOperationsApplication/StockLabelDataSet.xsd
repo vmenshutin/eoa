@@ -12,13 +12,14 @@
   <xs:element name="StockLabelDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StockLabelDataSet" msprop:Generator_UserDSName="StockLabelDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="STOCKCODE" msprop:Generator_ColumnVarNameInTable="columnSTOCKCODE" msprop:Generator_ColumnPropNameInRow="STOCKCODE" msprop:Generator_ColumnPropNameInTable="STOCKCODEColumn" msprop:Generator_UserColumnName="STOCKCODE" type="xs:string" minOccurs="0" />
               <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" type="xs:string" minOccurs="0" />
               <xs:element name="BARCODE" msprop:Generator_ColumnVarNameInTable="columnBARCODE" msprop:Generator_ColumnPropNameInRow="BARCODE" msprop:Generator_ColumnPropNameInTable="BARCODEColumn" msprop:Generator_UserColumnName="BARCODE" type="xs:base64Binary" minOccurs="0" />
               <xs:element name="ITEMQTY" msprop:Generator_ColumnVarNameInTable="columnITEMQTY" msprop:Generator_ColumnPropNameInRow="ITEMQTY" msprop:Generator_ColumnPropNameInTable="ITEMQTYColumn" msprop:Generator_UserColumnName="ITEMQTY" type="xs:int" minOccurs="0" />
+              <xs:element name="BARCODE1" msprop:Generator_ColumnVarNameInTable="columnBARCODE1" msprop:Generator_ColumnPropNameInRow="BARCODE1" msprop:Generator_ColumnPropNameInTable="BARCODE1Column" msprop:Generator_UserColumnName="BARCODE1" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

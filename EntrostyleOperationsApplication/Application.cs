@@ -51,8 +51,10 @@ namespace EntrostyleOperationsApplication
 
         private LocalReport shelfReport = new LocalReport();
         private LocalReport stockReport = new LocalReport();
+        private LocalReport supplierReport = new LocalReport();
         private LocalReport layout30SHELFReport = new LocalReport();
         private LocalReport layout30STOCKReport = new LocalReport();
+        private LocalReport layout30SUPPLIERReport = new LocalReport();
 
         private int m_currentPageIndex;
         private IList<Stream> m_streams;
@@ -558,7 +560,7 @@ namespace EntrostyleOperationsApplication
         {
             var wait = ShowWaitForm();
 
-            var adapter = new OdbcDataAdapter("SELECT STOCKCODE, DESCRIPTION FROM STOCK_ITEMS order by STOCKCODE", connection);
+            var adapter = new OdbcDataAdapter("SELECT STOCKCODE, DESCRIPTION, BARCODE1 FROM STOCK_ITEMS order by STOCKCODE", connection);
             var ds = new DataSet();
             OdbcCommandBuilder cmdbuilder = new OdbcCommandBuilder(adapter);
             adapter.Fill(ds);
@@ -567,7 +569,7 @@ namespace EntrostyleOperationsApplication
             stockCodeLABELCombobox.DataSource = ds.Tables[0];
             stockCodeLABELCombobox.DisplayMember = "STOCKCODE";
 
-            stockLblDataGridView.ColumnCount = 4;
+            stockLblDataGridView.ColumnCount = 5;
 
             // Item Code column
             stockLblDataGridView.Columns[0].Name = "ItemCode";
@@ -591,11 +593,17 @@ namespace EntrostyleOperationsApplication
             stockLblDataGridView.Columns[3].HeaderText = "Label Qty";
             stockLblDataGridView.Columns[3].Width = 60;
 
+            // Barcode1 column
+            stockLblDataGridView.Columns[4].Name = "Barcode1";
+            stockLblDataGridView.Columns[4].Visible = false;
+
             // report paths
             stockReport.ReportPath = @".\STOCK.rdlc";
             shelfReport.ReportPath = @".\SHELF.rdlc";
+            supplierReport.ReportPath = @".\SUPPLIER.rdlc";
             layout30SHELFReport.ReportPath = @".\layout_30_SHELF.rdlc";
             layout30STOCKReport.ReportPath = @".\layout_30_STOCK.rdlc";
+            layout30SUPPLIERReport.ReportPath = @".\layout_30_SUPPLIER.rdlc";
 
             // event listeners
             stockLblDataGridView.CellValidating += StockLblDataGridView_CellValidating;
@@ -632,6 +640,7 @@ namespace EntrostyleOperationsApplication
             dr["STOCKCODE"] = selectedValue.Cells[0].Value.ToString();
             dr["DESCRIPTION"] = selectedValue.Cells[1].Value.ToString();
             dr["ITEMQTY"] = int.Parse(selectedValue.Cells[2].Value.ToString());
+            dr["BARCODE1"] = selectedValue.Cells[4].Value.ToString();
 
             Bitmap bitmap = GenerateBarcode(selectedValue.Cells[0].Value.ToString(), 100, 100, 0);
             dr["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(bitmap, typeof(byte[])));
@@ -650,6 +659,7 @@ namespace EntrostyleOperationsApplication
             dt.Columns.Add("DESCRIPTION", typeof(String));
             dt.Columns.Add("BARCODE", typeof(byte[]));
             dt.Columns.Add("ITEMQTY", typeof(int));
+            dt.Columns.Add("BARCODE1", typeof(String));
 
             if (rowIndex == null)
             {
@@ -1889,7 +1899,10 @@ namespace EntrostyleOperationsApplication
             var selectedValue = stockCodeLABELCombobox.SelectedValue as DataRowView;
 
             stockLblDataGridView.Rows.Add(new string[] { selectedValue.Row[0].ToString(),
-                selectedValue.Row[1].ToString(), itemQtyNumberInput.Value.ToString(), labelQtyNumberInput.Value.ToString() });
+                selectedValue.Row[1].ToString(), itemQtyNumberInput.Value.ToString(),
+                labelQtyNumberInput.Value.ToString(),
+                selectedValue.Row[2].ToString()
+            });
         }
 
         private void PreviewStockLabel_Click(object sender, EventArgs e)
@@ -1950,6 +1963,8 @@ namespace EntrostyleOperationsApplication
             print30StockButton.Enabled = enabled;
             printShelfButton.Enabled = enabled;
             print30ShelfButton.Enabled = enabled;
+            printSupplierBtn.Enabled = enabled;
+            print30SupplierBtn.Enabled = enabled;
         }
 
         private void PrintStockButton_Click(object sender, EventArgs e)
@@ -1981,6 +1996,16 @@ namespace EntrostyleOperationsApplication
             else
                 customLabelPrinterTextBox.Enabled = false;
             
+        }
+
+        private void PrintSupplierBtn_Click(object sender, EventArgs e)
+        {
+            PrintSingleLABELLayout(supplierReport);
+        }
+
+        private void Print30SupplierBtn_Click(object sender, EventArgs e)
+        {
+            Print30LABELLayout(layout30SUPPLIERReport);
         }
     }
 }
