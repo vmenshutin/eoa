@@ -91,7 +91,7 @@
                   <TextRun>
                     <Value>=First(Fields!DESCRIPTION.Value, "DataSet1")</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>7pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -101,7 +101,7 @@
             <rd:DefaultName>Textbox2</rd:DefaultName>
             <Top>1.1cm</Top>
             <Left>0.1cm</Left>
-            <Height>0.69437cm</Height>
+            <Height>0.72965cm</Height>
             <Width>4.9cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -146,9 +146,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>1.79437cm</Top>
+            <Top>1.82965cm</Top>
             <Left>0.1cm</Left>
-            <Height>0.55563cm</Height>
+            <Height>0.52035cm</Height>
             <Width>4.9cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
