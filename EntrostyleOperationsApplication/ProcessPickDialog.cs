@@ -44,12 +44,12 @@ namespace EntrostyleOperationsApplication
             carrierTextBox.TextChanged += CarrierTextBox_TextChanged;
 
             reportViewer1.ProcessingMode = ProcessingMode.Local;
-            reportViewer1.LocalReport.ReportPath = @".\carrier_label.rdlc";
+            reportViewer1.LocalReport.ReportPath = @".\process_label.rdlc";
             reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
 
             report = new LocalReport
             {
-                ReportPath = @".\carrier_label.rdlc"
+                ReportPath = @".\process_label.rdlc"
             };
             report.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
 

@@ -72,10 +72,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ADDRESS1</rd:DefaultName>
-            <Top>0.2575cm</Top>
-            <Left>0.34396cm</Left>
-            <Height>0.23441in</Height>
-            <Width>2.7019in</Width>
+            <Top>0.1cm</Top>
+            <Left>0.25cm</Left>
+            <Height>0.6cm</Height>
+            <Width>7.75cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -103,10 +103,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>1.38838in</Top>
-            <Left>0.34397cm</Left>
-            <Height>0.21875in</Height>
-            <Width>0.49159in</Width>
+            <Top>1.33601in</Top>
+            <Left>0.25cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.25cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -136,10 +136,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>SEQNO</rd:DefaultName>
-            <Top>0.88838in</Top>
-            <Left>0.65479in</Left>
-            <Height>0.25in</Height>
-            <Width>2.18253in</Width>
+            <Top>0.83601in</Top>
+            <Left>1.75cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -168,10 +168,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>1.13838in</Top>
-            <Left>0.34397cm</Left>
-            <Height>0.25in</Height>
-            <Width>0.49159in</Width>
+            <Top>1.08601in</Top>
+            <Left>0.25cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.25cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -201,10 +201,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>CUSTORDERNO</rd:DefaultName>
-            <Top>1.13838in</Top>
-            <Left>0.65479in</Left>
-            <Height>0.25in</Height>
-            <Width>2.18253in</Width>
+            <Top>1.08601in</Top>
+            <Left>1.75cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -235,10 +235,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>X_PROJECTNAME</rd:DefaultName>
-            <Top>1.38838in</Top>
-            <Left>0.62701in</Left>
-            <Height>0.51042in</Height>
-            <Width>2.21031in</Width>
+            <Top>1.33601in</Top>
+            <Left>1.75cm</Left>
+            <Height>1.2cm</Height>
+            <Width>6cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -258,7 +258,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Entro#</Value>
+                    <Value>SO#</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -268,10 +268,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.88838in</Top>
-            <Left>0.34397cm</Left>
-            <Height>0.25in</Height>
-            <Width>0.51937in</Width>
+            <Top>0.83601in</Top>
+            <Left>0.25cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.25cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -322,10 +322,10 @@
             <Value>=First(Fields!BARCODE.Value, "DataSet1")</Value>
             <MIMEType>image/png</MIMEType>
             <Sizing>FitProportional</Sizing>
-            <Top>0.2575cm</Top>
-            <Left>7.83676cm</Left>
-            <Height>2.20625cm</Height>
-            <Width>2.23271cm</Width>
+            <Top>0.1cm</Top>
+            <Left>8.25cm</Left>
+            <Height>1.5cm</Height>
+            <Width>1.5cm</Width>
             <ZIndex>8</ZIndex>
             <Style>
               <Border>
@@ -347,10 +347,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>0.88818cm</Top>
-            <Left>0.34397cm</Left>
-            <Height>1.33304cm</Height>
-            <Width>6.86281cm</Width>
+            <Top>0.7cm</Top>
+            <Left>0.25cm</Left>
+            <Height>1.35cm</Height>
+            <Width>7.75cm</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -363,17 +363,19 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>5.12536cm</Height>
+        <Height>4.75cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>10.33405cm</Width>
+      <Width>9.75cm</Width>
       <Page>
-        <PageHeight>15cm</PageHeight>
-        <PageWidth>11cm</PageWidth>
+        <PageHeight>5cm</PageHeight>
+        <PageWidth>10cm</PageWidth>
+        <InteractiveHeight>5cm</InteractiveHeight>
+        <InteractiveWidth>10cm</InteractiveWidth>
         <LeftMargin>0cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
         <TopMargin>0cm</TopMargin>
@@ -389,6 +391,7 @@
       <NumberOfRows>2</NumberOfRows>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>4e21d665-c167-4300-aa6d-0432cc6efc1d</rd:ReportID>
 </Report>

@@ -123,28 +123,28 @@
     <EmbeddedResource Include="Application.resx">
       <DependentUpon>Application.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="carrier_label.rdlc">
+    <EmbeddedResource Include="process_label.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="layout_30_SUPPLIER.rdlc">
+    <EmbeddedResource Include="30_supplier.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="layout_30_STOCK.rdlc">
+    <EmbeddedResource Include="30_stock.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="layout_30_SHELF.rdlc">
+    <EmbeddedResource Include="30_shelf.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="sales_order.rdlc">
+    <EmbeddedResource Include="picksheet.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="SUPPLIER.rdlc">
+    <EmbeddedResource Include="1_supplier.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="STOCK.rdlc">
+    <EmbeddedResource Include="1_stock.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="SHELF.rdlc">
+    <EmbeddedResource Include="1_shelf.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="pick_label.rdlc">

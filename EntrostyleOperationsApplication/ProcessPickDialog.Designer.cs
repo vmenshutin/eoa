@@ -37,9 +37,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.carrierTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.startTrackRadioButton = new System.Windows.Forms.RadioButton();
             this.TntRadioButton = new System.Windows.Forms.RadioButton();
             this.CustomRadioButton = new System.Windows.Forms.RadioButton();
-            this.startTrackRadioButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             this.printLabelBtn.Size = new System.Drawing.Size(143, 28);
             this.printLabelBtn.TabIndex = 27;
             this.printLabelBtn.TabStop = false;
-            this.printLabelBtn.Text = "Print # labels";
+            this.printLabelBtn.Text = "Process + Labels";
             this.printLabelBtn.UseVisualStyleBackColor = true;
             this.printLabelBtn.Click += new System.EventHandler(this.PrintLabelBtn_Click);
             // 
@@ -62,13 +62,13 @@
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Left;
             this.reportViewer1.DocumentMapWidth = 1;
-            this.reportViewer1.LocalReport.ReportPath = "./carrier_label.rdlc";
+            this.reportViewer1.LocalReport.ReportPath = "./process_label.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.ServerReport.ReportPath = "./carrier_label.rdlc";
+            this.reportViewer1.ServerReport.ReportPath = "./process_label.rdlc";
             this.reportViewer1.ShowBackButton = false;
             this.reportViewer1.ShowContextMenu = false;
             this.reportViewer1.ShowCredentialPrompts = false;
@@ -99,7 +99,7 @@
             this.continueBtn.Size = new System.Drawing.Size(143, 28);
             this.continueBtn.TabIndex = 32;
             this.continueBtn.TabStop = false;
-            this.continueBtn.Text = "Continue";
+            this.continueBtn.Text = "Process";
             this.continueBtn.UseVisualStyleBackColor = true;
             this.continueBtn.Click += new System.EventHandler(this.ContinueBtn_Click);
             // 
@@ -143,7 +143,7 @@
             this.printOnlyBtn.Size = new System.Drawing.Size(143, 28);
             this.printOnlyBtn.TabIndex = 33;
             this.printOnlyBtn.TabStop = false;
-            this.printOnlyBtn.Text = "Print Only";
+            this.printOnlyBtn.Text = "Labels";
             this.printOnlyBtn.UseVisualStyleBackColor = true;
             this.printOnlyBtn.Click += new System.EventHandler(this.PrintOnlyBtn_Click);
             // 
@@ -179,6 +179,17 @@
             this.groupBox1.TabIndex = 101;
             this.groupBox1.TabStop = false;
             // 
+            // startTrackRadioButton
+            // 
+            this.startTrackRadioButton.AutoSize = true;
+            this.startTrackRadioButton.Location = new System.Drawing.Point(127, 13);
+            this.startTrackRadioButton.Name = "startTrackRadioButton";
+            this.startTrackRadioButton.Size = new System.Drawing.Size(72, 17);
+            this.startTrackRadioButton.TabIndex = 2;
+            this.startTrackRadioButton.TabStop = true;
+            this.startTrackRadioButton.Text = "StarTrack";
+            this.startTrackRadioButton.UseVisualStyleBackColor = true;
+            // 
             // TntRadioButton
             // 
             this.TntRadioButton.AutoSize = true;
@@ -202,17 +213,6 @@
             this.CustomRadioButton.Text = "Custom";
             this.CustomRadioButton.UseVisualStyleBackColor = true;
             // 
-            // startTrackRadioButton
-            // 
-            this.startTrackRadioButton.AutoSize = true;
-            this.startTrackRadioButton.Location = new System.Drawing.Point(127, 13);
-            this.startTrackRadioButton.Name = "startTrackRadioButton";
-            this.startTrackRadioButton.Size = new System.Drawing.Size(72, 17);
-            this.startTrackRadioButton.TabIndex = 2;
-            this.startTrackRadioButton.TabStop = true;
-            this.startTrackRadioButton.Text = "StarTrack";
-            this.startTrackRadioButton.UseVisualStyleBackColor = true;
-            // 
             // ProcessPickDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,7 +231,7 @@
             this.MaximizeBox = false;
             this.Name = "ProcessPickDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pick";
+            this.Text = "Process";
             this.Load += new System.EventHandler(this.PrintDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox1.ResumeLayout(false);

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
@@ -40,6 +40,7 @@
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
+            this.refreshBtn = new System.Windows.Forms.Button();
             this.clearAllBtn = new System.Windows.Forms.Button();
             this.tdBtn = new System.Windows.Forms.Button();
             this.duplicateBtn = new System.Windows.Forms.Button();
@@ -75,6 +76,7 @@
             this.difotFrom = new System.Windows.Forms.DateTimePicker();
             this.SODifot = new System.Windows.Forms.DataGridView();
             this.labelTab = new System.Windows.Forms.TabPage();
+            this.deleteSelectedBtn = new System.Windows.Forms.Button();
             this.supplierGroupBox = new System.Windows.Forms.GroupBox();
             this.printSupplierBtn = new System.Windows.Forms.Button();
             this.print30SupplierBtn = new System.Windows.Forms.Button();
@@ -99,6 +101,22 @@
             this.addStockBtn = new System.Windows.Forms.Button();
             this.stockLblDataGridView = new System.Windows.Forms.DataGridView();
             this.SettingsTab = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.settings_PickLabelPrinter = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -106,12 +124,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.settings_labelPrinter = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
@@ -145,6 +157,8 @@
             this.shelfGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.SettingsTab.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -169,7 +183,7 @@
             this.ScheduleTab.Padding = new System.Windows.Forms.Padding(3);
             this.ScheduleTab.Size = new System.Drawing.Size(1417, 708);
             this.ScheduleTab.TabIndex = 0;
-            this.ScheduleTab.Text = "Schedule";
+            this.ScheduleTab.Text = "SHEDULE";
             this.ScheduleTab.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
@@ -184,6 +198,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.refreshBtn);
             this.splitContainer1.Panel2.Controls.Add(this.clearAllBtn);
             this.splitContainer1.Panel2.Controls.Add(this.tdBtn);
             this.splitContainer1.Panel2.Controls.Add(this.duplicateBtn);
@@ -281,6 +296,20 @@
             this.SOSecondary.Name = "SOSecondary";
             this.SOSecondary.Size = new System.Drawing.Size(781, 284);
             this.SOSecondary.TabIndex = 1;
+            // 
+            // refreshBtn
+            // 
+            this.refreshBtn.BackColor = System.Drawing.Color.Gainsboro;
+            this.refreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refreshBtn.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.refreshBtn.Location = new System.Drawing.Point(3, 220);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(81, 28);
+            this.refreshBtn.TabIndex = 34;
+            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.UseVisualStyleBackColor = false;
+            this.refreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
             // clearAllBtn
             // 
@@ -397,34 +426,34 @@
             // 
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle2;
             this.SOItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOItemDetails.Location = new System.Drawing.Point(0, 0);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.SOItemDetails.Size = new System.Drawing.Size(623, 348);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -525,11 +554,11 @@
             this.refreshF5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.refreshF5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refreshF5.ForeColor = System.Drawing.Color.Green;
-            this.refreshF5.Location = new System.Drawing.Point(3, 220);
+            this.refreshF5.Location = new System.Drawing.Point(90, 220);
             this.refreshF5.Name = "refreshF5";
-            this.refreshF5.Size = new System.Drawing.Size(168, 28);
+            this.refreshF5.Size = new System.Drawing.Size(81, 28);
             this.refreshF5.TabIndex = 13;
-            this.refreshF5.Text = "Refresh (F5)";
+            this.refreshF5.Text = "Refresh All";
             this.refreshF5.UseVisualStyleBackColor = false;
             this.refreshF5.Click += new System.EventHandler(this.Button1_Click);
             // 
@@ -709,6 +738,7 @@
             // labelTab
             // 
             this.labelTab.BackColor = System.Drawing.Color.LavenderBlush;
+            this.labelTab.Controls.Add(this.deleteSelectedBtn);
             this.labelTab.Controls.Add(this.supplierGroupBox);
             this.labelTab.Controls.Add(this.customLabelPrinterTextBox);
             this.labelTab.Controls.Add(this.customLabelPrinterCheckbox);
@@ -722,7 +752,22 @@
             this.labelTab.Name = "labelTab";
             this.labelTab.Size = new System.Drawing.Size(1417, 708);
             this.labelTab.TabIndex = 4;
-            this.labelTab.Text = "LABEL";
+            this.labelTab.Text = "LABELS";
+            // 
+            // deleteSelectedBtn
+            // 
+            this.deleteSelectedBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.deleteSelectedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteSelectedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteSelectedBtn.ForeColor = System.Drawing.Color.DarkOrange;
+            this.deleteSelectedBtn.Location = new System.Drawing.Point(140, 539);
+            this.deleteSelectedBtn.Name = "deleteSelectedBtn";
+            this.deleteSelectedBtn.Size = new System.Drawing.Size(211, 28);
+            this.deleteSelectedBtn.TabIndex = 57;
+            this.deleteSelectedBtn.TabStop = false;
+            this.deleteSelectedBtn.Text = "DELETE SELECTED";
+            this.deleteSelectedBtn.UseVisualStyleBackColor = true;
+            this.deleteSelectedBtn.Click += new System.EventHandler(this.DeleteSelectedBtn_Click);
             // 
             // supplierGroupBox
             // 
@@ -747,7 +792,7 @@
             this.printSupplierBtn.Size = new System.Drawing.Size(129, 48);
             this.printSupplierBtn.TabIndex = 47;
             this.printSupplierBtn.TabStop = false;
-            this.printSupplierBtn.Text = "PRINT SUPPLIER";
+            this.printSupplierBtn.Text = "PRINT 1 SUPPLIER";
             this.printSupplierBtn.UseVisualStyleBackColor = true;
             this.printSupplierBtn.Click += new System.EventHandler(this.PrintSupplierBtn_Click);
             // 
@@ -923,7 +968,7 @@
             this.printStockButton.Size = new System.Drawing.Size(129, 48);
             this.printStockButton.TabIndex = 47;
             this.printStockButton.TabStop = false;
-            this.printStockButton.Text = "PRINT STOCK";
+            this.printStockButton.Text = "PRINT 1 STOCK";
             this.printStockButton.UseVisualStyleBackColor = true;
             this.printStockButton.Click += new System.EventHandler(this.PrintStockButton_Click);
             // 
@@ -965,7 +1010,7 @@
             this.printShelfButton.Size = new System.Drawing.Size(129, 48);
             this.printShelfButton.TabIndex = 48;
             this.printShelfButton.TabStop = false;
-            this.printShelfButton.Text = "PRINT SHELF";
+            this.printShelfButton.Text = "PRINT 1 SHELF";
             this.printShelfButton.UseVisualStyleBackColor = true;
             this.printShelfButton.Click += new System.EventHandler(this.PrintShelfButton_Click);
             // 
@@ -990,12 +1035,12 @@
             this.clearAllStockRowsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearAllStockRowsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearAllStockRowsBtn.ForeColor = System.Drawing.Color.Red;
-            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(140, 537);
+            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(364, 539);
             this.clearAllStockRowsBtn.Name = "clearAllStockRowsBtn";
             this.clearAllStockRowsBtn.Size = new System.Drawing.Size(211, 28);
             this.clearAllStockRowsBtn.TabIndex = 41;
             this.clearAllStockRowsBtn.TabStop = false;
-            this.clearAllStockRowsBtn.Text = "CLEAR ALL";
+            this.clearAllStockRowsBtn.Text = "DELETE ALL";
             this.clearAllStockRowsBtn.UseVisualStyleBackColor = true;
             this.clearAllStockRowsBtn.Click += new System.EventHandler(this.ClearAllStockRowsBtn_Click);
             // 
@@ -1029,7 +1074,9 @@
             // 
             // SettingsTab
             // 
-            this.SettingsTab.BackColor = System.Drawing.Color.Gainsboro;
+            this.SettingsTab.BackColor = System.Drawing.Color.FloralWhite;
+            this.SettingsTab.Controls.Add(this.groupBox2);
+            this.SettingsTab.Controls.Add(this.groupBox1);
             this.SettingsTab.Controls.Add(this.label26);
             this.SettingsTab.Controls.Add(this.settings_PickLabelPrinter);
             this.SettingsTab.Controls.Add(this.label25);
@@ -1037,12 +1084,6 @@
             this.SettingsTab.Controls.Add(this.label21);
             this.SettingsTab.Controls.Add(this.settings_labelPrinter);
             this.SettingsTab.Controls.Add(this.label20);
-            this.SettingsTab.Controls.Add(this.label18);
-            this.SettingsTab.Controls.Add(this.label19);
-            this.SettingsTab.Controls.Add(this.label16);
-            this.SettingsTab.Controls.Add(this.label17);
-            this.SettingsTab.Controls.Add(this.label67);
-            this.SettingsTab.Controls.Add(this.label68);
             this.SettingsTab.Controls.Add(this.settings_Save);
             this.SettingsTab.Controls.Add(this.label105);
             this.SettingsTab.Controls.Add(this.settings_printerName);
@@ -1053,13 +1094,216 @@
             this.SettingsTab.TabIndex = 2;
             this.SettingsTab.Text = "Settings";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox2.Controls.Add(this.label33);
+            this.groupBox2.Controls.Add(this.label34);
+            this.groupBox2.Location = new System.Drawing.Point(451, 510);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(563, 60);
+            this.groupBox2.TabIndex = 73;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "LABELS";
+            // 
+            // label33
+            // 
+            this.label33.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label33.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label33.Location = new System.Drawing.Point(22, 26);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(109, 15);
+            this.label33.TabIndex = 73;
+            this.label33.Text = "Delete Selected";
+            // 
+            // label34
+            // 
+            this.label34.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label34.ForeColor = System.Drawing.Color.Black;
+            this.label34.Location = new System.Drawing.Point(160, 26);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(74, 15);
+            this.label34.TabIndex = 72;
+            this.label34.Text = "ALT + DEL";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.label31);
+            this.groupBox1.Controls.Add(this.label68);
+            this.groupBox1.Controls.Add(this.label32);
+            this.groupBox1.Controls.Add(this.label67);
+            this.groupBox1.Controls.Add(this.label29);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label30);
+            this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.label27);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.label28);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox1.Location = new System.Drawing.Point(450, 300);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(564, 196);
+            this.groupBox1.TabIndex = 72;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "DESPATCH";
+            // 
+            // label17
+            // 
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(161, 26);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(54, 15);
+            this.label17.TabIndex = 53;
+            this.label17.Text = "Ctrl + P";
+            // 
+            // label31
+            // 
+            this.label31.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label31.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label31.Location = new System.Drawing.Point(23, 161);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(61, 15);
+            this.label31.TabIndex = 71;
+            this.label31.Text = "Edit Cell";
+            // 
+            // label68
+            // 
+            this.label68.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label68.ForeColor = System.Drawing.Color.Black;
+            this.label68.Location = new System.Drawing.Point(161, 53);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(48, 15);
+            this.label68.TabIndex = 51;
+            this.label68.Text = "Alt + P";
+            // 
+            // label32
+            // 
+            this.label32.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label32.ForeColor = System.Drawing.Color.Black;
+            this.label32.Location = new System.Drawing.Point(161, 161);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(23, 15);
+            this.label32.TabIndex = 70;
+            this.label32.Text = "F4";
+            // 
+            // label67
+            // 
+            this.label67.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label67.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label67.Location = new System.Drawing.Point(23, 53);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(58, 15);
+            this.label67.TabIndex = 52;
+            this.label67.Text = "Process";
+            // 
+            // label29
+            // 
+            this.label29.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label29.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label29.Location = new System.Drawing.Point(23, 134);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(84, 15);
+            this.label29.TabIndex = 69;
+            this.label29.Text = "Change Tab";
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label16.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label16.Location = new System.Drawing.Point(23, 26);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(34, 15);
+            this.label16.TabIndex = 54;
+            this.label16.Text = "Pick";
+            // 
+            // label30
+            // 
+            this.label30.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label30.ForeColor = System.Drawing.Color.Black;
+            this.label30.Location = new System.Drawing.Point(161, 134);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(83, 15);
+            this.label30.TabIndex = 68;
+            this.label30.Text = "CTRL + TAB";
+            // 
+            // label19
+            // 
+            this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.Location = new System.Drawing.Point(161, 80);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(23, 15);
+            this.label19.TabIndex = 64;
+            this.label19.Text = "F5";
+            // 
+            // label27
+            // 
+            this.label27.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label27.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label27.Location = new System.Drawing.Point(23, 107);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(117, 15);
+            this.label27.TabIndex = 67;
+            this.label27.Text = "Refresh Selected";
+            // 
+            // label18
+            // 
+            this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label18.Location = new System.Drawing.Point(23, 80);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(77, 15);
+            this.label18.TabIndex = 65;
+            this.label18.Text = "Refresh All";
+            // 
+            // label28
+            // 
+            this.label28.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label28.ForeColor = System.Drawing.Color.Black;
+            this.label28.Location = new System.Drawing.Point(161, 107);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(74, 15);
+            this.label28.TabIndex = 66;
+            this.label28.Text = "CTRL + F5";
+            // 
             // label26
             // 
             this.label26.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label26.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label26.Location = new System.Drawing.Point(447, 341);
+            this.label26.Location = new System.Drawing.Point(447, 173);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(121, 15);
             this.label26.TabIndex = 63;
@@ -1068,8 +1312,8 @@
             // settings_PickLabelPrinter
             // 
             this.settings_PickLabelPrinter.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.settings_PickLabelPrinter.BackColor = System.Drawing.Color.LightGray;
-            this.settings_PickLabelPrinter.Location = new System.Drawing.Point(588, 340);
+            this.settings_PickLabelPrinter.BackColor = System.Drawing.Color.Linen;
+            this.settings_PickLabelPrinter.Location = new System.Drawing.Point(588, 172);
             this.settings_PickLabelPrinter.Name = "settings_PickLabelPrinter";
             this.settings_PickLabelPrinter.Size = new System.Drawing.Size(426, 20);
             this.settings_PickLabelPrinter.TabIndex = 62;
@@ -1081,7 +1325,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label25.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label25.Location = new System.Drawing.Point(447, 315);
+            this.label25.Location = new System.Drawing.Point(447, 147);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(109, 15);
             this.label25.TabIndex = 61;
@@ -1090,8 +1334,8 @@
             // settings_30LabelPrinter
             // 
             this.settings_30LabelPrinter.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.settings_30LabelPrinter.BackColor = System.Drawing.Color.LightGray;
-            this.settings_30LabelPrinter.Location = new System.Drawing.Point(588, 314);
+            this.settings_30LabelPrinter.BackColor = System.Drawing.Color.Linen;
+            this.settings_30LabelPrinter.Location = new System.Drawing.Point(588, 146);
             this.settings_30LabelPrinter.Name = "settings_30LabelPrinter";
             this.settings_30LabelPrinter.Size = new System.Drawing.Size(426, 20);
             this.settings_30LabelPrinter.TabIndex = 60;
@@ -1103,7 +1347,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label21.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label21.Location = new System.Drawing.Point(447, 289);
+            this.label21.Location = new System.Drawing.Point(447, 121);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(101, 15);
             this.label21.TabIndex = 59;
@@ -1112,8 +1356,8 @@
             // settings_labelPrinter
             // 
             this.settings_labelPrinter.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.settings_labelPrinter.BackColor = System.Drawing.Color.LightGray;
-            this.settings_labelPrinter.Location = new System.Drawing.Point(588, 288);
+            this.settings_labelPrinter.BackColor = System.Drawing.Color.Linen;
+            this.settings_labelPrinter.Location = new System.Drawing.Point(588, 120);
             this.settings_labelPrinter.Name = "settings_labelPrinter";
             this.settings_labelPrinter.Size = new System.Drawing.Size(426, 20);
             this.settings_labelPrinter.TabIndex = 58;
@@ -1123,97 +1367,25 @@
             // 
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.ForeColor = System.Drawing.Color.Gray;
             this.label20.Location = new System.Drawing.Point(1297, 9);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 1.8.6 20/06/2018";
-            // 
-            // label18
-            // 
-            this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label18.Location = new System.Drawing.Point(447, 215);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(54, 15);
-            this.label18.TabIndex = 56;
-            this.label18.Text = "Pick All";
-            // 
-            // label19
-            // 
-            this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(585, 215);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(47, 15);
-            this.label19.TabIndex = 55;
-            this.label19.Text = "Alt + A";
-            // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label16.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label16.Location = new System.Drawing.Point(447, 190);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(100, 15);
-            this.label16.TabIndex = 54;
-            this.label16.Text = "Print + Picking";
-            // 
-            // label17
-            // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(585, 190);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(54, 15);
-            this.label17.TabIndex = 53;
-            this.label17.Text = "Ctrl + P";
-            // 
-            // label67
-            // 
-            this.label67.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label67.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label67.Location = new System.Drawing.Point(447, 240);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(89, 15);
-            this.label67.TabIndex = 52;
-            this.label67.Text = "Process Pick";
-            // 
-            // label68
-            // 
-            this.label68.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label68.ForeColor = System.Drawing.Color.Black;
-            this.label68.Location = new System.Drawing.Point(585, 240);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(48, 15);
-            this.label68.TabIndex = 51;
-            this.label68.Text = "Alt + P";
+            this.label20.Text = "EOA 1.9.0 26/06/2018";
             // 
             // settings_Save
             // 
             this.settings_Save.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.settings_Save.BackColor = System.Drawing.Color.Gainsboro;
+            this.settings_Save.BackColor = System.Drawing.Color.Linen;
             this.settings_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.settings_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.settings_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settings_Save.ForeColor = System.Drawing.Color.Green;
-            this.settings_Save.Location = new System.Drawing.Point(450, 382);
+            this.settings_Save.Location = new System.Drawing.Point(450, 214);
             this.settings_Save.Name = "settings_Save";
             this.settings_Save.Size = new System.Drawing.Size(201, 35);
             this.settings_Save.TabIndex = 50;
-            this.settings_Save.Text = "Save Settings";
+            this.settings_Save.Text = "SAVE SETTINGS";
             this.settings_Save.UseVisualStyleBackColor = false;
             this.settings_Save.Click += new System.EventHandler(this.Settings_Save_Click);
             // 
@@ -1223,7 +1395,7 @@
             this.label105.AutoSize = true;
             this.label105.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label105.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label105.Location = new System.Drawing.Point(447, 264);
+            this.label105.Location = new System.Drawing.Point(447, 96);
             this.label105.Name = "label105";
             this.label105.Size = new System.Drawing.Size(94, 15);
             this.label105.TabIndex = 49;
@@ -1232,8 +1404,8 @@
             // settings_printerName
             // 
             this.settings_printerName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.settings_printerName.BackColor = System.Drawing.Color.LightGray;
-            this.settings_printerName.Location = new System.Drawing.Point(588, 262);
+            this.settings_printerName.BackColor = System.Drawing.Color.Linen;
+            this.settings_printerName.Location = new System.Drawing.Point(588, 94);
             this.settings_printerName.Name = "settings_printerName";
             this.settings_printerName.Size = new System.Drawing.Size(426, 20);
             this.settings_printerName.TabIndex = 48;
@@ -1284,6 +1456,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.SettingsTab.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1330,8 +1506,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox narrativeTextBox;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label20;
@@ -1373,6 +1547,20 @@
         private System.Windows.Forms.GroupBox supplierGroupBox;
         private System.Windows.Forms.Button printSupplierBtn;
         private System.Windows.Forms.Button print30SupplierBtn;
+        private System.Windows.Forms.Button deleteSelectedBtn;
+        private System.Windows.Forms.Button refreshBtn;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label34;
     }
 }
 

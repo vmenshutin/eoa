@@ -187,8 +187,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>0cm</Top>
-            <Left>15.39599cm</Left>
+            <Left>13.82069cm</Left>
             <Height>0.6cm</Height>
             <Width>3.11138cm</Width>
             <Style>
@@ -221,7 +220,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>0.6cm</Top>
-            <Left>15.39599cm</Left>
+            <Left>13.82069cm</Left>
             <Height>0.6cm</Height>
             <Width>3.11138cm</Width>
             <ZIndex>1</ZIndex>
@@ -255,7 +254,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
             <Top>1.23528cm</Top>
-            <Left>15.39599cm</Left>
+            <Left>13.82069cm</Left>
             <Height>0.6cm</Height>
             <Width>3.11138cm</Width>
             <ZIndex>2</ZIndex>
@@ -289,7 +288,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>1.83528cm</Top>
-            <Left>15.39599cm</Left>
+            <Left>13.82069cm</Left>
             <Height>0.6cm</Height>
             <Width>3.11138cm</Width>
             <ZIndex>3</ZIndex>
@@ -323,7 +322,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
             <Top>2.43528cm</Top>
-            <Left>15.39599cm</Left>
+            <Left>13.82069cm</Left>
             <Height>0.6cm</Height>
             <Width>3.11138cm</Width>
             <ZIndex>4</ZIndex>
@@ -365,10 +364,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>0cm</Top>
-            <Left>1.03197cm</Left>
-            <Height>3.26871cm</Height>
-            <Width>5.2979cm</Width>
+            <Left>1cm</Left>
+            <Height>3.25cm</Height>
+            <Width>5.25cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -409,10 +407,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>0cm</Top>
-            <Left>6.50626cm</Left>
-            <Height>3.26871cm</Height>
-            <Width>5.34462cm</Width>
+            <Left>6.5cm</Left>
+            <Height>3.25cm</Height>
+            <Width>5.25cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -429,10 +426,9 @@
             <Value>=First(Fields!BARCODE.Value, "DataSet1")</Value>
             <MIMEType>image/png</MIMEType>
             <Sizing>FitProportional</Sizing>
-            <Top>0cm</Top>
-            <Left>12.02727cm</Left>
-            <Height>1.45cm</Height>
-            <Width>1.45cm</Width>
+            <Left>17.10846cm</Left>
+            <Height>1.5cm</Height>
+            <Width>1.5cm</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -457,8 +453,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>0cm</Top>
-            <Left>13.5997cm</Left>
+            <Left>12.0244cm</Left>
             <Height>0.6cm</Height>
             <Width>1.79629cm</Width>
             <ZIndex>8</ZIndex>
@@ -490,7 +485,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>0.6cm</Top>
-            <Left>13.5997cm</Left>
+            <Left>12.0244cm</Left>
             <Height>0.6cm</Height>
             <Width>1.79629cm</Width>
             <ZIndex>9</ZIndex>
@@ -522,7 +517,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>1.23528cm</Top>
-            <Left>13.5997cm</Left>
+            <Left>12.0244cm</Left>
             <Height>0.6cm</Height>
             <Width>1.79629cm</Width>
             <ZIndex>10</ZIndex>
@@ -554,7 +549,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>1.83528cm</Top>
-            <Left>13.5997cm</Left>
+            <Left>12.0244cm</Left>
             <Height>0.6cm</Height>
             <Width>1.79629cm</Width>
             <ZIndex>11</ZIndex>
@@ -586,7 +581,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>2.43528cm</Top>
-            <Left>13.5997cm</Left>
+            <Left>12.0244cm</Left>
             <Height>0.6cm</Height>
             <Width>1.79629cm</Width>
             <ZIndex>12</ZIndex>
@@ -600,64 +595,16 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox17">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!NARRATIVE.Value, "DataSet1")</Value>
-                    <Style>
-                      <FontStyle>Italic</FontStyle>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox17</rd:DefaultName>
-            <Top>15.15551cm</Top>
-            <Left>1.03197cm</Left>
-            <Height>0.6cm</Height>
-            <Width>17.4754cm</Width>
-            <ZIndex>13</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Image Name="Image3">
-            <Source>Database</Source>
-            <Value>=First(Fields!ADDRESS_BARCODE.Value, "DataSet1")</Value>
-            <MIMEType>image/png</MIMEType>
-            <Sizing>FitProportional</Sizing>
-            <Top>1.52056cm</Top>
-            <Left>12.02727cm</Left>
-            <Height>1.47cm</Height>
-            <Width>1.45cm</Width>
-            <ZIndex>14</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Image>
           <Tablix Name="Tablix4">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>8.73542cm</Width>
+                  <Width>8.25cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>8.39417cm</Height>
+                  <Height>6cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -668,10 +615,8 @@
                               <Value>=Fields!BARCODE.Value</Value>
                               <MIMEType>image/png</MIMEType>
                               <Sizing>FitProportional</Sizing>
-                              <Top>0cm</Top>
-                              <Left>0cm</Left>
-                              <Height>8cm</Height>
-                              <Width>8cm</Width>
+                              <Height>5cm</Height>
+                              <Width>5cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -708,11 +653,11 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet2</DataSetName>
-            <Top>4.5687cm</Top>
-            <Left>1.29655cm</Left>
-            <Height>8.39417cm</Height>
-            <Width>8.73542cm</Width>
-            <ZIndex>15</ZIndex>
+            <Top>6cm</Top>
+            <Left>1cm</Left>
+            <Height>6cm</Height>
+            <Width>8.25cm</Width>
+            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -723,12 +668,12 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>8.29901cm</Width>
+                  <Width>8.25cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>8.39417cm</Height>
+                  <Height>6cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -739,10 +684,8 @@
                               <Value>=Fields!BARCODE.Value</Value>
                               <MIMEType>image/png</MIMEType>
                               <Sizing>FitProportional</Sizing>
-                              <Top>0cm</Top>
-                              <Left>0cm</Left>
-                              <Height>8cm</Height>
-                              <Width>8cm</Width>
+                              <Height>5cm</Height>
+                              <Width>5cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -779,56 +722,66 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet2</DataSetName>
-            <Top>4.5687cm</Top>
+            <Top>6cm</Top>
             <Left>10.20836cm</Left>
-            <Height>8.39417cm</Height>
-            <Width>8.29901cm</Width>
-            <ZIndex>16</ZIndex>
+            <Height>6cm</Height>
+            <Width>8.25cm</Width>
+            <ZIndex>14</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox17">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!NARRATIVE.Value, "DataSet1")</Value>
+                    <Style>
+                      <FontStyle>Italic</FontStyle>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox17</rd:DefaultName>
+            <Top>5.17639cm</Top>
+            <Left>1cm</Left>
+            <Height>0.5cm</Height>
+            <Width>17.50737cm</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
           <Tablix Name="Tablix1">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.125cm</Width>
+                  <Width>2.9376cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.83875cm</Width>
+                  <Width>11.99953cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>11.90068cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1.61097cm</Width>
+                  <Width>2.57024cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
                   <Height>1cm</Height>
                   <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Image Name="Image4">
-                          <Source>Database</Source>
-                          <Value>=Fields!BARCODE.Value</Value>
-                          <MIMEType>image/png</MIMEType>
-                          <Sizing>FitProportional</Sizing>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>3pt</PaddingLeft>
-                            <PaddingRight>3pt</PaddingRight>
-                            <PaddingTop>3pt</PaddingTop>
-                            <PaddingBottom>3pt</PaddingBottom>
-                          </Style>
-                        </Image>
-                      </CellContents>
-                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox18">
@@ -941,7 +894,6 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -952,11 +904,11 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet3</DataSetName>
-            <Top>13.62287cm</Top>
-            <Left>1.03197cm</Left>
+            <Top>4cm</Top>
+            <Left>1cm</Left>
             <Height>1cm</Height>
-            <Width>17.4754cm</Width>
-            <ZIndex>17</ZIndex>
+            <Width>17.50737cm</Width>
+            <ZIndex>16</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -964,14 +916,14 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>16.21104cm</Height>
+        <Height>12.5cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>19.73542cm</Width>
+      <Width>20cm</Width>
       <Page>
         <PageFooter>
           <Height>1cm</Height>
@@ -1114,8 +1066,10 @@
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>15cm</PageHeight>
-        <PageWidth>11cm</PageWidth>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <InteractiveHeight>29cm</InteractiveHeight>
+        <InteractiveWidth>20cm</InteractiveWidth>
         <LeftMargin>0cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
         <TopMargin>0cm</TopMargin>
@@ -1131,6 +1085,7 @@
       <NumberOfRows>2</NumberOfRows>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>4e21d665-c167-4300-aa6d-0432cc6efc1d</rd:ReportID>
 </Report>

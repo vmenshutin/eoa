@@ -42,11 +42,11 @@
             this.printLabelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printLabelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printLabelBtn.ForeColor = System.Drawing.Color.OrangeRed;
-            this.printLabelBtn.Location = new System.Drawing.Point(481, 83);
+            this.printLabelBtn.Location = new System.Drawing.Point(478, 84);
             this.printLabelBtn.Name = "printLabelBtn";
-            this.printLabelBtn.Size = new System.Drawing.Size(115, 28);
+            this.printLabelBtn.Size = new System.Drawing.Size(130, 28);
             this.printLabelBtn.TabIndex = 27;
-            this.printLabelBtn.Text = "Print # labels";
+            this.printLabelBtn.Text = "Picksheet+Labels";
             this.printLabelBtn.UseVisualStyleBackColor = true;
             this.printLabelBtn.Click += new System.EventHandler(this.PrintLabelBtn_Click);
             // 
@@ -85,11 +85,11 @@
             this.continueBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.continueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continueBtn.ForeColor = System.Drawing.Color.Green;
-            this.continueBtn.Location = new System.Drawing.Point(481, 39);
+            this.continueBtn.Location = new System.Drawing.Point(478, 40);
             this.continueBtn.Name = "continueBtn";
-            this.continueBtn.Size = new System.Drawing.Size(115, 28);
+            this.continueBtn.Size = new System.Drawing.Size(130, 28);
             this.continueBtn.TabIndex = 32;
-            this.continueBtn.Text = "Continue";
+            this.continueBtn.Text = "Picksheet";
             this.continueBtn.UseVisualStyleBackColor = true;
             this.continueBtn.Click += new System.EventHandler(this.ContinueBtn_Click);
             // 
@@ -98,7 +98,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label22.Location = new System.Drawing.Point(602, 92);
+            this.label22.Location = new System.Drawing.Point(608, 93);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(19, 13);
             this.label22.TabIndex = 29;
@@ -107,7 +107,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.ForeColor = System.Drawing.Color.OrangeRed;
-            this.numericUpDown1.Location = new System.Drawing.Point(622, 89);
+            this.numericUpDown1.Location = new System.Drawing.Point(628, 90);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -128,11 +128,11 @@
             this.printOnlyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printOnlyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printOnlyBtn.ForeColor = System.Drawing.Color.SteelBlue;
-            this.printOnlyBtn.Location = new System.Drawing.Point(481, 127);
+            this.printOnlyBtn.Location = new System.Drawing.Point(478, 128);
             this.printOnlyBtn.Name = "printOnlyBtn";
-            this.printOnlyBtn.Size = new System.Drawing.Size(115, 28);
+            this.printOnlyBtn.Size = new System.Drawing.Size(130, 28);
             this.printOnlyBtn.TabIndex = 33;
-            this.printOnlyBtn.Text = "Print Only";
+            this.printOnlyBtn.Text = "Labels";
             this.printOnlyBtn.UseVisualStyleBackColor = true;
             this.printOnlyBtn.Click += new System.EventHandler(this.PrintOnlyBtn_Click);
             // 

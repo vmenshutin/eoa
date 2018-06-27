@@ -2,41 +2,49 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="StockLabelDataSet">
+    <DataSource Name="Label2DataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>c7990544-504f-4a39-b428-c0e77e62a8df</rd:DataSourceID>
+      <rd:DataSourceID>abd1e8c3-bb9c-41e2-81e2-83c7162ee684</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>StockLabelDataSet</DataSourceName>
+        <DataSourceName>Label2DataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="STOCKCODE">
-          <DataField>STOCKCODE</DataField>
+        <Field Name="SEQNO">
+          <DataField>SEQNO</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DESCRIPTION">
-          <DataField>DESCRIPTION</DataField>
+        <Field Name="ACCOUNTNAME">
+          <DataField>ACCOUNTNAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CUSTORDERNO">
+          <DataField>CUSTORDERNO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="X_PROJECTNAME">
+          <DataField>X_PROJECTNAME</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="BARCODE">
           <DataField>BARCODE</DataField>
           <rd:TypeName>System.Byte[]</rd:TypeName>
         </Field>
-        <Field Name="ITEMQTY">
-          <DataField>ITEMQTY</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="ADDRESS">
+          <DataField>ADDRESS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>StockLabelDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\FMonkey\Desktop\EOA\EntrostyleOperationsApplication\EntrostyleOperationsApplication\StockLabelDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>Label2DataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\FMonkey\Desktop\EOA\EntrostyleOperationsApplication\EntrostyleOperationsApplication\Label2DataSet.xsd</rd:SchemaPath>
         <rd:TableName>DataTable1</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -48,95 +56,16 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Textbox Name="ADDRESS1">
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!STOCKCODE.Value, "DataSet1")</Value>
-                    <Style>
-                      <FontSize>18pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>ADDRESS1</rd:DefaultName>
-            <Top>0.15cm</Top>
-            <Left>0.1cm</Left>
-            <Height>0.9cm</Height>
-            <Width>3.9cm</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Image Name="BarCodeImg">
-            <Source>Database</Source>
-            <Value>=First(Fields!BARCODE.Value, "DataSet1")</Value>
-            <MIMEType>image/png</MIMEType>
-            <Sizing>FitProportional</Sizing>
-            <Top>0.15cm</Top>
-            <Left>4cm</Left>
-            <Height>1cm</Height>
-            <Width>1cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Image>
-          <Textbox Name="Textbox2">
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!DESCRIPTION.Value, "DataSet1")</Value>
-                    <Style>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>1.1cm</Top>
-            <Left>0.1cm</Left>
-            <Height>1.25cm</Height>
-            <Width>3.9cm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox3">
+          <Textbox Name="Textbox1">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!ITEMQTY.Value, "DataSet1")</Value>
+                    <Value>=Parameters!Carrier.Value</Value>
                     <Style>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontSize>72pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -145,17 +74,47 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.3cm</Top>
-            <Left>4cm</Left>
-            <Height>1cm</Height>
-            <Width>1cm</Width>
-            <ZIndex>3</ZIndex>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.69818cm</Top>
+            <Height>2.58096cm</Height>
+            <Width>7.90159cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox9">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>/</Value>
+                    <Style>
+                      <FontSize>36pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox8</rd:DefaultName>
+            <Top>1.4155cm</Top>
+            <Left>8.47424cm</Left>
+            <Height>1.41384cm</Height>
+            <Width>0.47981cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -163,17 +122,17 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.35cm</Height>
+        <Height>4.18145cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>5cm</Width>
+      <Width>9.6743cm</Width>
       <Page>
-        <PageHeight>15cm</PageHeight>
-        <PageWidth>11cm</PageWidth>
+        <PageHeight>4.8cm</PageHeight>
+        <PageWidth>10.2cm</PageWidth>
         <LeftMargin>0cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
         <TopMargin>0cm</TopMargin>
@@ -184,9 +143,9 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="ItemQty">
-      <DataType>Integer</DataType>
-      <Nullable>true</Nullable>
+    <ReportParameter Name="Carrier">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -196,9 +155,9 @@
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
+          <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>ItemQty</ParameterName>
+          <ParameterName>Carrier</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

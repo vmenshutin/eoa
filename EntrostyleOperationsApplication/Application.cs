@@ -601,12 +601,12 @@ namespace EntrostyleOperationsApplication
             stockLblDataGridView.Columns[4].Visible = false;
 
             // report paths
-            stockReport.ReportPath = @".\STOCK.rdlc";
-            shelfReport.ReportPath = @".\SHELF.rdlc";
-            supplierReport.ReportPath = @".\SUPPLIER.rdlc";
-            layout30SHELFReport.ReportPath = @".\layout_30_SHELF.rdlc";
-            layout30STOCKReport.ReportPath = @".\layout_30_STOCK.rdlc";
-            layout30SUPPLIERReport.ReportPath = @".\layout_30_SUPPLIER.rdlc";
+            stockReport.ReportPath = @".\1_stock.rdlc";
+            shelfReport.ReportPath = @".\1_shelf.rdlc";
+            supplierReport.ReportPath = @".\1_supplier.rdlc";
+            layout30SHELFReport.ReportPath = @".\30_shelf.rdlc";
+            layout30STOCKReport.ReportPath = @".\30_stock.rdlc";
+            layout30SUPPLIERReport.ReportPath = @".\30_supplier.rdlc";
 
             // event listeners
             stockLblDataGridView.CellValidating += StockLblDataGridView_CellValidating;
@@ -718,7 +718,7 @@ namespace EntrostyleOperationsApplication
 
                 var salesOrderReport = new LocalReport
                 {
-                    ReportPath = @".\sales_order.rdlc"
+                    ReportPath = @".\picksheet.rdlc"
                 };
 
                 // so_hdr + accs
@@ -1463,10 +1463,6 @@ namespace EntrostyleOperationsApplication
             {
                 PrintPickingBtn_Click(printPickingBtn, new EventArgs());
             }
-            else if (keyData == (Keys.Alt | Keys.A))
-            {
-                PickAllBtn_Click(pickAllBtn, new EventArgs());
-            }
             else if (keyData == (Keys.F3))
             {
                 SelectNextNot("P", () => PrintPickingBtn_Click(printPickingBtn, new EventArgs()));
@@ -2031,6 +2027,16 @@ namespace EntrostyleOperationsApplication
             {
                 stockLblDataGridView.Rows.RemoveAt(stockLblDataGridView.CurrentCell.RowIndex);
             }
+        }
+
+        private void DeleteSelectedBtn_Click(object sender, EventArgs e)
+        {
+            DeleteCurrentStockLblRow();
+        }
+
+        private void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            RefreshF10();
         }
     }
 }

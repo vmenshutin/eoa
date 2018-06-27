@@ -85,7 +85,6 @@
                               </Paragraphs>
                               <rd:DefaultName>ADDRESS1</rd:DefaultName>
                               <Top>0.10583cm</Top>
-                              <Left>0in</Left>
                               <Height>0.38676in</Height>
                               <Width>5cm</Width>
                               <Style>
@@ -115,7 +114,6 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>1.2cm</Top>
-                              <Left>0in</Left>
                               <Height>0.77926cm</Height>
                               <Width>6.2cm</Width>
                               <ZIndex>1</ZIndex>
@@ -161,7 +159,6 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox1</rd:DefaultName>
                               <Top>2.01454cm</Top>
-                              <Left>0cm</Left>
                               <Height>0.56472cm</Height>
                               <Width>6.2cm</Width>
                               <ZIndex>3</ZIndex>
@@ -217,7 +214,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>6.42361cm</Width>
+                  <Width>6.4cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -320,7 +317,6 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox1</rd:DefaultName>
                               <Top>2.01454cm</Top>
-                              <Left>0cm</Left>
                               <Height>0.56472cm</Height>
                               <Width>6.2cm</Width>
                               <ZIndex>3</ZIndex>
@@ -365,7 +361,7 @@
             </TablixRowHierarchy>
             <Left>6.9cm</Left>
             <Height>2.67cm</Height>
-            <Width>6.42361cm</Width>
+            <Width>6.4cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -377,7 +373,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>6.42938cm</Width>
+                  <Width>6.4cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -421,7 +417,6 @@
                               </Paragraphs>
                               <rd:DefaultName>ADDRESS1</rd:DefaultName>
                               <Top>0.10583cm</Top>
-                              <Left>0in</Left>
                               <Height>0.38676in</Height>
                               <Width>5cm</Width>
                               <ZIndex>1</ZIndex>
@@ -452,7 +447,6 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>1.2cm</Top>
-                              <Left>0in</Left>
                               <Height>0.77926cm</Height>
                               <Width>6.2cm</Width>
                               <ZIndex>2</ZIndex>
@@ -482,7 +476,6 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox1</rd:DefaultName>
                               <Top>2.01454cm</Top>
-                              <Left>0cm</Left>
                               <Height>0.56472cm</Height>
                               <Width>6.2cm</Width>
                               <ZIndex>3</ZIndex>
@@ -527,7 +520,7 @@
             </TablixRowHierarchy>
             <Left>13.6cm</Left>
             <Height>2.67cm</Height>
-            <Width>6.42938cm</Width>
+            <Width>6.4cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -546,7 +539,7 @@
       <Width>21cm</Width>
       <Page>
         <PageHeader>
-          <Height>1.5cm</Height>
+          <Height>1.3cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <Style>
