@@ -103,7 +103,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!DESCRIPTION.Value, "DataSet1")</Value>
+                                      <Value>=Fields!DESCRIPTION.Value</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                       </Style>
@@ -150,7 +150,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!BARCODE1.Value, "DataSet1")</Value>
+                                      <Value>=Fields!BARCODE1.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -261,7 +261,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!DESCRIPTION.Value, "DataSet1")</Value>
+                                      <Value>=Fields!DESCRIPTION.Value</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                       </Style>
@@ -308,7 +308,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!BARCODE1.Value, "DataSet1")</Value>
+                                      <Value>=Fields!BARCODE1.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -436,7 +436,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!DESCRIPTION.Value, "DataSet1")</Value>
+                                      <Value>=Fields!DESCRIPTION.Value</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                       </Style>
@@ -467,7 +467,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!BARCODE1.Value, "DataSet1")</Value>
+                                      <Value>=Fields!BARCODE1.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>

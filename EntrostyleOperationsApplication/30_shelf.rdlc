@@ -99,7 +99,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!DESCRIPTION.Value, "DataSet1")</Value>
+                                      <Value>=Fields!DESCRIPTION.Value</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                       </Style>
@@ -228,7 +228,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!DESCRIPTION.Value, "DataSet1")</Value>
+                                      <Value>=Fields!DESCRIPTION.Value</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                       </Style>
@@ -374,7 +374,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!DESCRIPTION.Value, "DataSet1")</Value>
+                                      <Value>=Fields!DESCRIPTION.Value</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                       </Style>
