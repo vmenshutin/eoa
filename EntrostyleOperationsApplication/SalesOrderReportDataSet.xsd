@@ -53,6 +53,20 @@
               <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" type="xs:string" minOccurs="0" />
               <xs:element name="PICK_NOW" msprop:Generator_ColumnVarNameInTable="columnPICK_NOW" msprop:Generator_ColumnPropNameInRow="PICK_NOW" msprop:Generator_ColumnPropNameInTable="PICK_NOWColumn" msprop:Generator_UserColumnName="PICK_NOW" type="xs:string" minOccurs="0" />
               <xs:element name="BARCODE" msprop:Generator_ColumnVarNameInTable="columnBARCODE" msprop:Generator_ColumnPropNameInRow="BARCODE" msprop:Generator_ColumnPropNameInTable="BARCODEColumn" msprop:Generator_UserColumnName="BARCODE" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="X_HEADING_LINE" msprop:Generator_ColumnVarNameInTable="columnX_HEADING_LINE" msprop:Generator_ColumnPropNameInRow="X_HEADING_LINE" msprop:Generator_ColumnPropNameInTable="X_HEADING_LINEColumn" msprop:Generator_UserColumnName="X_HEADING_LINE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="X_HIDEFROMPICK" msprop:Generator_ColumnVarNameInTable="columnX_HIDEFROMPICK" msprop:Generator_ColumnPropNameInRow="X_HIDEFROMPICK" msprop:Generator_ColumnPropNameInTable="X_HIDEFROMPICKColumn" msprop:Generator_UserColumnName="X_HIDEFROMPICK" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

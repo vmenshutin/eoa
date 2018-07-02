@@ -1153,6 +1153,10 @@ namespace EntrostyleOperationsApplication {
             
             private global::System.Data.DataColumn columnBARCODE;
             
+            private global::System.Data.DataColumn columnX_HEADING_LINE;
+            
+            private global::System.Data.DataColumn columnX_HIDEFROMPICK;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DataTable3DataTable() {
@@ -1220,6 +1224,22 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn X_HEADING_LINEColumn {
+                get {
+                    return this.columnX_HEADING_LINE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn X_HIDEFROMPICKColumn {
+                get {
+                    return this.columnX_HIDEFROMPICK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1255,13 +1275,15 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable3Row AddDataTable3Row(string STOCKCODE, string DESCRIPTION, string PICK_NOW, byte[] BARCODE) {
+            public DataTable3Row AddDataTable3Row(string STOCKCODE, string DESCRIPTION, string PICK_NOW, byte[] BARCODE, char X_HEADING_LINE, char X_HIDEFROMPICK) {
                 DataTable3Row rowDataTable3Row = ((DataTable3Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         STOCKCODE,
                         DESCRIPTION,
                         PICK_NOW,
-                        BARCODE};
+                        BARCODE,
+                        X_HEADING_LINE,
+                        X_HIDEFROMPICK};
                 rowDataTable3Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable3Row);
                 return rowDataTable3Row;
@@ -1288,6 +1310,8 @@ namespace EntrostyleOperationsApplication {
                 this.columnDESCRIPTION = base.Columns["DESCRIPTION"];
                 this.columnPICK_NOW = base.Columns["PICK_NOW"];
                 this.columnBARCODE = base.Columns["BARCODE"];
+                this.columnX_HEADING_LINE = base.Columns["X_HEADING_LINE"];
+                this.columnX_HIDEFROMPICK = base.Columns["X_HIDEFROMPICK"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1301,6 +1325,10 @@ namespace EntrostyleOperationsApplication {
                 base.Columns.Add(this.columnPICK_NOW);
                 this.columnBARCODE = new global::System.Data.DataColumn("BARCODE", typeof(byte[]), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBARCODE);
+                this.columnX_HEADING_LINE = new global::System.Data.DataColumn("X_HEADING_LINE", typeof(char), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnX_HEADING_LINE);
+                this.columnX_HIDEFROMPICK = new global::System.Data.DataColumn("X_HIDEFROMPICK", typeof(char), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnX_HIDEFROMPICK);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2136,6 +2164,38 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public char X_HEADING_LINE {
+                get {
+                    try {
+                        return ((char)(this[this.tableDataTable3.X_HEADING_LINEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'X_HEADING_LINE\' in table \'DataTable3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable3.X_HEADING_LINEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public char X_HIDEFROMPICK {
+                get {
+                    try {
+                        return ((char)(this[this.tableDataTable3.X_HIDEFROMPICKColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'X_HIDEFROMPICK\' in table \'DataTable3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable3.X_HIDEFROMPICKColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsSTOCKCODENull() {
                 return this.IsNull(this.tableDataTable3.STOCKCODEColumn);
             }
@@ -2180,6 +2240,30 @@ namespace EntrostyleOperationsApplication {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetBARCODENull() {
                 this[this.tableDataTable3.BARCODEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsX_HEADING_LINENull() {
+                return this.IsNull(this.tableDataTable3.X_HEADING_LINEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetX_HEADING_LINENull() {
+                this[this.tableDataTable3.X_HEADING_LINEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsX_HIDEFROMPICKNull() {
+                return this.IsNull(this.tableDataTable3.X_HIDEFROMPICKColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetX_HIDEFROMPICKNull() {
+                this[this.tableDataTable3.X_HIDEFROMPICKColumn] = global::System.Convert.DBNull;
             }
         }
         

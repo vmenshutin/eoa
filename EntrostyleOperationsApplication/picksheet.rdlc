@@ -153,6 +153,14 @@
           <DataField>BARCODE</DataField>
           <rd:TypeName>System.Byte[]</rd:TypeName>
         </Field>
+        <Field Name="X_HEADING_LINE">
+          <DataField>X_HEADING_LINE</DataField>
+          <rd:TypeName>System.Char</rd:TypeName>
+        </Field>
+        <Field Name="X_HIDEFROMPICK">
+          <DataField>X_HIDEFROMPICK</DataField>
+          <rd:TypeName>System.Char</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SalesOrderReportDataSet</rd:DataSetName>
@@ -793,7 +801,8 @@
                                 <TextRun>
                                   <Value>=Fields!STOCKCODE.Value</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
+                                    <FontSize>=IIF(Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -827,7 +836,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!DESCRIPTION.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>=IIF(Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -861,7 +873,8 @@
                                 <TextRun>
                                   <Value>=Fields!PICK_NOW.Value</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
+                                    <FontSize>=IIF(Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -900,6 +913,9 @@
               <TablixMembers>
                 <TablixMember>
                   <Group Name="Details1" />
+                  <Visibility>
+                    <Hidden>=IIF(Fields!X_HIDEFROMPICK.Value = "Y", true, false)</Hidden>
+                  </Visibility>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>

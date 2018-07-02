@@ -750,15 +750,14 @@ namespace EntrostyleOperationsApplication
                 dataSource2.Columns.Add("BARCODE", typeof(byte[]));
 
                 var rows = filteredSOItems.AsEnumerable()
-                    .Where(r => ((float.Parse(r["PICK_NOW"].ToString()) > 0) || (r["STOCKCODE"].ToString()).Length == 0)
-                        && r["LOCATION"].ToString()[0].Equals('1'));
+                    .Where(r => (float.Parse(r["PICK_NOW"].ToString()) > 0) || (r["STOCKCODE"].ToString()).Length == 0);
 
                 filteredSOItems = rows.Any() ? rows.CopyToDataTable() : filteredSOItems.Clone();
 
                 // remove all unnecessary columns from filteredSOItems
                 for (int i = filteredSOItems.Columns.Count - 1; i >= 0; i--)
                 {
-                    string[] columnsToKeep = { "STOCKCODE", "DESCRIPTION", "PICK_NOW" };
+                    string[] columnsToKeep = { "STOCKCODE", "DESCRIPTION", "PICK_NOW", "X_HEADING_LINE", "X_HIDEFROMPICK" };
 
                     if (!columnsToKeep.Contains<string>(filteredSOItems.Columns[i].ColumnName))
                     {
@@ -974,6 +973,8 @@ namespace EntrostyleOperationsApplication
             columns["LINES_ID"].Visible = false;
             columns["SESSIONID"].Visible = false;
             columns["LOCATION"].Visible = false;
+            columns["x_heading_line"].Visible = false;
+            columns["x_hidefrompick"].Visible = false;
 
             columns["STOCKCODE"].HeaderText = "Stock Code";
             columns["STOCKCODE"].HeaderText = "Stock Code";
