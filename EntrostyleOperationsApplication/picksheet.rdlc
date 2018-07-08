@@ -161,6 +161,10 @@
           <DataField>X_HIDEFROMPICK</DataField>
           <rd:TypeName>System.Char</rd:TypeName>
         </Field>
+        <Field Name="LINETYPE">
+          <DataField>LINETYPE</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SalesOrderReportDataSet</rd:DataSetName>
@@ -801,8 +805,9 @@
                                 <TextRun>
                                   <Value>=Fields!STOCKCODE.Value</Value>
                                   <Style>
-                                    <FontSize>=IIF(Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
-                                    <FontWeight>=IIF(Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
+                                    <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
+                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1, "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1, "Bold", "Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -837,8 +842,9 @@
                                 <TextRun>
                                   <Value>=Fields!DESCRIPTION.Value</Value>
                                   <Style>
-                                    <FontSize>=IIF(Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
-                                    <FontWeight>=IIF(Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
+                                    <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
+                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1, "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1, "Bold", "Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -873,8 +879,9 @@
                                 <TextRun>
                                   <Value>=Fields!PICK_NOW.Value</Value>
                                   <Style>
-                                    <FontSize>=IIF(Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
-                                    <FontWeight>=IIF(Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
+                                    <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
+                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1, "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1, "Bold", "Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>

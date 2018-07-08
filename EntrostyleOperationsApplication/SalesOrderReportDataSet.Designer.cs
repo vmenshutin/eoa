@@ -1157,6 +1157,8 @@ namespace EntrostyleOperationsApplication {
             
             private global::System.Data.DataColumn columnX_HIDEFROMPICK;
             
+            private global::System.Data.DataColumn columnLINETYPE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DataTable3DataTable() {
@@ -1240,6 +1242,14 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LINETYPEColumn {
+                get {
+                    return this.columnLINETYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1275,7 +1285,7 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable3Row AddDataTable3Row(string STOCKCODE, string DESCRIPTION, string PICK_NOW, byte[] BARCODE, char X_HEADING_LINE, char X_HIDEFROMPICK) {
+            public DataTable3Row AddDataTable3Row(string STOCKCODE, string DESCRIPTION, string PICK_NOW, byte[] BARCODE, char X_HEADING_LINE, char X_HIDEFROMPICK, int LINETYPE) {
                 DataTable3Row rowDataTable3Row = ((DataTable3Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         STOCKCODE,
@@ -1283,7 +1293,8 @@ namespace EntrostyleOperationsApplication {
                         PICK_NOW,
                         BARCODE,
                         X_HEADING_LINE,
-                        X_HIDEFROMPICK};
+                        X_HIDEFROMPICK,
+                        LINETYPE};
                 rowDataTable3Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable3Row);
                 return rowDataTable3Row;
@@ -1312,6 +1323,7 @@ namespace EntrostyleOperationsApplication {
                 this.columnBARCODE = base.Columns["BARCODE"];
                 this.columnX_HEADING_LINE = base.Columns["X_HEADING_LINE"];
                 this.columnX_HIDEFROMPICK = base.Columns["X_HIDEFROMPICK"];
+                this.columnLINETYPE = base.Columns["LINETYPE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1329,6 +1341,8 @@ namespace EntrostyleOperationsApplication {
                 base.Columns.Add(this.columnX_HEADING_LINE);
                 this.columnX_HIDEFROMPICK = new global::System.Data.DataColumn("X_HIDEFROMPICK", typeof(char), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnX_HIDEFROMPICK);
+                this.columnLINETYPE = new global::System.Data.DataColumn("LINETYPE", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLINETYPE);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2196,6 +2210,22 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int LINETYPE {
+                get {
+                    try {
+                        return ((int)(this[this.tableDataTable3.LINETYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LINETYPE\' in table \'DataTable3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable3.LINETYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsSTOCKCODENull() {
                 return this.IsNull(this.tableDataTable3.STOCKCODEColumn);
             }
@@ -2264,6 +2294,18 @@ namespace EntrostyleOperationsApplication {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetX_HIDEFROMPICKNull() {
                 this[this.tableDataTable3.X_HIDEFROMPICKColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLINETYPENull() {
+                return this.IsNull(this.tableDataTable3.LINETYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLINETYPENull() {
+                this[this.tableDataTable3.LINETYPEColumn] = global::System.Convert.DBNull;
             }
         }
         

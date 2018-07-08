@@ -20,6 +20,7 @@ CREATE TABLE [dbo].[EOA_SO_ITEM_DETAILS](
 	[X_ACTION] [int] NULL,
 	[X_HEADING_LINE] char(1) NULL,
 	[X_HIDEFROMPICK] char(1) NULL,
+	[LINETYPE] INT NOT NULL,
 	[SESSIONID] INT NOT NULL
 	
 PRIMARY KEY CLUSTERED 
@@ -63,7 +64,8 @@ select distinct
 	 ,CONCAT(stocklocations.LOCNO, ' ', stocklocations.LCODE)
 	 ,lines.X_ACTION
 	 ,items.X_HEADING_LINE
-	 ,items.X_HIDEFROMPICK 
+	 ,items.X_HIDEFROMPICK
+	 ,lines.LINETYPE
      ,@sessionId
 	 from SALESORD_HDR sales
 		left join SALESORD_LINES lines
