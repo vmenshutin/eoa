@@ -806,8 +806,8 @@
                                   <Value>=Fields!STOCKCODE.Value</Value>
                                   <Style>
                                     <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
-                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1, "12pt", "10pt")</FontSize>
-                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1, "Bold", "Default")</FontWeight>
+                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -843,8 +843,8 @@
                                   <Value>=Fields!DESCRIPTION.Value</Value>
                                   <Style>
                                     <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
-                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1, "12pt", "10pt")</FontSize>
-                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1, "Bold", "Default")</FontWeight>
+                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -880,8 +880,8 @@
                                   <Value>=Fields!PICK_NOW.Value</Value>
                                   <Style>
                                     <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
-                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1, "12pt", "10pt")</FontSize>
-                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1, "Bold", "Default")</FontWeight>
+                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -903,6 +903,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

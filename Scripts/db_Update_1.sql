@@ -114,7 +114,6 @@ END
 
 GO
 
-
 -- create EOA_SALESORD_MAIN table
 
 SET ANSI_NULLS ON

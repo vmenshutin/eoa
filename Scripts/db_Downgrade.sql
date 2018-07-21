@@ -134,7 +134,6 @@ END
 
 go
 
-
 -- drop tables -----------------------------------------------------------------------------
 
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'EOA_SALESORD_MAIN')
@@ -325,6 +324,10 @@ GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'get_sales_order_report')
 	DROP PROCEDURE get_sales_order_report
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_force_fully_processed')
+	DROP PROCEDURE eoa_force_fully_processed
 GO
 
 -- drop triggers ------------------------------------------------------------------------------
