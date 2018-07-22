@@ -49,6 +49,7 @@ namespace EntrostyleOperationsApplication
             dt.Columns.Add("CUSTORDERNO", typeof(String));
             dt.Columns.Add("X_PROJECTNAME", typeof(String));
             dt.Columns.Add("ADDRESS", typeof(String));
+            dt.Columns.Add("REFERENCE", typeof(String));
             dt.Columns.Add("BARCODE", typeof(byte[]));
 
             DataRow dr = dt.NewRow();
@@ -57,6 +58,7 @@ namespace EntrostyleOperationsApplication
             dr["CUSTORDERNO"] = row.Cells["CUSTORDERNO"].Value.ToString();
             dr["X_PROJECTNAME"] = row.Cells["X_PROJECTNAME"].Value.ToString();
             dr["ADDRESS"] = row.Cells["ADDRESS1"].Value.ToString() + ' ' + row.Cells["ADDRESS2"].Value.ToString();
+            dr["REFERENCE"] = row.Cells["REFERENCE"].Value.ToString();
 
             Bitmap bitmap = GenerateBarcode(row.Cells["#"].Value.ToString(), 300, 300, 0);
             dr["BARCODE"] = (byte[])(new ImageConverter().ConvertTo(bitmap, typeof(byte[])));

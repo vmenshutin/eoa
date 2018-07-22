@@ -291,6 +291,8 @@ namespace EntrostyleOperationsApplication {
             
             private global::System.Data.DataColumn columnADDRESS;
             
+            private global::System.Data.DataColumn columnREFERENCE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DataTable1DataTable() {
@@ -374,6 +376,14 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn REFERENCEColumn {
+                get {
+                    return this.columnREFERENCE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -409,7 +419,7 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string SEQNO, string ACCOUNTNAME, string CUSTORDERNO, string X_PROJECTNAME, byte[] BARCODE, string ADDRESS) {
+            public DataTable1Row AddDataTable1Row(string SEQNO, string ACCOUNTNAME, string CUSTORDERNO, string X_PROJECTNAME, byte[] BARCODE, string ADDRESS, string REFERENCE) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SEQNO,
@@ -417,7 +427,8 @@ namespace EntrostyleOperationsApplication {
                         CUSTORDERNO,
                         X_PROJECTNAME,
                         BARCODE,
-                        ADDRESS};
+                        ADDRESS,
+                        REFERENCE};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -446,6 +457,7 @@ namespace EntrostyleOperationsApplication {
                 this.columnX_PROJECTNAME = base.Columns["X_PROJECTNAME"];
                 this.columnBARCODE = base.Columns["BARCODE"];
                 this.columnADDRESS = base.Columns["ADDRESS"];
+                this.columnREFERENCE = base.Columns["REFERENCE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -463,6 +475,8 @@ namespace EntrostyleOperationsApplication {
                 base.Columns.Add(this.columnBARCODE);
                 this.columnADDRESS = new global::System.Data.DataColumn("ADDRESS", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnADDRESS);
+                this.columnREFERENCE = new global::System.Data.DataColumn("REFERENCE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnREFERENCE);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -701,6 +715,22 @@ namespace EntrostyleOperationsApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string REFERENCE {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.REFERENCEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'REFERENCE\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.REFERENCEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsSEQNONull() {
                 return this.IsNull(this.tableDataTable1.SEQNOColumn);
             }
@@ -769,6 +799,18 @@ namespace EntrostyleOperationsApplication {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetADDRESSNull() {
                 this[this.tableDataTable1.ADDRESSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsREFERENCENull() {
+                return this.IsNull(this.tableDataTable1.REFERENCEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetREFERENCENull() {
+                this[this.tableDataTable1.REFERENCEColumn] = global::System.Convert.DBNull;
             }
         }
         
