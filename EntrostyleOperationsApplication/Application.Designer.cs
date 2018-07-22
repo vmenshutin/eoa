@@ -127,6 +127,7 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
+            this.forceFullyProcessedBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -198,6 +199,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.forceFullyProcessedBtn);
             this.splitContainer1.Panel2.Controls.Add(this.refreshBtn);
             this.splitContainer1.Panel2.Controls.Add(this.clearAllBtn);
             this.splitContainer1.Panel2.Controls.Add(this.tdBtn);
@@ -1421,6 +1423,20 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // forceFullyProcessedBtn
+            // 
+            this.forceFullyProcessedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.forceFullyProcessedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forceFullyProcessedBtn.ForeColor = System.Drawing.Color.Purple;
+            this.forceFullyProcessedBtn.Location = new System.Drawing.Point(520, 186);
+            this.forceFullyProcessedBtn.Name = "forceFullyProcessedBtn";
+            this.forceFullyProcessedBtn.Size = new System.Drawing.Size(72, 28);
+            this.forceFullyProcessedBtn.TabIndex = 35;
+            this.forceFullyProcessedBtn.TabStop = false;
+            this.forceFullyProcessedBtn.Text = "FFP";
+            this.forceFullyProcessedBtn.UseVisualStyleBackColor = true;
+            this.forceFullyProcessedBtn.Click += new System.EventHandler(this.ForceFullyProcessedBtn_Click);
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1571,6 +1587,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button forceFullyProcessedBtn;
     }
 }
 

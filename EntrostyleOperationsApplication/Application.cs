@@ -2040,5 +2040,22 @@ namespace EntrostyleOperationsApplication
         {
             RefreshF10();
         }
+
+        private void ForceFullyProcessedBtn_Click(object sender, EventArgs e)
+        {
+            var order = GetCurrentSO();
+            var orderRow = GetCurrentSORow();
+
+            if (order != null)
+            {
+                var wait = ShowWaitForm();
+
+                (new OdbcCommand("exec eoa_force_fully_processed " + order, connection)).ExecuteNonQuery();
+
+                orderRow.DataGridView.Focus();
+
+                wait.Close();
+            }
+        }
     }
 }
