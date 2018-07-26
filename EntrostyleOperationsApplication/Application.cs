@@ -1686,36 +1686,7 @@ namespace EntrostyleOperationsApplication
 
         private void TransferBtn_Click(object sender, EventArgs e)
         {
-            var wait = ShowWaitForm();
-
-            SOItemDetails.Focus();
-
-            var reference = referenceTextBox.Text;
-            var toLocation = locationComboBox.SelectedValue.ToString();
-
-            bool insertIntoHdr = true;
-
-            foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
-            {
-                if (itemRow.Cells["X_ACTION"].Value.ToString() != "")
-                {
-                    string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
-                    string quantity = itemRow.Cells["X_ACTION"].Value.ToString();
-                    string location = itemRow.Cells["LOCATION"].Value.ToString();
-
-                    itemRow.Cells["X_ACTION"].Value = DBNull.Value;
-
-                    (new OdbcCommand("eoa_transfer '" + stockCode + "', '" + reference + "', " + quantity + ", '" + location + "', '" + toLocation + "', " + (insertIntoHdr ? "1" : "0"),
-                        connection)).ExecuteNonQuery();
-
-                    insertIntoHdr = false;
-                }
-            }
-
-            referenceTextBox.Text = "";
-            wait.Close();
-
-            RefreshF10();
+            PerformStockLogic(locationComboBox.SelectedValue.ToString(), true, 2, "EOA TRANSFER");
         }
 
         private void DuplicateBtn_Click(object sender, EventArgs e)
@@ -2056,6 +2027,57 @@ namespace EntrostyleOperationsApplication
 
                 wait.Close();
             }
+        }
+
+        private void PerformStockLogic(string toLocation, bool isQuantityNegative, int transtype, string ref1)
+        {
+            var wait = ShowWaitForm();
+
+            SOItemDetails.Focus();
+
+            var reference = referenceTextBox.Text;
+
+            bool insertIntoHdr = true;
+
+            foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
+            {
+                if (itemRow.Cells["X_ACTION"].Value.ToString() != "")
+                {
+                    string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
+                    string quantity = (isQuantityNegative ? "-" : "") + itemRow.Cells["X_ACTION"].Value.ToString();
+                    string location = itemRow.Cells["LOCATION"].Value.ToString();
+
+                    itemRow.Cells["X_ACTION"].Value = DBNull.Value;
+
+                    (new OdbcCommand("eoa_transfer '" +
+                        stockCode + "', '" +
+                        reference + "', '" +
+                        ref1 + "', " +
+                        quantity + ", '" +
+                        location + "', '" +
+                        toLocation + "', "
+                        + (insertIntoHdr ? "1" : "0") + ", " +
+                        transtype.ToString(),
+                        connection)).ExecuteNonQuery();
+
+                    insertIntoHdr = false;
+                }
+            }
+
+            referenceTextBox.Text = "";
+            wait.Close();
+
+            RefreshF10();
+        }
+
+        private void AdjustInBtn_Click(object sender, EventArgs e)
+        {
+            PerformStockLogic("0", false, 4, "EOA ADJUST IN");
+        }
+
+        private void AdjustOutBtn_Click(object sender, EventArgs e)
+        {
+            PerformStockLogic("0", true, 3, "EOA ADJUST OUT");
         }
     }
 }

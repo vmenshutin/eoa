@@ -1,4 +1,12 @@
-create procedure eoa_transfer @stockcode varchar(50), @reference varchar(50), @quantity int, @location varchar(50), @toLocation varchar(50), @insertIntoHdr BIT
+create procedure eoa_transfer 
+@stockcode varchar(50),
+@reference varchar(50),
+@ref1 varchar(20),
+@quantity int,
+@location varchar(50),
+@toLocation varchar(50),
+@insertIntoHdr BIT,
+@transtype int
 as
 BEGIN
 
@@ -17,9 +25,9 @@ begin
 	VALUES(
 		DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())), -- TRANSDATE -- today date
 		@periodSeqno, -- PERIOD_SEQNO -- the last “s” ledger in dbo.period_status
-		2, -- TRANSTYPE -- static
+		@transtype, -- TRANSTYPE
 		@reference, -- REFERENCE
-		24, -- STAFFNO -- STAFF.STAFFNO - default to 24?
+		1, -- STAFFNO -- STAFF.STAFFNO - default to 1
 		-1 -- NARRATIVE_SEQNO -- SALESORD_LINES.NARRATIVE_SEQNO --->>> ???
 	)
 end
@@ -34,10 +42,10 @@ GLBRANCH, GLACC, GLSUBACC, PERIOD_SEQNO,FROM_HDR,POST_TO_GL,PLU,SESSION_ID)
 VALUES (
 	DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())), -- TRANSDATE -- today date
 	@stockcode, -- STOCKCODE
-	2, -- TRANSTYPE -- static
-	'TRANSFER', -- REF1 -- reference
+	@transtype, -- TRANSTYPE
+	@ref1, -- REF1 -- reference
 	@reference, -- REF2 -- static
-	-@quantity, -- QUANTITY -- negative value of X_ACTION
+	@quantity, -- QUANTITY -- negative value of X_ACTION
 	@unitPrice, -- UNITPRICE -- dbo.stock_items avecost
 	@unitPrice, -- UNITCOST -- dbo.stock_items avecost
 	SUBSTRING(@location, 0, CHARINDEX(' ', @location, 0)), -- LOCATION -- current location of a selected item in bottom-right grid

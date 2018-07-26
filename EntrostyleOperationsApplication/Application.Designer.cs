@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
@@ -40,6 +40,7 @@
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
+            this.forceFullyProcessedBtn = new System.Windows.Forms.Button();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.clearAllBtn = new System.Windows.Forms.Button();
             this.tdBtn = new System.Windows.Forms.Button();
@@ -127,7 +128,9 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
-            this.forceFullyProcessedBtn = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.adjustInBtn = new System.Windows.Forms.Button();
+            this.adjustOutBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -160,6 +163,7 @@
             this.SettingsTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -172,7 +176,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1425, 734);
+            this.tabControl1.Size = new System.Drawing.Size(1462, 734);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.TabStop = false;
             // 
@@ -182,7 +186,7 @@
             this.ScheduleTab.Location = new System.Drawing.Point(4, 22);
             this.ScheduleTab.Name = "ScheduleTab";
             this.ScheduleTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ScheduleTab.Size = new System.Drawing.Size(1417, 708);
+            this.ScheduleTab.Size = new System.Drawing.Size(1454, 708);
             this.ScheduleTab.TabIndex = 0;
             this.ScheduleTab.Text = "SCHEDULE";
             this.ScheduleTab.UseVisualStyleBackColor = true;
@@ -199,6 +203,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer1.Panel2.Controls.Add(this.forceFullyProcessedBtn);
             this.splitContainer1.Panel2.Controls.Add(this.refreshBtn);
             this.splitContainer1.Panel2.Controls.Add(this.clearAllBtn);
@@ -206,7 +211,6 @@
             this.splitContainer1.Panel2.Controls.Add(this.duplicateBtn);
             this.splitContainer1.Panel2.Controls.Add(this.referenceTextBox);
             this.splitContainer1.Panel2.Controls.Add(this.locationComboBox);
-            this.splitContainer1.Panel2.Controls.Add(this.transferBtn);
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer1.Panel2.Controls.Add(this.label15);
             this.splitContainer1.Panel2.Controls.Add(this.label13);
@@ -228,8 +232,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.label7);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer1.Size = new System.Drawing.Size(1411, 702);
-            this.splitContainer1.SplitterDistance = 781;
+            this.splitContainer1.Size = new System.Drawing.Size(1448, 702);
+            this.splitContainer1.SplitterDistance = 771;
             this.splitContainer1.TabIndex = 14;
             // 
             // splitContainer2
@@ -248,7 +252,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.clearSearchBtn);
             this.splitContainer2.Panel2.Controls.Add(this.searchBox);
             this.splitContainer2.Panel2.Controls.Add(this.SOSecondary);
-            this.splitContainer2.Size = new System.Drawing.Size(781, 702);
+            this.splitContainer2.Size = new System.Drawing.Size(771, 702);
             this.splitContainer2.SplitterDistance = 386;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -260,7 +264,7 @@
             this.SOMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOMain.Location = new System.Drawing.Point(0, 0);
             this.SOMain.Name = "SOMain";
-            this.SOMain.Size = new System.Drawing.Size(781, 386);
+            this.SOMain.Size = new System.Drawing.Size(771, 386);
             this.SOMain.TabIndex = 0;
             // 
             // clearSearchBtn
@@ -268,7 +272,7 @@
             this.clearSearchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.clearSearchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearSearchBtn.ForeColor = System.Drawing.Color.Firebrick;
-            this.clearSearchBtn.Location = new System.Drawing.Point(690, 3);
+            this.clearSearchBtn.Location = new System.Drawing.Point(680, 3);
             this.clearSearchBtn.Name = "clearSearchBtn";
             this.clearSearchBtn.Size = new System.Drawing.Size(91, 22);
             this.clearSearchBtn.TabIndex = 3;
@@ -282,7 +286,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBox.Location = new System.Drawing.Point(0, 4);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(686, 20);
+            this.searchBox.Size = new System.Drawing.Size(676, 20);
             this.searchBox.TabIndex = 2;
             this.searchBox.TextChanged += new System.EventHandler(this.SearchBox_TextChanged);
             // 
@@ -296,8 +300,22 @@
             this.SOSecondary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SOSecondary.Location = new System.Drawing.Point(0, 28);
             this.SOSecondary.Name = "SOSecondary";
-            this.SOSecondary.Size = new System.Drawing.Size(781, 284);
+            this.SOSecondary.Size = new System.Drawing.Size(771, 284);
             this.SOSecondary.TabIndex = 1;
+            // 
+            // forceFullyProcessedBtn
+            // 
+            this.forceFullyProcessedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.forceFullyProcessedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forceFullyProcessedBtn.ForeColor = System.Drawing.Color.Purple;
+            this.forceFullyProcessedBtn.Location = new System.Drawing.Point(442, 186);
+            this.forceFullyProcessedBtn.Name = "forceFullyProcessedBtn";
+            this.forceFullyProcessedBtn.Size = new System.Drawing.Size(72, 28);
+            this.forceFullyProcessedBtn.TabIndex = 35;
+            this.forceFullyProcessedBtn.TabStop = false;
+            this.forceFullyProcessedBtn.Text = "FFP";
+            this.forceFullyProcessedBtn.UseVisualStyleBackColor = true;
+            this.forceFullyProcessedBtn.Click += new System.EventHandler(this.ForceFullyProcessedBtn_Click);
             // 
             // refreshBtn
             // 
@@ -332,7 +350,7 @@
             this.tdBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tdBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tdBtn.ForeColor = System.Drawing.Color.Crimson;
-            this.tdBtn.Location = new System.Drawing.Point(442, 186);
+            this.tdBtn.Location = new System.Drawing.Point(364, 186);
             this.tdBtn.Name = "tdBtn";
             this.tdBtn.Size = new System.Drawing.Size(72, 28);
             this.tdBtn.TabIndex = 32;
@@ -359,7 +377,7 @@
             // 
             this.referenceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.referenceTextBox.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.referenceTextBox.Location = new System.Drawing.Point(394, 224);
+            this.referenceTextBox.Location = new System.Drawing.Point(373, 224);
             this.referenceTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.referenceTextBox.Name = "referenceTextBox";
             this.referenceTextBox.Size = new System.Drawing.Size(141, 21);
@@ -372,7 +390,7 @@
             this.locationComboBox.FormattingEnabled = true;
             this.locationComboBox.Location = new System.Drawing.Point(286, 224);
             this.locationComboBox.Name = "locationComboBox";
-            this.locationComboBox.Size = new System.Drawing.Size(102, 21);
+            this.locationComboBox.Size = new System.Drawing.Size(79, 21);
             this.locationComboBox.TabIndex = 29;
             this.locationComboBox.TabStop = false;
             // 
@@ -381,9 +399,9 @@
             this.transferBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.transferBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transferBtn.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.transferBtn.Location = new System.Drawing.Point(364, 186);
+            this.transferBtn.Location = new System.Drawing.Point(6, 18);
             this.transferBtn.Name = "transferBtn";
-            this.transferBtn.Size = new System.Drawing.Size(72, 28);
+            this.transferBtn.Size = new System.Drawing.Size(101, 24);
             this.transferBtn.TabIndex = 28;
             this.transferBtn.TabStop = false;
             this.transferBtn.Text = "Transfer";
@@ -406,7 +424,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.SOItemDetails);
-            this.splitContainer3.Size = new System.Drawing.Size(623, 431);
+            this.splitContainer3.Size = new System.Drawing.Size(670, 431);
             this.splitContainer3.SplitterDistance = 79;
             this.splitContainer3.TabIndex = 27;
             // 
@@ -420,7 +438,7 @@
             this.narrativeTextBox.Multiline = true;
             this.narrativeTextBox.Name = "narrativeTextBox";
             this.narrativeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.narrativeTextBox.Size = new System.Drawing.Size(623, 79);
+            this.narrativeTextBox.Size = new System.Drawing.Size(670, 79);
             this.narrativeTextBox.TabIndex = 22;
             this.narrativeTextBox.TextChanged += new System.EventHandler(this.NarrativeTextBox_TextChanged);
             // 
@@ -428,35 +446,35 @@
             // 
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle8;
             this.SOItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOItemDetails.Location = new System.Drawing.Point(0, 0);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.SOItemDetails.Size = new System.Drawing.Size(623, 348);
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.SOItemDetails.Size = new System.Drawing.Size(670, 348);
             this.SOItemDetails.TabIndex = 14;
             // 
             // label15
@@ -1384,7 +1402,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 1.9.4 09/07/2018";
+            this.label20.Text = "EOA 1.9.5 21/07/2018";
             // 
             // settings_Save
             // 
@@ -1423,25 +1441,51 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // forceFullyProcessedBtn
+            // groupBox3
             // 
-            this.forceFullyProcessedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.forceFullyProcessedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.forceFullyProcessedBtn.ForeColor = System.Drawing.Color.Purple;
-            this.forceFullyProcessedBtn.Location = new System.Drawing.Point(520, 186);
-            this.forceFullyProcessedBtn.Name = "forceFullyProcessedBtn";
-            this.forceFullyProcessedBtn.Size = new System.Drawing.Size(72, 28);
-            this.forceFullyProcessedBtn.TabIndex = 35;
-            this.forceFullyProcessedBtn.TabStop = false;
-            this.forceFullyProcessedBtn.Text = "FFP";
-            this.forceFullyProcessedBtn.UseVisualStyleBackColor = true;
-            this.forceFullyProcessedBtn.Click += new System.EventHandler(this.ForceFullyProcessedBtn_Click);
+            this.groupBox3.Controls.Add(this.adjustOutBtn);
+            this.groupBox3.Controls.Add(this.adjustInBtn);
+            this.groupBox3.Controls.Add(this.transferBtn);
+            this.groupBox3.Location = new System.Drawing.Point(522, 145);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(113, 112);
+            this.groupBox3.TabIndex = 36;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "STOCK";
+            // 
+            // adjustInBtn
+            // 
+            this.adjustInBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.adjustInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjustInBtn.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.adjustInBtn.Location = new System.Drawing.Point(6, 48);
+            this.adjustInBtn.Name = "adjustInBtn";
+            this.adjustInBtn.Size = new System.Drawing.Size(101, 24);
+            this.adjustInBtn.TabIndex = 37;
+            this.adjustInBtn.TabStop = false;
+            this.adjustInBtn.Text = "Adjust In";
+            this.adjustInBtn.UseVisualStyleBackColor = true;
+            this.adjustInBtn.Click += new System.EventHandler(this.AdjustInBtn_Click);
+            // 
+            // adjustOutBtn
+            // 
+            this.adjustOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.adjustOutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjustOutBtn.ForeColor = System.Drawing.Color.Navy;
+            this.adjustOutBtn.Location = new System.Drawing.Point(6, 78);
+            this.adjustOutBtn.Name = "adjustOutBtn";
+            this.adjustOutBtn.Size = new System.Drawing.Size(101, 24);
+            this.adjustOutBtn.TabIndex = 37;
+            this.adjustOutBtn.TabStop = false;
+            this.adjustOutBtn.Text = "Adjust Out";
+            this.adjustOutBtn.UseVisualStyleBackColor = true;
+            this.adjustOutBtn.Click += new System.EventHandler(this.AdjustOutBtn_Click);
             // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1425, 734);
+            this.ClientSize = new System.Drawing.Size(1462, 734);
             this.Controls.Add(this.tabControl1);
             this.Name = "Application";
             this.Text = "EntroStyle Operations Application";
@@ -1486,6 +1530,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1588,6 +1633,9 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Button forceFullyProcessedBtn;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button adjustOutBtn;
+        private System.Windows.Forms.Button adjustInBtn;
     }
 }
 
