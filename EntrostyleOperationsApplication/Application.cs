@@ -2027,19 +2027,23 @@ namespace EntrostyleOperationsApplication
             SOItemDetails.Focus();
 
             var reference = referenceTextBox.Text;
-
             bool insertIntoHdr = true;
+            bool wasError = false;
 
             foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
             {
-                int min = Math.Min(Int32.Parse(itemRow.Cells["UNSUP_QUANT"].Value.ToString()), Int32.Parse(itemRow.Cells["TOTALSTOCK"].Value.ToString()));
+                int min = Math.Min( 
+                    Int32.Parse((itemRow.Cells["UNSUP_QUANT"].Value != DBNull.Value ? itemRow.Cells["UNSUP_QUANT"].Value : -9999999).ToString()),
+                    Int32.Parse((itemRow.Cells["TOTALSTOCK"].Value != DBNull.Value ? itemRow.Cells["TOTALSTOCK"].Value : -9999999).ToString())
+                );
                 var xAction = itemRow.Cells["X_ACTION"].Value;
 
                 if (xAction.ToString() != "")
                 {
                     if (Int32.Parse(xAction.ToString()) > min)
                     {
-                        xAction = DBNull.Value;
+                        itemRow.Cells["X_ACTION"].Value = DBNull.Value;
+                        wasError = true;
                     }
                     else
                     {
@@ -2069,6 +2073,11 @@ namespace EntrostyleOperationsApplication
             wait.Close();
 
             RefreshF10();
+
+            if (wasError)
+            {
+                MessageBox.Show("One or more Action values exceeded Outstanding and/or Location Qty and have been emptied.");
+            }
         }
 
         private void AdjustInBtn_Click(object sender, EventArgs e)
