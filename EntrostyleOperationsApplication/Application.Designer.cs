@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
@@ -40,6 +40,10 @@
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.adjustOutBtn = new System.Windows.Forms.Button();
+            this.adjustInBtn = new System.Windows.Forms.Button();
+            this.transferBtn = new System.Windows.Forms.Button();
             this.forceFullyProcessedBtn = new System.Windows.Forms.Button();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.clearAllBtn = new System.Windows.Forms.Button();
@@ -47,7 +51,6 @@
             this.duplicateBtn = new System.Windows.Forms.Button();
             this.referenceTextBox = new System.Windows.Forms.TextBox();
             this.locationComboBox = new System.Windows.Forms.ComboBox();
-            this.transferBtn = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.narrativeTextBox = new System.Windows.Forms.TextBox();
             this.SOItemDetails = new System.Windows.Forms.DataGridView();
@@ -128,9 +131,6 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.adjustInBtn = new System.Windows.Forms.Button();
-            this.adjustOutBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -143,6 +143,7 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SOMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOSecondary)).BeginInit();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -163,7 +164,6 @@
             this.SettingsTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -303,6 +303,60 @@
             this.SOSecondary.Size = new System.Drawing.Size(771, 284);
             this.SOSecondary.TabIndex = 1;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.adjustOutBtn);
+            this.groupBox3.Controls.Add(this.adjustInBtn);
+            this.groupBox3.Controls.Add(this.transferBtn);
+            this.groupBox3.Location = new System.Drawing.Point(522, 145);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(113, 112);
+            this.groupBox3.TabIndex = 36;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "STOCK";
+            // 
+            // adjustOutBtn
+            // 
+            this.adjustOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.adjustOutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjustOutBtn.ForeColor = System.Drawing.Color.Navy;
+            this.adjustOutBtn.Location = new System.Drawing.Point(6, 78);
+            this.adjustOutBtn.Name = "adjustOutBtn";
+            this.adjustOutBtn.Size = new System.Drawing.Size(101, 24);
+            this.adjustOutBtn.TabIndex = 37;
+            this.adjustOutBtn.TabStop = false;
+            this.adjustOutBtn.Text = "Adjust Out";
+            this.adjustOutBtn.UseVisualStyleBackColor = true;
+            this.adjustOutBtn.Click += new System.EventHandler(this.AdjustOutBtn_Click);
+            // 
+            // adjustInBtn
+            // 
+            this.adjustInBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.adjustInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjustInBtn.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.adjustInBtn.Location = new System.Drawing.Point(6, 48);
+            this.adjustInBtn.Name = "adjustInBtn";
+            this.adjustInBtn.Size = new System.Drawing.Size(101, 24);
+            this.adjustInBtn.TabIndex = 37;
+            this.adjustInBtn.TabStop = false;
+            this.adjustInBtn.Text = "Adjust In";
+            this.adjustInBtn.UseVisualStyleBackColor = true;
+            this.adjustInBtn.Click += new System.EventHandler(this.AdjustInBtn_Click);
+            // 
+            // transferBtn
+            // 
+            this.transferBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.transferBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transferBtn.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.transferBtn.Location = new System.Drawing.Point(6, 18);
+            this.transferBtn.Name = "transferBtn";
+            this.transferBtn.Size = new System.Drawing.Size(101, 24);
+            this.transferBtn.TabIndex = 28;
+            this.transferBtn.TabStop = false;
+            this.transferBtn.Text = "Transfer";
+            this.transferBtn.UseVisualStyleBackColor = true;
+            this.transferBtn.Click += new System.EventHandler(this.TransferBtn_Click);
+            // 
             // forceFullyProcessedBtn
             // 
             this.forceFullyProcessedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -394,20 +448,6 @@
             this.locationComboBox.TabIndex = 29;
             this.locationComboBox.TabStop = false;
             // 
-            // transferBtn
-            // 
-            this.transferBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.transferBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.transferBtn.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.transferBtn.Location = new System.Drawing.Point(6, 18);
-            this.transferBtn.Name = "transferBtn";
-            this.transferBtn.Size = new System.Drawing.Size(101, 24);
-            this.transferBtn.TabIndex = 28;
-            this.transferBtn.TabStop = false;
-            this.transferBtn.Text = "Transfer";
-            this.transferBtn.UseVisualStyleBackColor = true;
-            this.transferBtn.Click += new System.EventHandler(this.TransferBtn_Click);
-            // 
             // splitContainer3
             // 
             this.splitContainer3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -446,34 +486,34 @@
             // 
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle2;
             this.SOItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOItemDetails.Location = new System.Drawing.Point(0, 0);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.SOItemDetails.Size = new System.Drawing.Size(670, 348);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -700,7 +740,7 @@
             this.DifotTab.Location = new System.Drawing.Point(4, 22);
             this.DifotTab.Name = "DifotTab";
             this.DifotTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DifotTab.Size = new System.Drawing.Size(1417, 708);
+            this.DifotTab.Size = new System.Drawing.Size(1454, 708);
             this.DifotTab.TabIndex = 1;
             this.DifotTab.Text = "DIFOT";
             this.DifotTab.UseVisualStyleBackColor = true;
@@ -770,7 +810,7 @@
             this.labelTab.Controls.Add(this.stockLblDataGridView);
             this.labelTab.Location = new System.Drawing.Point(4, 22);
             this.labelTab.Name = "labelTab";
-            this.labelTab.Size = new System.Drawing.Size(1417, 708);
+            this.labelTab.Size = new System.Drawing.Size(1454, 708);
             this.labelTab.TabIndex = 4;
             this.labelTab.Text = "LABELS";
             // 
@@ -1120,7 +1160,7 @@
             this.SettingsTab.ForeColor = System.Drawing.Color.RoyalBlue;
             this.SettingsTab.Location = new System.Drawing.Point(4, 22);
             this.SettingsTab.Name = "SettingsTab";
-            this.SettingsTab.Size = new System.Drawing.Size(1417, 708);
+            this.SettingsTab.Size = new System.Drawing.Size(1454, 708);
             this.SettingsTab.TabIndex = 2;
             this.SettingsTab.Text = "Settings";
             // 
@@ -1402,7 +1442,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 1.9.5 21/07/2018";
+            this.label20.Text = "EOA 1.9.6 26/07/2018";
             // 
             // settings_Save
             // 
@@ -1441,46 +1481,6 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.adjustOutBtn);
-            this.groupBox3.Controls.Add(this.adjustInBtn);
-            this.groupBox3.Controls.Add(this.transferBtn);
-            this.groupBox3.Location = new System.Drawing.Point(522, 145);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(113, 112);
-            this.groupBox3.TabIndex = 36;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "STOCK";
-            // 
-            // adjustInBtn
-            // 
-            this.adjustInBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.adjustInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adjustInBtn.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.adjustInBtn.Location = new System.Drawing.Point(6, 48);
-            this.adjustInBtn.Name = "adjustInBtn";
-            this.adjustInBtn.Size = new System.Drawing.Size(101, 24);
-            this.adjustInBtn.TabIndex = 37;
-            this.adjustInBtn.TabStop = false;
-            this.adjustInBtn.Text = "Adjust In";
-            this.adjustInBtn.UseVisualStyleBackColor = true;
-            this.adjustInBtn.Click += new System.EventHandler(this.AdjustInBtn_Click);
-            // 
-            // adjustOutBtn
-            // 
-            this.adjustOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.adjustOutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adjustOutBtn.ForeColor = System.Drawing.Color.Navy;
-            this.adjustOutBtn.Location = new System.Drawing.Point(6, 78);
-            this.adjustOutBtn.Name = "adjustOutBtn";
-            this.adjustOutBtn.Size = new System.Drawing.Size(101, 24);
-            this.adjustOutBtn.TabIndex = 37;
-            this.adjustOutBtn.TabStop = false;
-            this.adjustOutBtn.Text = "Adjust Out";
-            this.adjustOutBtn.UseVisualStyleBackColor = true;
-            this.adjustOutBtn.Click += new System.EventHandler(this.AdjustOutBtn_Click);
-            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1503,6 +1503,7 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SOMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOSecondary)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -1530,7 +1531,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

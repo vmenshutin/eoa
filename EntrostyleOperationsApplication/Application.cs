@@ -142,20 +142,11 @@ namespace EntrostyleOperationsApplication
                 // if cell is not empty
                 if (e.FormattedValue.ToString() != "")
                 {
-                    var row = SOItemDetails.Rows[e.RowIndex];
-                    int min = Math.Min(Int32.Parse(row.Cells["UNSUP_QUANT"].Value.ToString()), Int32.Parse(row.Cells["TOTALSTOCK"].Value.ToString()));
-
                     // if not numeric
                     if (!int.TryParse(Convert.ToString(e.FormattedValue), out int i))
                     {
                         e.Cancel = true;
                         MessageBox.Show("       Only numeric characters are accepted.       ");
-                    }
-                    // if numeric - check if exceeds max
-                    else if (Int32.Parse(e.FormattedValue.ToString()) > min)
-                    {
-                        e.Cancel = true;
-                        MessageBox.Show("       Action should not exceed Outstanding and/or Location Qty.       ");
                     }
                 }
             }
@@ -2041,26 +2032,36 @@ namespace EntrostyleOperationsApplication
 
             foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
             {
-                if (itemRow.Cells["X_ACTION"].Value.ToString() != "")
+                int min = Math.Min(Int32.Parse(itemRow.Cells["UNSUP_QUANT"].Value.ToString()), Int32.Parse(itemRow.Cells["TOTALSTOCK"].Value.ToString()));
+                var xAction = itemRow.Cells["X_ACTION"].Value;
+
+                if (xAction.ToString() != "")
                 {
-                    string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
-                    string quantity = (isQuantityNegative ? "-" : "") + itemRow.Cells["X_ACTION"].Value.ToString();
-                    string location = itemRow.Cells["LOCATION"].Value.ToString();
+                    if (Int32.Parse(xAction.ToString()) > min)
+                    {
+                        xAction = DBNull.Value;
+                    }
+                    else
+                    {
+                        string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
+                        string quantity = (isQuantityNegative ? "-" : "") + itemRow.Cells["X_ACTION"].Value.ToString();
+                        string location = itemRow.Cells["LOCATION"].Value.ToString();
 
-                    itemRow.Cells["X_ACTION"].Value = DBNull.Value;
+                        itemRow.Cells["X_ACTION"].Value = DBNull.Value;
 
-                    (new OdbcCommand("eoa_transfer '" +
-                        stockCode + "', '" +
-                        reference + "', '" +
-                        ref1 + "', " +
-                        quantity + ", '" +
-                        location + "', '" +
-                        toLocation + "', "
-                        + (insertIntoHdr ? "1" : "0") + ", " +
-                        transtype.ToString(),
-                        connection)).ExecuteNonQuery();
+                        (new OdbcCommand("eoa_transfer '" +
+                            stockCode + "', '" +
+                            reference + "', '" +
+                            ref1 + "', " +
+                            quantity + ", '" +
+                            location + "', '" +
+                            toLocation + "', "
+                            + (insertIntoHdr ? "1" : "0") + ", " +
+                            transtype.ToString(),
+                            connection)).ExecuteNonQuery();
 
-                    insertIntoHdr = false;
+                        insertIntoHdr = false;
+                    }
                 }
             }
 
