@@ -1677,7 +1677,7 @@ namespace EntrostyleOperationsApplication
 
         private void TransferBtn_Click(object sender, EventArgs e)
         {
-            PerformStockLogic(locationComboBox.SelectedValue.ToString(), true, 2, "EOA TRANSFER");
+            PerformStockLogic(locationComboBox.SelectedValue.ToString(), true, 2, "EOA TRANSFER", "TOTALSTOCK");
         }
 
         private void DuplicateBtn_Click(object sender, EventArgs e)
@@ -1693,7 +1693,7 @@ namespace EntrostyleOperationsApplication
 
             foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
             {
-                if (itemRow.Cells["X_ACTION"].Value.ToString() != "")
+                if (XActionValid(itemRow, "UNSUP_QUANT"))
                 {
                     string seqno = itemRow.Cells["LINES_ID"].Value.ToString();
                     string quantity = itemRow.Cells["X_ACTION"].Value.ToString();
@@ -1724,7 +1724,7 @@ namespace EntrostyleOperationsApplication
 
             foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
             {
-                if (itemRow.Cells["X_ACTION"].Value.ToString() != "")
+                if (XActionValid(itemRow, "UNSUP_QUANT") && XActionValid(itemRow, "TOTALSTOCK"))
                 {
                     string seqno = itemRow.Cells["LINES_ID"].Value.ToString();
                     string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
@@ -2020,7 +2020,7 @@ namespace EntrostyleOperationsApplication
             }
         }
 
-        private void PerformStockLogic(string toLocation, bool isQuantityNegative, int transtype, string ref1)
+        private void PerformStockLogic(string toLocation, bool isQuantityNegative, int transtype, string ref1, string validateByField)
         {
             var wait = ShowWaitForm();
 
@@ -2028,44 +2028,29 @@ namespace EntrostyleOperationsApplication
 
             var reference = referenceTextBox.Text;
             bool insertIntoHdr = true;
-            bool wasError = false;
 
             foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
             {
-                int min = Math.Min( 
-                    Int32.Parse((itemRow.Cells["UNSUP_QUANT"].Value != DBNull.Value ? itemRow.Cells["UNSUP_QUANT"].Value : -9999999).ToString()),
-                    Int32.Parse((itemRow.Cells["TOTALSTOCK"].Value != DBNull.Value ? itemRow.Cells["TOTALSTOCK"].Value : -9999999).ToString())
-                );
-                var xAction = itemRow.Cells["X_ACTION"].Value;
-
-                if (xAction.ToString() != "")
+                if (XActionValid(itemRow, validateByField))
                 {
-                    if (Int32.Parse(xAction.ToString()) > min)
-                    {
-                        itemRow.Cells["X_ACTION"].Value = DBNull.Value;
-                        wasError = true;
-                    }
-                    else
-                    {
-                        string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
-                        string quantity = (isQuantityNegative ? "-" : "") + itemRow.Cells["X_ACTION"].Value.ToString();
-                        string location = itemRow.Cells["LOCATION"].Value.ToString();
+                    string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
+                    string quantity = (isQuantityNegative ? "-" : "") + itemRow.Cells["X_ACTION"].Value.ToString();
+                    string location = itemRow.Cells["LOCATION"].Value.ToString();
 
-                        itemRow.Cells["X_ACTION"].Value = DBNull.Value;
+                    itemRow.Cells["X_ACTION"].Value = DBNull.Value;
 
-                        (new OdbcCommand("eoa_transfer '" +
-                            stockCode + "', '" +
-                            reference + "', '" +
-                            ref1 + "', " +
-                            quantity + ", '" +
-                            location + "', '" +
-                            toLocation + "', "
-                            + (insertIntoHdr ? "1" : "0") + ", " +
-                            transtype.ToString(),
-                            connection)).ExecuteNonQuery();
+                    (new OdbcCommand("eoa_transfer '" +
+                        stockCode + "', '" +
+                        reference + "', '" +
+                        ref1 + "', " +
+                        quantity + ", '" +
+                        location + "', '" +
+                        toLocation + "', "
+                        + (insertIntoHdr ? "1" : "0") + ", " +
+                        transtype.ToString(),
+                        connection)).ExecuteNonQuery();
 
-                        insertIntoHdr = false;
-                    }
+                    insertIntoHdr = false;
                 }
             }
 
@@ -2073,21 +2058,39 @@ namespace EntrostyleOperationsApplication
             wait.Close();
 
             RefreshF10();
-
-            if (wasError)
-            {
-                MessageBox.Show("One or more Action values exceeded Outstanding and/or Location Qty and have been emptied.");
-            }
         }
 
         private void AdjustInBtn_Click(object sender, EventArgs e)
         {
-            PerformStockLogic("0", false, 4, "EOA ADJUST IN");
+            PerformStockLogic("0", false, 4, "EOA ADJUST IN", "");
         }
 
         private void AdjustOutBtn_Click(object sender, EventArgs e)
         {
-            PerformStockLogic("0", true, 3, "EOA ADJUST OUT");
+            PerformStockLogic("0", true, 3, "EOA ADJUST OUT", "TOTALSTOCK");
+        }
+
+        private bool XActionValid(DataGridViewRow itemRow, string field)
+        {
+            var xAction = itemRow.Cells["X_ACTION"].Value;
+
+            if (xAction.ToString() != "")
+            {
+                int min = field != ""
+                    ? Int32.Parse((itemRow.Cells[field].Value != DBNull.Value ? itemRow.Cells[field].Value : Int32.MinValue).ToString())
+                    : Int32.MaxValue;
+
+                if (Int32.Parse(xAction.ToString()) > min)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
