@@ -2130,22 +2130,38 @@ namespace EntrostyleOperationsApplication
         {
             if (textBox.Text.Length > 0)
             {
-                var adapter = new OdbcDataAdapter("exec " + procedureName + " " + textBox.Text, connection);
-                textBox.Text = "";
-                var ds = new DataSet();
-                var cmdbuilder = new OdbcCommandBuilder(adapter);
-                adapter.Fill(ds);
-
-                foreach (DataRow row in ds.Tables[0].Rows)
+                if (int.TryParse(Convert.ToString(textBox.Text), out int i))
                 {
-                    AddStockLabelDataRow(
-                        row[0].ToString(),
-                        row[1].ToString(),
-                        "0",
-                        "1",
-                        row[2].ToString()
-                    );
+                    var adapter = new OdbcDataAdapter("exec " + procedureName + " " + textBox.Text, connection);
+                    var ds = new DataSet();
+                    var cmdbuilder = new OdbcCommandBuilder(adapter);
+                    adapter.Fill(ds);
+
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow row in ds.Tables[0].Rows)
+                        {
+                            AddStockLabelDataRow(
+                                row[0].ToString(),
+                                row[1].ToString(),
+                                "0",
+                                "1",
+                                row[2].ToString()
+                            );
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("       No records found.       ");
+                        textBox.Focus();
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("       Only numeric characters are accepted.       ");
+                    textBox.Focus();
+                }
+                textBox.Text = "";
             }
         }
 
