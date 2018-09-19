@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Scripts/new.sql
+/Scripts/TRACE.sql

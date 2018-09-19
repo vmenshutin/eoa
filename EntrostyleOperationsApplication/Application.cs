@@ -1467,6 +1467,13 @@ namespace EntrostyleOperationsApplication
                     DeleteCurrentStockLblRow();
                 }
             }
+            else if (keyData == (Keys.Alt | Keys.Insert))
+            {
+                if (stockLblDataGridView.ContainsFocus)
+                {
+                    DuplicateCurrentStockLblRow();
+                }
+            }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -1864,21 +1871,47 @@ namespace EntrostyleOperationsApplication
             }
         }
 
+        private void AddStockLabelDataRow(
+            string itemCode,
+            string description,
+            string itemQty,
+            string labelQty,
+            string barcode)
+        {
+            stockLblDataGridView.Rows.Add(new string[] { itemCode, description, itemQty, labelQty, barcode });
+        }
+
         private void AddStockBtn_Click(object sender, EventArgs e)
         {
             if (stockCodeLABELCombobox.SelectedValue is DataRowView selectedValue)
             {
-                stockLblDataGridView.Rows.Add(
-                    new string[] { selectedValue.Row[0].ToString(),
-                    selectedValue.Row[1].ToString(), itemQtyNumberInput.Value.ToString(),
+                AddStockLabelDataRow(
+                    selectedValue.Row[0].ToString(),
+                    selectedValue.Row[1].ToString(),
+                    itemQtyNumberInput.Value.ToString(),
                     labelQtyNumberInput.Value.ToString(),
                     selectedValue.Row[2].ToString()
-                });
+                );
             }
             else
             {
                 MessageBox.Show("       Please select a valid Stock Code       ");
                 stockCodeLABELCombobox.Focus();
+            }
+        }
+
+        private void DuplicateCurrentStockLblRow()
+        {
+            if (stockLblDataGridView.CurrentCell != null)
+            {
+                var rowCells = stockLblDataGridView.Rows[stockLblDataGridView.CurrentCell.RowIndex].Cells;
+                AddStockLabelDataRow(
+                    rowCells[0].Value.ToString(),
+                    rowCells[1].Value.ToString(),
+                    rowCells[2].Value.ToString(),
+                    rowCells[3].Value.ToString(),
+                    rowCells[4].Value.ToString()
+                );
             }
         }
 

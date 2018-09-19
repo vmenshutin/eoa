@@ -1442,7 +1442,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 1.9.7 26/07/2018";
+            this.label20.Text = "EOA 1.9.8 26/07/2018";
             // 
             // settings_Save
             // 
