@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
@@ -131,6 +131,10 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
+            this.purchaseOrderLabelTextBox = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.salesOrderLabelTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -486,34 +490,34 @@
             // 
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle11;
             this.SOItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOItemDetails.Location = new System.Drawing.Point(0, 0);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.SOItemDetails.Size = new System.Drawing.Size(670, 348);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -798,6 +802,10 @@
             // labelTab
             // 
             this.labelTab.BackColor = System.Drawing.Color.LavenderBlush;
+            this.labelTab.Controls.Add(this.label36);
+            this.labelTab.Controls.Add(this.salesOrderLabelTextBox);
+            this.labelTab.Controls.Add(this.label35);
+            this.labelTab.Controls.Add(this.purchaseOrderLabelTextBox);
             this.labelTab.Controls.Add(this.deleteSelectedBtn);
             this.labelTab.Controls.Add(this.supplierGroupBox);
             this.labelTab.Controls.Add(this.customLabelPrinterTextBox);
@@ -820,7 +828,7 @@
             this.deleteSelectedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteSelectedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteSelectedBtn.ForeColor = System.Drawing.Color.DarkOrange;
-            this.deleteSelectedBtn.Location = new System.Drawing.Point(140, 539);
+            this.deleteSelectedBtn.Location = new System.Drawing.Point(140, 573);
             this.deleteSelectedBtn.Name = "deleteSelectedBtn";
             this.deleteSelectedBtn.Size = new System.Drawing.Size(211, 28);
             this.deleteSelectedBtn.TabIndex = 57;
@@ -834,7 +842,7 @@
             this.supplierGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.supplierGroupBox.Controls.Add(this.printSupplierBtn);
             this.supplierGroupBox.Controls.Add(this.print30SupplierBtn);
-            this.supplierGroupBox.Location = new System.Drawing.Point(1046, 390);
+            this.supplierGroupBox.Location = new System.Drawing.Point(1046, 424);
             this.supplierGroupBox.Name = "supplierGroupBox";
             this.supplierGroupBox.Size = new System.Drawing.Size(150, 129);
             this.supplierGroupBox.TabIndex = 56;
@@ -875,7 +883,7 @@
             // 
             this.customLabelPrinterTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.customLabelPrinterTextBox.Enabled = false;
-            this.customLabelPrinterTextBox.Location = new System.Drawing.Point(890, 341);
+            this.customLabelPrinterTextBox.Location = new System.Drawing.Point(890, 375);
             this.customLabelPrinterTextBox.Name = "customLabelPrinterTextBox";
             this.customLabelPrinterTextBox.Size = new System.Drawing.Size(382, 20);
             this.customLabelPrinterTextBox.TabIndex = 55;
@@ -885,7 +893,7 @@
             // 
             this.customLabelPrinterCheckbox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.customLabelPrinterCheckbox.AutoSize = true;
-            this.customLabelPrinterCheckbox.Location = new System.Drawing.Point(890, 317);
+            this.customLabelPrinterCheckbox.Location = new System.Drawing.Point(890, 351);
             this.customLabelPrinterCheckbox.Name = "customLabelPrinterCheckbox";
             this.customLabelPrinterCheckbox.Size = new System.Drawing.Size(116, 17);
             this.customLabelPrinterCheckbox.TabIndex = 54;
@@ -905,7 +913,7 @@
             this.LABELControlsGroupBox.Controls.Add(this.label24);
             this.LABELControlsGroupBox.Controls.Add(this.labelQtyNumberInput);
             this.LABELControlsGroupBox.Controls.Add(this.label23);
-            this.LABELControlsGroupBox.Location = new System.Drawing.Point(871, 54);
+            this.LABELControlsGroupBox.Location = new System.Drawing.Point(871, 88);
             this.LABELControlsGroupBox.Name = "LABELControlsGroupBox";
             this.LABELControlsGroupBox.Size = new System.Drawing.Size(428, 74);
             this.LABELControlsGroupBox.TabIndex = 53;
@@ -1020,7 +1028,7 @@
             this.stockGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.stockGroupBox.Controls.Add(this.printStockButton);
             this.stockGroupBox.Controls.Add(this.print30StockButton);
-            this.stockGroupBox.Location = new System.Drawing.Point(1202, 390);
+            this.stockGroupBox.Location = new System.Drawing.Point(1202, 424);
             this.stockGroupBox.Name = "stockGroupBox";
             this.stockGroupBox.Size = new System.Drawing.Size(150, 129);
             this.stockGroupBox.TabIndex = 52;
@@ -1062,7 +1070,7 @@
             this.shelfGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.shelfGroupBox.Controls.Add(this.printShelfButton);
             this.shelfGroupBox.Controls.Add(this.print30ShelfButton);
-            this.shelfGroupBox.Location = new System.Drawing.Point(890, 390);
+            this.shelfGroupBox.Location = new System.Drawing.Point(890, 424);
             this.shelfGroupBox.Name = "shelfGroupBox";
             this.shelfGroupBox.Size = new System.Drawing.Size(150, 129);
             this.shelfGroupBox.TabIndex = 51;
@@ -1105,7 +1113,7 @@
             this.clearAllStockRowsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearAllStockRowsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearAllStockRowsBtn.ForeColor = System.Drawing.Color.Red;
-            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(364, 539);
+            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(364, 573);
             this.clearAllStockRowsBtn.Name = "clearAllStockRowsBtn";
             this.clearAllStockRowsBtn.Size = new System.Drawing.Size(211, 28);
             this.clearAllStockRowsBtn.TabIndex = 41;
@@ -1120,7 +1128,7 @@
             this.addStockBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addStockBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addStockBtn.ForeColor = System.Drawing.Color.Green;
-            this.addStockBtn.Location = new System.Drawing.Point(890, 146);
+            this.addStockBtn.Location = new System.Drawing.Point(890, 180);
             this.addStockBtn.Name = "addStockBtn";
             this.addStockBtn.Size = new System.Drawing.Size(143, 28);
             this.addStockBtn.TabIndex = 34;
@@ -1136,7 +1144,7 @@
             this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
             this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.stockLblDataGridView.Location = new System.Drawing.Point(140, 60);
+            this.stockLblDataGridView.Location = new System.Drawing.Point(140, 94);
             this.stockLblDataGridView.Name = "stockLblDataGridView";
             this.stockLblDataGridView.Size = new System.Drawing.Size(716, 459);
             this.stockLblDataGridView.TabIndex = 0;
@@ -1481,6 +1489,46 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // purchaseOrderLabelTextBox
+            // 
+            this.purchaseOrderLabelTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.purchaseOrderLabelTextBox.Location = new System.Drawing.Point(227, 59);
+            this.purchaseOrderLabelTextBox.Name = "purchaseOrderLabelTextBox";
+            this.purchaseOrderLabelTextBox.Size = new System.Drawing.Size(120, 20);
+            this.purchaseOrderLabelTextBox.TabIndex = 66;
+            this.purchaseOrderLabelTextBox.TabStop = false;
+            this.purchaseOrderLabelTextBox.Leave += new System.EventHandler(this.purchaseOrderLabelTextBox_Leave);
+            // 
+            // label35
+            // 
+            this.label35.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(137, 62);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(84, 13);
+            this.label35.TabIndex = 56;
+            this.label35.Text = "Purchase Order:";
+            // 
+            // label36
+            // 
+            this.label36.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(384, 62);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(65, 13);
+            this.label36.TabIndex = 59;
+            this.label36.Text = "Sales Order:";
+            // 
+            // salesOrderLabelTextBox
+            // 
+            this.salesOrderLabelTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.salesOrderLabelTextBox.Location = new System.Drawing.Point(455, 59);
+            this.salesOrderLabelTextBox.Name = "salesOrderLabelTextBox";
+            this.salesOrderLabelTextBox.Size = new System.Drawing.Size(120, 20);
+            this.salesOrderLabelTextBox.TabIndex = 66;
+            this.salesOrderLabelTextBox.TabStop = false;
+            this.salesOrderLabelTextBox.Leave += new System.EventHandler(this.salesOrderLabelTextBox_Leave);
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1636,6 +1684,10 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button adjustOutBtn;
         private System.Windows.Forms.Button adjustInBtn;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.TextBox salesOrderLabelTextBox;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox purchaseOrderLabelTextBox;
     }
 }
 

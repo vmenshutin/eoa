@@ -2125,5 +2125,38 @@ namespace EntrostyleOperationsApplication
                 return false;
             }
         }
+
+        private void PopulateLabelTableBySeqnoHDR(string procedureName, TextBox textBox)
+        {
+            if (textBox.Text.Length > 0)
+            {
+                var adapter = new OdbcDataAdapter("exec " + procedureName + " " + textBox.Text, connection);
+                textBox.Text = "";
+                var ds = new DataSet();
+                var cmdbuilder = new OdbcCommandBuilder(adapter);
+                adapter.Fill(ds);
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    AddStockLabelDataRow(
+                        row[0].ToString(),
+                        row[1].ToString(),
+                        "0",
+                        "1",
+                        row[2].ToString()
+                    );
+                }
+            }
+        }
+
+        private void purchaseOrderLabelTextBox_Leave(object sender, EventArgs e)
+        {
+            PopulateLabelTableBySeqnoHDR("get_stockcodes_by_purchord_hdr_seqno", purchaseOrderLabelTextBox);
+        }
+
+        private void salesOrderLabelTextBox_Leave(object sender, EventArgs e)
+        {
+            PopulateLabelTableBySeqnoHDR("get_stockcodes_by_salesord_hdr_seqno", salesOrderLabelTextBox);
+        }
     }
 }

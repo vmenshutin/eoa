@@ -330,6 +330,14 @@ IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_force_full
 	DROP PROCEDURE eoa_force_fully_processed
 GO
 
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'get_stockcodes_by_purchord_hdr_seqno')
+	DROP PROCEDURE get_stockcodes_by_purchord_hdr_seqno
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'get_stockcodes_by_salesord_hdr_seqno')
+	DROP PROCEDURE get_stockcodes_by_salesord_hdr_seqno
+GO
+
 -- drop triggers ------------------------------------------------------------------------------
 
 IF EXISTS (SELECT name FROM sysobjects WHERE name = 'status_is_scheduled' AND type = 'TR')
