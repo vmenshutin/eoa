@@ -584,7 +584,7 @@ namespace EntrostyleOperationsApplication
 
             // Label Qty column
             stockLblDataGridView.Columns[3].Name = "LabelQty";
-            stockLblDataGridView.Columns[3].HeaderText = "Label Qty";
+            stockLblDataGridView.Columns[3].HeaderText = "Copies";
             stockLblDataGridView.Columns[3].Width = 60;
 
             // Barcode1 column
@@ -690,10 +690,10 @@ namespace EntrostyleOperationsApplication
                     e.Cancel = true;
                     MessageBox.Show("      Numeric values only!      ");
                 }
-                else if ((int.Parse(Convert.ToString(e.FormattedValue)) < 1) && e.ColumnIndex == 3)
+                else if ((int.Parse(Convert.ToString(e.FormattedValue)) < 0) && e.ColumnIndex == 3)
                 {
                     e.Cancel = true;
-                    MessageBox.Show("      Positive numbers only!      ");
+                    MessageBox.Show("      Positive numbers or 0 only!      ");
                 }
             }
         }
@@ -1942,11 +1942,15 @@ namespace EntrostyleOperationsApplication
 
             foreach (DataGridViewRow row in stockLblDataGridView.Rows)
             {
-                InitLABELReport(report, row.Index);
-                ExportReport(report, 1.97, 0.99);
-                PrepareDocAndPrint(new PaperSize("Stock Label", 197, 99),
-                    customLabelPrinterCheckbox.Checked ? customLabelPrinterTextBox.Text : settings_labelPrinter.Text,
-                    short.Parse(row.Cells[3].Value.ToString()));
+                var copies = short.Parse(row.Cells[3].Value.ToString());
+                if (copies > 0)
+                {
+                    InitLABELReport(report, row.Index);
+                    ExportReport(report, 1.97, 0.99);
+                    PrepareDocAndPrint(new PaperSize("Stock Label", 197, 99),
+                        customLabelPrinterCheckbox.Checked ? customLabelPrinterTextBox.Text : settings_labelPrinter.Text,
+                        copies);
+                }
             }
 
             LabelPrintButtonsEnabled(true);
@@ -2145,7 +2149,7 @@ namespace EntrostyleOperationsApplication
                                 row[0].ToString(),
                                 row[1].ToString(),
                                 "0",
-                                "1",
+                                "0",
                                 row[2].ToString()
                             );
                         }
@@ -2173,6 +2177,11 @@ namespace EntrostyleOperationsApplication
         private void salesOrderLabelTextBox_Leave(object sender, EventArgs e)
         {
             PopulateLabelTableBySeqnoHDR("get_stockcodes_by_salesord_hdr_seqno", salesOrderLabelTextBox);
+        }
+
+        private void duplicateSelectedBtn_Click(object sender, EventArgs e)
+        {
+            DuplicateCurrentStockLblRow();
         }
     }
 }
