@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
@@ -80,6 +80,7 @@
             this.difotFrom = new System.Windows.Forms.DateTimePicker();
             this.SODifot = new System.Windows.Forms.DataGridView();
             this.labelTab = new System.Windows.Forms.TabPage();
+            this.duplicateSelectedBtn = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.salesOrderLabelTextBox = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
@@ -110,6 +111,8 @@
             this.stockLblDataGridView = new System.Windows.Forms.DataGridView();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -135,9 +138,8 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.duplicateSelectedBtn = new System.Windows.Forms.Button();
+            this.soMainFilterComboBox = new System.Windows.Forms.ComboBox();
+            this.label39 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -252,6 +254,8 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.label39);
+            this.splitContainer2.Panel1.Controls.Add(this.soMainFilterComboBox);
             this.splitContainer2.Panel1.Controls.Add(this.SOMain);
             // 
             // splitContainer2.Panel2
@@ -265,13 +269,15 @@
             // 
             // SOMain
             // 
+            this.SOMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SOMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOMain.BackgroundColor = System.Drawing.SystemColors.Control;
             this.SOMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SOMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SOMain.Location = new System.Drawing.Point(0, 0);
+            this.SOMain.Location = new System.Drawing.Point(0, 22);
             this.SOMain.Name = "SOMain";
-            this.SOMain.Size = new System.Drawing.Size(771, 386);
+            this.SOMain.Size = new System.Drawing.Size(771, 361);
             this.SOMain.TabIndex = 0;
             // 
             // clearSearchBtn
@@ -493,34 +499,34 @@
             // 
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle8;
             this.SOItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOItemDetails.Location = new System.Drawing.Point(0, 0);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.SOItemDetails.Size = new System.Drawing.Size(670, 348);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -825,6 +831,21 @@
             this.labelTab.Size = new System.Drawing.Size(1454, 708);
             this.labelTab.TabIndex = 4;
             this.labelTab.Text = "LABELS";
+            // 
+            // duplicateSelectedBtn
+            // 
+            this.duplicateSelectedBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.duplicateSelectedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.duplicateSelectedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.duplicateSelectedBtn.ForeColor = System.Drawing.Color.SeaGreen;
+            this.duplicateSelectedBtn.Location = new System.Drawing.Point(140, 572);
+            this.duplicateSelectedBtn.Name = "duplicateSelectedBtn";
+            this.duplicateSelectedBtn.Size = new System.Drawing.Size(211, 28);
+            this.duplicateSelectedBtn.TabIndex = 67;
+            this.duplicateSelectedBtn.TabStop = false;
+            this.duplicateSelectedBtn.Text = "DUPLICATE SELECTED";
+            this.duplicateSelectedBtn.UseVisualStyleBackColor = true;
+            this.duplicateSelectedBtn.Click += new System.EventHandler(this.duplicateSelectedBtn_Click);
             // 
             // label36
             // 
@@ -1225,6 +1246,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "LABELS";
             // 
+            // label37
+            // 
+            this.label37.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label37.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label37.Location = new System.Drawing.Point(22, 52);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(128, 15);
+            this.label37.TabIndex = 75;
+            this.label37.Text = "Duplicate Selected";
+            // 
+            // label38
+            // 
+            this.label38.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label38.ForeColor = System.Drawing.Color.Black;
+            this.label38.Location = new System.Drawing.Point(160, 52);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(74, 15);
+            this.label38.TabIndex = 74;
+            this.label38.Text = "ALT + DEL";
+            // 
             // label33
             // 
             this.label33.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1487,11 +1532,11 @@
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.Gray;
-            this.label20.Location = new System.Drawing.Point(1297, 9);
+            this.label20.Location = new System.Drawing.Point(1329, 11);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 1.9.9 20/09/2018";
+            this.label20.Text = "EOA 2.0.0 21/09/2018";
             // 
             // settings_Save
             // 
@@ -1530,44 +1575,32 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label37
+            // soMainFilterComboBox
             // 
-            this.label37.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label37.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label37.Location = new System.Drawing.Point(22, 52);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(128, 15);
-            this.label37.TabIndex = 75;
-            this.label37.Text = "Duplicate Selected";
+            this.soMainFilterComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.soMainFilterComboBox.BackColor = System.Drawing.SystemColors.Info;
+            this.soMainFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.soMainFilterComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.soMainFilterComboBox.FormattingEnabled = true;
+            this.soMainFilterComboBox.Items.AddRange(new object[] {
+            "All",
+            "Pick"});
+            this.soMainFilterComboBox.Location = new System.Drawing.Point(687, 0);
+            this.soMainFilterComboBox.Name = "soMainFilterComboBox";
+            this.soMainFilterComboBox.Size = new System.Drawing.Size(84, 21);
+            this.soMainFilterComboBox.TabIndex = 100;
+            this.soMainFilterComboBox.TabStop = false;
+            this.soMainFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.soMainFilterComboBox_SelectedIndexChanged);
             // 
-            // label38
+            // label39
             // 
-            this.label38.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label38.ForeColor = System.Drawing.Color.Black;
-            this.label38.Location = new System.Drawing.Point(160, 52);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(74, 15);
-            this.label38.TabIndex = 74;
-            this.label38.Text = "ALT + DEL";
-            // 
-            // duplicateSelectedBtn
-            // 
-            this.duplicateSelectedBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.duplicateSelectedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.duplicateSelectedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.duplicateSelectedBtn.ForeColor = System.Drawing.Color.SeaGreen;
-            this.duplicateSelectedBtn.Location = new System.Drawing.Point(140, 572);
-            this.duplicateSelectedBtn.Name = "duplicateSelectedBtn";
-            this.duplicateSelectedBtn.Size = new System.Drawing.Size(211, 28);
-            this.duplicateSelectedBtn.TabIndex = 67;
-            this.duplicateSelectedBtn.TabStop = false;
-            this.duplicateSelectedBtn.Text = "DUPLICATE SELECTED";
-            this.duplicateSelectedBtn.UseVisualStyleBackColor = true;
-            this.duplicateSelectedBtn.Click += new System.EventHandler(this.duplicateSelectedBtn_Click);
+            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(641, 3);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(40, 13);
+            this.label39.TabIndex = 101;
+            this.label39.Text = "Status:";
             // 
             // Application
             // 
@@ -1585,6 +1618,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -1731,6 +1765,8 @@
         private System.Windows.Forms.Button duplicateSelectedBtn;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.ComboBox soMainFilterComboBox;
+        private System.Windows.Forms.Label label39;
     }
 }
 

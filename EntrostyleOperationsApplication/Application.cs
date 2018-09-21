@@ -71,6 +71,8 @@ namespace EntrostyleOperationsApplication
             sessionId = GenerateSessionId();
             VerifyUserIsUnique();
 
+            // select soMain filter combobox value to All
+            soMainFilterComboBox.SelectedIndex = 0;
             // load main and secondary sales orders grids
             LoadSalesOrdersMain();
             LoadSalesOrdersSecondary();
@@ -439,7 +441,7 @@ namespace EntrostyleOperationsApplication
               "CAST(PICKDATE AS DATE) ASC, " +
               "CAST(DUETIME AS TIME) ASC";
 
-            (new OdbcCommand("exec query_salesorders_main " + sessionId.ToString(), connection)).ExecuteNonQuery();
+            (new OdbcCommand("exec query_salesorders_main " + (soMainFilterComboBox.SelectedIndex == 0 ? "0" : "1") + ", " + sessionId.ToString(), connection)).ExecuteNonQuery();
 
             SOMainAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SALESORD_MAIN where SESSIONID = " + sessionId.ToString() + sortString, connection);
             SOMainDataSet = new DataSet();
@@ -2182,6 +2184,14 @@ namespace EntrostyleOperationsApplication
         private void duplicateSelectedBtn_Click(object sender, EventArgs e)
         {
             DuplicateCurrentStockLblRow();
+        }
+
+        private void soMainFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var wait = ShowWaitForm();
+            LoadSalesOrdersMain();
+            wait.Close();
+            SOMain.Focus();
         }
     }
 }
