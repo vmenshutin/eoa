@@ -1883,9 +1883,11 @@ namespace EntrostyleOperationsApplication
             string description,
             string itemQty,
             string labelQty,
-            string barcode)
+            string barcode,
+            int? index = null)
         {
-            stockLblDataGridView.Rows.Add(new string[] { itemCode, description, itemQty, labelQty, barcode });
+            stockLblDataGridView.Rows.Insert(index != null ? (int)index : stockLblDataGridView.Rows.Count,
+                new string[] { itemCode, description, itemQty, labelQty, barcode });
         }
 
         private void AddStockBtn_Click(object sender, EventArgs e)
@@ -1917,7 +1919,8 @@ namespace EntrostyleOperationsApplication
                     rowCells[1].Value.ToString(),
                     rowCells[2].Value.ToString(),
                     rowCells[3].Value.ToString(),
-                    rowCells[4].Value.ToString()
+                    rowCells[4].Value.ToString(),
+                    stockLblDataGridView.CurrentCell.RowIndex + 1
                 );
             }
         }
