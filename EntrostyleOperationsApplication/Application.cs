@@ -2179,22 +2179,22 @@ namespace EntrostyleOperationsApplication
             }
         }
 
-        private void purchaseOrderLabelTextBox_Leave(object sender, EventArgs e)
+        private void PurchaseOrderLabelTextBox_Leave(object sender, EventArgs e)
         {
             PopulateLabelTableBySeqnoHDR("get_stockcodes_by_purchord_hdr_seqno", purchaseOrderLabelTextBox);
         }
 
-        private void salesOrderLabelTextBox_Leave(object sender, EventArgs e)
+        private void PalesOrderLabelTextBox_Leave(object sender, EventArgs e)
         {
             PopulateLabelTableBySeqnoHDR("get_stockcodes_by_salesord_hdr_seqno", salesOrderLabelTextBox);
         }
 
-        private void duplicateSelectedBtn_Click(object sender, EventArgs e)
+        private void DuplicateSelectedBtn_Click(object sender, EventArgs e)
         {
             DuplicateCurrentStockLblRow();
         }
 
-        private void soMainFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void SoMainFilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var wait = ShowWaitForm();
             LoadSalesOrdersMain();

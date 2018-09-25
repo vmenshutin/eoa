@@ -292,7 +292,7 @@
             this.soMainFilterComboBox.Size = new System.Drawing.Size(84, 21);
             this.soMainFilterComboBox.TabIndex = 100;
             this.soMainFilterComboBox.TabStop = false;
-            this.soMainFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.soMainFilterComboBox_SelectedIndexChanged);
+            this.soMainFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.SoMainFilterComboBox_SelectedIndexChanged);
             // 
             // SOMain
             // 
@@ -850,7 +850,7 @@
             this.duplicateSelectedBtn.TabStop = false;
             this.duplicateSelectedBtn.Text = "DUPLICATE SELECTED";
             this.duplicateSelectedBtn.UseVisualStyleBackColor = true;
-            this.duplicateSelectedBtn.Click += new System.EventHandler(this.duplicateSelectedBtn_Click);
+            this.duplicateSelectedBtn.Click += new System.EventHandler(this.DuplicateSelectedBtn_Click);
             // 
             // label36
             // 
@@ -870,7 +870,7 @@
             this.salesOrderLabelTextBox.Size = new System.Drawing.Size(120, 20);
             this.salesOrderLabelTextBox.TabIndex = 66;
             this.salesOrderLabelTextBox.TabStop = false;
-            this.salesOrderLabelTextBox.Leave += new System.EventHandler(this.salesOrderLabelTextBox_Leave);
+            this.salesOrderLabelTextBox.Leave += new System.EventHandler(this.PalesOrderLabelTextBox_Leave);
             // 
             // label35
             // 
@@ -890,7 +890,7 @@
             this.purchaseOrderLabelTextBox.Size = new System.Drawing.Size(120, 20);
             this.purchaseOrderLabelTextBox.TabIndex = 66;
             this.purchaseOrderLabelTextBox.TabStop = false;
-            this.purchaseOrderLabelTextBox.Leave += new System.EventHandler(this.purchaseOrderLabelTextBox_Leave);
+            this.purchaseOrderLabelTextBox.Leave += new System.EventHandler(this.PurchaseOrderLabelTextBox_Leave);
             // 
             // deleteSelectedBtn
             // 
