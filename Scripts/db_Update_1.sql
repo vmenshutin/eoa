@@ -216,7 +216,7 @@ VALUES ('');
 IF @pickOnly = 1
 BEGIN
 INSERT INTO @notAllowedStatuses
-VALUES ('TA'),('Sc');
+VALUES ('W'),('TA'),('Sc');
 END;
 
 with stocktable as 

@@ -265,7 +265,12 @@ namespace EntrostyleOperationsApplication
                     cell.Style.ForeColor = Color.Green;
                     cell.Style.SelectionForeColor = Color.Green;
                 }
-                else if (cell.Value.ToString() == "NIS" || cell.Value.ToString() == "OOS")
+                else if (cell.Value.ToString() == "NIS")
+                {
+                    cell.Style.ForeColor = Color.Orange;
+                    cell.Style.SelectionForeColor = Color.Orange;
+                }
+                else if (cell.Value.ToString() == "OOS")
                 {
                     cell.Style.ForeColor = Color.Red;
                     cell.Style.SelectionForeColor = Color.Red;
@@ -299,8 +304,8 @@ namespace EntrostyleOperationsApplication
                 }
                 else if (cell.Value.ToString() == "NIS")
                 {
-                    cell.Style.ForeColor = Color.Red;
-                    cell.Style.SelectionForeColor = Color.Red;
+                    cell.Style.ForeColor = Color.Orange;
+                    cell.Style.SelectionForeColor = Color.Orange;
                 }
                 else if (cell.Value.ToString() == "NowIS" || cell.Value.ToString() == "TR")
                 {

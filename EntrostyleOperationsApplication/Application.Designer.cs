@@ -36,11 +36,12 @@
             this.ScheduleTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label39 = new System.Windows.Forms.Label();
+            this.soMainFilterComboBox = new System.Windows.Forms.ComboBox();
             this.SOMain = new System.Windows.Forms.DataGridView();
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.adjustOutBtn = new System.Windows.Forms.Button();
             this.adjustInBtn = new System.Windows.Forms.Button();
             this.transferBtn = new System.Windows.Forms.Button();
@@ -54,7 +55,6 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.narrativeTextBox = new System.Windows.Forms.TextBox();
             this.SOItemDetails = new System.Windows.Forms.DataGridView();
-            this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.pickAllBtn = new System.Windows.Forms.Button();
@@ -138,8 +138,11 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
-            this.soMainFilterComboBox = new System.Windows.Forms.ComboBox();
-            this.label39 = new System.Windows.Forms.Label();
+            this.narrativeStockTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -152,7 +155,6 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SOMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOSecondary)).BeginInit();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -173,6 +175,9 @@
             this.SettingsTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.narrativeStockTabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -185,7 +190,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1462, 734);
+            this.tabControl1.Size = new System.Drawing.Size(1497, 811);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.TabStop = false;
             // 
@@ -195,7 +200,7 @@
             this.ScheduleTab.Location = new System.Drawing.Point(4, 22);
             this.ScheduleTab.Name = "ScheduleTab";
             this.ScheduleTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ScheduleTab.Size = new System.Drawing.Size(1454, 708);
+            this.ScheduleTab.Size = new System.Drawing.Size(1489, 785);
             this.ScheduleTab.TabIndex = 0;
             this.ScheduleTab.Text = "SCHEDULE";
             this.ScheduleTab.UseVisualStyleBackColor = true;
@@ -212,16 +217,9 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
-            this.splitContainer1.Panel2.Controls.Add(this.forceFullyProcessedBtn);
             this.splitContainer1.Panel2.Controls.Add(this.refreshBtn);
             this.splitContainer1.Panel2.Controls.Add(this.clearAllBtn);
-            this.splitContainer1.Panel2.Controls.Add(this.tdBtn);
-            this.splitContainer1.Panel2.Controls.Add(this.duplicateBtn);
-            this.splitContainer1.Panel2.Controls.Add(this.referenceTextBox);
-            this.splitContainer1.Panel2.Controls.Add(this.locationComboBox);
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer1.Panel2.Controls.Add(this.label15);
             this.splitContainer1.Panel2.Controls.Add(this.label13);
             this.splitContainer1.Panel2.Controls.Add(this.label14);
             this.splitContainer1.Panel2.Controls.Add(this.pickAllBtn);
@@ -241,12 +239,14 @@
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.label7);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer1.Size = new System.Drawing.Size(1448, 702);
-            this.splitContainer1.SplitterDistance = 771;
+            this.splitContainer1.Panel2MinSize = 50;
+            this.splitContainer1.Size = new System.Drawing.Size(1483, 779);
+            this.splitContainer1.SplitterDistance = 789;
             this.splitContainer1.TabIndex = 14;
             // 
             // splitContainer2
             // 
+            this.splitContainer2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
@@ -263,9 +263,36 @@
             this.splitContainer2.Panel2.Controls.Add(this.clearSearchBtn);
             this.splitContainer2.Panel2.Controls.Add(this.searchBox);
             this.splitContainer2.Panel2.Controls.Add(this.SOSecondary);
-            this.splitContainer2.Size = new System.Drawing.Size(771, 702);
-            this.splitContainer2.SplitterDistance = 386;
+            this.splitContainer2.Size = new System.Drawing.Size(789, 779);
+            this.splitContainer2.SplitterDistance = 428;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // label39
+            // 
+            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(659, 3);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(40, 13);
+            this.label39.TabIndex = 101;
+            this.label39.Text = "Status:";
+            // 
+            // soMainFilterComboBox
+            // 
+            this.soMainFilterComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.soMainFilterComboBox.BackColor = System.Drawing.SystemColors.Info;
+            this.soMainFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.soMainFilterComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.soMainFilterComboBox.FormattingEnabled = true;
+            this.soMainFilterComboBox.Items.AddRange(new object[] {
+            "All",
+            "Pick"});
+            this.soMainFilterComboBox.Location = new System.Drawing.Point(705, 0);
+            this.soMainFilterComboBox.Name = "soMainFilterComboBox";
+            this.soMainFilterComboBox.Size = new System.Drawing.Size(84, 21);
+            this.soMainFilterComboBox.TabIndex = 100;
+            this.soMainFilterComboBox.TabStop = false;
+            this.soMainFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.soMainFilterComboBox_SelectedIndexChanged);
             // 
             // SOMain
             // 
@@ -277,7 +304,7 @@
             this.SOMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SOMain.Location = new System.Drawing.Point(0, 22);
             this.SOMain.Name = "SOMain";
-            this.SOMain.Size = new System.Drawing.Size(771, 361);
+            this.SOMain.Size = new System.Drawing.Size(789, 403);
             this.SOMain.TabIndex = 0;
             // 
             // clearSearchBtn
@@ -285,7 +312,7 @@
             this.clearSearchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.clearSearchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearSearchBtn.ForeColor = System.Drawing.Color.Firebrick;
-            this.clearSearchBtn.Location = new System.Drawing.Point(680, 3);
+            this.clearSearchBtn.Location = new System.Drawing.Point(698, 3);
             this.clearSearchBtn.Name = "clearSearchBtn";
             this.clearSearchBtn.Size = new System.Drawing.Size(91, 22);
             this.clearSearchBtn.TabIndex = 3;
@@ -299,7 +326,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBox.Location = new System.Drawing.Point(0, 4);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(676, 20);
+            this.searchBox.Size = new System.Drawing.Size(694, 20);
             this.searchBox.TabIndex = 2;
             this.searchBox.TextChanged += new System.EventHandler(this.SearchBox_TextChanged);
             // 
@@ -313,27 +340,15 @@
             this.SOSecondary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SOSecondary.Location = new System.Drawing.Point(0, 28);
             this.SOSecondary.Name = "SOSecondary";
-            this.SOSecondary.Size = new System.Drawing.Size(771, 284);
+            this.SOSecondary.Size = new System.Drawing.Size(789, 319);
             this.SOSecondary.TabIndex = 1;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.adjustOutBtn);
-            this.groupBox3.Controls.Add(this.adjustInBtn);
-            this.groupBox3.Controls.Add(this.transferBtn);
-            this.groupBox3.Location = new System.Drawing.Point(522, 145);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(113, 112);
-            this.groupBox3.TabIndex = 36;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "STOCK";
             // 
             // adjustOutBtn
             // 
             this.adjustOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.adjustOutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjustOutBtn.ForeColor = System.Drawing.Color.Navy;
-            this.adjustOutBtn.Location = new System.Drawing.Point(6, 78);
+            this.adjustOutBtn.Location = new System.Drawing.Point(383, 65);
             this.adjustOutBtn.Name = "adjustOutBtn";
             this.adjustOutBtn.Size = new System.Drawing.Size(101, 24);
             this.adjustOutBtn.TabIndex = 37;
@@ -347,7 +362,7 @@
             this.adjustInBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.adjustInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjustInBtn.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.adjustInBtn.Location = new System.Drawing.Point(6, 48);
+            this.adjustInBtn.Location = new System.Drawing.Point(500, 65);
             this.adjustInBtn.Name = "adjustInBtn";
             this.adjustInBtn.Size = new System.Drawing.Size(101, 24);
             this.adjustInBtn.TabIndex = 37;
@@ -361,7 +376,7 @@
             this.transferBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.transferBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transferBtn.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.transferBtn.Location = new System.Drawing.Point(6, 18);
+            this.transferBtn.Location = new System.Drawing.Point(383, 5);
             this.transferBtn.Name = "transferBtn";
             this.transferBtn.Size = new System.Drawing.Size(101, 24);
             this.transferBtn.TabIndex = 28;
@@ -375,9 +390,9 @@
             this.forceFullyProcessedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.forceFullyProcessedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forceFullyProcessedBtn.ForeColor = System.Drawing.Color.Purple;
-            this.forceFullyProcessedBtn.Location = new System.Drawing.Point(442, 186);
+            this.forceFullyProcessedBtn.Location = new System.Drawing.Point(383, 94);
             this.forceFullyProcessedBtn.Name = "forceFullyProcessedBtn";
-            this.forceFullyProcessedBtn.Size = new System.Drawing.Size(72, 28);
+            this.forceFullyProcessedBtn.Size = new System.Drawing.Size(101, 24);
             this.forceFullyProcessedBtn.TabIndex = 35;
             this.forceFullyProcessedBtn.TabStop = false;
             this.forceFullyProcessedBtn.Text = "FFP";
@@ -390,9 +405,9 @@
             this.refreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.refreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refreshBtn.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.refreshBtn.Location = new System.Drawing.Point(3, 220);
+            this.refreshBtn.Location = new System.Drawing.Point(3, 197);
             this.refreshBtn.Name = "refreshBtn";
-            this.refreshBtn.Size = new System.Drawing.Size(81, 28);
+            this.refreshBtn.Size = new System.Drawing.Size(101, 24);
             this.refreshBtn.TabIndex = 34;
             this.refreshBtn.Text = "Refresh";
             this.refreshBtn.UseVisualStyleBackColor = false;
@@ -403,9 +418,9 @@
             this.clearAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearAllBtn.ForeColor = System.Drawing.Color.Black;
-            this.clearAllBtn.Location = new System.Drawing.Point(177, 220);
+            this.clearAllBtn.Location = new System.Drawing.Point(236, 197);
             this.clearAllBtn.Name = "clearAllBtn";
-            this.clearAllBtn.Size = new System.Drawing.Size(81, 28);
+            this.clearAllBtn.Size = new System.Drawing.Size(101, 24);
             this.clearAllBtn.TabIndex = 33;
             this.clearAllBtn.TabStop = false;
             this.clearAllBtn.Text = "Clear All";
@@ -417,9 +432,9 @@
             this.tdBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tdBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tdBtn.ForeColor = System.Drawing.Color.Crimson;
-            this.tdBtn.Location = new System.Drawing.Point(364, 186);
+            this.tdBtn.Location = new System.Drawing.Point(500, 35);
             this.tdBtn.Name = "tdBtn";
-            this.tdBtn.Size = new System.Drawing.Size(72, 28);
+            this.tdBtn.Size = new System.Drawing.Size(101, 24);
             this.tdBtn.TabIndex = 32;
             this.tdBtn.TabStop = false;
             this.tdBtn.Text = "T + D";
@@ -431,9 +446,9 @@
             this.duplicateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.duplicateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.duplicateBtn.ForeColor = System.Drawing.Color.DimGray;
-            this.duplicateBtn.Location = new System.Drawing.Point(286, 186);
+            this.duplicateBtn.Location = new System.Drawing.Point(383, 35);
             this.duplicateBtn.Name = "duplicateBtn";
-            this.duplicateBtn.Size = new System.Drawing.Size(72, 28);
+            this.duplicateBtn.Size = new System.Drawing.Size(101, 24);
             this.duplicateBtn.TabIndex = 31;
             this.duplicateBtn.TabStop = false;
             this.duplicateBtn.Text = "Duplicate";
@@ -444,10 +459,10 @@
             // 
             this.referenceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.referenceTextBox.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.referenceTextBox.Location = new System.Drawing.Point(373, 224);
+            this.referenceTextBox.Location = new System.Drawing.Point(93, 64);
             this.referenceTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.referenceTextBox.Name = "referenceTextBox";
-            this.referenceTextBox.Size = new System.Drawing.Size(141, 21);
+            this.referenceTextBox.Size = new System.Drawing.Size(254, 21);
             this.referenceTextBox.TabIndex = 30;
             // 
             // locationComboBox
@@ -455,9 +470,9 @@
             this.locationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.locationComboBox.ForeColor = System.Drawing.Color.RoyalBlue;
             this.locationComboBox.FormattingEnabled = true;
-            this.locationComboBox.Location = new System.Drawing.Point(286, 224);
+            this.locationComboBox.Location = new System.Drawing.Point(93, 35);
             this.locationComboBox.Name = "locationComboBox";
-            this.locationComboBox.Size = new System.Drawing.Size(79, 21);
+            this.locationComboBox.Size = new System.Drawing.Size(76, 21);
             this.locationComboBox.TabIndex = 29;
             this.locationComboBox.TabStop = false;
             // 
@@ -466,19 +481,20 @@
             this.splitContainer3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer3.Location = new System.Drawing.Point(3, 271);
+            this.splitContainer3.BackColor = System.Drawing.Color.Transparent;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 233);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.narrativeTextBox);
+            this.splitContainer3.Panel1.Controls.Add(this.narrativeStockTabControl);
             // 
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.SOItemDetails);
-            this.splitContainer3.Size = new System.Drawing.Size(670, 431);
-            this.splitContainer3.SplitterDistance = 79;
+            this.splitContainer3.Size = new System.Drawing.Size(687, 546);
+            this.splitContainer3.SplitterDistance = 161;
             this.splitContainer3.TabIndex = 27;
             // 
             // narrativeTextBox
@@ -487,11 +503,11 @@
             this.narrativeTextBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.narrativeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.narrativeTextBox.ForeColor = System.Drawing.Color.DarkBlue;
-            this.narrativeTextBox.Location = new System.Drawing.Point(0, 0);
+            this.narrativeTextBox.Location = new System.Drawing.Point(3, 3);
             this.narrativeTextBox.Multiline = true;
             this.narrativeTextBox.Name = "narrativeTextBox";
             this.narrativeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.narrativeTextBox.Size = new System.Drawing.Size(670, 79);
+            this.narrativeTextBox.Size = new System.Drawing.Size(673, 129);
             this.narrativeTextBox.TabIndex = 22;
             this.narrativeTextBox.TextChanged += new System.EventHandler(this.NarrativeTextBox_TextChanged);
             // 
@@ -527,19 +543,8 @@
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.SOItemDetails.Size = new System.Drawing.Size(670, 348);
+            this.SOItemDetails.Size = new System.Drawing.Size(687, 381);
             this.SOItemDetails.TabIndex = 14;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label15.Location = new System.Drawing.Point(0, 255);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(63, 13);
-            this.label15.TabIndex = 23;
-            this.label15.Text = "Narrative:";
             // 
             // label13
             // 
@@ -567,9 +572,9 @@
             this.pickAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pickAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pickAllBtn.ForeColor = System.Drawing.Color.MediumPurple;
-            this.pickAllBtn.Location = new System.Drawing.Point(177, 186);
+            this.pickAllBtn.Location = new System.Drawing.Point(236, 169);
             this.pickAllBtn.Name = "pickAllBtn";
-            this.pickAllBtn.Size = new System.Drawing.Size(81, 28);
+            this.pickAllBtn.Size = new System.Drawing.Size(101, 24);
             this.pickAllBtn.TabIndex = 19;
             this.pickAllBtn.Text = "Pick All";
             this.pickAllBtn.UseVisualStyleBackColor = true;
@@ -580,9 +585,9 @@
             this.processPickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.processPickBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.processPickBtn.ForeColor = System.Drawing.Color.DarkTurquoise;
-            this.processPickBtn.Location = new System.Drawing.Point(90, 186);
+            this.processPickBtn.Location = new System.Drawing.Point(119, 169);
             this.processPickBtn.Name = "processPickBtn";
-            this.processPickBtn.Size = new System.Drawing.Size(81, 28);
+            this.processPickBtn.Size = new System.Drawing.Size(101, 24);
             this.processPickBtn.TabIndex = 18;
             this.processPickBtn.Text = "Process";
             this.processPickBtn.UseVisualStyleBackColor = true;
@@ -593,9 +598,9 @@
             this.printPickingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printPickingBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printPickingBtn.ForeColor = System.Drawing.Color.DarkOrange;
-            this.printPickingBtn.Location = new System.Drawing.Point(3, 186);
+            this.printPickingBtn.Location = new System.Drawing.Point(3, 169);
             this.printPickingBtn.Name = "printPickingBtn";
-            this.printPickingBtn.Size = new System.Drawing.Size(81, 28);
+            this.printPickingBtn.Size = new System.Drawing.Size(101, 24);
             this.printPickingBtn.TabIndex = 17;
             this.printPickingBtn.Text = "Pick";
             this.printPickingBtn.UseVisualStyleBackColor = true;
@@ -627,9 +632,9 @@
             this.refreshF5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.refreshF5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refreshF5.ForeColor = System.Drawing.Color.Green;
-            this.refreshF5.Location = new System.Drawing.Point(90, 220);
+            this.refreshF5.Location = new System.Drawing.Point(119, 197);
             this.refreshF5.Name = "refreshF5";
-            this.refreshF5.Size = new System.Drawing.Size(81, 28);
+            this.refreshF5.Size = new System.Drawing.Size(101, 24);
             this.refreshF5.TabIndex = 13;
             this.refreshF5.Text = "Refresh All";
             this.refreshF5.UseVisualStyleBackColor = false;
@@ -1575,38 +1580,71 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // soMainFilterComboBox
+            // narrativeStockTabControl
             // 
-            this.soMainFilterComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.soMainFilterComboBox.BackColor = System.Drawing.SystemColors.Info;
-            this.soMainFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.soMainFilterComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.soMainFilterComboBox.FormattingEnabled = true;
-            this.soMainFilterComboBox.Items.AddRange(new object[] {
-            "All",
-            "Pick"});
-            this.soMainFilterComboBox.Location = new System.Drawing.Point(687, 0);
-            this.soMainFilterComboBox.Name = "soMainFilterComboBox";
-            this.soMainFilterComboBox.Size = new System.Drawing.Size(84, 21);
-            this.soMainFilterComboBox.TabIndex = 100;
-            this.soMainFilterComboBox.TabStop = false;
-            this.soMainFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.soMainFilterComboBox_SelectedIndexChanged);
+            this.narrativeStockTabControl.Controls.Add(this.tabPage1);
+            this.narrativeStockTabControl.Controls.Add(this.tabPage2);
+            this.narrativeStockTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.narrativeStockTabControl.Location = new System.Drawing.Point(0, 0);
+            this.narrativeStockTabControl.Name = "narrativeStockTabControl";
+            this.narrativeStockTabControl.SelectedIndex = 0;
+            this.narrativeStockTabControl.Size = new System.Drawing.Size(687, 161);
+            this.narrativeStockTabControl.TabIndex = 37;
             // 
-            // label39
+            // tabPage1
             // 
-            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(641, 3);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(40, 13);
-            this.label39.TabIndex = 101;
-            this.label39.Text = "Status:";
+            this.tabPage1.Controls.Add(this.narrativeTextBox);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(679, 135);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Narrative";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.adjustInBtn);
+            this.tabPage2.Controls.Add(this.adjustOutBtn);
+            this.tabPage2.Controls.Add(this.label40);
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.transferBtn);
+            this.tabPage2.Controls.Add(this.forceFullyProcessedBtn);
+            this.tabPage2.Controls.Add(this.locationComboBox);
+            this.tabPage2.Controls.Add(this.referenceTextBox);
+            this.tabPage2.Controls.Add(this.duplicateBtn);
+            this.tabPage2.Controls.Add(this.tdBtn);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(679, 178);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Stock";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(13, 38);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(67, 13);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "To Location:";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(13, 67);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(60, 13);
+            this.label40.TabIndex = 38;
+            this.label40.Text = "Reference:";
             // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1462, 734);
+            this.ClientSize = new System.Drawing.Size(1497, 811);
             this.Controls.Add(this.tabControl1);
             this.Name = "Application";
             this.Text = "EntroStyle Operations Application";
@@ -1625,9 +1663,7 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SOMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOSecondary)).EndInit();
-            this.groupBox3.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
@@ -1653,6 +1689,11 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.narrativeStockTabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1698,7 +1739,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox narrativeTextBox;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label20;
@@ -1755,7 +1795,6 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Button forceFullyProcessedBtn;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button adjustOutBtn;
         private System.Windows.Forms.Button adjustInBtn;
         private System.Windows.Forms.Label label36;
@@ -1767,6 +1806,11 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.ComboBox soMainFilterComboBox;
         private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.TabControl narrativeStockTabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label15;
     }
 }
 
