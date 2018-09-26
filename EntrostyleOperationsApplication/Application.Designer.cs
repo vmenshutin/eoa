@@ -42,6 +42,10 @@
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.processUserControl = new EntrostyleOperationsApplication.ProcessUserControl();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pickUserControl = new EntrostyleOperationsApplication.PickUserControl();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.clearAllBtn = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
@@ -83,6 +87,7 @@
             this.difotFrom = new System.Windows.Forms.DateTimePicker();
             this.SODifot = new System.Windows.Forms.DataGridView();
             this.labelTab = new System.Windows.Forms.TabPage();
+            this.stockLblDataGridView = new EntrostyleOperationsApplication.CustomDataGridView();
             this.duplicateSelectedBtn = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.salesOrderLabelTextBox = new System.Windows.Forms.TextBox();
@@ -136,11 +141,6 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.processUserControl = new EntrostyleOperationsApplication.ProcessUserControl();
-            this.pickUserControl = new EntrostyleOperationsApplication.PickUserControl();
-            this.stockLblDataGridView = new EntrostyleOperationsApplication.CustomDataGridView();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -153,6 +153,8 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SOMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOSecondary)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -164,6 +166,7 @@
             this.DifotTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).BeginInit();
             this.labelTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.supplierGroupBox.SuspendLayout();
             this.LABELControlsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -175,9 +178,6 @@
             this.SettingsTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -342,6 +342,42 @@
             this.SOSecondary.Name = "SOSecondary";
             this.SOSecondary.Size = new System.Drawing.Size(706, 319);
             this.SOSecondary.TabIndex = 1;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.processUserControl);
+            this.groupBox4.Location = new System.Drawing.Point(525, 11);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(248, 210);
+            this.groupBox4.TabIndex = 38;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "PROCESS";
+            // 
+            // processUserControl
+            // 
+            this.processUserControl.Location = new System.Drawing.Point(1, 11);
+            this.processUserControl.Name = "processUserControl";
+            this.processUserControl.Size = new System.Drawing.Size(245, 199);
+            this.processUserControl.TabIndex = 36;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.pickUserControl);
+            this.groupBox3.Location = new System.Drawing.Point(311, 101);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(208, 120);
+            this.groupBox3.TabIndex = 37;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "PICK";
+            // 
+            // pickUserControl
+            // 
+            this.pickUserControl.Location = new System.Drawing.Point(1, 10);
+            this.pickUserControl.Name = "pickUserControl";
+            this.pickUserControl.Size = new System.Drawing.Size(202, 110);
+            this.pickUserControl.TabIndex = 35;
             // 
             // refreshBtn
             // 
@@ -870,6 +906,19 @@
             this.labelTab.Size = new System.Drawing.Size(1489, 785);
             this.labelTab.TabIndex = 4;
             this.labelTab.Text = "LABELS";
+            // 
+            // stockLblDataGridView
+            // 
+            this.stockLblDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockLblDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
+            this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.stockLblDataGridView.Location = new System.Drawing.Point(157, 131);
+            this.stockLblDataGridView.Name = "stockLblDataGridView";
+            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 460);
+            this.stockLblDataGridView.TabIndex = 0;
+            this.stockLblDataGridView.TabStop = false;
             // 
             // duplicateSelectedBtn
             // 
@@ -1510,7 +1559,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 2.1.0 25/09/2018";
+            this.label20.Text = "EOA 2.2.0 26/09/2018";
             // 
             // settings_Save
             // 
@@ -1549,55 +1598,6 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.pickUserControl);
-            this.groupBox3.Location = new System.Drawing.Point(311, 101);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(208, 120);
-            this.groupBox3.TabIndex = 37;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "PICK";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.processUserControl);
-            this.groupBox4.Location = new System.Drawing.Point(525, 11);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(248, 210);
-            this.groupBox4.TabIndex = 38;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "PROCESS";
-            // 
-            // processUserControl
-            // 
-            this.processUserControl.Location = new System.Drawing.Point(1, 11);
-            this.processUserControl.Name = "processUserControl";
-            this.processUserControl.Size = new System.Drawing.Size(245, 199);
-            this.processUserControl.TabIndex = 36;
-            // 
-            // pickUserControl
-            // 
-            this.pickUserControl.Location = new System.Drawing.Point(1, 10);
-            this.pickUserControl.Name = "pickUserControl";
-            this.pickUserControl.Size = new System.Drawing.Size(202, 110);
-            this.pickUserControl.TabIndex = 35;
-            // 
-            // stockLblDataGridView
-            // 
-            this.stockLblDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stockLblDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
-            this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.stockLblDataGridView.Location = new System.Drawing.Point(157, 131);
-            this.stockLblDataGridView.Name = "stockLblDataGridView";
-            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 460);
-            this.stockLblDataGridView.TabIndex = 0;
-            this.stockLblDataGridView.TabStop = false;
-            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1621,6 +1621,8 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SOMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SOSecondary)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
@@ -1636,6 +1638,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).EndInit();
             this.labelTab.ResumeLayout(false);
             this.labelTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.supplierGroupBox.ResumeLayout(false);
             this.LABELControlsGroupBox.ResumeLayout(false);
             this.LABELControlsGroupBox.PerformLayout();
@@ -1651,9 +1654,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
