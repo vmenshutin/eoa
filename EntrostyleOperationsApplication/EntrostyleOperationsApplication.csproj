@@ -87,17 +87,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Label2DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ProcessPickDialog.cs">
-      <SubType>Form</SubType>
+    <Compile Include="PickUserControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ProcessPickDialog.Designer.cs">
-      <DependentUpon>ProcessPickDialog.cs</DependentUpon>
+    <Compile Include="PickUserControl.Designer.cs">
+      <DependentUpon>PickUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrintPickingDialog.cs">
-      <SubType>Form</SubType>
+    <Compile Include="ProcessUserControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PrintPickingDialog.Designer.cs">
-      <DependentUpon>PrintPickingDialog.cs</DependentUpon>
+    <Compile Include="ProcessUserControl.Designer.cs">
+      <DependentUpon>ProcessUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="SalesOrderReportDataSet.cs">
       <DependentUpon>SalesOrderReportDataSet.xsd</DependentUpon>
@@ -125,6 +125,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Application.resx">
       <DependentUpon>Application.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PickUserControl.resx">
+      <DependentUpon>PickUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessUserControl.resx">
+      <DependentUpon>ProcessUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="process_label.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -155,12 +161,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PleaseWaitForm.resx">
       <DependentUpon>PleaseWaitForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProcessPickDialog.resx">
-      <DependentUpon>ProcessPickDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PrintPickingDialog.resx">
-      <DependentUpon>PrintPickingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

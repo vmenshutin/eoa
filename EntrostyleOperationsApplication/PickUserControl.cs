@@ -1,42 +1,45 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Data;
 using System.Text;
-using System.Drawing.Imaging;
-using System.Drawing.Printing;
-using System.Collections.Generic;
 using System.Windows.Forms;
+using System.IO;
 using Microsoft.Reporting.WinForms;
-using System.Drawing;
+using System.Drawing.Printing;
+using System.Drawing.Imaging;
 using ZXing;
 using ZXing.Common;
 
 namespace EntrostyleOperationsApplication
 {
-    public partial class PrintPickingDialog : Form
+    public partial class PickUserControl : UserControl
     {
-        DataGridViewRow row;
-        string printerName;
-        Action callback;
+        private DataGridViewRow row;
+        private string printerName;
+        private Action callback;
 
         private int m_currentPageIndex;
         private IList<Stream> m_streams;
 
         LocalReport report;
+        private bool isLoaded = false;
 
-        public PrintPickingDialog(DataGridViewRow row, string printerName, Action callback)
+        public PickUserControl()
         {
-            this.row = row;
-            this.printerName = printerName;
-            this.callback = callback;
             InitializeComponent();
         }
 
-        private void PrintDialog_Load(object sender, EventArgs e)
+        public void Update(DataGridViewRow row, string printerName, Action callback)
         {
-            reportViewer1.ProcessingMode = ProcessingMode.Local;
-            reportViewer1.LocalReport.ReportPath = @".\pick_label.rdlc";
+            isLoaded = false;
+            this.row = row;
+            this.printerName = printerName;
+            this.callback = callback;
+        }
 
+        private void LoadData()
+        {
             report = new LocalReport
             {
                 ReportPath = @".\pick_label.rdlc"
@@ -66,9 +69,6 @@ namespace EntrostyleOperationsApplication
             dt.Rows.Add(dr);
 
             report.DataSources.Add(new ReportDataSource("DataSet1", dt));
-            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
-
-            reportViewer1.RefreshReport();
         }
 
         // Routine to provide to the report renderer, in order to
@@ -97,7 +97,7 @@ namespace EntrostyleOperationsApplication
             m_streams = new List<Stream>();
             report.Render("Image", deviceInfo, CreateStream, out Warning[] warnings);
             foreach (Stream stream in m_streams)
-                stream.Position = 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                stream.Position = 0;
         }
         // Handler for PrintPageEvents
         private void PrintPage(object sender, PrintPageEventArgs ev)
@@ -142,11 +142,48 @@ namespace EntrostyleOperationsApplication
             printDoc.Print();
         }
 
+        private void PrintOnlyBtn_Click(object sender, EventArgs e)
+        {
+            CheckIfLoaded();
+            Print();
+        }
+
         private void PrintLabelBtn_Click(object sender, EventArgs e)
         {
+            CheckIfLoaded();
             Print();
             callback();
-            Close();
+        }
+
+        private void ContinueBtn_Click(object sender, EventArgs e)
+        {
+            CheckIfLoaded();
+            callback();
+        }
+
+        private void CheckIfLoaded()
+        {
+            if (!isLoaded)
+            {
+                LoadData();
+                isLoaded = true;
+            }
+        }
+
+        // Hot keys initialization here
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Return))
+            {
+                PrintLabelBtn_Click(printLabelBtn, new EventArgs());
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void NumericUpDown1_Enter(object sender, EventArgs e)
+        {
+            numericUpDown1.Select(0, numericUpDown1.Text.Length);
         }
 
         private Bitmap GenerateBarcode(string barcodeText, int height, int width, int margin)
@@ -163,34 +200,6 @@ namespace EntrostyleOperationsApplication
             };
 
             return barcodeWriter.Write(barcodeText);
-        }
-
-        private void ContinueBtn_Click(object sender, EventArgs e)
-        {
-            callback();
-            Close();
-        }
-
-        // Hot keys initialization here
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == (Keys.Return))
-            {
-                PrintLabelBtn_Click(printLabelBtn, new EventArgs());
-            }
-
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-        private void PrintOnlyBtn_Click(object sender, EventArgs e)
-        {
-            Print();
-            Close();
-        }
-
-        private void NumericUpDown1_Enter(object sender, EventArgs e)
-        {
-            numericUpDown1.Select(0, numericUpDown1.Text.Length);
         }
     }
 }

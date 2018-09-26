@@ -1,38 +1,55 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Data;
 using System.Text;
-using System.Drawing.Imaging;
-using System.Drawing.Printing;
-using System.Collections.Generic;
 using System.Windows.Forms;
+using System.IO;
 using Microsoft.Reporting.WinForms;
-using System.Drawing;
+using System.Drawing.Printing;
+using System.Drawing.Imaging;
 using ZXing;
 using ZXing.Common;
 
 namespace EntrostyleOperationsApplication
 {
-    public partial class ProcessPickDialog : Form
+    public partial class ProcessUserControl : UserControl
     {
-        DataGridViewRow row;
-        string printerName;
-        Action<string> callback;
+        private DataGridViewRow row;
+        private string printerName;
+        private Action<string> callback;
 
         private int m_currentPageIndex;
         private IList<Stream> m_streams;
 
-        LocalReport report;
+        private LocalReport report;
+        private bool isLoaded = false;
 
-        public ProcessPickDialog(DataGridViewRow row, string printerName, Action<string> callback)
+        public ProcessUserControl()
         {
+            InitializeComponent();
+            InitRadioButtons();
+        }
+
+        public void Update(DataGridViewRow row, string printerName, Action<string> callback)
+        {
+            isLoaded = false;
             this.row = row;
             this.printerName = printerName;
             this.callback = callback;
-            InitializeComponent();
+            UpdateCarrier();
         }
 
-        private void PrintDialog_Load(object sender, EventArgs e)
+        private void CheckIfLoaded()
+        {
+            if (!isLoaded)
+            {
+                LoadData();
+                isLoaded = true;
+            }
+        }
+
+        private void UpdateCarrier()
         {
             string carrier = row.Cells["X_CARRIER"].Value.ToString();
 
@@ -41,12 +58,10 @@ namespace EntrostyleOperationsApplication
             {
                 carrierTextBox.Text = carrier;
             }
-            carrierTextBox.TextChanged += CarrierTextBox_TextChanged;
+        }
 
-            reportViewer1.ProcessingMode = ProcessingMode.Local;
-            reportViewer1.LocalReport.ReportPath = @".\process_label.rdlc";
-            reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
-
+        private void LoadData()
+        {
             report = new LocalReport
             {
                 ReportPath = @".\process_label.rdlc"
@@ -75,10 +90,6 @@ namespace EntrostyleOperationsApplication
             dt.Rows.Add(dr);
 
             report.DataSources.Add(new ReportDataSource("DataSet1", dt));
-            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
-
-            reportViewer1.RefreshReport();
-            InitRadioButtons();
         }
 
         private void InitRadioButtons()
@@ -96,18 +107,12 @@ namespace EntrostyleOperationsApplication
             {
                 printLabelBtn.Enabled = true;
                 printOnlyBtn.Enabled = true;
-                reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
-                carrierTextBox.TextChanged += CarrierTextBox_TextChanged;
             }
             else if (TntRadioButton.Checked || startTrackRadioButton.Checked)
             {
                 printLabelBtn.Enabled = false;
                 printOnlyBtn.Enabled = false;
-                reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", ""));
-                carrierTextBox.TextChanged -= CarrierTextBox_TextChanged;
             }
-
-            reportViewer1.RefreshReport();
         }
 
         // Routine to provide to the report renderer, in order to
@@ -120,6 +125,7 @@ namespace EntrostyleOperationsApplication
             m_streams.Add(stream);
             return stream;
         }
+
         // Export the given report as an EMF (Enhanced Metafile) file.
         private void Export(LocalReport report)
         {
@@ -136,8 +142,9 @@ namespace EntrostyleOperationsApplication
             m_streams = new List<Stream>();
             report.Render("Image", deviceInfo, CreateStream, out Warning[] warnings);
             foreach (Stream stream in m_streams)
-                stream.Position = 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                stream.Position = 0;
         }
+
         // Handler for PrintPageEvents
         private void PrintPage(object sender, PrintPageEventArgs ev)
         {
@@ -183,11 +190,34 @@ namespace EntrostyleOperationsApplication
             printDoc.Print();
         }
 
+        private void ContinueBtn_Click(object sender, EventArgs e)
+        {
+            CheckIfLoaded();
+            string carrier = carrierTextBox.Text;
+
+            if (TntRadioButton.Checked && carrier.Length >= 21)
+            {
+                carrier = @"http://www.tntexpress.com.au/interaction/ASPs/Trackcon_tntau.asp?id=TRACK.ASPX&con=ETZ" + carrier.Substring(12, 9);
+            }
+            else if (startTrackRadioButton.Checked)
+            {
+                carrier = @"https://msto.startrack.com.au/track-trace/?id=" + carrier;
+            }
+
+            callback(carrier);
+        }
+
         private void PrintLabelBtn_Click(object sender, EventArgs e)
         {
+            CheckIfLoaded();
             Print();
             callback(carrierTextBox.Text);
-            Close();
+        }
+
+        private void PrintOnlyBtn_Click(object sender, EventArgs e)
+        {
+            CheckIfLoaded();
+            Print();
         }
 
         private Bitmap GenerateBarcode(string barcodeText, int height, int width, int margin)
@@ -204,23 +234,6 @@ namespace EntrostyleOperationsApplication
             };
 
             return barcodeWriter.Write(barcodeText);
-        }
-
-        private void ContinueBtn_Click(object sender, EventArgs e)
-        {
-            string carrier = carrierTextBox.Text;
-
-            if (TntRadioButton.Checked && carrier.Length >= 21)
-            {
-                carrier = @"http://www.tntexpress.com.au/interaction/ASPs/Trackcon_tntau.asp?id=TRACK.ASPX&con=ETZ" + carrier.Substring(12, 9);
-            }
-            else if (startTrackRadioButton.Checked)
-            {
-                carrier = @"https://msto.startrack.com.au/track-trace/?id=" + carrier;
-            }
-
-            callback(carrier);
-            Close();
         }
 
         // Hot keys initialization here
@@ -241,21 +254,9 @@ namespace EntrostyleOperationsApplication
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void PrintOnlyBtn_Click(object sender, EventArgs e)
-        {
-            Print();
-            Close();
-        }
-
         private void NumericUpDown1_Enter(object sender, EventArgs e)
         {
             numericUpDown1.Select(0, numericUpDown1.Text.Length);
-        }
-
-        private void CarrierTextBox_TextChanged(object sender, EventArgs e)
-        {
-            reportViewer1.LocalReport.SetParameters(new ReportParameter("Carrier", carrierTextBox.Text));
-            reportViewer1.RefreshReport();
         }
     }
 }

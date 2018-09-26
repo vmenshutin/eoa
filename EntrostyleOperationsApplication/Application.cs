@@ -231,21 +231,6 @@ namespace EntrostyleOperationsApplication
             ProcessPick();
         }
 
-        private void PrintPickingBtn_Click(object sender, EventArgs e)
-        {
-            var row = GetCurrentSORow();
-
-            if (row != null)
-            {
-                var wait = ShowWaitForm();
-
-                var preview = new PrintPickingDialog(row, settings_PickLabelPrinter.Text, InitSalesOrderReport); // new
-                preview.Show();
-
-                wait.Close();
-            }
-        }
-
         private void SOMain_Enter(object sender, EventArgs e)
         {
             activeGrid = ((DataGridView)sender).Name;
@@ -1149,6 +1134,13 @@ namespace EntrostyleOperationsApplication
                 SONarrativeAdapter.Fill(SONarrativeDataSet);
 
                 narrativeTextBox.Text = SONarrativeDataSet.Tables[0].Rows[0]["NARRATIVE"].ToString();
+
+                var currentSORow = GetCurrentSORow();
+                if (currentSORow != null)
+                {
+                    pickUserControl.Update(currentSORow, settings_PickLabelPrinter.Text, InitSalesOrderReport);
+                    processUserControl.Update(currentSORow, settings_PickLabelPrinter.Text, Process);
+                }
             }
         }
 
@@ -1455,18 +1447,6 @@ namespace EntrostyleOperationsApplication
             {
                 RefreshF10();
             }
-            else if (keyData == (Keys.Alt | Keys.P))
-            {
-                ProcessPickBtn_Click(processPickBtn, new EventArgs());
-            }
-            else if (keyData == (Keys.Control | Keys.P))
-            {
-                PrintPickingBtn_Click(printPickingBtn, new EventArgs());
-            }
-            else if (keyData == (Keys.F3))
-            {
-                SelectNextNot("P", () => PrintPickingBtn_Click(printPickingBtn, new EventArgs()));
-            }
             else if (keyData == (Keys.Alt | Keys.Delete))
             {
                 if (stockLblDataGridView.ContainsFocus)
@@ -1533,21 +1513,6 @@ namespace EntrostyleOperationsApplication
 
             Thread.Sleep(500);
             wait.Close();
-        }
-
-        private void ProcessPickBtn_Click(object sender, EventArgs e)
-        {
-            var row = GetCurrentSORow();
-
-            if (row != null)
-            {
-                var wait = ShowWaitForm();
-
-                var preview = new ProcessPickDialog(GetCurrentSORow(), settings_PickLabelPrinter.Text, Process);
-                preview.Show();
-
-                wait.Close();
-            }
         }
 
         private void PickAllBtn_Click(object sender, EventArgs e)
