@@ -50,7 +50,7 @@
             this.groupBox1.Controls.Add(this.TntRadioButton);
             this.groupBox1.Controls.Add(this.CustomRadioButton);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Location = new System.Drawing.Point(13, 7);
+            this.groupBox1.Location = new System.Drawing.Point(12, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(219, 39);
             this.groupBox1.TabIndex = 109;
@@ -93,7 +93,7 @@
             // carrierTextBox
             // 
             this.carrierTextBox.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.carrierTextBox.Location = new System.Drawing.Point(13, 65);
+            this.carrierTextBox.Location = new System.Drawing.Point(12, 76);
             this.carrierTextBox.Name = "carrierTextBox";
             this.carrierTextBox.Size = new System.Drawing.Size(219, 20);
             this.carrierTextBox.TabIndex = 102;
@@ -102,7 +102,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.label1.Location = new System.Drawing.Point(10, 49);
+            this.label1.Location = new System.Drawing.Point(9, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 108;
@@ -113,7 +113,7 @@
             this.printOnlyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printOnlyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printOnlyBtn.ForeColor = System.Drawing.Color.SteelBlue;
-            this.printOnlyBtn.Location = new System.Drawing.Point(13, 161);
+            this.printOnlyBtn.Location = new System.Drawing.Point(247, 72);
             this.printOnlyBtn.Name = "printOnlyBtn";
             this.printOnlyBtn.Size = new System.Drawing.Size(146, 24);
             this.printOnlyBtn.TabIndex = 107;
@@ -127,7 +127,7 @@
             this.continueBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.continueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continueBtn.ForeColor = System.Drawing.Color.Green;
-            this.continueBtn.Location = new System.Drawing.Point(13, 101);
+            this.continueBtn.Location = new System.Drawing.Point(247, 12);
             this.continueBtn.Name = "continueBtn";
             this.continueBtn.Size = new System.Drawing.Size(146, 24);
             this.continueBtn.TabIndex = 106;
@@ -141,7 +141,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label22.Location = new System.Drawing.Point(165, 137);
+            this.label22.Location = new System.Drawing.Point(399, 48);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(19, 13);
             this.label22.TabIndex = 105;
@@ -152,7 +152,7 @@
             this.printLabelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printLabelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printLabelBtn.ForeColor = System.Drawing.Color.OrangeRed;
-            this.printLabelBtn.Location = new System.Drawing.Point(13, 131);
+            this.printLabelBtn.Location = new System.Drawing.Point(247, 42);
             this.printLabelBtn.Name = "printLabelBtn";
             this.printLabelBtn.Size = new System.Drawing.Size(146, 24);
             this.printLabelBtn.TabIndex = 104;
@@ -164,7 +164,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.ForeColor = System.Drawing.Color.OrangeRed;
-            this.numericUpDown1.Location = new System.Drawing.Point(185, 134);
+            this.numericUpDown1.Location = new System.Drawing.Point(419, 45);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -193,7 +193,7 @@
             this.Controls.Add(this.printLabelBtn);
             this.Controls.Add(this.numericUpDown1);
             this.Name = "ProcessUserControl";
-            this.Size = new System.Drawing.Size(245, 198);
+            this.Size = new System.Drawing.Size(479, 108);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

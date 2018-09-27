@@ -140,6 +140,8 @@ namespace EntrostyleOperationsApplication
             printDoc.PrintPage += new PrintPageEventHandler(PrintPage);
             m_currentPageIndex = 0;
             printDoc.Print();
+
+            numericUpDown1.Value = 1;
         }
 
         private void PrintOnlyBtn_Click(object sender, EventArgs e)

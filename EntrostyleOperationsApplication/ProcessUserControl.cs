@@ -107,11 +107,14 @@ namespace EntrostyleOperationsApplication
             {
                 printLabelBtn.Enabled = true;
                 printOnlyBtn.Enabled = true;
+                numericUpDown1.Enabled = true;
             }
             else if (TntRadioButton.Checked || startTrackRadioButton.Checked)
             {
                 printLabelBtn.Enabled = false;
                 printOnlyBtn.Enabled = false;
+                numericUpDown1.Enabled = false;
+                carrierTextBox.Focus();
             }
         }
 
@@ -188,6 +191,8 @@ namespace EntrostyleOperationsApplication
             printDoc.PrintPage += new PrintPageEventHandler(PrintPage);
             m_currentPageIndex = 0;
             printDoc.Print();
+
+            numericUpDown1.Value = 1;
         }
 
         private void ContinueBtn_Click(object sender, EventArgs e)

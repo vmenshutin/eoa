@@ -52,9 +52,9 @@ select distinct
 	,case
 			when locinfo.QTY > 0 and (lines.PICK_NOW > locinfo.QTY) and items.STATUS <> 'L' and items.STOCKCODE is NOt null and items.STOCKCODE <> '' then 'NIS'
 			when lines.PICK_NOW = 0 and locinfo.QTY > 0 and (UNSUP_QUANT > locinfo.QTY) and items.STATUS <> 'L' and items.STOCKCODE is NOt null and items.STOCKCODE <> '' then 'NIS'
+			when (lines.UNSUP_QUANT < 0 or lines.PICK_NOW < 0) and items.STATUS <> 'L' and items.STOCKCODE is NOt null and items.STOCKCODE <> '' then 'TR'
 			when locinfo.QTY = 0 and UNSUP_QUANT <> 0 and items.STATUS <> 'L' and items.STOCKCODE is NOt null and items.STOCKCODE <> '' then 'OOS'
 			when lines.UNSUP_QUANT = 0 and items.STATUS <> 'L' and items.STOCKCODE is NOt null and items.STOCKCODE <> '' then 'Sh'
-			when lines.UNSUP_QUANT < 0 and items.STATUS <> 'L' and items.STOCKCODE is NOt null and items.STOCKCODE <> '' then 'TR'
 			when items.STATUS = 'L' or items.STOCKCODE is null or items.STOCKCODE = '' then ''
 			else 'IS'
      end as 'STOCKCHECK'

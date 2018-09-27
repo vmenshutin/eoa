@@ -239,6 +239,7 @@ with stocktable as
 		and lines.LOCATION = locinfo.LOCATION
 		where sales.STATUS >= 0 AND sales.STATUS < 2
 			and items.STATUS <> 'L'
+			and lines.PICK_NOW >= 0
 		GROUP BY sales.SEQNO),
 		
 TimeStamps as
