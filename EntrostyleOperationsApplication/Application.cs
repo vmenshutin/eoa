@@ -2166,5 +2166,38 @@ namespace EntrostyleOperationsApplication
             wait.Close();
             SOMain.Focus();
         }
+
+        private void SetPrinter(TextBox textbox)
+        {
+            Enabled = false;
+
+            PrintDialog printDialog1 = new PrintDialog
+            {
+                AllowPrintToFile = false,
+                AllowCurrentPage = false,
+                AllowSelection = false,
+                AllowSomePages = false
+            };
+            DialogResult result = printDialog1.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                textbox.Text = printDialog1.PrinterSettings.PrinterName;
+            }
+            Enabled = true;
+        }
+
+        private void SelectPrinter_Click(object sender, EventArgs e)
+        {
+            var dict = new Dictionary<string, TextBox>()
+            {
+                {"selectPrinter1",settings_printerName},
+                {"selectPrinter2",settings_labelPrinter},
+                {"selectPrinter3",settings_30LabelPrinter},
+                {"selectPrinter4",settings_PickLabelPrinter}
+            };
+
+            SetPrinter(dict[((Button)sender).Name]);
+        }
     }
 }
