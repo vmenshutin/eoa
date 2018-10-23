@@ -875,23 +875,8 @@ namespace EntrostyleOperationsApplication
 
             //--------------------DateTimePickers-----------------
 
-            CalendarColumn dateCalenderColumn = new CalendarColumn();
-            CalendarColumn dueCalenderColumn = new CalendarColumn();
-
-            dateCalenderColumn.HeaderText = "Date";
-            dueCalenderColumn.HeaderText = "Due";
-
-            dateCalenderColumn.Name = "PICKDATE_FAKE";
-            dueCalenderColumn.Name = "DUEDATE_FAKE";
-
-            dgv.Columns.Add(dateCalenderColumn);
-            dgv.Columns.Add(dueCalenderColumn);
-
-            dgv.Columns[dueCalenderColumn.Name].DataPropertyName = "DUEDATE";
-            dgv.Columns[dateCalenderColumn.Name].DataPropertyName = "PICKDATE";
-
-            dgv.Columns[dueCalenderColumn.Name].DisplayIndex = 9;
-            dgv.Columns[dateCalenderColumn.Name].DisplayIndex = 7;
+            AddCalendarColumn(dgv, "DUEDATE", "DUEDATE_FAKE", "Due", 9);
+            AddCalendarColumn(dgv, "PICKDATE", "PICKDATE_FAKE", "Date", 7);
 
             //--------------------DateTimePickers-----------------
 
@@ -921,7 +906,7 @@ namespace EntrostyleOperationsApplication
             {
                 HeaderText = "Location",
                 Name = "LOCATION_FAKE",
-                DisplayIndex = 9,
+                DisplayIndex = 11,
                 DataSource = locationSource,
                 DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing
             };
@@ -959,6 +944,7 @@ namespace EntrostyleOperationsApplication
             columns["x_heading_line"].Visible = false;
             columns["x_hidefrompick"].Visible = false;
             columns["LINETYPE"].Visible = false;
+            columns["DUEDATE"].Visible = false;
 
             columns["STOCKCODE"].HeaderText = "Stock Code";
             columns["STOCKCODE"].HeaderText = "Stock Code";
@@ -970,13 +956,30 @@ namespace EntrostyleOperationsApplication
             columns["UNSUP_QUANT"].HeaderText = "Outstanding";
             columns["TOTALSTOCK"].HeaderText = "Location Qty";
             columns["X_ACTION"].HeaderText = "Action";
-
-            columns["X_ACTION"].DisplayIndex = 10;
+            columns["FREE"].HeaderText = "Free";
+            columns["ALLOCATED"].HeaderText = "Allocated";
+            columns["DUEDATE"].HeaderText = "Due";
 
             columns["STOCKCODE"].DefaultCellStyle.ForeColor = Color.Blue;
             columns["STOCKCODE"].DefaultCellStyle.SelectionForeColor = Color.Blue;
             columns["STOCKCODE"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Underline, GraphicsUnit.Pixel);
             columns["STOCKCHECK"].DefaultCellStyle.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
+
+            AddCalendarColumn(SOItemDetails, "DUEDATE", "DUEDATE_FAKE", "Due", 10);
+            columns["DUEDATE_FAKE"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        private void AddCalendarColumn(DataGridView dgv, string sourceColumnName, string fakeColumnName, string headerText, int index)
+        {
+            var calendarColumn = new CalendarColumn
+            {
+                HeaderText = headerText,
+                Name = fakeColumnName
+            };
+
+            dgv.Columns.Add(calendarColumn);
+            dgv.Columns[calendarColumn.Name].DataPropertyName = sourceColumnName;
+            dgv.Columns[calendarColumn.Name].DisplayIndex = index;
         }
 
         // style Data Grid View columns for split 1 and 2
@@ -1152,7 +1155,8 @@ namespace EntrostyleOperationsApplication
                 Validate();
 
                 //Multiple pasting support
-                if ((e.ColumnIndex == SOItemDetails.Columns["LOCATION_FAKE"].Index)
+                if ((e.ColumnIndex == SOItemDetails.Columns["LOCATION_FAKE"].Index
+                    || e.ColumnIndex == SOItemDetails.Columns["DUEDATE_FAKE"].Index)
                     && SOItemDetails.SelectedRows.Count > 1)
                 {
                     var wait = ShowWaitForm();

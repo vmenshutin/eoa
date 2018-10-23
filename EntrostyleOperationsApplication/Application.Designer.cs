@@ -61,7 +61,9 @@
             this.tdBtn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.processUserControl = new EntrostyleOperationsApplication.ProcessUserControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pickUserControl = new EntrostyleOperationsApplication.PickUserControl();
             this.SOItemDetails = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -86,6 +88,8 @@
             this.difotFrom = new System.Windows.Forms.DateTimePicker();
             this.SODifot = new System.Windows.Forms.DataGridView();
             this.labelTab = new System.Windows.Forms.TabPage();
+            this.lblRefreshBtn = new System.Windows.Forms.Button();
+            this.stockLblDataGridView = new EntrostyleOperationsApplication.CustomDataGridView();
             this.duplicateSelectedBtn = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.salesOrderLabelTextBox = new System.Windows.Forms.TextBox();
@@ -143,9 +147,6 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
-            this.processUserControl = new EntrostyleOperationsApplication.ProcessUserControl();
-            this.pickUserControl = new EntrostyleOperationsApplication.PickUserControl();
-            this.stockLblDataGridView = new EntrostyleOperationsApplication.CustomDataGridView();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -172,6 +173,7 @@
             this.DifotTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).BeginInit();
             this.labelTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.supplierGroupBox.SuspendLayout();
             this.LABELControlsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -183,7 +185,6 @@
             this.SettingsTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -597,6 +598,13 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "PROCESS";
             // 
+            // processUserControl
+            // 
+            this.processUserControl.Location = new System.Drawing.Point(0, 11);
+            this.processUserControl.Name = "processUserControl";
+            this.processUserControl.Size = new System.Drawing.Size(467, 106);
+            this.processUserControl.TabIndex = 36;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.pickUserControl);
@@ -606,6 +614,13 @@
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "PICK";
+            // 
+            // pickUserControl
+            // 
+            this.pickUserControl.Location = new System.Drawing.Point(1, 10);
+            this.pickUserControl.Name = "pickUserControl";
+            this.pickUserControl.Size = new System.Drawing.Size(202, 110);
+            this.pickUserControl.TabIndex = 35;
             // 
             // SOItemDetails
             // 
@@ -886,6 +901,7 @@
             // labelTab
             // 
             this.labelTab.BackColor = System.Drawing.Color.LavenderBlush;
+            this.labelTab.Controls.Add(this.lblRefreshBtn);
             this.labelTab.Controls.Add(this.stockLblDataGridView);
             this.labelTab.Controls.Add(this.duplicateSelectedBtn);
             this.labelTab.Controls.Add(this.label36);
@@ -906,6 +922,33 @@
             this.labelTab.Size = new System.Drawing.Size(1489, 785);
             this.labelTab.TabIndex = 4;
             this.labelTab.Text = "LABELS";
+            // 
+            // lblRefreshBtn
+            // 
+            this.lblRefreshBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblRefreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRefreshBtn.ForeColor = System.Drawing.Color.OliveDrab;
+            this.lblRefreshBtn.Location = new System.Drawing.Point(1063, 218);
+            this.lblRefreshBtn.Name = "lblRefreshBtn";
+            this.lblRefreshBtn.Size = new System.Drawing.Size(161, 28);
+            this.lblRefreshBtn.TabIndex = 68;
+            this.lblRefreshBtn.TabStop = false;
+            this.lblRefreshBtn.Text = "REFRESH (F5)";
+            this.lblRefreshBtn.UseVisualStyleBackColor = true;
+            // 
+            // stockLblDataGridView
+            // 
+            this.stockLblDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockLblDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
+            this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.stockLblDataGridView.Location = new System.Drawing.Point(157, 131);
+            this.stockLblDataGridView.Name = "stockLblDataGridView";
+            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 460);
+            this.stockLblDataGridView.TabIndex = 0;
+            this.stockLblDataGridView.TabStop = false;
             // 
             // duplicateSelectedBtn
             // 
@@ -1384,9 +1427,9 @@
             this.label38.ForeColor = System.Drawing.Color.Black;
             this.label38.Location = new System.Drawing.Point(160, 52);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(74, 15);
+            this.label38.Size = new System.Drawing.Size(83, 15);
             this.label38.TabIndex = 74;
-            this.label38.Text = "ALT + DEL";
+            this.label38.Text = "ALT + Insert";
             // 
             // label33
             // 
@@ -1602,7 +1645,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 2.2.2 01/10/2018";
+            this.label20.Text = "EOA 2.3.0 22/10/2018";
             // 
             // settings_Save
             // 
@@ -1640,33 +1683,6 @@
             this.settings_printerName.Size = new System.Drawing.Size(426, 20);
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // processUserControl
-            // 
-            this.processUserControl.Location = new System.Drawing.Point(0, 11);
-            this.processUserControl.Name = "processUserControl";
-            this.processUserControl.Size = new System.Drawing.Size(467, 106);
-            this.processUserControl.TabIndex = 36;
-            // 
-            // pickUserControl
-            // 
-            this.pickUserControl.Location = new System.Drawing.Point(1, 10);
-            this.pickUserControl.Name = "pickUserControl";
-            this.pickUserControl.Size = new System.Drawing.Size(202, 110);
-            this.pickUserControl.TabIndex = 35;
-            // 
-            // stockLblDataGridView
-            // 
-            this.stockLblDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stockLblDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
-            this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.stockLblDataGridView.Location = new System.Drawing.Point(157, 131);
-            this.stockLblDataGridView.Name = "stockLblDataGridView";
-            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 460);
-            this.stockLblDataGridView.TabIndex = 0;
-            this.stockLblDataGridView.TabStop = false;
             // 
             // Application
             // 
@@ -1709,6 +1725,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).EndInit();
             this.labelTab.ResumeLayout(false);
             this.labelTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.supplierGroupBox.ResumeLayout(false);
             this.LABELControlsGroupBox.ResumeLayout(false);
             this.LABELControlsGroupBox.PerformLayout();
@@ -1724,7 +1741,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1845,6 +1861,7 @@
         private System.Windows.Forms.Button selectPrinter3;
         private System.Windows.Forms.Button selectPrinter2;
         private System.Windows.Forms.Button selectPrinter1;
+        private System.Windows.Forms.Button lblRefreshBtn;
     }
 }
 

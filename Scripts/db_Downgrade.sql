@@ -274,6 +274,10 @@ IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_so_item_de
 	DROP PROCEDURE eoa_so_item_details_update_LOCATION_FAKE
 GO
 
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_so_item_details_update_DUEDATE_FAKE')
+	DROP PROCEDURE eoa_so_item_details_update_DUEDATE_FAKE
+GO
+
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_so_item_details_update_X_ACTION')
 	DROP PROCEDURE eoa_so_item_details_update_X_ACTION
 GO
