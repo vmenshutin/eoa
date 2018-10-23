@@ -2050,7 +2050,7 @@ namespace EntrostyleOperationsApplication
                 if (XActionValid(itemRow, validateByField))
                 {
                     string stockCode = itemRow.Cells["STOCKCODE"].Value.ToString();
-                    string quantity = (isQuantityNegative ? "-" : "") + itemRow.Cells["X_ACTION"].Value.ToString();
+                    string quantity = ((int)itemRow.Cells["X_ACTION"].Value * (isQuantityNegative ? -1 : 1)).ToString();
                     string location = itemRow.Cells["LOCATION"].Value.ToString();
 
                     itemRow.Cells["X_ACTION"].Value = DBNull.Value;
