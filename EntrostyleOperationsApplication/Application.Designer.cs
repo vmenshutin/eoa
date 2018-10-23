@@ -147,6 +147,7 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
+            this.actionPickBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -436,6 +437,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.actionPickBtn);
             this.tabPage2.Controls.Add(this.adjustInBtn);
             this.tabPage2.Controls.Add(this.adjustOutBtn);
             this.tabPage2.Controls.Add(this.label40);
@@ -505,7 +507,7 @@
             this.transferBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.transferBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transferBtn.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.transferBtn.Location = new System.Drawing.Point(383, 8);
+            this.transferBtn.Location = new System.Drawing.Point(500, 8);
             this.transferBtn.Name = "transferBtn";
             this.transferBtn.Size = new System.Drawing.Size(101, 24);
             this.transferBtn.TabIndex = 28;
@@ -1684,6 +1686,20 @@
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // actionPickBtn
+            // 
+            this.actionPickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.actionPickBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actionPickBtn.ForeColor = System.Drawing.Color.Goldenrod;
+            this.actionPickBtn.Location = new System.Drawing.Point(383, 8);
+            this.actionPickBtn.Name = "actionPickBtn";
+            this.actionPickBtn.Size = new System.Drawing.Size(101, 24);
+            this.actionPickBtn.TabIndex = 39;
+            this.actionPickBtn.TabStop = false;
+            this.actionPickBtn.Text = "Action Pick";
+            this.actionPickBtn.UseVisualStyleBackColor = true;
+            this.actionPickBtn.Click += new System.EventHandler(this.actionPickBtn_Click);
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1862,6 +1878,7 @@
         private System.Windows.Forms.Button selectPrinter2;
         private System.Windows.Forms.Button selectPrinter1;
         private System.Windows.Forms.Button lblRefreshBtn;
+        private System.Windows.Forms.Button actionPickBtn;
     }
 }
 

@@ -2203,5 +2203,18 @@ namespace EntrostyleOperationsApplication
 
             SetPrinter(dict[((Button)sender).Name]);
         }
+
+        private void actionPickBtn_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
+            {
+                var pickNow = Int32.Parse(itemRow.Cells["PICK_NOW"].Value.ToString());
+
+                if (pickNow != 0)
+                {
+                    itemRow.Cells["X_ACTION"].Value = pickNow;
+                }
+            }
+        }
     }
 }
