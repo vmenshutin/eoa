@@ -92,7 +92,8 @@ class CalendarEditingControl : DateTimePicker, IDataGridViewEditingControl
 
     public CalendarEditingControl()
     {
-        this.Format = DateTimePickerFormat.Short;
+        this.Format = DateTimePickerFormat.Custom;
+        this.CustomFormat = "dd/MM/yyyy";
     }
 
     // Implements the IDataGridViewEditingControl.EditingControlFormattedValue 
