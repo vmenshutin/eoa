@@ -39,6 +39,8 @@
             this.label39 = new System.Windows.Forms.Label();
             this.soMainFilterComboBox = new System.Windows.Forms.ComboBox();
             this.SOMain = new System.Windows.Forms.DataGridView();
+            this.includeAllCheckbox = new System.Windows.Forms.CheckBox();
+            this.searchFilterBtn = new System.Windows.Forms.Button();
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
@@ -62,9 +64,7 @@
             this.tdBtn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.processUserControl = new EntrostyleOperationsApplication.ProcessUserControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.pickUserControl = new EntrostyleOperationsApplication.PickUserControl();
             this.SOItemDetails = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -90,7 +90,6 @@
             this.SODifot = new System.Windows.Forms.DataGridView();
             this.labelTab = new System.Windows.Forms.TabPage();
             this.lblRefreshBtn = new System.Windows.Forms.Button();
-            this.stockLblDataGridView = new EntrostyleOperationsApplication.CustomDataGridView();
             this.duplicateSelectedBtn = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.salesOrderLabelTextBox = new System.Windows.Forms.TextBox();
@@ -148,6 +147,11 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.processUserControl = new EntrostyleOperationsApplication.ProcessUserControl();
+            this.pickUserControl = new EntrostyleOperationsApplication.PickUserControl();
+            this.stockLblDataGridView = new EntrostyleOperationsApplication.CustomDataGridView();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -174,7 +178,6 @@
             this.DifotTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).BeginInit();
             this.labelTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.supplierGroupBox.SuspendLayout();
             this.LABELControlsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -186,6 +189,7 @@
             this.SettingsTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -225,6 +229,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.label16);
+            this.splitContainer1.Panel2.Controls.Add(this.label17);
             this.splitContainer1.Panel2.Controls.Add(this.refreshBtn);
             this.splitContainer1.Panel2.Controls.Add(this.clearAllBtn);
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
@@ -266,6 +272,8 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.includeAllCheckbox);
+            this.splitContainer2.Panel2.Controls.Add(this.searchFilterBtn);
             this.splitContainer2.Panel2.Controls.Add(this.clearSearchBtn);
             this.splitContainer2.Panel2.Controls.Add(this.searchBox);
             this.splitContainer2.Panel2.Controls.Add(this.SOSecondary);
@@ -310,12 +318,38 @@
             this.SOMain.Size = new System.Drawing.Size(706, 403);
             this.SOMain.TabIndex = 0;
             // 
+            // includeAllCheckbox
+            // 
+            this.includeAllCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.includeAllCheckbox.AutoSize = true;
+            this.includeAllCheckbox.Location = new System.Drawing.Point(534, 7);
+            this.includeAllCheckbox.Name = "includeAllCheckbox";
+            this.includeAllCheckbox.Size = new System.Drawing.Size(75, 17);
+            this.includeAllCheckbox.TabIndex = 5;
+            this.includeAllCheckbox.Text = "Include All";
+            this.includeAllCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // searchFilterBtn
+            // 
+            this.searchFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchFilterBtn.Enabled = false;
+            this.searchFilterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchFilterBtn.ForeColor = System.Drawing.Color.ForestGreen;
+            this.searchFilterBtn.Location = new System.Drawing.Point(614, 3);
+            this.searchFilterBtn.Name = "searchFilterBtn";
+            this.searchFilterBtn.Size = new System.Drawing.Size(91, 22);
+            this.searchFilterBtn.TabIndex = 4;
+            this.searchFilterBtn.Text = "Search";
+            this.searchFilterBtn.UseVisualStyleBackColor = true;
+            this.searchFilterBtn.Click += new System.EventHandler(this.SearchFilterBtn_Click);
+            // 
             // clearSearchBtn
             // 
             this.clearSearchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearSearchBtn.Enabled = false;
             this.clearSearchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearSearchBtn.ForeColor = System.Drawing.Color.Firebrick;
-            this.clearSearchBtn.Location = new System.Drawing.Point(615, 3);
+            this.clearSearchBtn.Location = new System.Drawing.Point(436, 3);
             this.clearSearchBtn.Name = "clearSearchBtn";
             this.clearSearchBtn.Size = new System.Drawing.Size(91, 22);
             this.clearSearchBtn.TabIndex = 3;
@@ -329,7 +363,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBox.Location = new System.Drawing.Point(0, 4);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(611, 20);
+            this.searchBox.Size = new System.Drawing.Size(430, 20);
             this.searchBox.TabIndex = 2;
             this.searchBox.TextChanged += new System.EventHandler(this.SearchBox_TextChanged);
             // 
@@ -352,7 +386,7 @@
             this.refreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.refreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refreshBtn.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.refreshBtn.Location = new System.Drawing.Point(3, 170);
+            this.refreshBtn.Location = new System.Drawing.Point(3, 182);
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(101, 24);
             this.refreshBtn.TabIndex = 34;
@@ -365,7 +399,7 @@
             this.clearAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearAllBtn.ForeColor = System.Drawing.Color.Black;
-            this.clearAllBtn.Location = new System.Drawing.Point(119, 198);
+            this.clearAllBtn.Location = new System.Drawing.Point(324, 182);
             this.clearAllBtn.Name = "clearAllBtn";
             this.clearAllBtn.Size = new System.Drawing.Size(101, 24);
             this.clearAllBtn.TabIndex = 33;
@@ -465,7 +499,7 @@
             this.actionPickBtn.TabStop = false;
             this.actionPickBtn.Text = "Action Pick";
             this.actionPickBtn.UseVisualStyleBackColor = true;
-            this.actionPickBtn.Click += new System.EventHandler(this.actionPickBtn_Click);
+            this.actionPickBtn.Click += new System.EventHandler(this.ActionPickBtn_Click);
             // 
             // adjustInBtn
             // 
@@ -611,13 +645,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "PROCESS";
             // 
-            // processUserControl
-            // 
-            this.processUserControl.Location = new System.Drawing.Point(0, 11);
-            this.processUserControl.Name = "processUserControl";
-            this.processUserControl.Size = new System.Drawing.Size(467, 106);
-            this.processUserControl.TabIndex = 36;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.pickUserControl);
@@ -627,13 +654,6 @@
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "PICK";
-            // 
-            // pickUserControl
-            // 
-            this.pickUserControl.Location = new System.Drawing.Point(1, 10);
-            this.pickUserControl.Name = "pickUserControl";
-            this.pickUserControl.Size = new System.Drawing.Size(202, 110);
-            this.pickUserControl.TabIndex = 35;
             // 
             // SOItemDetails
             // 
@@ -696,7 +716,7 @@
             this.pickAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pickAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pickAllBtn.ForeColor = System.Drawing.Color.MediumPurple;
-            this.pickAllBtn.Location = new System.Drawing.Point(119, 170);
+            this.pickAllBtn.Location = new System.Drawing.Point(217, 182);
             this.pickAllBtn.Name = "pickAllBtn";
             this.pickAllBtn.Size = new System.Drawing.Size(101, 24);
             this.pickAllBtn.TabIndex = 19;
@@ -730,7 +750,7 @@
             this.refreshF5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.refreshF5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refreshF5.ForeColor = System.Drawing.Color.Green;
-            this.refreshF5.Location = new System.Drawing.Point(3, 198);
+            this.refreshF5.Location = new System.Drawing.Point(110, 182);
             this.refreshF5.Name = "refreshF5";
             this.refreshF5.Size = new System.Drawing.Size(101, 24);
             this.refreshF5.TabIndex = 13;
@@ -915,7 +935,6 @@
             // 
             this.labelTab.BackColor = System.Drawing.Color.LavenderBlush;
             this.labelTab.Controls.Add(this.lblRefreshBtn);
-            this.labelTab.Controls.Add(this.stockLblDataGridView);
             this.labelTab.Controls.Add(this.duplicateSelectedBtn);
             this.labelTab.Controls.Add(this.label36);
             this.labelTab.Controls.Add(this.salesOrderLabelTextBox);
@@ -930,6 +949,7 @@
             this.labelTab.Controls.Add(this.shelfGroupBox);
             this.labelTab.Controls.Add(this.clearAllStockRowsBtn);
             this.labelTab.Controls.Add(this.addStockBtn);
+            this.labelTab.Controls.Add(this.stockLblDataGridView);
             this.labelTab.Location = new System.Drawing.Point(4, 22);
             this.labelTab.Name = "labelTab";
             this.labelTab.Size = new System.Drawing.Size(1489, 785);
@@ -949,19 +969,6 @@
             this.lblRefreshBtn.TabStop = false;
             this.lblRefreshBtn.Text = "REFRESH (F5)";
             this.lblRefreshBtn.UseVisualStyleBackColor = true;
-            // 
-            // stockLblDataGridView
-            // 
-            this.stockLblDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stockLblDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
-            this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.stockLblDataGridView.Location = new System.Drawing.Point(157, 131);
-            this.stockLblDataGridView.Name = "stockLblDataGridView";
-            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 460);
-            this.stockLblDataGridView.TabIndex = 0;
-            this.stockLblDataGridView.TabStop = false;
             // 
             // duplicateSelectedBtn
             // 
@@ -1658,7 +1665,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 2.3.0 22/10/2018";
+            this.label20.Text = "EOA 2.4.0 01/11/2018";
             // 
             // settings_Save
             // 
@@ -1696,6 +1703,54 @@
             this.settings_printerName.Size = new System.Drawing.Size(426, 20);
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(209, 53);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(68, 13);
+            this.label16.TabIndex = 35;
+            this.label16.Text = "Ref/Order:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label17.Location = new System.Drawing.Point(279, 53);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(64, 13);
+            this.label17.TabIndex = 36;
+            this.label17.Text = "Ref/Order";
+            // 
+            // processUserControl
+            // 
+            this.processUserControl.Location = new System.Drawing.Point(0, 11);
+            this.processUserControl.Name = "processUserControl";
+            this.processUserControl.Size = new System.Drawing.Size(467, 106);
+            this.processUserControl.TabIndex = 36;
+            // 
+            // pickUserControl
+            // 
+            this.pickUserControl.Location = new System.Drawing.Point(1, 10);
+            this.pickUserControl.Name = "pickUserControl";
+            this.pickUserControl.Size = new System.Drawing.Size(202, 110);
+            this.pickUserControl.TabIndex = 35;
+            // 
+            // stockLblDataGridView
+            // 
+            this.stockLblDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockLblDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
+            this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.stockLblDataGridView.Location = new System.Drawing.Point(157, 131);
+            this.stockLblDataGridView.Name = "stockLblDataGridView";
+            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 460);
+            this.stockLblDataGridView.TabIndex = 0;
+            this.stockLblDataGridView.TabStop = false;
             // 
             // Application
             // 
@@ -1738,7 +1793,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.SODifot)).EndInit();
             this.labelTab.ResumeLayout(false);
             this.labelTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.supplierGroupBox.ResumeLayout(false);
             this.LABELControlsGroupBox.ResumeLayout(false);
             this.LABELControlsGroupBox.PerformLayout();
@@ -1754,6 +1808,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1876,6 +1931,10 @@
         private System.Windows.Forms.Button selectPrinter1;
         private System.Windows.Forms.Button lblRefreshBtn;
         private System.Windows.Forms.Button actionPickBtn;
+        private System.Windows.Forms.CheckBox includeAllCheckbox;
+        private System.Windows.Forms.Button searchFilterBtn;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }
 

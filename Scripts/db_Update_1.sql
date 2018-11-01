@@ -196,7 +196,7 @@ GO
 
 -- create stored procedure for EOA_SALESORD_MAIN
 
-create procedure query_salesorders_main @filter varchar(10), @sessionId int 
+create procedure query_salesorders_main @sessionId int, @filter varchar(10)
 as
 
 BEGIN

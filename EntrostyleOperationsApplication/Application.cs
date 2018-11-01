@@ -417,6 +417,8 @@ namespace EntrostyleOperationsApplication
             SOMain.CellValueChanged -= SO_CellValueChanged;
             SOMain.RowEnter -= SO_RowEnter;
 
+            string searchText = searchBox.Text;
+
             string sortString = " ORDER BY CASE WHEN STATUS = 'P' THEN '1' " +
               "WHEN STATUS = 'TP-PICK' THEN '2' " +
               "WHEN STATUS = 'TP-COLOR' THEN '2' " +
@@ -432,7 +434,10 @@ namespace EntrostyleOperationsApplication
               "CAST(PICKDATE AS DATE) ASC, " +
               "CAST(DUETIME AS TIME) ASC";
 
-            (new OdbcCommand("exec query_salesorders_main '" + (soMainFilterComboBox.SelectedValue.ToString()) + "', " + sessionId.ToString(), connection)).ExecuteNonQuery();
+            var isSearch = searchText.Length > 0;
+
+            (new OdbcCommand("exec " + (isSearch ? "main_search_orders " : "query_salesorders_main ") + sessionId.ToString() + ", '"
+                + (isSearch ? (searchText + "', " + (includeAllCheckbox.Checked ? "1" : "0")) : (soMainFilterComboBox.SelectedValue.ToString() + "'")), connection)).ExecuteNonQuery();
 
             SOMainAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SALESORD_MAIN where SESSIONID = " + sessionId.ToString() + sortString, connection);
             SOMainDataSet = new DataSet();
@@ -440,6 +445,8 @@ namespace EntrostyleOperationsApplication
             SOMainAdapter.Fill(SOMainDataSet);
 
             SOMain.DataSource = SOMainDataSet.Tables[0];
+
+            SOMain.Columns["CUSTORDERNO"].Visible = isSearch;
 
             // turn grid listeners back on
             SOMain.CellValueChanged += SO_CellValueChanged;
@@ -457,8 +464,10 @@ namespace EntrostyleOperationsApplication
             SOSecondary.CellValueChanged -= SO_CellValueChanged;
             SOSecondary.RowEnter -= SO_RowEnter;
 
-            (new OdbcCommand("exec " + (searchText.Length > 0 ? "secondary_search_orders " : "query_salesorders_secondary ") + sessionId.ToString() +
-                (searchText.Length > 0 ? (", '" + searchText + "'"): ""), connection)).ExecuteNonQuery();
+            var isSearch = searchText.Length > 0;
+
+            (new OdbcCommand("exec " + (isSearch ? "secondary_search_orders " : "query_salesorders_secondary ") + sessionId.ToString() +
+                (isSearch ? (", '" + searchText + "', " + (includeAllCheckbox.Checked ? "1" : "0")) : ""), connection)).ExecuteNonQuery();
 
             SOSecondaryAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SALESORD_SECONDARY where SESSIONID = " + sessionId.ToString() + sortString, connection);
             SOSecondaryDataSet = new DataSet();
@@ -466,6 +475,8 @@ namespace EntrostyleOperationsApplication
             SOSecondaryAdapter.Fill(SOSecondaryDataSet);
 
             SOSecondary.DataSource = SOSecondaryDataSet.Tables[0];
+
+            SOSecondary.Columns["CUSTORDERNO"].Visible = isSearch;
 
             // turn grid listeners on again
             SOSecondary.CellValueChanged += SO_CellValueChanged;
@@ -1020,6 +1031,7 @@ namespace EntrostyleOperationsApplication
 
             columns["ACCOUNTNAME"].HeaderText = "Account";
             columns["STOCK"].HeaderText = "Stock";
+            columns["CUSTORDERNO"].HeaderText = "Order";
 
             columns["ACCOUNTNAME"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             columns["ACCOUNTNAME"].MinimumWidth = 200;
@@ -1130,6 +1142,7 @@ namespace EntrostyleOperationsApplication
                 label10.Text = cells["LAST_SCHEDULED"].Value.ToString();
                 label11.Text = cells["DIFOT_TIMESTAMP"].Value.ToString();
                 label14.Text = cells["REFERENCE"].Value.ToString();
+                label17.Text = cells["CUSTORDERNO"].Value.ToString() + " " + cells["X_PROJECTNAME"].Value.ToString();
 
                 (new OdbcCommand("exec EOA_get_narrative " + cells["#"].Value.ToString() + ", " + sessionId.ToString(), connection)).ExecuteNonQuery();
 
@@ -1405,18 +1418,16 @@ namespace EntrostyleOperationsApplication
             }
         }
 
-        private void SearchBox_TextChanged(object sender, EventArgs e)
-        {
-            LoadSalesOrdersSecondary();
-        }
-
         private void ClearSearchBtn_Click(object sender, EventArgs e)
         {
-            searchBox.TextChanged -= SearchBox_TextChanged;
-            searchBox.Text = "";
-            searchBox.TextChanged += SearchBox_TextChanged;
+            var wait = ShowWaitForm();
 
+            searchBox.Text = "";
+
+            LoadSalesOrdersMain();
             LoadSalesOrdersSecondary();
+
+            wait.Close();
         }
 
         private void RefreshDifot_Click(object sender, EventArgs e)
@@ -2206,7 +2217,7 @@ namespace EntrostyleOperationsApplication
             SetPrinter(dict[((Button)sender).Name]);
         }
 
-        private void actionPickBtn_Click(object sender, EventArgs e)
+        private void ActionPickBtn_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow itemRow in SOItemDetails.Rows)
             {
@@ -2217,6 +2228,25 @@ namespace EntrostyleOperationsApplication
                     itemRow.Cells["X_ACTION"].Value = pickNow;
                 }
             }
+        }
+
+        private void SearchFilterBtn_Click(object sender, EventArgs e)
+        {
+            var wait = ShowWaitForm();
+
+            LoadSalesOrdersMain();
+            LoadSalesOrdersSecondary();
+
+            wait.Close();
+        }
+
+        private void SearchBox_TextChanged(object sender, EventArgs e)
+        {
+            var hasText = ((TextBox)sender).Text.Length > 0;
+
+            clearSearchBtn.Enabled = hasText;
+            searchFilterBtn.Enabled = hasText;
+            includeAllCheckbox.Enabled = hasText;
         }
     }
 }

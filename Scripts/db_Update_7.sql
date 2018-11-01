@@ -49,42 +49,45 @@ where SESSIONID = @sessionId;
 
 with onHandTable as (
 	SELECT lines.SEQNO, SUM(loc_info.QTY) AS ON_HAND
-	FROM SALESORD_LINES lines
-	LEFT JOIN STOCK_LOC_INFO loc_info
-		ON lines.STOCKCODE = loc_info.STOCKCODE
-	LEFT JOIN SALESORD_HDR orders
-		ON lines.HDR_SEQNO = orders.SEQNO
-	WHERE loc_info.LOCATION = lines.LOCATION
-	AND loc_info.STOCKCODE = lines.STOCKCODE
-	AND orders.SEQNO = @seqno
-	GROUP BY lines.SEQNO
+	FROM SALESORD_HDR orders
+		LEFT JOIN SALESORD_LINES lines
+			ON orders.SEQNO = lines.HDR_SEQNO
+		LEFT JOIN STOCK_LOC_INFO loc_info
+			ON lines.STOCKCODE = loc_info.STOCKCODE
+			AND lines.LOCATION = loc_info.LOCATION
+		WHERE orders.SEQNO = @seqno
+		GROUP BY lines.SEQNO
 ),
 
 onPurchaseOrderTable as (
 	select sales.SEQNO, sum(purch.ORD_QUANT - purch.SUP_QUANT) as ON_PURCHASE_ORDER
-	from SALESORD_LINES sales
-	LEFT JOIN PURCHORD_LINES purch
-		on sales.STOCKCODE = purch.STOCKCODE
-		and sales.LOCATION = purch.LOCATION
-	LEFT JOIN PURCHORD_HDR hdr
-		on purch.HDR_SEQNO = hdr.SEQNO
-	LEFT JOIN SALESORD_HDR orders
-		ON sales.HDR_SEQNO = orders.SEQNO
-	WHERE (hdr.STATUS = 0 or hdr.STATUS = 1)
-	AND CONVERT(DATE, purch.DUEDATE) >= CONVERT(DATE, sales.DUEDATE)
-	AND orders.SEQNO = @seqno
-	GROUP BY sales.SEQNO
+		from SALESORD_HDR orders
+			LEFT JOIN SALESORD_LINES sales
+				on orders.SEQNO = sales.HDR_SEQNO
+			LEFT JOIN PURCHORD_LINES purch
+				on sales.STOCKCODE = purch.STOCKCODE
+				and sales.LOCATION = purch.LOCATION
+			LEFT JOIN PURCHORD_HDR hdr
+				on purch.HDR_SEQNO = hdr.SEQNO
+		WHERE (hdr.STATUS = 0 or hdr.STATUS = 1)
+			AND CONVERT(DATE, purch.DUEDATE) <= CONVERT(DATE, sales.DUEDATE)
+			AND orders.SEQNO = @seqno
+		GROUP BY sales.SEQNO
+
 ),
 
 onSalesOrderTable as (
-	SELECT lines.SEQNO, SUM(UNSUP_QUANT) as ON_SALES_ORDER
-	FROM SALESORD_LINES lines
-	LEFT JOIN SALESORD_HDR orders
-		ON lines.HDR_SEQNO = orders.SEQNO
-	WHERE (HDR_STATUS = 0 OR HDR_STATUS = 1)	
-	and CONVERT(DATE, lines.DUEDATE) <= CONVERT(DATE, GETDATE())
-	and orders.SEQNO = @seqno
-	GROUP BY lines.SEQNO
+	SELECT lines.SEQNO, sum(lines2.UNSUP_QUANT) as ON_SALES_ORDER
+	from SALESORD_HDR orders
+		left join SALESORD_LINES lines
+			ON orders.SEQNO = lines.HDR_SEQNO
+		left join SALESORD_LINES lines2
+			ON lines.STOCKCODE = lines2.STOCKCODE
+			AND lines.LOCATION = lines2.LOCATION
+		WHERE (lines2.HDR_STATUS = 0 OR lines2.HDR_STATUS = 1)	
+			and CONVERT(DATE, lines2.DUEDATE) >= CONVERT(DATE, lines.DUEDATE)
+			AND orders.SEQNO = @seqno
+		GROUP BY lines.SEQNO
 )
 
 INSERT INTO dbo.EOA_SO_ITEM_DETAILS

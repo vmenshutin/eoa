@@ -262,6 +262,10 @@ IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'secondary_sear
 	DROP PROCEDURE secondary_search_orders
 GO
 
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'main_search_orders')
+	DROP PROCEDURE main_search_orders
+GO
+
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'eoa_fetch_so_item_details')
 	DROP PROCEDURE eoa_fetch_so_item_details
 GO
