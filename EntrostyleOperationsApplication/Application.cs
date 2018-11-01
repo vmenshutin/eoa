@@ -72,6 +72,7 @@ namespace EntrostyleOperationsApplication
             VerifyUserIsUnique();
 
             // select soMain filter combobox value to All
+            soMainFilterComboBox.DataSource = new string[] { "All", "TP-PICK", "TP-COLOR", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP", "TP-BULK" };
             soMainFilterComboBox.SelectedIndex = 0;
             // load main and secondary sales orders grids
             LoadSalesOrdersMain();
@@ -304,7 +305,7 @@ namespace EntrostyleOperationsApplication
                 var row = dgv.Rows[e.RowIndex];
                 var cell = row.Cells[e.ColumnIndex];
 
-                string[] tp = { "TP-PICK", "TP-POWDER", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP", "TP-BULK" };
+                string[] tp = { "TP-PICK", "TP-COLOR", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP", "TP-BULK" };
 
                 if (cell.Value.ToString() == "P")
                 {
@@ -418,7 +419,7 @@ namespace EntrostyleOperationsApplication
 
             string sortString = " ORDER BY CASE WHEN STATUS = 'P' THEN '1' " +
               "WHEN STATUS = 'TP-PICK' THEN '2' " +
-              "WHEN STATUS = 'TP-POWDER' THEN '2' " +
+              "WHEN STATUS = 'TP-COLOR' THEN '2' " +
               "WHEN STATUS = 'TP-PROJECT' THEN '2' " +
               "WHEN STATUS = 'TP-KEY' THEN '2' " +
               "WHEN STATUS = 'TP-CUT' THEN '2' " +
@@ -431,7 +432,7 @@ namespace EntrostyleOperationsApplication
               "CAST(PICKDATE AS DATE) ASC, " +
               "CAST(DUETIME AS TIME) ASC";
 
-            (new OdbcCommand("exec query_salesorders_main " + (soMainFilterComboBox.SelectedIndex == 0 ? "0" : "1") + ", " + sessionId.ToString(), connection)).ExecuteNonQuery();
+            (new OdbcCommand("exec query_salesorders_main '" + (soMainFilterComboBox.SelectedValue.ToString()) + "', " + sessionId.ToString(), connection)).ExecuteNonQuery();
 
             SOMainAdapter = new OdbcDataAdapter("SELECT * FROM EOA_SALESORD_MAIN where SESSIONID = " + sessionId.ToString() + sortString, connection);
             SOMainDataSet = new DataSet();
@@ -845,7 +846,7 @@ namespace EntrostyleOperationsApplication
         // add dispatch status and method dropdowns
         private void AddStatusAndMethodDropdowns(DataGridView dgv)
         {
-            var listSource = new string[] { "TP-PICK", "TP-POWDER", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP", "TP-BULK", "W", "P", "TA", "Sc" };
+            var listSource = new string[] { "TP-PICK", "TP-COLOR", "TP-PROJECT", "TP-KEY", "TP-CUT", "TP-SHIP", "TP-BULK", "W", "P", "TA", "Sc" };
             var dispatchStatusColumn = new DataGridViewComboBoxColumn
             {
                 HeaderText = "Status",

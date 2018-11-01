@@ -49,6 +49,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.narrativeTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.actionPickBtn = new System.Windows.Forms.Button();
             this.adjustInBtn = new System.Windows.Forms.Button();
             this.adjustOutBtn = new System.Windows.Forms.Button();
             this.label40 = new System.Windows.Forms.Label();
@@ -147,7 +148,6 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
-            this.actionPickBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -290,9 +290,6 @@
             this.soMainFilterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.soMainFilterComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.soMainFilterComboBox.FormattingEnabled = true;
-            this.soMainFilterComboBox.Items.AddRange(new object[] {
-            "All",
-            "Pick"});
             this.soMainFilterComboBox.Location = new System.Drawing.Point(622, 0);
             this.soMainFilterComboBox.Name = "soMainFilterComboBox";
             this.soMainFilterComboBox.Size = new System.Drawing.Size(84, 21);
@@ -455,6 +452,20 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stock";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // actionPickBtn
+            // 
+            this.actionPickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.actionPickBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actionPickBtn.ForeColor = System.Drawing.Color.Goldenrod;
+            this.actionPickBtn.Location = new System.Drawing.Point(383, 8);
+            this.actionPickBtn.Name = "actionPickBtn";
+            this.actionPickBtn.Size = new System.Drawing.Size(101, 24);
+            this.actionPickBtn.TabIndex = 39;
+            this.actionPickBtn.TabStop = false;
+            this.actionPickBtn.Text = "Action Pick";
+            this.actionPickBtn.UseVisualStyleBackColor = true;
+            this.actionPickBtn.Click += new System.EventHandler(this.actionPickBtn_Click);
             // 
             // adjustInBtn
             // 
@@ -1685,20 +1696,6 @@
             this.settings_printerName.Size = new System.Drawing.Size(426, 20);
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // actionPickBtn
-            // 
-            this.actionPickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.actionPickBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actionPickBtn.ForeColor = System.Drawing.Color.Goldenrod;
-            this.actionPickBtn.Location = new System.Drawing.Point(383, 8);
-            this.actionPickBtn.Name = "actionPickBtn";
-            this.actionPickBtn.Size = new System.Drawing.Size(101, 24);
-            this.actionPickBtn.TabIndex = 39;
-            this.actionPickBtn.TabStop = false;
-            this.actionPickBtn.Text = "Action Pick";
-            this.actionPickBtn.UseVisualStyleBackColor = true;
-            this.actionPickBtn.Click += new System.EventHandler(this.actionPickBtn_Click);
             // 
             // Application
             // 

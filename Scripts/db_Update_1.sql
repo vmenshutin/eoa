@@ -196,7 +196,7 @@ GO
 
 -- create stored procedure for EOA_SALESORD_MAIN
 
-create procedure query_salesorders_main @pickOnly bit, @sessionId int 
+create procedure query_salesorders_main @filter varchar(10), @sessionId int 
 as
 
 BEGIN
@@ -204,20 +204,6 @@ BEGIN
 delete
 from EOA_SALESORD_MAIN
 where SESSIONID = @sessionId;
-
-DECLARE @notAllowedStatuses TABLE
-(
-  STATUS varchar(5) NULL
-);
-
-INSERT INTO @notAllowedStatuses
-VALUES ('');
-
-IF @pickOnly = 1
-BEGIN
-INSERT INTO @notAllowedStatuses
-VALUES ('W'),('TA'),('Sc');
-END;
 
 with stocktable as 
 (select sales.SEQNO AS 'SALES_SEQNO'
@@ -288,7 +274,7 @@ left join TimeStamps difot
 	on so.SEQNO = difot.SEQNO
 where so.STATUS >= 0 AND so.STATUS < 2
 and so.X_DISPATCHSTATUS IS NOT NULL
-and (so.X_DISPATCHSTATUS NOT IN (SELECT STATUS FROM @notAllowedStatuses))
+and so.X_DISPATCHSTATUS = (CASE @filter WHEN 'All' THEN so.X_DISPATCHSTATUS ELSE @filter END)
 
 END
 
