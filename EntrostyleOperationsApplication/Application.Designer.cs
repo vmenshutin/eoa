@@ -44,6 +44,8 @@
             this.clearSearchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SOSecondary = new System.Windows.Forms.DataGridView();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.clearAllBtn = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
@@ -64,7 +66,9 @@
             this.tdBtn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.processUserControl = new EntrostyleOperationsApplication.ProcessUserControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pickUserControl = new EntrostyleOperationsApplication.PickUserControl();
             this.SOItemDetails = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -118,6 +122,7 @@
             this.print30ShelfButton = new System.Windows.Forms.Button();
             this.clearAllStockRowsBtn = new System.Windows.Forms.Button();
             this.addStockBtn = new System.Windows.Forms.Button();
+            this.stockLblDataGridView = new EntrostyleOperationsApplication.CustomDataGridView();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.selectPrinter4 = new System.Windows.Forms.Button();
             this.selectPrinter3 = new System.Windows.Forms.Button();
@@ -147,11 +152,6 @@
             this.settings_Save = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.settings_printerName = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.processUserControl = new EntrostyleOperationsApplication.ProcessUserControl();
-            this.pickUserControl = new EntrostyleOperationsApplication.PickUserControl();
-            this.stockLblDataGridView = new EntrostyleOperationsApplication.CustomDataGridView();
             this.tabControl1.SuspendLayout();
             this.ScheduleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -186,10 +186,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.labelQtyNumberInput)).BeginInit();
             this.stockGroupBox.SuspendLayout();
             this.shelfGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.SettingsTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -379,6 +379,27 @@
             this.SOSecondary.Name = "SOSecondary";
             this.SOSecondary.Size = new System.Drawing.Size(706, 319);
             this.SOSecondary.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(209, 53);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(68, 13);
+            this.label16.TabIndex = 35;
+            this.label16.Text = "Ref/Order:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label17.Location = new System.Drawing.Point(279, 53);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(64, 13);
+            this.label17.TabIndex = 36;
+            this.label17.Text = "Ref/Order";
             // 
             // refreshBtn
             // 
@@ -645,6 +666,13 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "PROCESS";
             // 
+            // processUserControl
+            // 
+            this.processUserControl.Location = new System.Drawing.Point(0, 11);
+            this.processUserControl.Name = "processUserControl";
+            this.processUserControl.Size = new System.Drawing.Size(467, 106);
+            this.processUserControl.TabIndex = 36;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.pickUserControl);
@@ -654,6 +682,13 @@
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "PICK";
+            // 
+            // pickUserControl
+            // 
+            this.pickUserControl.Location = new System.Drawing.Point(1, 10);
+            this.pickUserControl.Name = "pickUserControl";
+            this.pickUserControl.Size = new System.Drawing.Size(202, 110);
+            this.pickUserControl.TabIndex = 35;
             // 
             // SOItemDetails
             // 
@@ -1335,6 +1370,19 @@
             this.addStockBtn.UseVisualStyleBackColor = true;
             this.addStockBtn.Click += new System.EventHandler(this.AddStockBtn_Click);
             // 
+            // stockLblDataGridView
+            // 
+            this.stockLblDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stockLblDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
+            this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.stockLblDataGridView.Location = new System.Drawing.Point(157, 131);
+            this.stockLblDataGridView.Name = "stockLblDataGridView";
+            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 460);
+            this.stockLblDataGridView.TabIndex = 0;
+            this.stockLblDataGridView.TabStop = false;
+            // 
             // SettingsTab
             // 
             this.SettingsTab.BackColor = System.Drawing.Color.FloralWhite;
@@ -1665,7 +1713,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(117, 13);
             this.label20.TabIndex = 57;
-            this.label20.Text = "EOA 2.4.0 01/11/2018";
+            this.label20.Text = "EOA 2.4.1 01/11/2018";
             // 
             // settings_Save
             // 
@@ -1703,54 +1751,6 @@
             this.settings_printerName.Size = new System.Drawing.Size(426, 20);
             this.settings_printerName.TabIndex = 48;
             this.settings_printerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(209, 53);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(68, 13);
-            this.label16.TabIndex = 35;
-            this.label16.Text = "Ref/Order:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label17.Location = new System.Drawing.Point(279, 53);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(64, 13);
-            this.label17.TabIndex = 36;
-            this.label17.Text = "Ref/Order";
-            // 
-            // processUserControl
-            // 
-            this.processUserControl.Location = new System.Drawing.Point(0, 11);
-            this.processUserControl.Name = "processUserControl";
-            this.processUserControl.Size = new System.Drawing.Size(467, 106);
-            this.processUserControl.TabIndex = 36;
-            // 
-            // pickUserControl
-            // 
-            this.pickUserControl.Location = new System.Drawing.Point(1, 10);
-            this.pickUserControl.Name = "pickUserControl";
-            this.pickUserControl.Size = new System.Drawing.Size(202, 110);
-            this.pickUserControl.TabIndex = 35;
-            // 
-            // stockLblDataGridView
-            // 
-            this.stockLblDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.stockLblDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.stockLblDataGridView.BackgroundColor = System.Drawing.Color.MistyRose;
-            this.stockLblDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.stockLblDataGridView.Location = new System.Drawing.Point(157, 131);
-            this.stockLblDataGridView.Name = "stockLblDataGridView";
-            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 460);
-            this.stockLblDataGridView.TabIndex = 0;
-            this.stockLblDataGridView.TabStop = false;
             // 
             // Application
             // 
@@ -1802,13 +1802,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.labelQtyNumberInput)).EndInit();
             this.stockGroupBox.ResumeLayout(false);
             this.shelfGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.SettingsTab.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stockLblDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }

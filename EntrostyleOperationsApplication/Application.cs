@@ -1258,7 +1258,9 @@ namespace EntrostyleOperationsApplication
                 //Multiple pasting support
                 if ((e.ColumnIndex == dgv.Columns["METHOD_FAKE"].Index
                     || e.ColumnIndex == dgv.Columns["STATUS_FAKE"].Index
-                    || e.ColumnIndex == dgv.Columns["DUEDATE_FAKE"].Index)
+                    || e.ColumnIndex == dgv.Columns["DUEDATE_FAKE"].Index
+                    || e.ColumnIndex == dgv.Columns["PICKDATE_FAKE"].Index
+                    || e.ColumnIndex == dgv.Columns["DUETIME_FAKE"].Index)
                     && dgv.SelectedRows.Count > 1)
                 {
                     var wait = ShowWaitForm();
@@ -1476,6 +1478,13 @@ namespace EntrostyleOperationsApplication
                 if (stockLblDataGridView.ContainsFocus)
                 {
                     DuplicateCurrentStockLblRow();
+                }
+            }
+            else if (keyData == (Keys.Enter))
+            {
+                if (searchBox.ContainsFocus && searchFilterBtn.Enabled)
+                {
+                    SearchFilterBtn_Click(searchFilterBtn, new EventArgs());
                 }
             }
 
