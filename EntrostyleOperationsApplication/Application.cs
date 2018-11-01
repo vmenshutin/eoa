@@ -956,7 +956,6 @@ namespace EntrostyleOperationsApplication
             columns["UNSUP_QUANT"].HeaderText = "Outstanding";
             columns["TOTALSTOCK"].HeaderText = "Location Qty";
             columns["X_ACTION"].HeaderText = "Action";
-            columns["FREE"].HeaderText = "Free";
             columns["ALLOCATED"].HeaderText = "Allocated";
             columns["DUEDATE"].HeaderText = "Due";
 
