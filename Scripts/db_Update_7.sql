@@ -85,7 +85,7 @@ onSalesOrderTable as (
 			ON lines.STOCKCODE = lines2.STOCKCODE
 			AND lines.LOCATION = lines2.LOCATION
 		WHERE (lines2.HDR_STATUS = 0 OR lines2.HDR_STATUS = 1)	
-			and CONVERT(DATE, lines2.DUEDATE) >= CONVERT(DATE, lines.DUEDATE)
+			and CONVERT(DATE, lines2.DUEDATE) <= CONVERT(DATE, lines.DUEDATE)
 			AND orders.SEQNO = @seqno
 		GROUP BY lines.SEQNO
 )
