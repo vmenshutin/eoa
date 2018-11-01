@@ -923,20 +923,6 @@ namespace EntrostyleOperationsApplication
         {
             var columns = SOItemDetails.Columns;
 
-            foreach (DataGridViewColumn column in columns)
-            {
-                if (column.Name == "PICK_NOW"
-                    || column.Name == "LOCATION_FAKE"
-                    || column.Name == "X_ACTION")
-                {
-                    column.DefaultCellStyle.BackColor = Color.Silver;
-                }
-                else
-                {
-                    column.ReadOnly = true;
-                }
-            }
-
             columns["SEQNO"].Visible = false;
             columns["LINES_ID"].Visible = false;
             columns["SESSIONID"].Visible = false;
@@ -966,6 +952,22 @@ namespace EntrostyleOperationsApplication
 
             AddCalendarColumn(SOItemDetails, "DUEDATE", "DUEDATE_FAKE", "Due", 10);
             columns["DUEDATE_FAKE"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            columns["DUEDATE_FAKE"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            foreach (DataGridViewColumn column in columns)
+            {
+                if (column.Name == "PICK_NOW"
+                    || column.Name == "LOCATION_FAKE"
+                    || column.Name == "DUEDATE_FAKE"
+                    || column.Name == "X_ACTION")
+                {
+                    column.DefaultCellStyle.BackColor = Color.Silver;
+                }
+                else
+                {
+                    column.ReadOnly = true;
+                }
+            }
         }
 
         private void AddCalendarColumn(DataGridView dgv, string sourceColumnName, string fakeColumnName, string headerText, int index)
