@@ -189,6 +189,7 @@
                   <TextRun>
                     <Value>=Sum(Fields!SEQNO.Value, "DataSet1")</Value>
                     <Style>
+                      <FontSize>18pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -200,7 +201,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
             <Left>13.82069cm</Left>
-            <Height>0.6cm</Height>
+            <Height>0.70889cm</Height>
             <Width>3.11138cm</Width>
             <Style>
               <Border>
@@ -231,7 +232,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>0.6cm</Top>
+            <Top>0.81472cm</Top>
             <Left>13.82069cm</Left>
             <Height>0.6cm</Height>
             <Width>3.11138cm</Width>
@@ -265,7 +266,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>1.23528cm</Top>
+            <Top>1.45cm</Top>
             <Left>13.82069cm</Left>
             <Height>0.6cm</Height>
             <Width>3.11138cm</Width>
@@ -299,7 +300,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>1.83528cm</Top>
+            <Top>2.05cm</Top>
             <Left>13.82069cm</Left>
             <Height>0.6cm</Height>
             <Width>3.11138cm</Width>
@@ -333,7 +334,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
-            <Top>2.43528cm</Top>
+            <Top>2.65cm</Top>
             <Left>13.82069cm</Left>
             <Height>0.6cm</Height>
             <Width>3.11138cm</Width>
@@ -496,7 +497,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>0.6cm</Top>
+            <Top>0.81472cm</Top>
             <Left>12.0244cm</Left>
             <Height>0.6cm</Height>
             <Width>1.79629cm</Width>
@@ -528,7 +529,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>1.23528cm</Top>
+            <Top>1.45cm</Top>
             <Left>12.0244cm</Left>
             <Height>0.6cm</Height>
             <Width>1.79629cm</Width>
@@ -560,7 +561,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>1.83528cm</Top>
+            <Top>2.05cm</Top>
             <Left>12.0244cm</Left>
             <Height>0.6cm</Height>
             <Width>1.79629cm</Width>
@@ -592,7 +593,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>2.43528cm</Top>
+            <Top>2.65cm</Top>
             <Left>12.0244cm</Left>
             <Height>0.6cm</Height>
             <Width>1.79629cm</Width>
@@ -903,7 +904,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
