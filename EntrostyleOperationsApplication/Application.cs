@@ -404,6 +404,18 @@ namespace EntrostyleOperationsApplication
             }
         }
 
+        private void RefreshItemDetails()
+        {
+            if (SOMain.Rows.Count > 0)
+            {
+                SOMain.Focus();
+            }
+            else if (SOSecondary.Rows.Count > 0)
+            {
+                SOSecondary.Focus();
+            }
+        }
+
         // Generates randon int number for unique session id
         private int GenerateSessionId()
         {
@@ -584,16 +596,17 @@ namespace EntrostyleOperationsApplication
             // Item Qty column
             stockLblDataGridView.Columns[2].Name = "ItemQty";
             stockLblDataGridView.Columns[2].HeaderText = "Item Qty";
-            stockLblDataGridView.Columns[2].Width = 60;
+            stockLblDataGridView.Columns[2].Width = 40;
 
             // Label Qty column
             stockLblDataGridView.Columns[3].Name = "LabelQty";
             stockLblDataGridView.Columns[3].HeaderText = "Copies";
-            stockLblDataGridView.Columns[3].Width = 60;
+            stockLblDataGridView.Columns[3].Width = 40;
 
             // Barcode1 column
             stockLblDataGridView.Columns[4].Name = "Barcode1";
-            stockLblDataGridView.Columns[4].Visible = false;
+            stockLblDataGridView.Columns[4].HeaderText = "MPN";
+            stockLblDataGridView.Columns[4].Width = 100;
 
             // report paths
             stockReport.ReportPath = @".\1_stock.rdlc";
@@ -954,7 +967,7 @@ namespace EntrostyleOperationsApplication
             columns["UNSUP_QUANT"].HeaderText = "Outstanding";
             columns["TOTALSTOCK"].HeaderText = "Location Qty";
             columns["X_ACTION"].HeaderText = "Action";
-            columns["ALLOCATED"].HeaderText = "Allocated";
+            columns["ALLOCATED"].HeaderText = "Free";
             columns["DUEDATE"].HeaderText = "Due";
 
             columns["STOCKCODE"].DefaultCellStyle.ForeColor = Color.Blue;
@@ -1318,19 +1331,8 @@ namespace EntrostyleOperationsApplication
 
             LoadSalesOrdersMain();
             LoadSalesOrdersSecondary();
-            // loadDifotData();
 
-            // re-select SO to refresh item details grid
-            if (SOMain.Rows.Count > 0)
-            {
-                // SO_RowEnter(SOMain, new DataGridViewCellEventArgs(0, 0));
-                SOMain.Focus();
-            }
-            else if (SOSecondary.Rows.Count > 0)
-            {
-                // SO_RowEnter(SOSecondary, new DataGridViewCellEventArgs(0, 0));
-                SOSecondary.Focus();
-            }
+            RefreshItemDetails();
 
             wait.Close();
         }
@@ -1428,6 +1430,8 @@ namespace EntrostyleOperationsApplication
 
             LoadSalesOrdersMain();
             LoadSalesOrdersSecondary();
+
+            RefreshItemDetails();
 
             wait.Close();
         }
@@ -2245,6 +2249,8 @@ namespace EntrostyleOperationsApplication
 
             LoadSalesOrdersMain();
             LoadSalesOrdersSecondary();
+
+            RefreshItemDetails();
 
             wait.Close();
         }

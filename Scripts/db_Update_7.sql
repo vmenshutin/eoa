@@ -108,7 +108,10 @@ select distinct
      ,lines.PICK_NOW
      ,lines.UNSUP_QUANT
      ,locinfo.QTY
-	 ,((IIF(onHand.ON_HAND IS NOT NULL, onHand.ON_HAND, 0)) + (IIF(onPurchaseOrder.ON_PURCHASE_ORDER IS NOT NULL, onPurchaseOrder.ON_PURCHASE_ORDER, 0)) - (IIF(onSalesOrder.ON_SALES_ORDER IS NOT NULL, onSalesOrder.ON_SALES_ORDER, 0))) as 'ALLOCATED'
+	 , case
+			when items.STATUS = 'L' or items.STOCKCODE is null or items.STOCKCODE = '' then NULL
+			else ((IIF(onHand.ON_HAND IS NOT NULL, onHand.ON_HAND, 0)) + (IIF(onPurchaseOrder.ON_PURCHASE_ORDER IS NOT NULL, onPurchaseOrder.ON_PURCHASE_ORDER, 0)) - (IIF(onSalesOrder.ON_SALES_ORDER IS NOT NULL, onSalesOrder.ON_SALES_ORDER, 0)))
+	 end as 'ALLOCATED'
 	 ,lines.DUEDATE
 	 ,CONCAT(stocklocations.LOCNO, ' ', stocklocations.LCODE)
 	 ,lines.X_ACTION	
