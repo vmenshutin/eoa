@@ -101,6 +101,10 @@
           <DataField>NARRATIVE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="X_DISPATCHMETHOD">
+          <DataField>X_DISPATCHMETHOD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SalesOrderReportDataSet</rd:DataSetName>
@@ -164,6 +168,10 @@
         <Field Name="LINETYPE">
           <DataField>LINETYPE</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LOCATION">
+          <DataField>LOCATION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
@@ -785,10 +793,13 @@
                   <Width>2.9376cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>11.99953cm</Width>
+                  <Width>10.81638cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.57024cm</Width>
+                  <Width>1.62772cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.07667cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -809,6 +820,7 @@
                                     <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
                                     <FontSize>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
                                     <FontWeight>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
+                                    <Color>=IIF(Fields!LOCATION.Value.ToString().StartsWith("1 "), "Black", "LightGray")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -846,6 +858,7 @@
                                     <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
                                     <FontSize>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
                                     <FontWeight>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
+                                    <Color>=IIF(Fields!LOCATION.Value.ToString().StartsWith("1 "), "Black", "LightGray")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -883,6 +896,7 @@
                                     <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
                                     <FontSize>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
                                     <FontWeight>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
+                                    <Color>=IIF(Fields!LOCATION.Value.ToString().StartsWith("1 "), "Black", "LightGray")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -906,12 +920,51 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="LOCATION">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!LOCATION.Value</Value>
+                                  <Style>
+                                    <FontStyle>=IIF(Fields!LINETYPE.Value = 2, "Italic", "Default")</FontStyle>
+                                    <FontSize>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "12pt", "10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!LINETYPE.Value = 1 Or Fields!X_HEADING_LINE.Value = "Y", "Bold", "Default")</FontWeight>
+                                    <Color>=IIF(Fields!LOCATION.Value.ToString().StartsWith("1 "), "Black", "LightGray")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>LOCATION</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -931,7 +984,7 @@
             <Top>4cm</Top>
             <Left>1cm</Left>
             <Height>1cm</Height>
-            <Width>17.50737cm</Width>
+            <Width>17.45836cm</Width>
             <ZIndex>16</ZIndex>
             <Style>
               <Border>
@@ -939,6 +992,40 @@
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox13">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!X_DISPATCHMETHOD.Value, "DataSet1")</Value>
+                    <Style>
+                      <FontSize>18pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox7</rd:DefaultName>
+            <Left>8.84246cm</Left>
+            <Height>0.70889cm</Height>
+            <Width>3.11138cm</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>12.5cm</Height>
         <Style>

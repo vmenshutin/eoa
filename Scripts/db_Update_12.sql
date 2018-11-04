@@ -19,6 +19,7 @@ begin
 			,so.REFERENCE
 			,so.CUSTORDERNO
 			,so.X_PROJECTNAME
+			,so.X_DISPATCHMETHOD
 			,nar.NARRATIVE
 	from SALESORD_HDR so
 	left join DR_ACCS accs

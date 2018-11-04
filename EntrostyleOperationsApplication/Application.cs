@@ -765,7 +765,7 @@ namespace EntrostyleOperationsApplication
                 // remove all unnecessary columns from filteredSOItems
                 for (int i = filteredSOItems.Columns.Count - 1; i >= 0; i--)
                 {
-                    string[] columnsToKeep = { "STOCKCODE", "DESCRIPTION", "PICK_NOW", "X_HEADING_LINE", "X_HIDEFROMPICK", "LINETYPE" };
+                    string[] columnsToKeep = { "STOCKCODE", "DESCRIPTION", "PICK_NOW", "X_HEADING_LINE", "X_HIDEFROMPICK", "LINETYPE", "LOCATION" };
 
                     if (!columnsToKeep.Contains<string>(filteredSOItems.Columns[i].ColumnName))
                     {

@@ -36,6 +36,7 @@
               <xs:element name="BARCODE" msprop:Generator_ColumnVarNameInTable="columnBARCODE" msprop:Generator_ColumnPropNameInRow="BARCODE" msprop:Generator_ColumnPropNameInTable="BARCODEColumn" msprop:Generator_UserColumnName="BARCODE" type="xs:base64Binary" minOccurs="0" />
               <xs:element name="ADDRESS_BARCODE" msprop:Generator_ColumnVarNameInTable="columnADDRESS_BARCODE" msprop:Generator_ColumnPropNameInRow="ADDRESS_BARCODE" msprop:Generator_ColumnPropNameInTable="ADDRESS_BARCODEColumn" msprop:Generator_UserColumnName="ADDRESS_BARCODE" type="xs:base64Binary" minOccurs="0" />
               <xs:element name="NARRATIVE" msprop:Generator_ColumnVarNameInTable="columnNARRATIVE" msprop:Generator_ColumnPropNameInRow="NARRATIVE" msprop:Generator_ColumnPropNameInTable="NARRATIVEColumn" msprop:Generator_UserColumnName="NARRATIVE" type="xs:string" minOccurs="0" />
+              <xs:element name="X_DISPATCHMETHOD" msprop:Generator_ColumnVarNameInTable="columnX_DISPATCHMETHOD" msprop:Generator_ColumnPropNameInRow="X_DISPATCHMETHOD" msprop:Generator_ColumnPropNameInTable="X_DISPATCHMETHODColumn" msprop:Generator_UserColumnName="X_DISPATCHMETHOD" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -68,6 +69,7 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="LINETYPE" msprop:Generator_ColumnVarNameInTable="columnLINETYPE" msprop:Generator_ColumnPropNameInRow="LINETYPE" msprop:Generator_ColumnPropNameInTable="LINETYPEColumn" msprop:Generator_UserColumnName="LINETYPE" type="xs:int" minOccurs="0" />
+              <xs:element name="LOCATION" msprop:Generator_ColumnVarNameInTable="columnLOCATION" msprop:Generator_ColumnPropNameInRow="LOCATION" msprop:Generator_ColumnPropNameInTable="LOCATIONColumn" msprop:Generator_UserColumnName="LOCATION" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
