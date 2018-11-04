@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
@@ -93,7 +93,6 @@
             this.difotFrom = new System.Windows.Forms.DateTimePicker();
             this.SODifot = new System.Windows.Forms.DataGridView();
             this.labelTab = new System.Windows.Forms.TabPage();
-            this.lblRefreshBtn = new System.Windows.Forms.Button();
             this.duplicateSelectedBtn = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.salesOrderLabelTextBox = new System.Windows.Forms.TextBox();
@@ -103,8 +102,6 @@
             this.supplierGroupBox = new System.Windows.Forms.GroupBox();
             this.printSupplierBtn = new System.Windows.Forms.Button();
             this.print30SupplierBtn = new System.Windows.Forms.Button();
-            this.customLabelPrinterTextBox = new System.Windows.Forms.TextBox();
-            this.customLabelPrinterCheckbox = new System.Windows.Forms.CheckBox();
             this.LABELControlsGroupBox = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -121,7 +118,6 @@
             this.printShelfButton = new System.Windows.Forms.Button();
             this.print30ShelfButton = new System.Windows.Forms.Button();
             this.clearAllStockRowsBtn = new System.Windows.Forms.Button();
-            this.addStockBtn = new System.Windows.Forms.Button();
             this.stockLblDataGridView = new EntrostyleOperationsApplication.CustomDataGridView();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.selectPrinter4 = new System.Windows.Forms.Button();
@@ -694,34 +690,34 @@
             // 
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle5;
             this.SOItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOItemDetails.Location = new System.Drawing.Point(0, 0);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.SOItemDetails.Size = new System.Drawing.Size(770, 386);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -969,7 +965,6 @@
             // labelTab
             // 
             this.labelTab.BackColor = System.Drawing.Color.LavenderBlush;
-            this.labelTab.Controls.Add(this.lblRefreshBtn);
             this.labelTab.Controls.Add(this.duplicateSelectedBtn);
             this.labelTab.Controls.Add(this.label36);
             this.labelTab.Controls.Add(this.salesOrderLabelTextBox);
@@ -977,33 +972,16 @@
             this.labelTab.Controls.Add(this.purchaseOrderLabelTextBox);
             this.labelTab.Controls.Add(this.deleteSelectedBtn);
             this.labelTab.Controls.Add(this.supplierGroupBox);
-            this.labelTab.Controls.Add(this.customLabelPrinterTextBox);
-            this.labelTab.Controls.Add(this.customLabelPrinterCheckbox);
             this.labelTab.Controls.Add(this.LABELControlsGroupBox);
             this.labelTab.Controls.Add(this.stockGroupBox);
             this.labelTab.Controls.Add(this.shelfGroupBox);
             this.labelTab.Controls.Add(this.clearAllStockRowsBtn);
-            this.labelTab.Controls.Add(this.addStockBtn);
             this.labelTab.Controls.Add(this.stockLblDataGridView);
             this.labelTab.Location = new System.Drawing.Point(4, 22);
             this.labelTab.Name = "labelTab";
             this.labelTab.Size = new System.Drawing.Size(1489, 785);
             this.labelTab.TabIndex = 4;
             this.labelTab.Text = "LABELS";
-            // 
-            // lblRefreshBtn
-            // 
-            this.lblRefreshBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblRefreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRefreshBtn.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lblRefreshBtn.Location = new System.Drawing.Point(1063, 218);
-            this.lblRefreshBtn.Name = "lblRefreshBtn";
-            this.lblRefreshBtn.Size = new System.Drawing.Size(161, 28);
-            this.lblRefreshBtn.TabIndex = 68;
-            this.lblRefreshBtn.TabStop = false;
-            this.lblRefreshBtn.Text = "REFRESH (F5)";
-            this.lblRefreshBtn.UseVisualStyleBackColor = true;
             // 
             // duplicateSelectedBtn
             // 
@@ -1116,29 +1094,6 @@
             this.print30SupplierBtn.Text = "PRINT 30 SUPPLIER";
             this.print30SupplierBtn.UseVisualStyleBackColor = true;
             this.print30SupplierBtn.Click += new System.EventHandler(this.Print30SupplierBtn_Click);
-            // 
-            // customLabelPrinterTextBox
-            // 
-            this.customLabelPrinterTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.customLabelPrinterTextBox.Enabled = false;
-            this.customLabelPrinterTextBox.Location = new System.Drawing.Point(907, 413);
-            this.customLabelPrinterTextBox.Name = "customLabelPrinterTextBox";
-            this.customLabelPrinterTextBox.Size = new System.Drawing.Size(382, 20);
-            this.customLabelPrinterTextBox.TabIndex = 55;
-            this.customLabelPrinterTextBox.TabStop = false;
-            // 
-            // customLabelPrinterCheckbox
-            // 
-            this.customLabelPrinterCheckbox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.customLabelPrinterCheckbox.AutoSize = true;
-            this.customLabelPrinterCheckbox.Location = new System.Drawing.Point(907, 389);
-            this.customLabelPrinterCheckbox.Name = "customLabelPrinterCheckbox";
-            this.customLabelPrinterCheckbox.Size = new System.Drawing.Size(116, 17);
-            this.customLabelPrinterCheckbox.TabIndex = 54;
-            this.customLabelPrinterCheckbox.TabStop = false;
-            this.customLabelPrinterCheckbox.Text = "Use Custom Printer";
-            this.customLabelPrinterCheckbox.UseVisualStyleBackColor = true;
-            this.customLabelPrinterCheckbox.CheckedChanged += new System.EventHandler(this.CustomLabelPrinterCheckbox_CheckedChanged);
             // 
             // LABELControlsGroupBox
             // 
@@ -1354,21 +1309,6 @@
             this.clearAllStockRowsBtn.Text = "DELETE ALL";
             this.clearAllStockRowsBtn.UseVisualStyleBackColor = true;
             this.clearAllStockRowsBtn.Click += new System.EventHandler(this.ClearAllStockRowsBtn_Click);
-            // 
-            // addStockBtn
-            // 
-            this.addStockBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.addStockBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addStockBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addStockBtn.ForeColor = System.Drawing.Color.Green;
-            this.addStockBtn.Location = new System.Drawing.Point(907, 218);
-            this.addStockBtn.Name = "addStockBtn";
-            this.addStockBtn.Size = new System.Drawing.Size(143, 28);
-            this.addStockBtn.TabIndex = 34;
-            this.addStockBtn.TabStop = false;
-            this.addStockBtn.Text = "Add";
-            this.addStockBtn.UseVisualStyleBackColor = true;
-            this.addStockBtn.Click += new System.EventHandler(this.AddStockBtn_Click);
             // 
             // stockLblDataGridView
             // 
@@ -1863,7 +1803,6 @@
         private System.Windows.Forms.TextBox difotSearchBox;
         private System.Windows.Forms.TabPage labelTab;
         private System.Windows.Forms.ComboBox stockCodeLABELCombobox;
-        private System.Windows.Forms.Button addStockBtn;
         private System.Windows.Forms.Button clearAllStockRowsBtn;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
@@ -1879,8 +1818,6 @@
         private System.Windows.Forms.GroupBox LABELControlsGroupBox;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.CheckBox customLabelPrinterCheckbox;
-        private System.Windows.Forms.TextBox customLabelPrinterTextBox;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox settings_30LabelPrinter;
         private System.Windows.Forms.Label label26;
@@ -1929,7 +1866,6 @@
         private System.Windows.Forms.Button selectPrinter3;
         private System.Windows.Forms.Button selectPrinter2;
         private System.Windows.Forms.Button selectPrinter1;
-        private System.Windows.Forms.Button lblRefreshBtn;
         private System.Windows.Forms.Button actionPickBtn;
         private System.Windows.Forms.CheckBox includeAllCheckbox;
         private System.Windows.Forms.Button searchFilterBtn;

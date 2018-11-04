@@ -627,19 +627,13 @@ namespace EntrostyleOperationsApplication
 
         private void LabelQtyNumberInput_Leave(object sender, EventArgs e)
         {
-            AddStockBtn_Click(addStockBtn, new EventArgs());
-            addStockBtn.Enabled = true;
+            AddLabelRow();
         }
 
         private void ItemQtyNumberInput_Enter(object sender, EventArgs e)
         {
             var control = sender as NumericUpDown;
             control.Select(0, control.Text.Length);
-
-            if (control.Name == labelQtyNumberInput.Name)
-            {
-                addStockBtn.Enabled = false;
-            }
         }
 
         private void SetLabelDataRow(int rowIndex, DataTable dt)
@@ -1885,7 +1879,7 @@ namespace EntrostyleOperationsApplication
                 new string[] { itemCode, description, itemQty, labelQty, barcode });
         }
 
-        private void AddStockBtn_Click(object sender, EventArgs e)
+        private void AddLabelRow()
         {
             if (stockCodeLABELCombobox.SelectedValue is DataRowView selectedValue)
             {
@@ -1952,9 +1946,7 @@ namespace EntrostyleOperationsApplication
                 {
                     InitLABELReport(report, row.Index);
                     ExportReport(report, 1.97, 0.99);
-                    PrepareDocAndPrint(new PaperSize("Stock Label", 197, 99),
-                        customLabelPrinterCheckbox.Checked ? customLabelPrinterTextBox.Text : settings_labelPrinter.Text,
-                        copies);
+                    PrepareDocAndPrint(new PaperSize("Stock Label", 197, 99), settings_labelPrinter.Text, copies);
                 }
             }
 
@@ -1969,8 +1961,7 @@ namespace EntrostyleOperationsApplication
 
             InitLABELReport(report);
             ExportReport(report, 8.27, 11.69); // 0.59, 0.59
-            PrepareDocAndPrint(new PaperSize("Layout 30", 827, 1169),
-                customLabelPrinterCheckbox.Checked ? customLabelPrinterTextBox.Text : settings_30LabelPrinter.Text, 1);
+            PrepareDocAndPrint(new PaperSize("Layout 30", 827, 1169), settings_30LabelPrinter.Text, 1);
 
             LabelPrintButtonsEnabled(true);
             wait.Close();
@@ -2004,17 +1995,6 @@ namespace EntrostyleOperationsApplication
         private void Print30ShelfButton_Click(object sender, EventArgs e)
         {
             Print30LABELLayout(layout30SHELFReport);
-        }
-
-        private void CustomLabelPrinterCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            var control = sender as CheckBox;
-
-            if (control.Checked)
-                customLabelPrinterTextBox.Enabled = true;
-            else
-                customLabelPrinterTextBox.Enabled = false;
-            
         }
 
         private void PrintSupplierBtn_Click(object sender, EventArgs e)
