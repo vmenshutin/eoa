@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
@@ -690,34 +690,34 @@
             // 
             this.SOItemDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SOItemDetails.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.SOItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SOItemDetails.DefaultCellStyle = dataGridViewCellStyle8;
             this.SOItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SOItemDetails.Location = new System.Drawing.Point(0, 0);
             this.SOItemDetails.Name = "SOItemDetails";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SOItemDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.SOItemDetails.Size = new System.Drawing.Size(770, 386);
             this.SOItemDetails.TabIndex = 14;
             // 
@@ -989,7 +989,7 @@
             this.duplicateSelectedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.duplicateSelectedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.duplicateSelectedBtn.ForeColor = System.Drawing.Color.SeaGreen;
-            this.duplicateSelectedBtn.Location = new System.Drawing.Point(157, 610);
+            this.duplicateSelectedBtn.Location = new System.Drawing.Point(157, 501);
             this.duplicateSelectedBtn.Name = "duplicateSelectedBtn";
             this.duplicateSelectedBtn.Size = new System.Drawing.Size(211, 28);
             this.duplicateSelectedBtn.TabIndex = 67;
@@ -1044,7 +1044,7 @@
             this.deleteSelectedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteSelectedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteSelectedBtn.ForeColor = System.Drawing.Color.DarkOrange;
-            this.deleteSelectedBtn.Location = new System.Drawing.Point(381, 610);
+            this.deleteSelectedBtn.Location = new System.Drawing.Point(381, 501);
             this.deleteSelectedBtn.Name = "deleteSelectedBtn";
             this.deleteSelectedBtn.Size = new System.Drawing.Size(211, 28);
             this.deleteSelectedBtn.TabIndex = 57;
@@ -1058,9 +1058,9 @@
             this.supplierGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.supplierGroupBox.Controls.Add(this.printSupplierBtn);
             this.supplierGroupBox.Controls.Add(this.print30SupplierBtn);
-            this.supplierGroupBox.Location = new System.Drawing.Point(1063, 462);
+            this.supplierGroupBox.Location = new System.Drawing.Point(381, 540);
             this.supplierGroupBox.Name = "supplierGroupBox";
-            this.supplierGroupBox.Size = new System.Drawing.Size(150, 129);
+            this.supplierGroupBox.Size = new System.Drawing.Size(211, 129);
             this.supplierGroupBox.TabIndex = 56;
             this.supplierGroupBox.TabStop = false;
             this.supplierGroupBox.Text = "SUPPLIER";
@@ -1071,7 +1071,7 @@
             this.printSupplierBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printSupplierBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printSupplierBtn.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.printSupplierBtn.Location = new System.Drawing.Point(10, 19);
+            this.printSupplierBtn.Location = new System.Drawing.Point(40, 19);
             this.printSupplierBtn.Name = "printSupplierBtn";
             this.printSupplierBtn.Size = new System.Drawing.Size(129, 48);
             this.printSupplierBtn.TabIndex = 47;
@@ -1086,7 +1086,7 @@
             this.print30SupplierBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.print30SupplierBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.print30SupplierBtn.ForeColor = System.Drawing.Color.MediumBlue;
-            this.print30SupplierBtn.Location = new System.Drawing.Point(10, 73);
+            this.print30SupplierBtn.Location = new System.Drawing.Point(40, 73);
             this.print30SupplierBtn.Name = "print30SupplierBtn";
             this.print30SupplierBtn.Size = new System.Drawing.Size(129, 48);
             this.print30SupplierBtn.TabIndex = 49;
@@ -1216,9 +1216,9 @@
             this.stockGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.stockGroupBox.Controls.Add(this.printStockButton);
             this.stockGroupBox.Controls.Add(this.print30StockButton);
-            this.stockGroupBox.Location = new System.Drawing.Point(1219, 462);
+            this.stockGroupBox.Location = new System.Drawing.Point(605, 540);
             this.stockGroupBox.Name = "stockGroupBox";
-            this.stockGroupBox.Size = new System.Drawing.Size(150, 129);
+            this.stockGroupBox.Size = new System.Drawing.Size(211, 129);
             this.stockGroupBox.TabIndex = 52;
             this.stockGroupBox.TabStop = false;
             this.stockGroupBox.Text = "STOCK";
@@ -1229,7 +1229,7 @@
             this.printStockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printStockButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printStockButton.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.printStockButton.Location = new System.Drawing.Point(10, 19);
+            this.printStockButton.Location = new System.Drawing.Point(40, 19);
             this.printStockButton.Name = "printStockButton";
             this.printStockButton.Size = new System.Drawing.Size(129, 48);
             this.printStockButton.TabIndex = 47;
@@ -1244,7 +1244,7 @@
             this.print30StockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.print30StockButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.print30StockButton.ForeColor = System.Drawing.Color.MediumBlue;
-            this.print30StockButton.Location = new System.Drawing.Point(10, 73);
+            this.print30StockButton.Location = new System.Drawing.Point(40, 73);
             this.print30StockButton.Name = "print30StockButton";
             this.print30StockButton.Size = new System.Drawing.Size(129, 48);
             this.print30StockButton.TabIndex = 49;
@@ -1258,9 +1258,9 @@
             this.shelfGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.shelfGroupBox.Controls.Add(this.printShelfButton);
             this.shelfGroupBox.Controls.Add(this.print30ShelfButton);
-            this.shelfGroupBox.Location = new System.Drawing.Point(907, 462);
+            this.shelfGroupBox.Location = new System.Drawing.Point(157, 540);
             this.shelfGroupBox.Name = "shelfGroupBox";
-            this.shelfGroupBox.Size = new System.Drawing.Size(150, 129);
+            this.shelfGroupBox.Size = new System.Drawing.Size(211, 129);
             this.shelfGroupBox.TabIndex = 51;
             this.shelfGroupBox.TabStop = false;
             this.shelfGroupBox.Text = "SHELF";
@@ -1271,7 +1271,7 @@
             this.printShelfButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printShelfButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printShelfButton.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.printShelfButton.Location = new System.Drawing.Point(10, 19);
+            this.printShelfButton.Location = new System.Drawing.Point(40, 19);
             this.printShelfButton.Name = "printShelfButton";
             this.printShelfButton.Size = new System.Drawing.Size(129, 48);
             this.printShelfButton.TabIndex = 48;
@@ -1286,7 +1286,7 @@
             this.print30ShelfButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.print30ShelfButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.print30ShelfButton.ForeColor = System.Drawing.Color.MediumBlue;
-            this.print30ShelfButton.Location = new System.Drawing.Point(10, 73);
+            this.print30ShelfButton.Location = new System.Drawing.Point(40, 73);
             this.print30ShelfButton.Name = "print30ShelfButton";
             this.print30ShelfButton.Size = new System.Drawing.Size(129, 48);
             this.print30ShelfButton.TabIndex = 50;
@@ -1301,7 +1301,7 @@
             this.clearAllStockRowsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearAllStockRowsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearAllStockRowsBtn.ForeColor = System.Drawing.Color.Red;
-            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(605, 610);
+            this.clearAllStockRowsBtn.Location = new System.Drawing.Point(605, 501);
             this.clearAllStockRowsBtn.Name = "clearAllStockRowsBtn";
             this.clearAllStockRowsBtn.Size = new System.Drawing.Size(211, 28);
             this.clearAllStockRowsBtn.TabIndex = 41;
@@ -1319,7 +1319,7 @@
             this.stockLblDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stockLblDataGridView.Location = new System.Drawing.Point(157, 131);
             this.stockLblDataGridView.Name = "stockLblDataGridView";
-            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 460);
+            this.stockLblDataGridView.Size = new System.Drawing.Size(716, 350);
             this.stockLblDataGridView.TabIndex = 0;
             this.stockLblDataGridView.TabStop = false;
             // 
