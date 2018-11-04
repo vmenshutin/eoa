@@ -452,9 +452,9 @@
             // 
             // narrativeStockTabControl
             // 
+            this.narrativeStockTabControl.Controls.Add(this.tabPage3);
             this.narrativeStockTabControl.Controls.Add(this.tabPage1);
             this.narrativeStockTabControl.Controls.Add(this.tabPage2);
-            this.narrativeStockTabControl.Controls.Add(this.tabPage3);
             this.narrativeStockTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.narrativeStockTabControl.Location = new System.Drawing.Point(0, 0);
             this.narrativeStockTabControl.Name = "narrativeStockTabControl";
