@@ -2,7 +2,7 @@
 {
 }
 
-namespace EntrostyleOperationsApplication
+namespace EOA
 {
 
 

@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace EntrostyleOperationsApplication {
+namespace EOA {
     
     
     /// <summary>
